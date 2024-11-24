@@ -164,30 +164,10 @@ $city = City::where('id', 12)->first();
                                         </div>
                                         <div class="bid_cards_timer_body">
                                             <ul id="timer-{{ $land->id }}" data-endtime="{{ $land->auction_end_time }}">
-                                                <li>
-                                                    <div class="bid_cards_timer_body_text">
-                                                        <h3 class="days">0</h3>
-                                                        <p>يوم</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="bid_cards_timer_body_text">
-                                                        <h3 class="hours">0</h3>
-                                                        <p>ساعة</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="bid_cards_timer_body_text">
-                                                        <h3 class="minutes">0</h3>
-                                                        <p>دقيقة</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="bid_cards_timer_body_text">
-                                                        <h3 class="seconds">0</h3>
-                                                        <p>ثانية</p>
-                                                    </div>
-                                                </li>
+                                                <li><div class="bid_cards_timer_body_text"><h3 class="days">0</h3><p>يوم</p></div></li>
+                                                <li><div class="bid_cards_timer_body_text"><h3 class="hours">0</h3><p>ساعة</p></div></li>
+                                                <li><div class="bid_cards_timer_body_text"><h3 class="minutes">0</h3><p>دقيقة</p></div></li>
+                                                <li><div class="bid_cards_timer_body_text"><h3 class="seconds">0</h3><p>ثانية</p></div></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -202,112 +182,222 @@ $city = City::where('id', 12)->first();
                                 </div>
                                 <div class="bid_cards_btns">
                                     <div class="bid_cards_btns_container">
-                                        <button class="bidButton" data-endtime="{{ $land->auction_end_time }}">
+                                        <button class="bidButton" data-id="{{ $land->id }}" data-endtime="{{ $land->auction_end_time }}">
                                             <a href="javascript:void(0)" style="cursor: pointer;">مزايدة</a>
                                         </button>
+
                                         <div class="bid_cards_btns_2">
                                             <button class="bidButton2" data-endtime="{{ $land->auction_end_time }}" data-land-id="{{ $land->id }}" style="color: white; font-size:1.1rem;cursor: pointer;">مشاهدة المزايدين</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-{{-- bid pop up --}}
-<div class="bid_pop_up_bg"></div> <!-- عنصر الخلفية -->
-<div class="bid_pop_up">
-    <div class="bid_pop_up_container">
-        <div class="bid_pop_up_data">
-            <div class="bid_pop_up_content">
-                <div class="bid_pop_up_header">
-                    <button id="closeBidPopUp" class="close_button"><i class="fa-solid fa-arrow-right"></i></button>
-                </div>
-                <div class="bid_pop_up_cn">
-                    <div class="bid_pop_up_title">
-                        <div class="bid_pop_up_header_title">
-                            <div class="bid_pop_up_land">
-                                <h1>مكان الارض:</h1>
-                            </div>
-                            <div class="bid_pop_up_land_area">
-                                <h3>{{ $land->land->name }}</h3>
-                            </div>
-                        </div>
-                        <div class="bid_pop_up_header_title">
-                            <div class="bid_pop_up_land">
-                                <h1>عدد الأمتار:</h1>
-                            </div>
-                            <div class="bid_pop_up_land_area">
-                                <h3>{{ floor($land->area) }} كم</h3>
-                            </div>
-                        </div>
-                        <div class="bid_pop_up_header_title">
-                            <div class="bid_pop_up_land">
-                                <h1>اقل سعر للمزايدة:</h1>
-                            </div>
-                            <div class="bid_pop_up_land_area">
-                                <h3>{{ floor($land->starting_price) }} ريال</h3>
-                            </div>
-                        </div>
-                        <div class="bid_pop_up_inputs_btn">
-                            <div class="bid_pop_up_inputs">
-                                <form action="{{ route('placeBid', $land->id) }}" method="POST">
-                                    @csrf
-                                    <input type="number" name="bid_amount" placeholder="ادخل سعر المزايدة" required>
+
+                            {{-- bid pop up --}}
+                            <div class="bid_pop_up_bg"></div> <!-- عنصر الخلفية -->
+                            <div class="bid_pop_up">
+                                <div class="bid_pop_up_container">
+                                    <div class="bid_pop_up_data">
+                                        <div class="bid_pop_up_content">
+                                            <div class="bid_pop_up_header">
+                                                <button id="closeBidPopUp" class="close_button"><i class="fa-solid fa-arrow-right"></i></button>
+                                            </div>
+                                            <div class="bid_pop_up_cn">
+                                                <div class="bid_pop_up_title">
+                                                    <div class="bid_pop_up_header_title">
+                                                        <div class="bid_pop_up_land">
+                                                            <h1>مكان الارض:</h1>
+                                                        </div>
+                                                        <div class="bid_pop_up_land_area">
+                                                            <h3 id="land-name"></h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bid_pop_up_header_title">
+                                                        <div class="bid_pop_up_land">
+                                                            <h1>عدد الأمتار: {{ $land->area }}</h1>
+                                                        </div>
+                                                        <div class="bid_pop_up_land_area">
+                                                            <h3 id="land-area"></h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bid_pop_up_header_title">
+                                                        <div class="bid_pop_up_land">
+                                                            <h1>اقل سعر للمزايدة:</h1>
+                                                        </div>
+                                                        <div class="bid_pop_up_land_area">
+                                                            <h3 id="land-price"></h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bid_pop_up_inputs_btn">
+                                                        <div class="bid_pop_up_inputs">
+                                                            <form action="{{ route('placeBid', $land->id) }}" method="POST">
+                                                                @csrf
+                                                                <input type="number" name="bid_amount" placeholder="ادخل سعر المزايدة" required>
+                                                            </div>
+                                                            <div class="bid_pop_up_btn">
+                                                                <button type="submit" style="cursor: pointer;">اضف مزايدة</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="bid_pop_up_btn">
-                                    <button type="submit" style="cursor: pointer;">اضف مزايدة</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        {{-- نافذة مشاهدة المزايدين --}}
-        <div class="bidders_pop_up_bg"></div> <!-- عنصر الخلفية -->
-        <div class="bidders_pop_up">
-            <div class="bidders_pop_up_container">
-                <div class="bidders_pop_up_data">
-                    <div class="bidders_pop_up_content">
-                        <div class="bidders_pop_up_header">
-                            <button id="closeBiddersPopUp" class="close_button"><i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                        <div class="bidders_pop_up_cn">
-                            <div class="bidders_pop_up_title">
-                                <h2>قائمة المزايدين</h2>
-                                <ul>
-                                    @if ($land->bids->count())
-                                        @foreach ($land->bids as $bidder)
-                                            <li>
-                                                <p>اسم المزايد: {{ $bidder->user->name }}</p>
-                                                <p>قيمة المزايدة: {{ $bidder->bid_amount }} ريال</p>
-                                            </li>
-                                        @endforeach
-                                    @else
-                                        <p>لا توجد مزايدات على هذه الأرض حتى الآن.</p>
-                                    @endif
-                                </ul>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-<script>
-    // مستمع للأزرار الخاصة بـ "مشاهدة المزايدين"
-document.querySelectorAll(".bidButton2").forEach(function(button) {
+
+                            {{-- نافذة مشاهدة المزايدين --}}
+                            <div class="bidders_pop_up_bg"></div> <!-- عنصر الخلفية -->
+                            <div class="bidders_pop_up">
+                                <div class="bidders_pop_up_container">
+                                    <div class="bidders_pop_up_data">
+                                        <div class="bidders_pop_up_content">
+                                            <div class="bidders_pop_up_header">
+                                                <button id="closeBiddersPopUp" class="close_button"><i class="fa-solid fa-arrow-right"></i></button>
+                                            </div>
+                                            <div class="bidders_pop_up_cn">
+                                                <div class="bidders_pop_up_title">
+                                                    <h2>قائمة المزايدين</h2>
+                                                    <ul id="bidders-list-{{ $land->id }}">
+                                                        @if ($land->bids->count())
+                                                            @foreach ($land->bids as $bidder)
+                                                                <li>
+                                                                    <p>اسم المزايد: {{ $bidder->user->name }}</p>
+                                                                    <p>قيمة المزايدة: {{ $bidder->bid_amount }} ريال</p>
+                                                                </li>
+                                                            @endforeach
+                                                        @else
+                                                            <p>لا توجد مزايدات على هذه الأرض حتى الآن.</p>
+                                                        @endif
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        <script>
+// مستمع للأزرار الخاصة بـ "عرض المزايدة"
+document.querySelectorAll(".bidButton").forEach(function(button) {
     button.addEventListener("click", function() {
-        var biddersPopUp = document.querySelector(".bidders_pop_up");
-        var biddersPopUpBg = document.querySelector(".bidders_pop_up_bg");
-
-        biddersPopUp.style.display = "flex";
-        biddersPopUpBg.style.display = "block";
-
-        setTimeout(function() {
-            biddersPopUp.classList.add("show");
-        }, 50);
+        var landId = button.getAttribute("data-id"); // استرجاع ID الأرض
+        openBidPopup(landId); // جلب بيانات الأرض عند فتح النافذة
     });
 });
+
+// دالة لجلب بيانات الأرض وعرضها في نافذة المزايدة
+function openBidPopup(landId) {
+    var bidPopUp = document.querySelector(".bid_pop_up");
+    var bidPopUpBg = document.querySelector(".bid_pop_up_bg");
+
+    // إظهار نافذة المزايدة
+    bidPopUp.style.display = "flex";
+    bidPopUpBg.style.display = "block";
+
+    setTimeout(function() {
+        bidPopUp.classList.add("show");
+    }, 50);
+
+    // طلب بيانات الأرض من السيرفر
+    fetch(`/get-land-details?land_id=${landId}`)
+        .then(response => response.json())
+        .then(data => {
+            // تحديث تفاصيل الأرض في النافذة
+            document.getElementById("land-name").innerText = data.land.name;
+            document.getElementById("land-area").innerText = `${Math.floor(data.land.area)} كم`;
+            document.getElementById("land-price").innerText = `${Math.floor(data.land.starting_price)} ريال`;
+            // يمكن إضافة مزيد من الحقول هنا بناءً على تفاصيل البيانات
+        })
+        .catch(error => {
+            console.error("Error fetching land details:", error);
+        });
+
+    // مستمع لإغلاق نافذة المزايدة عند الضغط على زر الإغلاق
+    document.querySelector("#closeBidPopUp").addEventListener("click", function() {
+        bidPopUp.classList.remove("show");
+        setTimeout(function() {
+            bidPopUp.style.display = "none";
+            bidPopUpBg.style.display = "none";
+        }, 1000);
+    });
+}
+
+
+
+
+
+// مستمع للأزرار الخاصة بـ "مشاهدة المزايدين"
+document.querySelectorAll(".bidButton2").forEach(function(button) {
+    button.addEventListener("click", function() {
+        var landId = button.getAttribute("data-land-id"); // استرجاع ID الأرض
+        openBiddersPopup(landId); // جلب المزايدات للأرض المعينة عند فتح النافذة
+    });
+});
+
+// دالة لجلب المزايدات عندما يتم فتح نافذة المزايدين لأرض معينة
+function openBiddersPopup(landId) {
+    var biddersList = document.querySelector(".bidders_pop_up_title ul"); // استهداف مكان عرض المزايدين
+    var biddersPopUp = document.querySelector(".bidders_pop_up");
+    var biddersPopUpBg = document.querySelector(".bidders_pop_up_bg");
+
+    // إظهار نافذة المزايدين
+    biddersPopUp.style.display = "flex";
+    biddersPopUpBg.style.display = "block";
+
+    setTimeout(function() {
+        biddersPopUp.classList.add("show");
+    }, 50);
+
+    // طلب المزايدات من السيرفر
+    fetch(`/get-bidders?land_id=${landId}`)
+        .then(response => response.json())
+        .then(data => {
+            biddersList.innerHTML = ""; // مسح القائمة الحالية للمزايدين
+            if (data.bidders.length > 0) {
+                data.bidders.forEach(function(bidder) {
+                    var listItem = document.createElement('li');
+                    listItem.innerHTML = `<p>اسم المزايد: ${bidder.user.name}</p><p>قيمة المزايدة: ${bidder.bid_amount} ريال</p>`;
+                    biddersList.appendChild(listItem);
+                });
+            } else {
+                biddersList.innerHTML = "<p>لا توجد مزايدات على هذه الأرض حتى الآن.</p>";
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching bidders:", error);
+        });
+
+    // تفعيل الـ Polling لجلب المزايدات بشكل دوري
+    const pollingInterval = setInterval(function() {
+        fetch(`/get-bidders?land_id=${landId}`)
+            .then(response => response.json())
+            .then(data => {
+                biddersList.innerHTML = ""; // مسح القائمة الحالية للمزايدين
+                if (data.bidders.length > 0) {
+                    data.bidders.forEach(function(bidder) {
+                        var listItem = document.createElement('li');
+                        listItem.innerHTML = `<p>اسم المزايد: ${bidder.user.name}</p><p>قيمة المزايدة: ${bidder.bid_amount} ريال</p>`;
+                        biddersList.appendChild(listItem);
+                    });
+                } else {
+                    biddersList.innerHTML = "<p>لا توجد مزايدات على هذه الأرض حتى الآن.</p>";
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching bidders:", error);
+            });
+    }, 5000); // تحقق كل 5 ثواني للحصول على بيانات جديدة
+
+    // إغلاق الـ Polling عند غلق النافذة
+    document.querySelector("#closeBiddersPopUp").addEventListener("click", function() {
+        clearInterval(pollingInterval); // إيقاف الـ Polling
+        biddersPopUp.classList.remove("show");
+        setTimeout(function() {
+            biddersPopUp.style.display = "none";
+            biddersPopUpBg.style.display = "none";
+        }, 1000);
+    });
+}
 
 // مستمع لإغلاق نافذة "مشاهدة المزايدين"
 document.querySelector("#closeBiddersPopUp").addEventListener("click", function() {
@@ -321,100 +411,15 @@ document.querySelector("#closeBiddersPopUp").addEventListener("click", function(
     }, 1000);
 });
 
-document.querySelectorAll(".bidButton").forEach(function(button) {
-    button.addEventListener("click", function() {
-        var bidPopUp = document.querySelector(".bid_pop_up");
-        var bidPopUpBg = document.querySelector(".bid_pop_up_bg");
 
-        bidPopUp.style.display = "flex";
-        bidPopUpBg.style.display = "block";
 
-        setTimeout(function() {
-            bidPopUp.classList.add("show");
-        }, 50);
-    });
-});
-    document.querySelector(".close_button").addEventListener("click", function() {
-        var bidPopUp = document.querySelector(".bid_pop_up");
-        var bidPopUpBg = document.querySelector(".bid_pop_up_bg");
-        bidPopUp.classList.remove("show");
-        setTimeout(function() {
-            bidPopUp.style.display = "none";
-            bidPopUpBg.style.display = "none";
-        }, 1000);
-    });
-    document.querySelectorAll(".bidButton").forEach(function(button) {
-    // استرداد وقت انتهاء المزاد من الخاصية data-endtime
-    var endTime = new Date(button.getAttribute("data-endtime")).getTime();
 
-    // تحقق من انتهاء المزاد
-    var checkAuctionStatus = function() {
-        var currentTime = new Date().getTime();
-        if (currentTime >= endTime) {
-            // إذا انتهى المزاد، عدّل الزر
-            button.innerHTML = '<span style="color: #fff; font-weight: bold;">المزايدة انتهت</span>';
-            button.style.backgroundColor = "#131313";
-            button.style.pointerEvents = "none"; // تعطيل النقر
-        }
-    };
 
-    // قم بالتحقق عند تحميل الصفحة
-    checkAuctionStatus();
+        </script>
 
-    // تحقق كل ثانية لتحديث الزر إذا لزم الأمر
-    setInterval(checkAuctionStatus, 1000);
 
-    // إضافة مستمع للأحداث إذا كانت المزايدة لم تنتهِ
-    if (new Date().getTime() < endTime) {
-        button.addEventListener("click", function() {
-            var bidPopUp = document.querySelector(".bid_pop_up");
-            var bidPopUpBg = document.querySelector(".bid_pop_up_bg");
 
-            bidPopUp.style.display = "flex";
-            bidPopUpBg.style.display = "block";
 
-            setTimeout(function() {
-                bidPopUp.classList.add("show");
-            }, 50);
-        });
-    }
-});
-
-// مستمع للأزرار الخاصة بـ "مشاهدة المزايدين"
-document.querySelectorAll(".bidButton2").forEach(function(button) {
-    button.addEventListener("click", function() {
-        var landId = button.getAttribute("data-land-id"); // استرجاع id الأرض
-        var biddersPopUp = document.querySelector(".bidders_pop_up");
-        var biddersPopUpBg = document.querySelector(".bidders_pop_up_bg");
-
-        // إظهار نافذة المزايدين
-        biddersPopUp.style.display = "flex";
-        biddersPopUpBg.style.display = "block";
-
-        setTimeout(function() {
-            biddersPopUp.classList.add("show");
-        }, 50);
-
-        // جلب المزايدين للـ land_id المحدد عبر AJAX
-        fetch(`/get-bidders?land_id=${landId}`) // يتم إرسال طلب عبر الرابط الذي يحتوي على land_id
-            .then(response => response.json())
-            .then(data => {
-                var biddersList = document.querySelector(".bidders_pop_up_title ul");
-                biddersList.innerHTML = ""; // مسح القائمة الحالية
-                if (data.bidders.length > 0) {
-                    data.bidders.forEach(function(bidder) {
-                        var listItem = document.createElement('li');
-                        listItem.innerHTML = `<p>اسم المزايد: ${bidder.user.name}</p><p>قيمة المزايدة: ${bidder.bid_amount} ريال</p>`;
-                        biddersList.appendChild(listItem);
-                    });
-                } else {
-                    biddersList.innerHTML = "<p>لا توجد مزايدات على هذه الأرض حتى الآن.</p>";
-                }
-            });
-    });
-});
-
-    </script>
 @endforeach
 @else
     <p>لا توجد بيانات لعرضها.</p>

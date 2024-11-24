@@ -4,11 +4,13 @@ use App\Models\admin\bid\Bid;
 use App\Models\admin\land\LandArea;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use Symfony\Component\HttpFoundation\Request;
 use App\Http\Controllers\admin\city\CityController;
 use App\Http\Controllers\admin\land\LandsController;
 use App\Http\Controllers\admin\land\AuctionController;
 use App\Http\Controllers\frontend\home\HomeController;
 use App\Http\Controllers\admin\land\LandAreasController;
+use App\Models\admin\land\Land;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.page');
 Route::get('/dashboard', function () {
@@ -57,5 +59,23 @@ Route::get('/update-highest-bid/{landId}', function($landId) {
     ], 404);
 });
 Route::get('/get-bidders', [HomeController::class, 'getBidders']);
+Route::get('/get-land-details', function(Request $request) {
+    $landId = $request->input('id');
+    $land = Land::find($landId); // جلب الأرض باستخدام الـ ID
+
+    if ($land) {
+        return response()->json([
+            'land' => [
+                'area' => $land->area,
+                'starting_price' => $land->starting_price,
+                'duration' => $land->duration,
+                'day' => $land->day,
+                // أضف أي تفاصيل أخرى تحتاجها
+            ]
+        ]);
+    } else {
+        return response()->json(['message' => 'البيانات غير موجودة.'], 404);
+    }
+});
 
 require __DIR__.'/auth.php';

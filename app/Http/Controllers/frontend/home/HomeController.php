@@ -10,12 +10,29 @@ class HomeController extends Controller
     public function getBidders(Request $request)
     {
         $landId = $request->get('land_id'); // الحصول على land_id من query string
-        $landarea = LandArea::with('bids.user')->findOrFail($landId); // استرجاع الأرض مع المزايدات والمستخدمين
+
+        // استرجاع الأرض مع المزايدات والمستخدمين المرتبطين بها
+        $landarea = LandArea::with('bids.user')->findOrFail($landId);
+
+        // الحصول على المزايدات الخاصة بالأرض
         $bidders = $landarea->bids;
+
+        // إعادة البيانات بتنسيق JSON مع تضمين معلومات المستخدمين
+        return response()->json([
+            'bidders' => $bidders
+        ]);
+    }
+
+    public function getLandDetails(Request $request)
+    {
+        $landId = $request->get('land_id'); // الحصول على land_id من query string
+
+        // استرجاع الأرض باستخدام landId
+        $land = LandArea::findOrFail($landId);
 
         // إعادة البيانات بتنسيق JSON
         return response()->json([
-            'bidders' => $bidders
+            'land' => $land
         ]);
     }
 
