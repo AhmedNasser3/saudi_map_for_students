@@ -73,31 +73,33 @@ class AuctionController extends Controller
         ]);
     }
     public function extendTaxTime(Request $request)
-    {
-        try {
-            // التحقق من البيانات
-            $landAreaId = $request->landAreaId;
-            $newEndTime = $request->newEndTime;
+{
+    try {
+        // التحقق من البيانات
+        $landAreaId = $request->landAreaId;
+        $newEndTime = $request->newEndTime;
 
-            // التحقق من وجود السجل
-            $landArea = LandArea::find($landAreaId);
-            if (!$landArea) {
-                return response()->json(['success' => false, 'message' => 'المنطقة الأرضية غير موجودة']);
-            }
-
-            // تحديث تاريخ انتهاء الضريبة
-            $landArea->tax_end_time = Carbon::parse($newEndTime);
-            $landArea->save();
-
-            // تسجيل العملية في السجل
-            \Log::info('Land area tax time updated', ['land_area_id' => $landAreaId, 'new_end_time' => $newEndTime]);
-
-            return response()->json(['success' => true, 'message' => 'تم تمديد الرخصة بنجاح!']);
-        } catch (\Exception $e) {
-            \Log::error("Error extending tax time: " . $e->getMessage());
-            return response()->json(['success' => false, 'message' => 'حدث خطأ أثناء التمديد: ' . $e->getMessage()]);
+        // التحقق من وجود السجل
+        $landArea = LandArea::find($landAreaId);
+        if (!$landArea) {
+            return response()->json(['success' => false, 'message' => 'المنطقة الأرضية غير موجودة']);
         }
+
+        // تحديث تاريخ انتهاء الضريبة
+        $landArea->tax_end_time = Carbon::parse($newEndTime);
+        $landArea->tax = 0; // تحديث tax إلى 0
+        $landArea->save();
+
+        // تسجيل العملية في السجل
+        \Log::info('Land area tax time updated', ['land_area_id' => $landAreaId, 'new_end_time' => $newEndTime]);
+
+        return response()->json(['success' => true, 'message' => 'تم تمديد الرخصة بنجاح!']);
+    } catch (\Exception $e) {
+        \Log::error("Error extending tax time: " . $e->getMessage());
+        return response()->json(['success' => false, 'message' => 'حدث خطأ أثناء التمديد: ' . $e->getMessage()]);
     }
+}
+
 
 
 

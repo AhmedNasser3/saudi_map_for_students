@@ -55,66 +55,64 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-       // تحديث الوقت المتبقي
-function updateTaxTime() {
-    document.querySelectorAll('.days').forEach(function(element) {
-        var landAreaId = element.id.split('-')[2]; // استخدام landAreaId بدلاً من bidId
-        var endTimeString = element.getAttribute('data-end-time');
-        var tax = parseInt(element.getAttribute('data-tax')); // قيمة tax
-        var endDate = new Date(endTimeString); // تحويل الوقت إلى تاريخ
+        // تحديث الوقت المتبقي
+        function updateTaxTime() {
+            document.querySelectorAll('.days').forEach(function(element) {
+                var landAreaId = element.id.split('-')[2]; // استخدام landAreaId بدلاً من bidId
+                var endTimeString = element.getAttribute('data-end-time');
+                var tax = parseInt(element.getAttribute('data-tax')); // قيمة tax
+                var endDate = new Date(endTimeString); // تحويل الوقت إلى تاريخ
 
-        var now = new Date();
-        var diffTime = endDate - now; // الفرق بين الوقت الحالي ووقت انتهاء الرخصة
+                var now = new Date();
+                var diffTime = endDate - now; // الفرق بين الوقت الحالي ووقت انتهاء الرخصة
 
-        // إذا انتهى الوقت وكان tax == 1، أضف 7 أيام
-        if (diffTime <= 0 && tax == 1) {
-            var newEndDate = new Date(now);
-            newEndDate.setDate(newEndDate.getDate() + 7); // إضافة 7 أيام
-            var newEndTime = newEndDate.toISOString(); // تحويل التاريخ الجديد إلى ISO String
+                // إذا انتهى الوقت وكان tax == 1، أضف 7 أيام
+                if (diffTime <= 0 && tax == 1) {
+                    var newEndDate = new Date(now);
+                    newEndDate.setDate(newEndDate.getDate() + 7); // إضافة 7 أيام
+                    var newEndTime = newEndDate.toISOString(); // تحويل التاريخ الجديد إلى ISO String
 
-            // تحديث التاريخ في العنصر
-            element.setAttribute('data-end-time', newEndTime);
+                    // تحديث التاريخ في العنصر
+                    element.setAttribute('data-end-time', newEndTime);
 
-            // إرسال الطلب إلى السيرفر لتحديث تاريخ النهاية
-    fetch('/extend-tax-time', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-    },
-    body: JSON.stringify({
-        landAreaId: landAreaId, // إرسال landAreaId لتحديد السجل
-        newEndTime: newEndTime // إرسال التاريخ الجديد
-    })
-})
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('تم تمديد الرخصة بنجاح!');
-                    // تحديث الواجهة بعد التمديد
-                    document.getElementById('tax-time-' + landAreaId).innerText = `${7} يوم`; // تغيير النص مع إضافة الأيام
-                } else {
-                    alert('حدث خطأ أثناء التمديد.');
+                    // إرسال الطلب إلى السيرفر لتحديث تاريخ النهاية
+                    fetch('/extend-tax-time', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'  // تأكد من أنك تستخدم {{ csrf_token() }} هنا لتوليد توكن صالح
+                        },
+                        body: JSON.stringify({
+                            landAreaId: landAreaId, // إرسال landAreaId لتحديد السجل
+                            newEndTime: newEndTime // إرسال التاريخ الجديد
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('تم تمديد الرخصة بنجاح!');
+                        } else {
+                            alert('حدث خطأ أثناء التمديد.');
+                        }
+                    }).catch(error => {
+                        console.error('Error:', error);
+                    });
                 }
-            }).catch(error => {
-                console.error('Error:', error);
+
+                if (diffTime > 0) {
+                    // حساب الأيام والساعات والدقائق والثواني
+                    var diffDays = Math.floor(diffTime / (1000 * 3600 * 24)); // الأيام
+                    var diffHours = Math.floor((diffTime % (1000 * 3600 * 24)) / (1000 * 3600)); // الساعات
+                    var diffMinutes = Math.floor((diffTime % (1000 * 3600)) / (1000 * 60)); // الدقائق
+                    var diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000); // الثواني
+
+                    // عرض الوقت بالشكل المناسب
+                    element.innerText = `${diffDays} يوم ${diffHours} ساعة ${diffMinutes} دقيقة ${diffSeconds} ثانية`;
+                } else {
+                    element.innerText = 'انتهت المدة';
+                }
             });
         }
-
-        if (diffTime > 0) {
-            // حساب الأيام والساعات والدقائق والثواني
-            var diffDays = Math.floor(diffTime / (1000 * 3600 * 24)); // الأيام
-            var diffHours = Math.floor((diffTime % (1000 * 3600 * 24)) / (1000 * 3600)); // الساعات
-            var diffMinutes = Math.floor((diffTime % (1000 * 3600)) / (1000 * 60)); // الدقائق
-            var diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000); // الثواني
-
-            // عرض الوقت بالشكل المناسب
-            element.innerText = `${diffDays} يوم ${diffHours} ساعة ${diffMinutes} دقيقة ${diffSeconds} ثانية`;
-        } else {
-            element.innerText = 'انتهت المدة';
-        }
-    });
-}
 
         // تحديث الوقت المتبقي كل ثانية
         setInterval(updateTaxTime, 1000); // تحديث الوقت كل ثانية
