@@ -16,7 +16,7 @@ use App\Models\City;
     </div>
 @endif
 {{-- main --}}
-{{-- <div class="map_main">
+<div class="map_main">
     <div class="map_main_container">
         <div class="map_main_data">
             <div class="map_main_content">
@@ -32,17 +32,17 @@ use App\Models\City;
                     <p>"احصل على أرض أحلامك بسهولة من منزلك عبر أفضل موقع مزادات إلكتروني موثوق وسريع."</p>
                     <div class="map_main_btn">
                         <div class="map_main_btn_1">
-                            <button><a href="#">شاهد التعليمات</a></button>
+                            <button><a href="#info">شاهد التعليمات</a></button>
                         </div>
                         <div class="map_main_btn_2">
-                            <button><a href="#">شاهد المزادات</a></button>
+                            <button><a href="#bidds">شاهد المزادات</a></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 {{-- banner --}}
 <div class="banner">
             <main>
@@ -118,7 +118,7 @@ use App\Models\City;
             </main>
         </div>
 {{-- Bid --}}
-<div class="bid">
+<div class="bid" id="bidds">
     <div class="bid_container">
         <div class="bid_data">
             <div class="bid_content">
@@ -448,10 +448,6 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
 
 
         </script>
-
-
-
-
 @endforeach
 @else
     <p>لا توجد بيانات لعرضها.</p>
@@ -464,7 +460,7 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
     </div>
 </div>
 {{-- q_a --}}
-<div class="q_a">
+<div class="q_a" id="info">
     <div class="q_a_container">
         <div class="q_a_data">
             <div class="q_a_content">
@@ -561,7 +557,7 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
         </div>
     </div>
 </div>
-{{-- <script>
+<script>
     (async() => {
         // Fetch Saudi Arabia map data
         const topology = await fetch(
@@ -571,9 +567,9 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
         // Data for cities with vibrant colors and emojis
         const data = [{
             'hc-key': 'sa-ri',
-            name: '{{ $riad->name }}',
+            name: 'الرياض 🌆',
             link: 'https://example.com/riyadh',
-           color: {
+            color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '#FFD700'],
@@ -588,15 +584,16 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
             },
         }, {
             'hc-key': 'sa-mk',
-            name: '{{ $makah->name }}',
+            name: 'مكة المكرمة 🕋',
             link: 'https://example.com/mecca',
-           color: {
+            color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '#ffb99e'],
                     [1, '#FF5722']
                 ]
-            },            area: '1200 كم²',
+            },
+            area: '1200 كم²',
             states: {
                 hover: {
                     color: '#FF7043'
@@ -604,15 +601,16 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
             },
         }, {
             'hc-key': 'sa-md',
-            name: '{{ $madinah->name }}',
+            name: 'المدينة المنورة 🕌',
             link: 'https://example.com/madina',
-           color: {
+            color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '#81C784'],
                     [1, '#4CAF50']
                 ]
-            },             area: 'مغلقة',
+            },
+            area: 'مغلقة',
             states: {
                 hover: {
                     color: '#81C784'
@@ -620,15 +618,16 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
             },
         }, {
             'hc-key': 'sa-sh',
-            name: '{{ $sharqiah->name }}',
+            name: 'المنطقة الشرقية 🌊',
             link: 'https://example.com/eastern',
-           color: {
+            color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '#64B5F6'],
                     [1, '#2196F3']
                 ]
-            },              area: '2500 كم²',
+            },
+            area: '2500 كم²',
             states: {
                 hover: {
                     color: '#64B5F6'
@@ -636,15 +635,16 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
             },
         }, {
             'hc-key': 'sa-as',
-            name: '{{ $asser->name }}',
+            name: 'عسير 🏞️',
             link: 'https://example.com/aseer',
- color: {
+            color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '#CE93D8'],
                     [1, '#9C27B0']
                 ]
-            },                    area: 'مغلقة',
+            },
+            area: 'مغلقة',
             states: {
                 hover: {
                     color: '#CE93D8'
@@ -652,7 +652,7 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
             },
         }, {
             'hc-key': 'sa-ba',
-            name: '{{ $baha->name }}',
+            name: 'الباحة 🌳',
             link: 'https://example.com/baha',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
@@ -660,7 +660,8 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
                     [0, '#AED581'],
                     [1, '#8BC34A']
                 ]
-            },               area: '900 كم²',
+            },
+            area: '900 كم²',
             states: {
                 hover: {
                     color: '#AED581'
@@ -668,7 +669,7 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
             },
         }, {
             'hc-key': 'sa-jf',
-            name: '{{ $goof->name }}',
+            name: 'الجوف 🌵',
             link: 'https://example.com/jouf',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
@@ -676,7 +677,8 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
                     [0, '#FFB74D'],
                     [1, '#FF9800']
                 ]
-            },            area: 'مغلقة',
+            },
+            area: 'مغلقة',
             states: {
                 hover: {
                     color: '#FFB74D'
@@ -684,7 +686,7 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
             },
         }, {
             'hc-key': 'sa-ha',
-            name: '{{ $hael->name }}',
+            name: 'حائل 🏜️',
             link: 'https://example.com/hail',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
@@ -692,7 +694,8 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
                     [0, '#E57373'],
                     [1, '#F44336']
                 ]
-            },            area: 'مغلقة',
+            },
+            area: 'مغلقة',
             states: {
                 hover: {
                     color: '#E57373'
@@ -702,13 +705,14 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
             'hc-key': 'sa-tb',
             name: 'تبوك ❄️',
             link: 'https://example.com/tabuk',
-color: {
+            color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '#4FC3F7'],
                     [1, '#03A9F4']
                 ]
-            },            area: 'مغلقة',
+            },
+            area: 'مغلقة',
             states: {
                 hover: {
                     color: '#4FC3F7'
@@ -724,7 +728,8 @@ color: {
                     [0, '#9575CD'],
                     [1, '#673AB7']
                 ]
-            },            area: 'مغلقة',
+            },
+            area: 'مغلقة',
             states: {
                 hover: {
                     color: '#9575CD'
@@ -740,7 +745,8 @@ color: {
                     [0, '#FFF176'],
                     [1, '#FFEB3B']
                 ]
-            },            area: '1400 كم²',
+            },
+            area: '1400 كم²',
             states: {
                 hover: {
                     color: '#FFF176'
@@ -756,7 +762,8 @@ color: {
                     [0, '#DCE775'],
                     [1, '#CDDC39']
                 ]
-            },            area: 'مغلقة',
+            },
+            area: 'مغلقة',
             states: {
                 hover: {
                     color: '#DCE775'
@@ -772,7 +779,8 @@ color: {
                     [0, '#4DD0E1'],
                     [1, '#00BCD4']
                 ]
-            },            area: '2📏 100 كم²',
+            },
+            area: '2📏 100 كم²',
             states: {
                 hover: {
                     color: '#4DD0E1'
@@ -799,24 +807,25 @@ color: {
                 pointFormat: '<b>{point.name}</b><br>المساحة: {point.area}'
             },
             series: [{
-        name: 'خريطة السعودية 🌟',
-        data: data,
-        borderColor: '#2f4f4f', // لون الحدود (زيتوني داكن)
-        borderWidth: 2, // زيادة عرض الحدود
-        dataLabels: {
-            enabled: true,
-            formatter: function() {
-                const point = this.point;
-                return `<a href="${point.link}" style="color: white; text-decoration: none;">
-                            ${point.name} <br> مساحة ${point.area}
-                        </a>`;
-            },
-            useHTML: true
-        }
-    }]
+                name: 'خريطة السعودية 🌟',
+                data: data,
+                borderColor: '#2f4f4f', // لون الحدود (زيتوني داكن)
+                borderWidth: 2, // زيادة عرض الحدود
+                dataLabels: {
+                    enabled: true,
+                    formatter: function() {
+                        const point = this.point;
+                        return `<a href="${point.link}" style="color: white; text-decoration: none;">
+                                    ${point.name} <br> مساحة ${point.area}
+                                </a>`;
+                    },
+                    useHTML: true
+                }
+            }]
         });
     })();
-</script> --}}
+</script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
     const timers = document.querySelectorAll("[id^='timer-']");

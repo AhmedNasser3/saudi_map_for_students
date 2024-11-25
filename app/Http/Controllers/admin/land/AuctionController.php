@@ -34,6 +34,7 @@ class AuctionController extends Controller
 
         return redirect()->back()->with('success', 'تم تقديم المزايدة بنجاح!');
     }
+
     public function payFine(Request $request)
     {
         $landAreaId = $request->input('landAreaId');
@@ -56,23 +57,22 @@ class AuctionController extends Controller
         $landArea->tax = 0;
         $landArea->save();
 
-        return response()->json(['success' => true, 'message' => 'تم دفع الغرامة وتجديد الرخصة بنجاح']);
+        return response()->json(['success' => true, 'message' => 'تم دفع الغرامة بنجاح']);
     }
+
     public function payTax(Request $request)
     {
-        $landAreaId = $request->input('landAreaId'); // تغيرنا من bidId إلى landAreaId
+        $landAreaId = $request->input('landAreaId');
 
         $landArea = LandArea::find($landAreaId);
         if (!$landArea) {
-            return response()->json(['message' => 'المنطقة الأرضية غير موجودة'], 404);
+            return response()->json(['success' => false, 'message' => 'المنطقة الأرضية غير موجودة']);
         }
 
-        // الحصول على المستخدم الحالي
         $user = Auth::user();
 
-        // تحقق من أن الرصيد كافٍ لدفع 50 ريال
         if ($user->balance < 50) {
-            return response()->json(['message' => 'رصيدك غير كافٍ للدفع'], 400);
+            return response()->json(['success' => false, 'message' => 'رصيدك غير كافٍ للدفع']);
         }
 
         $user->balance -= 50;
@@ -86,35 +86,33 @@ class AuctionController extends Controller
         $landArea->save();
 
         return response()->json([
+            'success' => true,
             'message' => 'تم الدفع بنجاح',
             'tax_end_time' => $landArea->tax_end_time
         ]);
     }
+
     public function extendTaxTime(Request $request)
-{
-    try {
-        $landAreaId = $request->landAreaId;
-        $newEndTime = $request->newEndTime;
+    {
+        try {
+            $landAreaId = $request->landAreaId;
+            $newEndTime = $request->newEndTime;
 
-        $landArea = LandArea::find($landAreaId);
-        if (!$landArea) {
-            return response()->json(['success' => false, 'message' => 'المنطقة الأرضية غير موجودة']);
+            $landArea = LandArea::find($landAreaId);
+            if (!$landArea) {
+                return response()->json(['success' => false, 'message' => 'المنطقة الأرضية غير موجودة']);
+            }
+
+            $landArea->tax_end_time = Carbon::parse($newEndTime);
+            $landArea->tax = 0; // تحديث tax إلى 0
+            $landArea->save();
+
+            \Log::info('Land area tax time updated', ['land_area_id' => $landAreaId, 'new_end_time' => $newEndTime]);
+
+            return response()->json(['success' => true, 'message' => 'تم تمديد الرخصة بنجاح!']);
+        } catch (\Exception $e) {
+            \Log::error("Error extending tax time: " . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'حدث خطأ أثناء التمديد: ' . $e->getMessage()]);
         }
-
-        $landArea->tax_end_time = Carbon::parse($newEndTime);
-        $landArea->tax = 0; // تحديث tax إلى 0
-        $landArea->save();
-
-        \Log::info('Land area tax time updated', ['land_area_id' => $landAreaId, 'new_end_time' => $newEndTime]);
-
-        return response()->json(['success' => true, 'message' => 'تم تمديد الرخصة بنجاح!']);
-    } catch (\Exception $e) {
-        \Log::error("Error extending tax time: " . $e->getMessage());
-        return response()->json(['success' => false, 'message' => 'حدث خطأ أثناء التمديد: ' . $e->getMessage()]);
     }
-}
-
-
-
-
 }

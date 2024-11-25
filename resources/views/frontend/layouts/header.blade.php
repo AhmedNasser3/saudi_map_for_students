@@ -1,5 +1,9 @@
- <!-- header -->
- <header class="header">
+@php
+use App\Models\admin\land\LandArea;
+$meters = LandArea::where('user_id', auth()->user()->id)->sum('area');
+@endphp
+<!-- header -->
+<header class="header">
     <div class="header_container">
         <div class="header_data">
             <div class="header_content">
@@ -8,38 +12,39 @@
                         <button><a href="#">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
                     </div>
                     <div class="sign_up">
-                        <button><a href="#">📏 المساحة : 300 متر</a></button>
+                        <button><a href="#">📏 المساحة : {{ floor($meters) }} متر</a></button>
                     </div>
                 </div>
                 <div class="header_logo">
                     <div class="header_links" id="header_links">
                         <ul id="menuList" class="menuList">
-                            <li class="header_link">الخريطة</li>
+                            <li class="header_link" style="color: white">الخريطة</li>
                             <li class="header_link"><a href="{{ route('my.office', ['user_id' => auth()->user()->id]) }}">مكتبي</a></li>
                             <li class="header_link">
                                 <div id="turnon-log" class="log-up">
                                     <div class="log_in">
-                                        <button><a href="#" >تسجيل دخول</a></button>
+                                        <button><a href="#">تسجيل دخول</a></button>
                                     </div>
                                     <div class="sign_up" >
-                                        <button><a href="#" >مستخدم جديد</a></button>
+                                        <button><a href="#">مستخدم جديد</a></button>
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
-                    <img src="/images/logo.png" alt="">
-
+                    <a href="{{ route('home.page') }}">
+                        <img src="/images/logo.png" alt="">
+                    </a>
                 </div>
                 <div class="icons_price_lands">
                     <div class="icon_prices">
                         <div class="icon_price_1">
-                            <button><a href="#" style="font-size: .7rem; color:white;">🪙 الرصيد : ريال2000</a></button>&nbsp;&nbsp;&nbsp;
+                            <button><a href="#"  style="color: white;">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
                         </div>
                     </div>
                     <div class="icon_prices">
                         <div class="icon_price_2">
-                            <button><a href="#" style="font-size: .8rem; color:#2f8a2c;">📏 المساحة : 300 متر</a></button>
+                            <button><a href="#">📏 المساحة : 300 متر</a></button>
                         </div>
                     </div>
                 </div>
@@ -50,6 +55,7 @@
         </div>
     </div>
 </header>
+
 <script>
 // header
 
@@ -62,5 +68,8 @@ function toggleMenu() {
     } else {
         menuList.style.maxHeight = "0px";
     }
+}
+function toggleMenu() {
+    menuList.classList.toggle("opened");
 }
 </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin\land;
 use Illuminate\Http\Request;
 use App\Models\admin\land\Land;
 use App\Http\Controllers\Controller;
+use App\Models\admin\land\LandArea;
 
 class LandsController extends Controller
 {

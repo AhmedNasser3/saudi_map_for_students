@@ -27,19 +27,26 @@
                                         </span>
                                     </div>
 
-                                    @if ($landArea->tax == 0)
-                                        <div>
-                                            <button class="renew-license" id="btn-renew-{{ $landArea->id }}" data-land-area-id="{{ $landArea->id }}" style="background-color: green;">تجديد الرخصة ب 50 ريال</button>
-                                            <button class="pay-fine" id="btn-fine-{{ $landArea->id }}" data-land-area-id="{{ $landArea->id }}" style="background-color: red;">دفع الغرامة 100 ريال</button>
-                                        </div>
-                                    @elseif ($landArea->tax == 1)
-                                        <div>
-                                            <button class="renew-license" id="btn-renew-{{ $landArea->id }}" style="background-color: grey;" disabled>تم الدفع</button>
-                                        </div>
+                                    @if ($landArea->tax == 0 && \Carbon\Carbon::parse($landArea->tax_end_time)->lte(now()))
+                                        <!-- يظهر زر دفع الغرامة -->
+                                        <button class="pay-fine" id="btn-fine-{{ $landArea->id }}"
+                                                data-land-area-id="{{ $landArea->id }}"
+                                                style="background-color: red;">
+                                            دفع الغرامة 100 ريال
+                                        </button>
+                                    @elseif ($landArea->tax == 0)
+                                        <!-- يظهر زر تجديد الرخصة -->
+                                        <button class="renew-license" id="btn-renew-{{ $landArea->id }}"
+                                                data-land-area-id="{{ $landArea->id }}"
+                                                style="background-color: green;">
+                                            تجديد الرخصة ب 50 ريال
+                                        </button>
                                     @else
-                                        <div>
-                                            <button class="pay-fine" id="btn-fine-{{ $landArea->id }}" data-land-area-id="{{ $landArea->id }}" style="background-color: red;">دفع غرامة 100 ريال</button>
-                                        </div>
+                                        <!-- لا تظهر أزرار إذا تم الدفع -->
+                                        <button class="renew-license" id="btn-renew-{{ $landArea->id }}"
+                                                style="background-color: grey;" disabled>
+                                            تم الدفع
+                                        </button>
                                     @endif
                                 </div>
                             </div>
@@ -69,11 +76,12 @@
 
                 if (diffTime <= 0 && tax == 1) {
                     var newEndDate = new Date(now);
-                    newEndDate.setDate(newEndDate.getDate() + 7);
+                    newEndDate.setDate(newEndDate.getDate() + 7); // تمديد الوقت لمدة 7 أيام
                     var newEndTime = newEndDate.toISOString();
 
                     element.setAttribute('data-end-time', newEndTime);
 
+                    // تمديد الرخصة تلقائيًا بعد دفع الغرامة
                     fetch('/extend-tax-time', {
                         method: 'POST',
                         headers: {
@@ -117,7 +125,7 @@
         document.querySelectorAll('.renew-license, .pay-fine').forEach(button => {
             button.addEventListener('click', function () {
                 let landAreaId = this.getAttribute('data-land-area-id');
-                let btn = document.getElementById('btn-' + landAreaId);
+                let btn = this;
                 let action = this.classList.contains('renew-license') ? 'renew' : 'fine';
 
                 fetch('/pay-tax', {
@@ -133,9 +141,13 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.message) {
-                        alert(data.message);
-                        if (action === 'renew') {
+                    if (data.success) {
+                        if (action === 'fine') {
+                            // بعد دفع الغرامة: تمديد الوقت وتغيير الزر إلى الأخضر لتجديد الرخصة
+                            btn.innerText = "دفع 50 ريال لتجديد الرخصة";
+                            btn.style.backgroundColor = "green";
+                        } else if (action === 'renew') {
+                            // بعد دفع 50 ريال: تغيير الزر إلى رمادي
                             btn.innerText = "تم الدفع";
                             btn.style.backgroundColor = "grey";
                             btn.disabled = true;

@@ -162,6 +162,18 @@
 }
 
 @media screen and (max-width: 1020px) {
+    .menuList li {
+        color: white;
+    }
+    .header_link a {
+        color: white;
+    }
+    .log_in button a {
+        color: #ffffff;
+    }
+    .sign_up button {
+        border: white 1px solid;
+    }
     .icons_price_lands {
         display: block;
         display: flex;
@@ -187,10 +199,14 @@
         right: 0;
         flex-direction: column;
         text-align: center;
-        background: #1f153d;
+        background: #5d926c;
         gap: 0;
         overflow: hidden;
         border-radius: 10px;
+    }
+    .header_links ul.opened {
+        max-height: 100vh;
+        padding: 100px 0;
     }
     .header_link {
         color: green;
@@ -205,7 +221,7 @@
     }
     .log_in button {
         padding: 6px 20px;
-        background-color: #31d6ff;
+        background-color: #1d4718;
         border: none;
         border-radius: 8px;
     }
