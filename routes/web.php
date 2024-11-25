@@ -64,5 +64,6 @@ Route::post('/update-auction-state', action: [AuctionController::class, 'updateS
 Route::get('/my/{user_id}/office',[HomeController::class, 'MyOffice'])->name('my.office');
 Route::post('/pay-tax', [AuctionController::class, 'payTax']);
 Route::post('/extend-tax-time', [AuctionController::class, 'extendTaxTime']);
+Route::post('/pay-fine', [AuctionController::class, 'payFine']);
 
 require __DIR__.'/auth.php';

@@ -34,12 +34,34 @@ class AuctionController extends Controller
 
         return redirect()->back()->with('success', 'تم تقديم المزايدة بنجاح!');
     }
+    public function payFine(Request $request)
+    {
+        $landAreaId = $request->input('landAreaId');
+        $landArea = LandArea::find($landAreaId);
+        if (!$landArea) {
+            return response()->json(['success' => false, 'message' => 'المنطقة الأرضية غير موجودة']);
+        }
 
+        $user = Auth::user();
+        $fineAmount = 100;
+
+        if ($user->balance < $fineAmount) {
+            return response()->json(['success' => false, 'message' => 'رصيدك غير كافٍ لدفع الغرامة']);
+        }
+
+        $user->balance -= $fineAmount;
+        $user->save();
+
+        $landArea->tax_end_time = now()->addDays(7);
+        $landArea->tax = 0;
+        $landArea->save();
+
+        return response()->json(['success' => true, 'message' => 'تم دفع الغرامة وتجديد الرخصة بنجاح']);
+    }
     public function payTax(Request $request)
     {
         $landAreaId = $request->input('landAreaId'); // تغيرنا من bidId إلى landAreaId
 
-        // البحث عن السجل في جدول land_areas
         $landArea = LandArea::find($landAreaId);
         if (!$landArea) {
             return response()->json(['message' => 'المنطقة الأرضية غير موجودة'], 404);
@@ -53,18 +75,14 @@ class AuctionController extends Controller
             return response()->json(['message' => 'رصيدك غير كافٍ للدفع'], 400);
         }
 
-        // خصم 50 ريال من رصيد المستخدم
         $user->balance -= 50;
         $user->save();
 
-        // إذا كانت حالة الضريبة = 1 (تم الدفع) و انتهت المدة
         if ($landArea->tax == 1 && $landArea->tax_end_time < now()) {
-            // تجديد الوقت إلى سبع أيام من الآن
             $landArea->tax_end_time = now()->addDays(7);
         }
 
-        // تحديث حالة الضريبة في جدول land_areas
-        $landArea->tax = 1; // تم الدفع
+        $landArea->tax = 1;
         $landArea->save();
 
         return response()->json([
@@ -75,22 +93,18 @@ class AuctionController extends Controller
     public function extendTaxTime(Request $request)
 {
     try {
-        // التحقق من البيانات
         $landAreaId = $request->landAreaId;
         $newEndTime = $request->newEndTime;
 
-        // التحقق من وجود السجل
         $landArea = LandArea::find($landAreaId);
         if (!$landArea) {
             return response()->json(['success' => false, 'message' => 'المنطقة الأرضية غير موجودة']);
         }
 
-        // تحديث تاريخ انتهاء الضريبة
         $landArea->tax_end_time = Carbon::parse($newEndTime);
         $landArea->tax = 0; // تحديث tax إلى 0
         $landArea->save();
 
-        // تسجيل العملية في السجل
         \Log::info('Land area tax time updated', ['land_area_id' => $landAreaId, 'new_end_time' => $newEndTime]);
 
         return response()->json(['success' => true, 'message' => 'تم تمديد الرخصة بنجاح!']);
