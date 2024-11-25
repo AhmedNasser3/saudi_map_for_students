@@ -8,11 +8,11 @@ while (true) {
         // تسجيل الإخراج في ملف لتتبع الأخطاء (اختياري)
         file_put_contents('background-loop.log', date('Y-m-d H:i:s') . " - " . $output . PHP_EOL, FILE_APPEND);
 
-        // انتظار لمدة دقيقة واحدة قبل إعادة التشغيل
-        sleep(60);
+        // انتظار لمدة ثانية واحدة قبل إعادة التشغيل
+        sleep(1); // الآن الانتظار 1 ثانية فقط
     } catch (Exception $e) {
         // تسجيل أي أخطاء قد تحدث
         file_put_contents('background-loop.log', date('Y-m-d H:i:s') . " - ERROR: " . $e->getMessage() . PHP_EOL, FILE_APPEND);
-        sleep(60); // استمر بعد الخطأ
+        sleep(1); // استمر بعد الخطأ مع الانتظار 1 ثانية
     }
 }

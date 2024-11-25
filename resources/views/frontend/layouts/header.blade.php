@@ -15,7 +15,7 @@
                     <div class="header_links" id="header_links">
                         <ul id="menuList" class="menuList">
                             <li class="header_link">الخريطة</li>
-                            <li class="header_link">مكتبي</li>
+                            <li class="header_link"><a href="{{ route('my.office', ['user_id' => auth()->user()->id]) }}">مكتبي</a></li>
                             <li class="header_link">
                                 <div id="turnon-log" class="log-up">
                                     <div class="log_in">

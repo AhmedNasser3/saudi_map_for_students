@@ -534,3 +534,3031 @@
 2024-11-24 02:16:52 - 
 2024-11-24 02:17:23 - 
 2024-11-24 02:17:52 - 
+2024-11-24 02:18:24 - 
+2024-11-24 02:18:53 - 
+2024-11-24 02:19:24 - 
+2024-11-24 02:19:53 - 
+2024-11-24 02:20:24 - 
+2024-11-24 02:20:53 - 
+2024-11-24 02:21:25 - 
+2024-11-24 02:21:54 - 
+2024-11-24 02:22:25 - 
+2024-11-24 02:22:54 - 
+2024-11-24 02:23:26 - 
+2024-11-24 02:23:54 - 
+2024-11-24 02:24:26 - 
+2024-11-24 02:24:55 - 
+2024-11-24 02:25:27 - 
+2024-11-24 02:25:55 - 
+2024-11-24 02:26:28 - 
+2024-11-24 02:26:56 - 
+2024-11-24 02:27:28 - 
+2024-11-24 02:27:56 - 
+2024-11-24 02:28:29 - 
+2024-11-24 02:28:56 - 
+   ParseError 
+
+  syntax error, unexpected identifier "ك", expecting "{"
+
+  at routes\web.php:62
+     58▕         'message' => 'No bids found'
+     59▕     ], 404);
+     60▕ });
+     61▕ Route::get('/get-bidders', [HomeController::class, 'getBidders']);
+  ➜  62▕ Route::get('/get-land-details', function(Request $request) ك
+     63▕ 
+     64▕ require __DIR__.'/auth.php';
+     65▕
+
+  1   vendor\laravel\framework\src\Illuminate\Routing\Router.php:513
+      Illuminate\Routing\RouteFileRegistrar::register("C:\MAMP\htdocs\saudi  map for students\bootstrap/../routes/web.php")
+
+  2   vendor\laravel\framework\src\Illuminate\Routing\Router.php:467
+      Illuminate\Routing\Router::loadRoutes("C:\MAMP\htdocs\saudi  map for students\bootstrap/../routes/web.php")
+
+
+2024-11-24 02:29:29 - 
+2024-11-24 02:29:57 - 
+2024-11-24 02:30:30 - 
+2024-11-24 02:30:57 - 
+2024-11-24 02:31:30 - 
+2024-11-24 02:31:57 - 
+2024-11-24 02:32:31 - 
+2024-11-24 02:32:58 - 
+2024-11-24 02:33:31 - 
+2024-11-24 02:33:58 - 
+2024-11-24 02:34:32 - 
+2024-11-24 02:34:58 - 
+2024-11-24 02:35:32 - 
+2024-11-24 02:35:59 - 
+2024-11-24 02:36:32 - 
+2024-11-24 02:36:59 - 
+2024-11-24 02:37:33 - 
+2024-11-24 02:38:00 - 
+2024-11-24 02:38:33 - 
+2024-11-24 02:39:00 - 
+2024-11-24 02:39:34 - 
+2024-11-24 02:40:00 - 
+2024-11-24 02:40:34 - 
+2024-11-24 02:41:01 - 
+2024-11-24 02:41:35 - 
+2024-11-24 02:42:01 - 
+2024-11-24 02:42:35 - 
+2024-11-24 02:43:01 - 
+2024-11-24 02:43:36 - 
+2024-11-24 02:44:02 - 
+2024-11-24 02:44:36 - 
+2024-11-24 02:45:02 - 
+2024-11-24 02:45:37 - 
+2024-11-24 02:46:03 - 
+2024-11-24 02:46:37 - 
+2024-11-24 02:47:03 - 
+2024-11-24 02:47:38 - 
+2024-11-24 02:48:03 - 
+2024-11-24 02:48:38 - 
+2024-11-24 02:49:04 - 
+2024-11-24 02:49:39 - 
+2024-11-24 02:50:04 - 
+2024-11-24 02:50:39 - 
+2024-11-24 02:51:05 - 
+2024-11-24 02:51:40 - 
+2024-11-24 02:52:05 - 
+2024-11-24 02:52:40 - 
+2024-11-24 02:53:05 - 
+2024-11-24 02:53:40 - 
+2024-11-24 02:54:06 - 
+2024-11-24 02:54:41 - 
+2024-11-24 02:55:06 - 
+2024-11-24 02:55:41 - 
+2024-11-24 02:56:06 - 
+2024-11-24 02:56:42 - 
+2024-11-24 02:57:07 - 
+2024-11-24 02:57:43 - 
+2024-11-24 02:58:07 - 
+2024-11-24 02:58:43 - 
+2024-11-24 02:59:07 - 
+2024-11-24 02:59:43 - 
+2024-11-24 03:00:08 - 
+2024-11-24 03:00:44 - 
+2024-11-24 03:01:08 - 
+2024-11-24 03:01:44 - 
+2024-11-24 03:02:08 - 
+2024-11-24 03:02:45 - 
+2024-11-24 03:03:09 - Auction ID: 1 closed. Winner: User ID: 1, Amount: 1000.00
+
+2024-11-24 03:03:45 - 
+2024-11-24 03:04:09 - 
+2024-11-24 03:04:46 - 
+2024-11-24 03:05:10 - 
+2024-11-24 03:05:46 - 
+2024-11-24 03:05:52 - 
+2024-11-24 03:06:10 - 
+2024-11-24 03:06:52 - 
+2024-11-24 03:06:58 - 
+2024-11-24 03:07:10 - Auction ID: 2 closed. Winner: User ID: 1, Amount: 200.00
+
+2024-11-24 03:07:11 - 
+2024-11-24 03:07:30 - 
+2024-11-24 03:07:35 - 
+2024-11-24 03:07:43 - 
+2024-11-24 03:08:11 - 
+2024-11-24 03:08:43 - 
+2024-11-24 03:08:53 - 
+2024-11-24 03:09:11 - 
+2024-11-24 03:09:53 - 
+2024-11-24 03:10:11 - 
+2024-11-24 03:10:54 - 
+2024-11-24 03:11:12 - Auction ID: 1 closed. Winner: User ID: 1, Amount: 1000.00
+
+2024-11-24 03:11:54 - 
+2024-11-24 03:12:12 - 
+2024-11-24 03:12:54 - 
+2024-11-24 03:13:13 - 
+2024-11-24 03:13:55 - 
+2024-11-24 03:14:13 - 
+2024-11-24 03:14:55 - 
+2024-11-24 03:15:13 - 
+2024-11-24 03:15:56 - 
+2024-11-24 03:16:14 - 
+2024-11-24 03:16:56 - 
+2024-11-24 03:17:14 - 
+2024-11-24 03:17:57 - 
+  [41;1m Error [49;22m
+
+[39;1m  Object of class Illuminate\Database\Query\Expression could not be converted to string[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39m:[32m719[39m
+    715▕      */
+    716▕     public function bindValues($statement, $bindings)
+    717▕     {
+    718▕         foreach ($bindings as $key => $value) {
+  ➜ 719▕             $statement->bindValue(
+    720▕                 is_string($key) ? $key : $key + 1,
+    721▕                 $value,
+    722▕                 match (true) {
+    723▕                     is_int($value) => PDO::PARAM_INT,
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m719[39;22m
+  [90m    PDOStatement::bindValue(Object(Illuminate\Database\Query\Expression))[39m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Database\Connection.php[39;22m:[39;1m410[39;22m
+  [90m    Illuminate\Database\Connection::bindValues(Object(PDOStatement))[39m
+
+
+2024-11-24 03:18:14 - 
+   Error 
+
+  Object of class Illuminate\Database\Query\Expression could not be converted to string
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:719
+    715▕      */
+    716▕     public function bindValues($statement, $bindings)
+    717▕     {
+    718▕         foreach ($bindings as $key => $value) {
+  ➜ 719▕             $statement->bindValue(
+    720▕                 is_string($key) ? $key : $key + 1,
+    721▕                 $value,
+    722▕                 match (true) {
+    723▕                     is_int($value) => PDO::PARAM_INT,
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:719
+      PDOStatement::bindValue(Object(Illuminate\Database\Query\Expression))
+
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:410
+      Illuminate\Database\Connection::bindValues(Object(PDOStatement))
+
+
+2024-11-24 03:18:57 - 
+  [41;1m Error [49;22m
+
+[39;1m  Class "App\Console\Commands\Carbon" not found[39;22m
+
+  at [32mapp\Console\Commands\CheckExpiredAuctionsCommand.php[39m:[32m20[39m
+     16▕     public function handle()
+     17▕ {
+     18▕     try {
+     19▕         // الحصول على الوقت الحالي من SQL
+  ➜  20▕         $currentTime = Carbon::now();
+     21▕         $this->info('Current time: ' . $currentTime);
+     22▕ 
+     23▕         // جلب المزادات المنتهية (المقارنة دقيقة مع الوقت الحالي)
+     24▕         $expiredAuctions = LandArea::whereRaw('auction_end_time <= ?', [$currentTime])
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Container\BoundMethod.php[39;22m:[39;1m36[39;22m
+  [90m    App\Console\Commands\CheckExpiredAuctionsCommand::handle()[39m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Container\Util.php[39;22m:[39;1m43[39;22m
+  [90m    Illuminate\Container\BoundMethod::Illuminate\Container\{closure}()[39m
+
+
+2024-11-24 03:19:11 - 
+  [41;1m Error [49;22m
+
+[39;1m  Class "App\Console\Commands\Carbon" not found[39;22m
+
+  at [32mapp\Console\Commands\CheckExpiredAuctionsCommand.php[39m:[32m20[39m
+     16▕     public function handle()
+     17▕ {
+     18▕     try {
+     19▕         // الحصول على الوقت الحالي من SQL
+  ➜  20▕         $currentTime = Carbon::now();
+     21▕         $this->info('Current time: ' . $currentTime);
+     22▕ 
+     23▕         // جلب المزادات المنتهية (المقارنة دقيقة مع الوقت الحالي)
+     24▕         $expiredAuctions = LandArea::whereRaw('auction_end_time <= ?', [$currentTime])
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Container\BoundMethod.php[39;22m:[39;1m36[39;22m
+  [90m    App\Console\Commands\CheckExpiredAuctionsCommand::handle()[39m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Container\Util.php[39;22m:[39;1m43[39;22m
+  [90m    Illuminate\Container\BoundMethod::Illuminate\Container\{closure}()[39m
+
+
+2024-11-24 03:20:11 - [32mCurrent time: 2024-11-24 03:20:11[39m
+[32mNo expired auctions found.[39m
+
+2024-11-24 03:21:12 - [32mCurrent time: 2024-11-24 03:21:12[39m
+[32mNo expired auctions found.[39m
+
+2024-11-24 03:22:12 - [32mCurrent time: 2024-11-24 03:22:12[39m
+[32mNo expired auctions found.[39m
+
+2024-11-24 03:23:13 - [32mCurrent time: 2024-11-24 03:23:12[39m
+[32mNo expired auctions found.[39m
+
+2024-11-24 03:24:13 - [32mCurrent time: 2024-11-24 03:24:13[39m
+[32mAuction ID: 2, Auction End Time: 2024-11-24 05:24:11[39m
+[32mTotal time difference in minutes: -119.96046121667[39m
+[32mCurrent time with month added: 2024-12-24 03:24:13[39m
+[32mHighest bidder ID: 1, Bid Amount: 200.00[39m
+[32mAuction ID: 2 closed. Winner: User ID: 1, Amount: 200.00[39m
+
+2024-11-24 03:25:13 - [32mCurrent time: 2024-11-24 03:25:13[39m
+[32mNo expired auctions found.[39m
+
+2024-11-24 03:26:14 - 
+2024-11-24 03:27:14 - 
+2024-11-24 03:28:15 - 
+2024-11-24 03:29:15 - 
+2024-11-24 03:30:16 - 
+2024-11-24 03:31:16 - 
+2024-11-24 03:32:17 - 
+2024-11-24 03:33:17 - 
+2024-11-24 03:34:17 - 
+2024-11-24 03:35:18 - 
+2024-11-24 03:36:18 - 
+2024-11-24 03:37:19 - 
+2024-11-24 03:38:19 - 
+2024-11-24 03:39:20 - 
+2024-11-24 03:40:20 - 
+2024-11-24 03:41:20 - 
+2024-11-24 03:42:21 - 
+2024-11-24 03:43:21 - 
+2024-11-24 03:44:22 - 
+2024-11-24 03:45:22 - 
+2024-11-24 03:46:23 - 
+2024-11-24 03:47:23 - 
+2024-11-24 03:48:24 - 
+2024-11-24 03:49:24 - 
+2024-11-24 03:50:24 - 
+2024-11-24 03:51:25 - 
+2024-11-24 03:52:25 - 
+2024-11-24 03:53:26 - 
+2024-11-24 03:54:26 - 
+2024-11-24 03:55:27 - 
+2024-11-24 03:56:27 - 
+2024-11-24 03:57:28 - 
+2024-11-24 03:58:28 - 
+2024-11-24 03:59:29 - 
+2024-11-24 04:00:29 - 
+2024-11-24 04:01:29 - 
+2024-11-24 04:02:30 - 
+2024-11-24 04:03:30 - 
+2024-11-24 04:04:31 - [32mAuction ID: 2 is still running.[39m
+[32mAuction ID: 3 is still running.[39m
+
+2024-11-24 04:05:31 - [32mAuction ID: 2 is still running.[39m
+
+2024-11-24 04:06:32 - 
+2024-11-24 04:07:32 - 
+2024-11-24 04:08:33 - 
+2024-11-24 04:09:33 - 
+2024-11-24 04:10:34 - 
+2024-11-24 04:11:34 - 
+2024-11-24 04:12:35 - 
+2024-11-24 04:13:35 - 
+2024-11-24 04:14:36 - 
+2024-11-24 04:15:36 - 
+2024-11-24 04:16:37 - 
+2024-11-24 04:17:37 - 
+2024-11-24 04:18:38 - 
+2024-11-24 04:19:38 - 
+2024-11-24 04:20:38 - 
+2024-11-24 04:21:39 - 
+2024-11-24 04:22:39 - 
+2024-11-24 04:23:40 - 
+2024-11-24 04:24:40 - 
+2024-11-24 04:25:41 - 
+2024-11-24 04:26:41 - 
+2024-11-24 04:27:42 - 
+2024-11-24 04:28:42 - 
+2024-11-24 04:29:43 - 
+2024-11-24 04:30:43 - 
+2024-11-24 04:31:44 - 
+2024-11-24 04:32:44 - [32mAuction ID 1 closed. Winner: User ID 1, Amount: 1000.00[39m
+[32mAuction ID 2 closed. Winner: User ID 1, Amount: 600.00[39m
+[32mAuction ID 3 closed. Winner: User ID 1, Amount: 900.00[39m
+[32mAuction ID 4 closed, but no bids were placed.[39m
+
+2024-11-24 04:33:45 - [32mAuction ID 1 closed. Winner: User ID 1, Amount: 1000.00[39m
+[32mAuction ID 2 closed. Winner: User ID 1, Amount: 600.00[39m
+[32mAuction ID 3 closed. Winner: User ID 1, Amount: 900.00[39m
+[32mAuction ID 4 closed, but no bids were placed. Starting price set to 0.[39m
+[32mAuction ID 5 closed, but no bids were placed. Starting price set to 0.[39m
+
+2024-11-24 04:34:45 - [32mAuction ID 1 closed. Winner: User ID 1, Amount: 1000.00[39m
+[32mAuction ID 2 closed. Winner: User ID 1, Amount: 600.00[39m
+[32mAuction ID 3 closed. Winner: User ID 1, Amount: 900.00[39m
+[32mAuction ID 4 closed, but no bids were placed. Starting price set to 0.[39m
+[32mAuction ID 5 closed, but no bids were placed. Starting price set to 0.[39m
+
+2024-11-24 04:35:46 - 
+2024-11-24 15:33:25 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed. Winner: User ID: 1, Amount: 90000.00[39m
+
+2024-11-24 15:34:26 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed. Winner: User ID: 1, Amount: 90000.00[39m
+
+2024-11-24 15:35:26 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:36:27 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:37:27 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:38:27 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:39:28 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:40:28 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:41:29 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:42:29 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:43:30 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:44:30 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:45:31 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:46:31 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:47:32 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:48:32 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+
+2024-11-24 15:49:33 - [32mAuction ID: 1 processed, but no bids were placed.[39m
+[32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 15:50:33 - [32mAuction ID: 1 processed, but no bids were placed.[39m
+[32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 15:51:34 - [32mAuction ID: 1 processed. Winner: User ID: 1, Amount: 100.00[39m
+[32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 15:52:34 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 15:53:35 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 15:54:35 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 15:55:35 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 15:56:36 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 15:57:36 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 15:58:37 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 15:59:37 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:00:38 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:01:38 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:02:39 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:03:39 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:04:40 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:05:40 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:06:41 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:07:41 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:08:42 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:09:42 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:10:43 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:11:43 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:12:44 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:13:44 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:14:45 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:15:45 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:16:46 - [32mAuction ID: 2 processed, but no bids were placed.[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:17:46 - [32mAuction ID: 2 processed. Winner: User ID: 1, Amount: 200.00[39m
+[32mAuction ID: 3 processed, but no bids were placed.[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:18:46 - [32mAuction ID: 3 processed. Winner: User ID: 1, Amount: 200.00[39m
+[32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:19:47 - [32mAuction ID: 4 processed, but no bids were placed.[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:20:47 - [32mAuction ID: 4 processed. Winner: User ID: 1, Amount: 100.00[39m
+[32mAuction ID: 5 processed, but no bids were placed.[39m
+[32mAuction ID: 6 processed, but no bids were placed.[39m
+[32mAuction ID: 7 processed, but no bids were placed.[39m
+[32mAuction ID: 8 processed, but no bids were placed.[39m
+[32mAuction ID: 9 processed, but no bids were placed.[39m
+[32mAuction ID: 10 processed, but no bids were placed.[39m
+
+2024-11-24 16:21:48 - 
+2024-11-24 16:22:48 - 
+2024-11-24 16:23:49 - 
+2024-11-24 16:24:49 - 
+2024-11-24 16:25:50 - [32mAuction ID: 5 processed. Winner: User ID: 1, Amount: 100.00[39m
+
+2024-11-24 16:26:50 - 
+2024-11-24 16:27:51 - 
+2024-11-24 16:28:51 - 
+2024-11-24 16:29:52 - 
+2024-11-24 16:30:53 - 
+2024-11-24 16:31:54 - 
+2024-11-24 16:32:54 - 
+2024-11-24 16:33:55 - 
+2024-11-24 16:34:55 - 
+2024-11-24 16:35:55 - 
+2024-11-24 16:36:56 - 
+2024-11-24 16:37:56 - 
+2024-11-24 16:38:57 - 
+2024-11-24 16:39:57 - 
+2024-11-24 16:40:58 - 
+2024-11-24 16:41:58 - 
+2024-11-24 16:42:59 - 
+2024-11-24 16:43:59 - 
+2024-11-24 16:45:00 - 
+2024-11-24 16:46:00 - 
+2024-11-24 16:47:00 - 
+2024-11-24 16:48:01 - 
+2024-11-24 16:49:01 - 
+2024-11-24 16:50:02 - 
+2024-11-24 16:51:02 - 
+2024-11-24 16:52:03 - 
+2024-11-24 16:53:03 - 
+2024-11-24 16:54:03 - 
+2024-11-24 16:55:04 - 
+2024-11-24 16:56:04 - 
+2024-11-24 16:57:05 - 
+2024-11-24 16:58:05 - 
+2024-11-24 16:59:06 - 
+2024-11-24 17:00:06 - 
+2024-11-24 17:01:07 - 
+2024-11-24 17:02:07 - [32mAuction ID: 6 processed, but no bids were placed.[39m
+
+2024-11-24 17:03:08 - [32mAuction ID: 6 processed, but no bids were placed.[39m
+
+2024-11-24 17:04:08 - [32mAuction ID: 6 processed, but no bids were placed.[39m
+
+2024-11-24 17:04:32 - [32mAuction ID: 6 processed, but no bids were placed.[39m
+
+2024-11-24 17:04:33 - [32mAuction ID: 6 processed, but no bids were placed.[39m
+
+2024-11-24 17:04:35 - [32mAuction ID: 6 processed, but no bids were placed.[39m
+
+2024-11-24 17:04:36 - [32mAuction ID: 6 processed, but no bids were placed.[39m
+
+2024-11-24 17:04:38 - [32mAuction ID: 6 processed, but no bids were placed.[39m
+
+2024-11-24 17:04:39 - [32mAuction ID: 6 processed, but no bids were placed.[39m
+
+2024-11-24 17:04:41 - [32mAuction ID: 6 processed, but no bids were placed.[39m
+
+2024-11-24 17:05:42 - [32mAuction ID: 6 processed, but no bids were placed.[39m
+
+2024-11-24 17:06:42 - [32mAuction ID: 6 processed. Winner: User ID: 1, Amount: 200.00[39m
+
+2024-11-24 17:07:43 - 
+2024-11-24 17:08:43 - 
+2024-11-24 17:09:44 - 
+2024-11-24 17:10:44 - 
+2024-11-24 17:11:45 - 
+2024-11-24 17:12:45 - 
+2024-11-24 17:13:45 - 
+2024-11-24 17:14:46 - 
+2024-11-24 17:15:46 - 
+2024-11-24 17:16:47 - 
+2024-11-24 17:17:47 - 
+2024-11-24 17:18:48 - 
+2024-11-24 17:19:48 - 
+2024-11-24 17:20:49 - 
+2024-11-24 17:21:49 - 
+2024-11-24 17:22:49 - 
+2024-11-24 17:23:50 - 
+2024-11-24 17:24:50 - 
+2024-11-24 17:25:51 - 
+2024-11-24 17:26:51 - 
+2024-11-24 17:27:52 - 
+2024-11-24 17:28:52 - 
+2024-11-24 17:29:53 - 
+2024-11-24 17:30:53 - 
+2024-11-24 17:31:54 - 
+2024-11-24 17:32:54 - 
+2024-11-24 17:33:54 - 
+2024-11-24 17:34:55 - 
+2024-11-24 17:35:55 - 
+2024-11-24 17:36:56 - 
+2024-11-24 17:37:56 - 
+2024-11-24 17:38:57 - 
+2024-11-24 17:39:57 - 
+2024-11-24 17:40:58 - 
+2024-11-24 17:41:59 - 
+2024-11-24 17:42:59 - 
+2024-11-24 17:44:00 - 
+2024-11-24 17:45:00 - 
+2024-11-24 17:46:01 - 
+2024-11-24 17:47:01 - 
+2024-11-24 17:48:02 - 
+2024-11-24 17:49:02 - 
+2024-11-24 17:50:02 - 
+2024-11-24 17:51:03 - 
+2024-11-24 17:52:03 - 
+2024-11-24 17:53:04 - 
+2024-11-24 17:54:04 - 
+2024-11-24 17:55:05 - 
+2024-11-24 17:56:05 - 
+2024-11-24 17:57:06 - 
+2024-11-24 17:58:06 - 
+2024-11-24 17:59:06 - 
+2024-11-24 18:00:07 - 
+2024-11-24 18:01:07 - 
+2024-11-24 18:02:08 - 
+2024-11-24 18:03:08 - 
+2024-11-24 18:04:09 - 
+2024-11-24 18:05:09 - 
+2024-11-24 18:06:10 - 
+2024-11-24 18:07:10 - 
+2024-11-24 18:08:11 - 
+2024-11-24 18:09:11 - 
+2024-11-24 18:10:11 - 
+2024-11-24 18:11:12 - 
+2024-11-24 18:12:12 - 
+2024-11-24 18:13:13 - 
+2024-11-24 18:14:13 - 
+2024-11-24 18:15:14 - 
+2024-11-24 18:16:14 - 
+2024-11-24 18:17:15 - 
+2024-11-24 18:18:15 - 
+2024-11-24 18:19:16 - 
+2024-11-24 18:20:16 - 
+2024-11-24 18:21:16 - 
+2024-11-24 18:22:17 - 
+2024-11-24 18:23:17 - 
+2024-11-24 18:24:18 - 
+2024-11-24 18:25:18 - 
+2024-11-24 18:26:19 - 
+2024-11-24 18:27:19 - 
+2024-11-24 18:28:20 - 
+2024-11-24 18:29:20 - 
+2024-11-24 18:30:20 - 
+2024-11-24 18:31:21 - 
+2024-11-24 18:32:21 - 
+2024-11-24 18:33:22 - 
+2024-11-24 18:34:22 - 
+2024-11-24 18:35:23 - 
+2024-11-24 18:36:23 - 
+2024-11-24 18:37:24 - 
+2024-11-24 18:38:24 - 
+2024-11-24 18:39:25 - 
+2024-11-24 18:40:25 - 
+2024-11-24 18:41:26 - 
+2024-11-24 18:42:26 - 
+2024-11-24 18:43:26 - [32mAuction ID: 1 processed. Winner: User ID: 1, Amount: 100.00[39m
+
+2024-11-24 18:44:27 - 
+2024-11-24 18:45:27 - 
+2024-11-24 18:46:28 - 
+2024-11-24 18:47:28 - 
+2024-11-24 18:48:29 - 
+2024-11-24 18:49:29 - 
+2024-11-24 18:50:30 - 
+2024-11-24 18:51:30 - 
+2024-11-24 18:52:31 - 
+2024-11-24 18:53:31 - 
+2024-11-24 18:54:32 - 
+2024-11-24 18:55:32 - 
+2024-11-24 18:56:33 - 
+2024-11-24 18:57:33 - 
+2024-11-24 18:58:33 - 
+2024-11-24 18:59:34 - 
+2024-11-24 19:00:34 - 
+2024-11-24 19:01:35 - 
+2024-11-24 19:02:35 - 
+2024-11-24 19:03:36 - 
+2024-11-24 19:04:36 - 
+2024-11-24 19:05:37 - 
+2024-11-24 19:06:37 - 
+2024-11-24 19:07:37 - 
+2024-11-24 19:08:38 - 
+2024-11-24 19:09:38 - 
+2024-11-24 19:10:39 - 
+2024-11-24 19:11:39 - 
+2024-11-24 19:12:40 - 
+2024-11-24 19:13:40 - 
+2024-11-24 19:14:41 - 
+2024-11-24 19:15:41 - 
+2024-11-24 19:16:42 - 
+2024-11-24 19:17:42 - 
+2024-11-24 19:18:43 - 
+2024-11-24 19:19:43 - 
+2024-11-24 19:20:43 - 
+2024-11-24 19:21:44 - 
+2024-11-24 19:22:44 - 
+2024-11-24 19:23:45 - 
+2024-11-24 19:24:45 - 
+2024-11-24 19:25:46 - 
+2024-11-24 19:26:46 - 
+2024-11-24 19:27:46 - 
+2024-11-24 19:28:47 - 
+2024-11-24 19:29:47 - 
+2024-11-24 19:30:48 - 
+2024-11-24 19:31:48 - 
+2024-11-24 19:32:49 - 
+2024-11-24 19:33:49 - 
+2024-11-24 19:34:50 - 
+2024-11-24 19:35:50 - 
+2024-11-24 19:36:50 - 
+2024-11-24 19:37:51 - 
+2024-11-24 19:38:51 - 
+2024-11-24 19:39:52 - 
+2024-11-24 19:40:52 - 
+2024-11-24 19:41:53 - 
+2024-11-24 19:42:53 - 
+2024-11-24 19:43:54 - 
+2024-11-24 19:44:54 - 
+2024-11-24 19:45:54 - 
+2024-11-24 19:46:55 - 
+2024-11-24 19:47:55 - 
+2024-11-24 19:48:56 - 
+2024-11-24 19:49:56 - 
+2024-11-24 19:50:57 - 
+2024-11-24 19:51:57 - 
+2024-11-24 19:52:58 - 
+2024-11-24 19:53:58 - 
+2024-11-24 19:54:58 - 
+2024-11-24 19:55:59 - 
+2024-11-24 19:56:59 - 
+2024-11-24 19:58:00 - 
+2024-11-24 19:59:00 - 
+2024-11-24 20:00:01 - 
+2024-11-24 20:01:01 - 
+2024-11-24 20:02:02 - 
+2024-11-24 20:03:02 - 
+2024-11-24 20:04:02 - 
+2024-11-24 20:05:03 - 
+2024-11-24 20:06:03 - 
+2024-11-24 20:07:04 - 
+2024-11-24 20:08:04 - 
+2024-11-24 20:09:05 - 
+2024-11-24 20:10:05 - 
+2024-11-24 20:11:05 - 
+2024-11-24 20:12:06 - 
+2024-11-24 20:13:06 - 
+2024-11-24 20:14:07 - 
+2024-11-24 20:15:07 - 
+2024-11-24 20:16:08 - 
+2024-11-24 20:17:08 - 
+2024-11-24 20:18:09 - 
+2024-11-24 20:19:09 - 
+2024-11-24 20:20:10 - 
+2024-11-24 20:21:10 - 
+2024-11-24 20:22:10 - 
+2024-11-24 20:23:11 - 
+2024-11-24 20:24:11 - 
+2024-11-24 20:25:12 - 
+2024-11-24 20:26:12 - 
+2024-11-24 20:27:13 - 
+2024-11-24 20:28:13 - 
+2024-11-24 20:29:14 - 
+2024-11-24 20:30:14 - 
+2024-11-24 20:31:15 - 
+2024-11-24 20:32:15 - 
+2024-11-24 20:33:15 - 
+2024-11-24 20:34:16 - 
+2024-11-24 20:35:16 - 
+2024-11-24 20:36:17 - 
+2024-11-24 20:37:17 - 
+2024-11-24 20:38:18 - 
+2024-11-24 20:39:18 - 
+2024-11-24 20:40:19 - 
+2024-11-24 20:41:19 - 
+2024-11-24 20:42:19 - 
+2024-11-24 20:43:20 - 
+2024-11-24 20:44:20 - 
+2024-11-24 20:45:21 - 
+2024-11-24 20:46:21 - 
+2024-11-24 20:47:22 - 
+2024-11-24 20:48:22 - 
+2024-11-24 20:49:23 - 
+2024-11-24 20:50:23 - 
+2024-11-24 20:51:23 - 
+2024-11-24 20:52:24 - 
+2024-11-24 20:53:24 - 
+2024-11-24 20:54:25 - 
+2024-11-24 20:55:25 - 
+2024-11-24 20:56:26 - 
+2024-11-24 20:57:26 - 
+2024-11-24 20:58:27 - 
+2024-11-24 20:59:27 - 
+2024-11-24 21:00:28 - 
+2024-11-24 21:01:28 - 
+2024-11-24 21:02:29 - 
+2024-11-24 21:03:29 - 
+2024-11-24 21:04:29 - 
+2024-11-24 21:05:30 - 
+2024-11-24 21:06:30 - 
+2024-11-24 21:07:31 - 
+2024-11-24 21:08:31 - 
+2024-11-24 21:09:32 - 
+2024-11-24 21:10:32 - 
+2024-11-24 21:11:33 - 
+2024-11-24 21:12:33 - 
+2024-11-24 21:13:34 - 
+2024-11-24 21:14:34 - 
+2024-11-24 21:15:35 - 
+2024-11-24 21:16:35 - 
+2024-11-24 21:17:36 - [32mAuction ID: 1 processed. Winner: User ID: 1, Amount: 100.00[39m
+
+2024-11-24 21:18:36 - 
+2024-11-24 21:19:37 - 
+2024-11-24 21:20:37 - 
+2024-11-24 21:21:38 - 
+2024-11-24 21:22:38 - 
+2024-11-24 21:23:39 - 
+2024-11-24 21:24:39 - 
+  [41;1m UnexpectedValueException [49;22m
+
+[39;1m  Invalid route action: [handleExpiredTax].[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Routing\RouteAction.php[39m:[32m92[39m
+     88▕      */
+     89▕     protected static function makeInvokable($action)
+     90▕     {
+     91▕         if (! method_exists($action, '__invoke')) {
+  ➜  92▕             throw new UnexpectedValueException("Invalid route action: [{$action}].");
+     93▕         }
+     94▕ 
+     95▕         return $action.'@__invoke';
+     96▕     }
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Routing\RouteAction.php[39;22m:[39;1m47[39;22m
+  [90m    Illuminate\Routing\RouteAction::makeInvokable("handleExpiredTax")[39m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Routing\Route.php[39;22m:[39;1m196[39;22m
+  [90m    Illuminate\Routing\RouteAction::parse("handle-expired-tax", ["handleExpiredTax", "handleExpiredTax"])[39m
+
+
+2024-11-24 21:25:39 - 
+  [41;1m UnexpectedValueException [49;22m
+
+[39;1m  Invalid route action: [handleExpiredTax].[39;22m
+
+  at [32mvendor\laravel\framework\src\Illuminate\Routing\RouteAction.php[39m:[32m92[39m
+     88▕      */
+     89▕     protected static function makeInvokable($action)
+     90▕     {
+     91▕         if (! method_exists($action, '__invoke')) {
+  ➜  92▕             throw new UnexpectedValueException("Invalid route action: [{$action}].");
+     93▕         }
+     94▕ 
+     95▕         return $action.'@__invoke';
+     96▕     }
+
+  [33m1   [39m[39;1mvendor\laravel\framework\src\Illuminate\Routing\RouteAction.php[39;22m:[39;1m47[39;22m
+  [90m    Illuminate\Routing\RouteAction::makeInvokable("handleExpiredTax")[39m
+
+  [33m2   [39m[39;1mvendor\laravel\framework\src\Illuminate\Routing\Route.php[39;22m:[39;1m196[39;22m
+  [90m    Illuminate\Routing\RouteAction::parse("handle-expired-tax", ["handleExpiredTax", "handleExpiredTax"])[39m
+
+
+2024-11-24 21:26:40 - 
+2024-11-24 21:27:40 - 
+2024-11-24 21:28:41 - 
+2024-11-24 21:29:41 - 
+2024-11-24 21:30:42 - 
+2024-11-24 21:31:42 - 
+2024-11-24 21:32:42 - 
+2024-11-24 21:33:43 - 
+2024-11-24 21:34:43 - 
+2024-11-24 21:35:44 - 
+2024-11-24 21:36:44 - 
+2024-11-24 21:37:45 - 
+2024-11-24 21:38:45 - 
+2024-11-24 21:39:46 - 
+2024-11-24 21:40:46 - 
+2024-11-24 21:41:47 - 
+2024-11-24 21:42:47 - 
+2024-11-24 21:43:48 - 
+2024-11-24 21:44:48 - 
+2024-11-24 21:45:49 - 
+2024-11-24 21:46:49 - 
+2024-11-24 21:47:50 - 
+2024-11-24 21:48:50 - 
+2024-11-24 21:49:51 - 
+2024-11-24 21:50:51 - 
+2024-11-24 21:51:52 - 
+2024-11-24 21:52:52 - 
+2024-11-24 21:53:52 - 
+2024-11-24 21:54:53 - 
+2024-11-24 21:55:53 - 
+2024-11-24 21:56:54 - 
+2024-11-24 21:57:54 - 
+2024-11-24 21:58:55 - 
+2024-11-24 21:59:55 - 
+2024-11-24 22:00:56 - 
+2024-11-24 22:01:56 - 
+2024-11-24 22:02:57 - 
+2024-11-24 22:03:57 - 
+2024-11-24 22:04:58 - 
+2024-11-24 22:05:58 - 
+2024-11-24 22:06:59 - 
+2024-11-24 22:07:59 - 
+2024-11-24 22:09:00 - 
+2024-11-24 22:10:00 - 
+2024-11-24 22:11:01 - 
+2024-11-24 22:12:01 - 
+2024-11-24 22:13:01 - 
+2024-11-24 22:14:02 - 
+2024-11-24 22:15:02 - 
+2024-11-24 22:16:03 - 
+2024-11-24 22:17:03 - 
+2024-11-24 22:18:04 - 
+2024-11-24 22:19:04 - 
+2024-11-24 22:20:05 - 
+2024-11-24 22:21:05 - 
+2024-11-24 22:22:05 - 
+2024-11-24 22:23:06 - 
+2024-11-24 22:24:06 - 
+2024-11-24 22:25:07 - 
+2024-11-24 22:26:07 - 
+2024-11-24 22:27:08 - 
+2024-11-24 22:28:08 - 
+2024-11-24 22:29:09 - 
+2024-11-24 22:30:09 - 
+2024-11-24 22:31:09 - 
+2024-11-24 22:32:10 - 
+2024-11-24 22:33:10 - 
+2024-11-24 22:34:11 - 
+2024-11-24 22:35:11 - 
+2024-11-24 22:36:12 - 
+2024-11-24 22:37:12 - 
+2024-11-24 22:38:13 - 
+2024-11-24 22:39:13 - 
+2024-11-24 22:40:13 - 
+2024-11-24 22:41:14 - 
+2024-11-24 22:42:14 - 
+2024-11-24 22:43:15 - 
+2024-11-24 22:44:15 - 
+2024-11-24 22:45:16 - 
+2024-11-24 22:46:16 - 
+2024-11-24 22:47:17 - 
+2024-11-24 22:48:17 - 
+2024-11-24 22:49:17 - 
+2024-11-24 22:50:18 - 
+2024-11-24 22:51:18 - 
+2024-11-24 22:52:19 - 
+2024-11-24 22:53:19 - 
+2024-11-24 22:54:20 - 
+2024-11-24 22:55:20 - 
+2024-11-24 22:56:21 - 
+2024-11-24 22:57:21 - 
+2024-11-24 22:58:22 - 
+2024-11-24 22:59:22 - 
+2024-11-24 23:00:22 - 
+2024-11-24 23:01:23 - 
+2024-11-24 23:02:23 - 
+2024-11-24 23:03:24 - 
+2024-11-24 23:04:24 - 
+2024-11-24 23:05:25 - 
+2024-11-24 23:06:25 - 
+2024-11-24 23:07:26 - 
+2024-11-24 23:08:26 - 
+2024-11-24 23:09:26 - 
+2024-11-24 23:10:27 - 
+2024-11-24 23:11:27 - 
+2024-11-24 23:12:28 - 
+2024-11-24 23:13:28 - 
+2024-11-24 23:14:29 - 
+2024-11-24 23:15:29 - 
+2024-11-24 23:16:30 - 
+2024-11-24 23:17:30 - 
+2024-11-24 23:18:31 - 
+2024-11-24 23:19:31 - 
+2024-11-25 01:01:44 - [32mAuction ID: 2 processed. Winner: User ID: 1, Amount: 650.00[39m
+
+2024-11-25 01:01:45 - 
+2024-11-25 01:01:47 - 
+2024-11-25 01:01:48 - 
+2024-11-25 01:01:50 - 
+2024-11-25 01:01:51 - 
+2024-11-25 01:01:53 - 
+2024-11-25 01:01:54 - 
+2024-11-25 01:01:55 - 
+2024-11-25 01:01:57 - 
+2024-11-25 01:01:58 - 
+2024-11-25 01:02:00 - 
+2024-11-25 01:02:01 - 
+2024-11-25 01:02:03 - 
+2024-11-25 01:02:04 - 
+2024-11-25 01:02:06 - 
+2024-11-25 01:02:07 - 
+2024-11-25 01:02:09 - 
+2024-11-25 01:02:10 - 
+2024-11-25 01:02:12 - 
+2024-11-25 01:02:13 - 
+2024-11-25 01:02:15 - 
+2024-11-25 01:02:16 - 
+2024-11-25 01:02:18 - 
+2024-11-25 01:02:19 - 
+2024-11-25 01:02:21 - 
+2024-11-25 01:02:22 - 
+2024-11-25 01:02:24 - 
+2024-11-25 01:02:25 - 
+2024-11-25 01:02:27 - 
+2024-11-25 01:02:28 - 
+2024-11-25 01:02:29 - 
+2024-11-25 01:02:31 - 
+2024-11-25 01:02:32 - 
+2024-11-25 01:02:34 - 
+2024-11-25 01:02:35 - 
+2024-11-25 01:02:37 - 
+2024-11-25 01:02:38 - 
+2024-11-25 01:02:40 - 
+2024-11-25 01:02:41 - 
+2024-11-25 01:02:43 - 
+2024-11-25 01:02:44 - 
+2024-11-25 01:02:46 - 
+2024-11-25 01:02:47 - 
+2024-11-25 01:02:49 - 
+2024-11-25 01:02:50 - 
+2024-11-25 01:02:51 - 
+2024-11-25 01:02:53 - 
+2024-11-25 01:02:54 - 
+2024-11-25 01:02:56 - 
+2024-11-25 01:02:57 - 
+2024-11-25 01:02:59 - 
+2024-11-25 01:03:00 - 
+2024-11-25 01:03:01 - 
+2024-11-25 01:03:03 - 
+2024-11-25 01:03:04 - 
+2024-11-25 01:03:06 - 
+2024-11-25 01:03:07 - 
+2024-11-25 01:03:09 - 
+2024-11-25 01:03:10 - 
+2024-11-25 01:03:12 - 
+2024-11-25 01:03:13 - 
+2024-11-25 01:03:14 - 
+2024-11-25 01:03:16 - 
+2024-11-25 01:03:17 - 
+2024-11-25 01:03:19 - 
+2024-11-25 01:03:20 - 
+2024-11-25 01:03:22 - 
+2024-11-25 01:03:23 - 
+2024-11-25 01:03:24 - 
+2024-11-25 01:03:26 - 
+2024-11-25 01:03:27 - 
+2024-11-25 01:03:29 - 
+2024-11-25 01:03:30 - 
+2024-11-25 01:03:32 - 
+2024-11-25 01:03:33 - 
+2024-11-25 01:03:35 - 
+2024-11-25 01:03:36 - 
+2024-11-25 01:03:37 - 
+2024-11-25 01:03:39 - 
+2024-11-25 01:03:40 - 
+2024-11-25 01:03:42 - 
+2024-11-25 01:03:43 - 
+2024-11-25 01:03:45 - 
+2024-11-25 01:03:46 - 
+2024-11-25 01:03:48 - 
+2024-11-25 01:03:49 - 
+2024-11-25 01:03:51 - 
+2024-11-25 01:03:52 - 
+2024-11-25 01:03:54 - 
+2024-11-25 01:03:55 - 
+2024-11-25 01:03:57 - 
+2024-11-25 01:03:58 - 
+2024-11-25 01:04:00 - 
+2024-11-25 01:04:01 - 
+2024-11-25 01:04:03 - 
+2024-11-25 01:04:04 - 
+2024-11-25 01:04:06 - 
+2024-11-25 01:04:07 - 
+2024-11-25 01:04:08 - 
+2024-11-25 01:04:10 - 
+2024-11-25 01:04:11 - 
+2024-11-25 01:04:13 - 
+2024-11-25 01:04:14 - 
+2024-11-25 01:04:16 - 
+2024-11-25 01:04:17 - 
+2024-11-25 01:04:19 - 
+2024-11-25 01:04:20 - 
+2024-11-25 01:04:22 - 
+2024-11-25 01:04:24 - 
+2024-11-25 01:04:25 - 
+2024-11-25 01:04:27 - 
+2024-11-25 01:04:28 - 
+2024-11-25 01:04:30 - 
+2024-11-25 01:04:31 - 
+2024-11-25 01:04:33 - 
+2024-11-25 01:04:34 - 
+2024-11-25 01:04:36 - 
+2024-11-25 01:04:37 - 
+2024-11-25 01:04:39 - 
+2024-11-25 01:04:40 - 
+2024-11-25 01:04:41 - 
+2024-11-25 01:04:43 - 
+2024-11-25 01:04:44 - 
+2024-11-25 01:04:46 - 
+2024-11-25 01:04:47 - 
+2024-11-25 01:04:49 - 
+2024-11-25 01:04:50 - 
+2024-11-25 01:04:52 - 
+2024-11-25 01:04:53 - 
+2024-11-25 01:04:55 - 
+2024-11-25 01:04:56 - 
+2024-11-25 01:04:58 - 
+2024-11-25 01:04:59 - 
+2024-11-25 01:05:00 - 
+2024-11-25 01:05:02 - 
+2024-11-25 01:05:03 - 
+2024-11-25 01:05:05 - 
+2024-11-25 01:05:06 - 
+2024-11-25 01:05:08 - 
+2024-11-25 01:05:09 - 
+2024-11-25 01:05:11 - 
+2024-11-25 01:05:12 - 
+2024-11-25 01:05:14 - 
+2024-11-25 01:05:15 - 
+2024-11-25 01:05:17 - 
+2024-11-25 01:05:18 - 
+2024-11-25 01:05:19 - 
+2024-11-25 01:05:21 - 
+2024-11-25 01:05:23 - 
+2024-11-25 01:05:24 - 
+2024-11-25 01:05:25 - 
+2024-11-25 01:05:27 - 
+2024-11-25 01:05:29 - 
+2024-11-25 01:05:30 - 
+2024-11-25 01:05:32 - 
+2024-11-25 01:05:33 - 
+2024-11-25 01:05:35 - 
+2024-11-25 01:05:36 - 
+2024-11-25 01:05:37 - 
+2024-11-25 01:05:39 - 
+2024-11-25 01:05:40 - 
+2024-11-25 01:05:42 - 
+2024-11-25 01:05:43 - 
+2024-11-25 01:05:45 - 
+2024-11-25 01:05:46 - 
+2024-11-25 01:05:48 - 
+2024-11-25 01:05:49 - 
+2024-11-25 01:05:50 - 
+2024-11-25 01:05:52 - 
+2024-11-25 01:05:53 - 
+2024-11-25 01:05:55 - 
+2024-11-25 01:05:56 - 
+2024-11-25 01:05:58 - 
+2024-11-25 01:05:59 - 
+2024-11-25 01:06:01 - 
+2024-11-25 01:06:02 - 
+2024-11-25 01:06:04 - 
+2024-11-25 01:06:05 - 
+2024-11-25 01:06:06 - 
+2024-11-25 01:06:08 - 
+2024-11-25 01:06:09 - 
+2024-11-25 01:06:11 - 
+2024-11-25 01:06:12 - 
+2024-11-25 01:06:14 - 
+2024-11-25 01:06:16 - 
+2024-11-25 01:06:17 - 
+2024-11-25 01:06:19 - 
+2024-11-25 01:06:21 - 
+2024-11-25 01:06:22 - 
+2024-11-25 01:06:24 - 
+2024-11-25 01:06:25 - 
+2024-11-25 01:06:27 - 
+2024-11-25 01:06:28 - 
+2024-11-25 01:06:29 - 
+2024-11-25 01:06:31 - 
+2024-11-25 01:06:32 - 
+2024-11-25 01:06:34 - 
+2024-11-25 01:06:35 - 
+2024-11-25 01:06:37 - 
+2024-11-25 01:06:38 - 
+2024-11-25 01:06:40 - 
+2024-11-25 01:06:41 - 
+2024-11-25 01:06:43 - 
+2024-11-25 01:06:44 - 
+2024-11-25 01:06:46 - 
+2024-11-25 01:06:47 - 
+2024-11-25 01:06:49 - 
+2024-11-25 01:06:50 - 
+2024-11-25 01:06:52 - 
+2024-11-25 01:06:53 - 
+2024-11-25 01:06:55 - 
+2024-11-25 01:06:56 - 
+2024-11-25 01:06:58 - 
+2024-11-25 01:06:59 - 
+2024-11-25 01:07:01 - 
+2024-11-25 01:07:02 - 
+2024-11-25 01:07:03 - 
+2024-11-25 01:07:05 - 
+2024-11-25 01:07:06 - 
+2024-11-25 01:07:08 - 
+2024-11-25 01:07:09 - 
+2024-11-25 01:07:11 - 
+2024-11-25 01:07:12 - 
+2024-11-25 01:07:14 - 
+2024-11-25 01:07:15 - 
+2024-11-25 01:07:17 - 
+2024-11-25 01:07:18 - 
+2024-11-25 01:07:20 - 
+2024-11-25 01:07:21 - 
+2024-11-25 01:07:22 - 
+2024-11-25 01:07:24 - 
+2024-11-25 01:07:25 - 
+2024-11-25 01:07:27 - 
+2024-11-25 01:07:28 - 
+2024-11-25 01:07:30 - 
+2024-11-25 01:07:31 - 
+2024-11-25 01:07:33 - 
+2024-11-25 01:07:34 - 
+2024-11-25 01:07:36 - 
+2024-11-25 01:07:37 - 
+2024-11-25 01:07:38 - 
+2024-11-25 01:07:40 - 
+2024-11-25 01:07:41 - 
+2024-11-25 01:07:43 - 
+2024-11-25 01:07:44 - 
+2024-11-25 01:07:46 - 
+2024-11-25 01:07:47 - 
+2024-11-25 01:07:49 - 
+2024-11-25 01:07:50 - 
+2024-11-25 01:07:51 - 
+2024-11-25 01:07:53 - 
+2024-11-25 01:07:54 - 
+2024-11-25 01:07:56 - 
+2024-11-25 01:07:57 - 
+2024-11-25 01:07:59 - 
+2024-11-25 01:08:00 - 
+2024-11-25 01:08:02 - 
+2024-11-25 01:08:03 - 
+2024-11-25 01:08:04 - 
+2024-11-25 01:08:06 - 
+2024-11-25 01:08:07 - 
+2024-11-25 01:08:09 - 
+2024-11-25 01:08:10 - 
+2024-11-25 01:08:12 - 
+2024-11-25 01:08:13 - 
+2024-11-25 01:08:15 - 
+2024-11-25 01:08:16 - 
+2024-11-25 01:08:17 - 
+2024-11-25 01:08:19 - 
+2024-11-25 01:08:20 - 
+2024-11-25 01:08:22 - 
+2024-11-25 01:08:23 - 
+2024-11-25 01:08:25 - 
+2024-11-25 01:08:26 - 
+2024-11-25 01:08:28 - 
+2024-11-25 01:08:29 - 
+2024-11-25 01:08:31 - 
+2024-11-25 01:08:32 - 
+2024-11-25 01:08:34 - 
+2024-11-25 01:08:35 - 
+2024-11-25 01:08:36 - 
+2024-11-25 01:08:38 - 
+2024-11-25 01:08:39 - 
+2024-11-25 01:08:41 - 
+2024-11-25 01:08:42 - 
+2024-11-25 01:08:44 - 
+2024-11-25 01:08:46 - 
+2024-11-25 01:08:47 - 
+2024-11-25 01:08:49 - 
+2024-11-25 01:08:50 - 
+2024-11-25 01:08:51 - 
+2024-11-25 01:08:53 - 
+2024-11-25 01:08:54 - 
+2024-11-25 01:08:56 - 
+2024-11-25 01:08:57 - 
+2024-11-25 01:08:59 - 
+2024-11-25 01:09:00 - 
+2024-11-25 01:09:02 - 
+2024-11-25 01:09:03 - 
+2024-11-25 01:09:05 - 
+2024-11-25 01:09:06 - 
+2024-11-25 01:09:08 - 
+2024-11-25 01:09:09 - 
+2024-11-25 01:09:11 - 
+2024-11-25 01:09:12 - 
+2024-11-25 01:09:13 - 
+2024-11-25 01:09:15 - 
+2024-11-25 01:09:16 - 
+2024-11-25 01:09:18 - 
+2024-11-25 01:09:19 - 
+2024-11-25 01:09:21 - 
+2024-11-25 01:09:22 - 
+2024-11-25 01:09:24 - 
+2024-11-25 01:09:25 - 
+2024-11-25 01:09:27 - 
+2024-11-25 01:09:28 - 
+2024-11-25 01:09:30 - 
+2024-11-25 01:09:31 - 
+2024-11-25 01:09:33 - 
+2024-11-25 01:09:34 - 
+2024-11-25 01:09:36 - 
+2024-11-25 01:09:37 - 
+2024-11-25 01:09:39 - 
+2024-11-25 01:09:40 - 
+2024-11-25 01:09:41 - 
+2024-11-25 01:09:43 - 
+2024-11-25 01:09:44 - 
+2024-11-25 01:09:46 - 
+2024-11-25 01:09:47 - 
+2024-11-25 01:09:49 - 
+2024-11-25 01:09:50 - 
+2024-11-25 01:09:52 - 
+2024-11-25 01:09:53 - 
+2024-11-25 01:09:54 - 
+2024-11-25 01:09:56 - 
+2024-11-25 01:09:57 - 
+2024-11-25 01:09:59 - 
+2024-11-25 01:10:00 - 
+2024-11-25 01:10:02 - 
+2024-11-25 01:10:03 - 
+2024-11-25 01:10:05 - 
+2024-11-25 01:10:06 - 
+2024-11-25 01:10:08 - 
+2024-11-25 01:10:10 - 
+2024-11-25 01:10:11 - 
+2024-11-25 01:10:13 - 
+2024-11-25 01:10:14 - 
+2024-11-25 01:10:16 - 
+2024-11-25 01:10:17 - 
+2024-11-25 01:10:19 - 
+2024-11-25 01:10:20 - 
+2024-11-25 01:10:22 - 
+2024-11-25 01:10:23 - 
+2024-11-25 01:10:25 - 
+2024-11-25 01:10:26 - 
+2024-11-25 01:10:28 - 
+2024-11-25 01:10:29 - 
+2024-11-25 01:10:31 - 
+2024-11-25 01:10:32 - 
+2024-11-25 01:10:34 - 
+2024-11-25 01:10:35 - 
+2024-11-25 01:10:36 - 
+2024-11-25 01:10:38 - 
+2024-11-25 01:10:39 - 
+2024-11-25 01:10:41 - 
+2024-11-25 01:10:42 - 
+2024-11-25 01:10:44 - 
+2024-11-25 01:10:45 - 
+2024-11-25 01:10:47 - 
+2024-11-25 01:10:48 - 
+2024-11-25 01:10:50 - 
+2024-11-25 01:10:51 - 
+2024-11-25 01:10:53 - 
+2024-11-25 01:10:54 - 
+2024-11-25 01:10:56 - 
+2024-11-25 01:10:57 - 
+2024-11-25 01:10:59 - 
+2024-11-25 01:11:00 - 
+2024-11-25 01:11:01 - 
+2024-11-25 01:11:03 - 
+2024-11-25 01:11:04 - 
+2024-11-25 01:11:06 - 
+2024-11-25 01:11:07 - 
+2024-11-25 01:11:09 - 
+2024-11-25 01:11:10 - 
+2024-11-25 01:11:12 - 
+2024-11-25 01:11:13 - 
+2024-11-25 01:11:14 - 
+2024-11-25 01:11:16 - 
+2024-11-25 01:11:17 - 
+2024-11-25 01:11:19 - 
+2024-11-25 01:11:20 - 
+2024-11-25 01:11:22 - 
+2024-11-25 01:11:23 - 
+2024-11-25 01:11:25 - 
+2024-11-25 01:11:26 - 
+2024-11-25 01:11:27 - 
+2024-11-25 01:11:29 - 
+2024-11-25 01:11:30 - 
+2024-11-25 01:11:32 - 
+2024-11-25 01:11:33 - 
+2024-11-25 01:11:35 - 
+2024-11-25 01:11:36 - 
+2024-11-25 01:11:38 - 
+2024-11-25 01:11:39 - 
+2024-11-25 01:11:41 - 
+2024-11-25 01:11:42 - 
+2024-11-25 01:11:44 - 
+2024-11-25 01:11:45 - 
+2024-11-25 01:11:46 - 
+2024-11-25 01:11:48 - 
+2024-11-25 01:11:49 - 
+2024-11-25 01:11:51 - 
+2024-11-25 01:11:52 - 
+2024-11-25 01:11:54 - 
+2024-11-25 01:11:55 - 
+2024-11-25 01:11:57 - 
+2024-11-25 01:11:58 - 
+2024-11-25 01:12:00 - 
+2024-11-25 01:12:01 - 
+2024-11-25 01:12:03 - 
+2024-11-25 01:12:04 - 
+2024-11-25 01:12:06 - 
+2024-11-25 01:12:07 - 
+2024-11-25 01:12:09 - 
+2024-11-25 01:12:10 - 
+2024-11-25 01:12:12 - 
+2024-11-25 01:12:13 - 
+2024-11-25 01:12:15 - 
+2024-11-25 01:12:16 - 
+2024-11-25 01:12:17 - 
+2024-11-25 01:12:19 - 
+2024-11-25 01:12:20 - 
+2024-11-25 01:12:22 - 
+2024-11-25 01:12:23 - 
+2024-11-25 01:12:25 - 
+2024-11-25 01:12:26 - 
+2024-11-25 01:12:28 - 
+2024-11-25 01:12:29 - 
+2024-11-25 01:12:31 - 
+2024-11-25 01:12:32 - 
+2024-11-25 01:12:34 - 
+2024-11-25 01:12:35 - 
+2024-11-25 01:12:37 - 
+2024-11-25 01:12:38 - 
+2024-11-25 01:12:40 - 
+2024-11-25 01:12:41 - 
+2024-11-25 01:12:43 - 
+2024-11-25 01:12:44 - 
+2024-11-25 01:12:46 - 
+2024-11-25 01:12:47 - 
+2024-11-25 01:12:49 - 
+2024-11-25 01:12:50 - 
+2024-11-25 01:12:52 - 
+2024-11-25 01:12:53 - 
+2024-11-25 01:12:55 - 
+2024-11-25 01:12:56 - 
+2024-11-25 01:12:57 - 
+2024-11-25 01:12:59 - 
+2024-11-25 01:13:00 - 
+2024-11-25 01:13:02 - 
+2024-11-25 01:13:04 - 
+2024-11-25 01:13:05 - 
+2024-11-25 01:13:06 - 
+2024-11-25 01:13:08 - 
+2024-11-25 01:13:09 - 
+2024-11-25 01:13:11 - 
+2024-11-25 01:13:12 - 
+2024-11-25 01:13:14 - 
+2024-11-25 01:13:15 - 
+2024-11-25 01:13:17 - 
+2024-11-25 01:13:18 - 
+2024-11-25 01:13:20 - 
+2024-11-25 01:13:21 - 
+2024-11-25 01:13:23 - 
+2024-11-25 01:13:24 - 
+2024-11-25 01:13:26 - 
+2024-11-25 01:13:27 - 
+2024-11-25 01:13:28 - 
+2024-11-25 01:13:30 - 
+2024-11-25 01:13:31 - 
+2024-11-25 01:13:33 - 
+2024-11-25 01:13:34 - 
+2024-11-25 01:13:36 - 
+2024-11-25 01:13:37 - 
+2024-11-25 01:13:39 - 
+2024-11-25 01:13:40 - 
+2024-11-25 01:13:42 - 
+2024-11-25 01:13:43 - 
+2024-11-25 01:13:44 - 
+2024-11-25 01:13:46 - 
+2024-11-25 01:13:47 - 
+2024-11-25 01:13:49 - 
+2024-11-25 01:13:50 - 
+2024-11-25 01:13:52 - 
+2024-11-25 01:13:53 - 
+2024-11-25 01:13:55 - 
+2024-11-25 01:13:56 - 
+2024-11-25 01:13:58 - 
+2024-11-25 01:13:59 - 
+2024-11-25 01:14:01 - 
+2024-11-25 01:14:02 - 
+2024-11-25 01:14:04 - 
+2024-11-25 01:14:05 - 
+2024-11-25 01:14:07 - 
+2024-11-25 01:14:08 - 
+2024-11-25 01:14:10 - 
+2024-11-25 01:14:11 - 
+2024-11-25 01:14:13 - 
+2024-11-25 01:14:14 - 
+2024-11-25 01:14:15 - 
+2024-11-25 01:14:17 - 
+2024-11-25 01:14:18 - 
+2024-11-25 01:14:20 - 
+2024-11-25 01:14:21 - 
+2024-11-25 01:14:23 - 
+2024-11-25 01:14:24 - 
+2024-11-25 01:14:26 - 
+2024-11-25 01:14:27 - 
+2024-11-25 01:14:29 - 
+2024-11-25 01:14:30 - 
+2024-11-25 01:14:32 - 
+2024-11-25 01:14:33 - 
+2024-11-25 01:14:35 - 
+2024-11-25 01:14:36 - 
+2024-11-25 01:14:38 - 
+2024-11-25 01:14:39 - 
+2024-11-25 01:14:40 - 
+2024-11-25 01:14:42 - 
+2024-11-25 01:14:44 - 
+2024-11-25 01:14:45 - 
+2024-11-25 01:14:47 - 
+2024-11-25 01:14:48 - 
+2024-11-25 01:14:50 - 
+2024-11-25 01:14:51 - 
+2024-11-25 01:14:52 - 
+2024-11-25 01:14:54 - 
+2024-11-25 01:14:55 - 
+2024-11-25 01:14:57 - 
+2024-11-25 01:14:58 - 
+2024-11-25 01:15:00 - 
+2024-11-25 01:15:01 - 
+2024-11-25 01:15:03 - 
+2024-11-25 01:15:04 - 
+2024-11-25 01:15:06 - 
+2024-11-25 01:15:07 - 
+2024-11-25 01:15:09 - 
+2024-11-25 01:15:10 - 
+2024-11-25 01:15:12 - 
+2024-11-25 01:15:13 - 
+2024-11-25 01:15:15 - 
+2024-11-25 01:15:16 - 
+2024-11-25 01:15:18 - 
+2024-11-25 01:15:19 - 
+2024-11-25 01:15:21 - 
+2024-11-25 01:15:22 - 
+2024-11-25 01:15:24 - 
+2024-11-25 01:15:25 - 
+2024-11-25 01:15:27 - 
+2024-11-25 01:15:28 - 
+2024-11-25 01:15:30 - 
+2024-11-25 01:15:31 - 
+2024-11-25 01:15:32 - 
+2024-11-25 01:15:34 - 
+2024-11-25 01:15:35 - 
+2024-11-25 01:15:37 - 
+2024-11-25 01:15:38 - 
+2024-11-25 01:15:40 - 
+2024-11-25 01:15:41 - 
+2024-11-25 01:15:43 - 
+2024-11-25 01:15:44 - 
+2024-11-25 01:15:46 - 
+2024-11-25 01:15:47 - 
+2024-11-25 01:15:49 - 
+2024-11-25 01:15:50 - 
+2024-11-25 01:15:52 - 
+2024-11-25 01:15:53 - 
+2024-11-25 01:15:55 - 
+2024-11-25 01:15:56 - 
+2024-11-25 01:15:58 - 
+2024-11-25 01:15:59 - 
+2024-11-25 01:16:01 - 
+2024-11-25 01:16:02 - 
+2024-11-25 01:16:04 - 
+2024-11-25 01:16:05 - 
+2024-11-25 01:16:07 - 
+2024-11-25 01:16:08 - 
+2024-11-25 01:16:10 - 
+2024-11-25 01:16:11 - 
+2024-11-25 01:16:13 - 
+2024-11-25 01:16:14 - 
+2024-11-25 01:16:16 - 
+2024-11-25 01:16:17 - 
+2024-11-25 01:16:18 - 
+2024-11-25 01:16:20 - 
+2024-11-25 01:16:21 - 
+2024-11-25 01:16:23 - 
+2024-11-25 01:16:24 - 
+2024-11-25 01:16:26 - 
+2024-11-25 01:16:27 - 
+2024-11-25 01:16:29 - 
+2024-11-25 01:16:30 - 
+2024-11-25 01:16:32 - 
+2024-11-25 01:16:33 - 
+2024-11-25 01:16:34 - 
+2024-11-25 01:16:36 - 
+2024-11-25 01:16:37 - 
+2024-11-25 01:16:39 - 
+2024-11-25 01:16:40 - 
+2024-11-25 01:16:42 - 
+2024-11-25 01:16:43 - 
+2024-11-25 01:16:45 - 
+2024-11-25 01:16:46 - 
+2024-11-25 01:16:47 - 
+2024-11-25 01:16:49 - 
+2024-11-25 01:16:50 - 
+2024-11-25 01:16:52 - 
+2024-11-25 01:16:53 - 
+2024-11-25 01:16:55 - 
+2024-11-25 01:16:56 - 
+2024-11-25 01:16:57 - 
+2024-11-25 01:16:59 - 
+2024-11-25 01:17:00 - 
+2024-11-25 01:17:02 - 
+2024-11-25 01:17:03 - 
+2024-11-25 01:17:05 - 
+2024-11-25 01:17:06 - 
+2024-11-25 01:17:08 - 
+2024-11-25 01:17:09 - 
+2024-11-25 01:17:11 - 
+2024-11-25 01:17:12 - 
+2024-11-25 01:17:14 - 
+2024-11-25 01:17:15 - 
+2024-11-25 01:17:17 - 
+2024-11-25 01:17:18 - 
+2024-11-25 01:17:20 - 
+2024-11-25 01:17:21 - 
+2024-11-25 01:17:23 - 
+2024-11-25 01:17:24 - 
+2024-11-25 01:17:26 - 
+2024-11-25 01:17:28 - 
+2024-11-25 01:17:29 - 
+2024-11-25 01:17:30 - 
+2024-11-25 01:17:32 - 
+2024-11-25 01:17:34 - 
+2024-11-25 01:17:35 - 
+2024-11-25 01:17:36 - 
+2024-11-25 01:17:38 - 
+2024-11-25 01:17:39 - 
+2024-11-25 01:17:41 - 
+2024-11-25 01:17:42 - 
+2024-11-25 01:17:44 - 
+2024-11-25 01:17:45 - 
+2024-11-25 01:17:47 - 
+2024-11-25 01:17:48 - 
+2024-11-25 01:17:50 - 
+2024-11-25 01:17:51 - 
+2024-11-25 01:17:53 - 
+2024-11-25 01:17:54 - 
+2024-11-25 01:17:56 - 
+2024-11-25 01:17:57 - 
+2024-11-25 01:17:59 - 
+2024-11-25 01:18:00 - 
+2024-11-25 01:18:02 - 
+2024-11-25 01:18:03 - 
+2024-11-25 01:18:05 - 
+2024-11-25 01:18:06 - 
+2024-11-25 01:18:07 - 
+2024-11-25 01:18:09 - 
+2024-11-25 01:18:10 - 
+2024-11-25 01:18:12 - 
+2024-11-25 01:18:13 - 
+2024-11-25 01:18:15 - 
+2024-11-25 01:18:16 - 
+2024-11-25 01:18:18 - 
+2024-11-25 01:18:19 - 
+2024-11-25 01:18:21 - 
+2024-11-25 01:18:23 - 
+2024-11-25 01:18:24 - 
+2024-11-25 01:18:26 - 
+2024-11-25 01:18:27 - 
+2024-11-25 01:18:29 - 
+2024-11-25 01:18:30 - 
+2024-11-25 01:18:32 - 
+2024-11-25 01:18:33 - 
+2024-11-25 01:18:35 - 
+2024-11-25 01:18:36 - 
+2024-11-25 01:18:38 - 
+2024-11-25 01:18:39 - 
+2024-11-25 01:18:41 - 
+2024-11-25 01:18:42 - 
+2024-11-25 01:18:44 - 
+2024-11-25 01:18:45 - 
+2024-11-25 01:18:47 - 
+2024-11-25 01:18:48 - 
+2024-11-25 01:18:50 - 
+2024-11-25 01:18:51 - 
+2024-11-25 01:18:53 - 
+2024-11-25 01:18:54 - 
+2024-11-25 01:18:56 - 
+2024-11-25 01:18:58 - 
+2024-11-25 01:18:59 - 
+2024-11-25 01:19:01 - 
+2024-11-25 01:19:02 - 
+2024-11-25 01:19:04 - 
+2024-11-25 01:19:05 - 
+2024-11-25 01:19:07 - 
+2024-11-25 01:19:09 - 
+2024-11-25 01:19:10 - 
+2024-11-25 01:19:11 - 
+2024-11-25 01:19:13 - 
+2024-11-25 01:19:14 - 
+2024-11-25 01:19:16 - 
+2024-11-25 01:19:17 - 
+2024-11-25 01:19:19 - 
+2024-11-25 01:19:20 - 
+2024-11-25 01:19:22 - 
+2024-11-25 01:19:23 - 
+2024-11-25 01:19:25 - 
+2024-11-25 01:19:26 - 
+2024-11-25 01:19:27 - 
+2024-11-25 01:19:29 - 
+2024-11-25 01:19:30 - 
+2024-11-25 01:19:32 - 
+2024-11-25 01:19:33 - 
+2024-11-25 01:19:35 - 
+2024-11-25 01:19:37 - 
+2024-11-25 01:19:38 - 
+2024-11-25 01:19:40 - 
+2024-11-25 01:19:41 - 
+2024-11-25 01:19:43 - 
+2024-11-25 01:19:44 - 
+2024-11-25 01:19:46 - 
+2024-11-25 01:19:48 - 
+2024-11-25 01:19:49 - 
+2024-11-25 01:19:51 - 
+2024-11-25 01:19:52 - 
+2024-11-25 01:19:54 - 
+2024-11-25 01:19:55 - 
+2024-11-25 01:19:57 - 
+2024-11-25 01:19:58 - 
+2024-11-25 01:20:00 - 
+2024-11-25 01:20:01 - 
+2024-11-25 01:20:03 - 
+2024-11-25 01:20:04 - 
+2024-11-25 01:20:06 - 
+2024-11-25 01:20:07 - 
+2024-11-25 01:20:08 - 
+2024-11-25 01:20:10 - 
+2024-11-25 01:20:11 - 
+2024-11-25 01:20:13 - 
+2024-11-25 01:20:14 - 
+2024-11-25 01:20:16 - 
+2024-11-25 01:20:17 - 
+2024-11-25 01:20:19 - 
+2024-11-25 01:20:20 - 
+2024-11-25 01:20:21 - 
+2024-11-25 01:20:23 - 
+2024-11-25 01:20:24 - 
+2024-11-25 01:20:26 - 
+2024-11-25 01:20:28 - 
+2024-11-25 01:20:29 - 
+2024-11-25 01:20:31 - 
+2024-11-25 01:20:32 - 
+2024-11-25 01:20:34 - 
+2024-11-25 01:20:35 - 
+2024-11-25 01:20:37 - 
+2024-11-25 01:20:38 - 
+2024-11-25 01:20:39 - 
+2024-11-25 01:20:41 - 
+2024-11-25 01:20:42 - 
+2024-11-25 01:20:44 - 
+2024-11-25 01:20:45 - 
+2024-11-25 01:20:47 - 
+2024-11-25 01:20:48 - 
+2024-11-25 01:20:50 - 
+2024-11-25 01:20:51 - 
+2024-11-25 01:20:53 - 
+2024-11-25 01:20:54 - 
+2024-11-25 01:20:56 - 
+2024-11-25 01:20:57 - 
+2024-11-25 01:20:59 - 
+2024-11-25 01:21:00 - 
+2024-11-25 01:21:01 - 
+2024-11-25 01:21:03 - 
+2024-11-25 01:21:04 - 
+2024-11-25 01:21:06 - 
+2024-11-25 01:21:07 - 
+2024-11-25 01:21:09 - 
+2024-11-25 01:21:10 - 
+2024-11-25 01:21:12 - 
+2024-11-25 01:21:13 - 
+2024-11-25 01:21:15 - 
+2024-11-25 01:21:16 - 
+2024-11-25 01:21:18 - 
+2024-11-25 01:21:19 - 
+2024-11-25 01:21:21 - 
+2024-11-25 01:21:22 - 
+2024-11-25 01:21:24 - 
+2024-11-25 01:21:25 - 
+2024-11-25 01:21:27 - 
+2024-11-25 01:21:28 - 
+2024-11-25 01:21:30 - 
+2024-11-25 01:21:31 - 
+2024-11-25 01:21:33 - 
+2024-11-25 01:21:34 - 
+2024-11-25 01:21:35 - 
+2024-11-25 01:21:37 - 
+2024-11-25 01:21:38 - 
+2024-11-25 01:21:40 - 
+2024-11-25 01:21:41 - 
+2024-11-25 01:21:43 - 
+2024-11-25 01:21:44 - 
+2024-11-25 01:21:46 - 
+2024-11-25 01:21:48 - 
+2024-11-25 01:21:49 - 
+2024-11-25 01:21:51 - 
+2024-11-25 01:21:52 - 
+2024-11-25 01:21:54 - 
+2024-11-25 01:21:55 - 
+2024-11-25 01:21:57 - 
+2024-11-25 01:21:58 - 
+2024-11-25 01:22:00 - 
+2024-11-25 01:22:01 - 
+2024-11-25 01:22:03 - 
+2024-11-25 01:22:04 - 
+2024-11-25 01:22:06 - 
+2024-11-25 01:22:07 - 
+2024-11-25 01:22:09 - 
+2024-11-25 01:22:10 - 
+2024-11-25 01:22:12 - 
+2024-11-25 01:22:13 - 
+2024-11-25 01:22:15 - 
+2024-11-25 01:22:16 - 
+2024-11-25 01:22:18 - 
+2024-11-25 01:22:19 - 
+2024-11-25 01:22:21 - 
+2024-11-25 01:22:22 - 
+2024-11-25 01:22:24 - 
+2024-11-25 01:22:25 - 
+2024-11-25 01:22:27 - 
+2024-11-25 01:22:28 - 
+2024-11-25 01:22:30 - 
+2024-11-25 01:22:31 - 
+2024-11-25 01:22:33 - 
+2024-11-25 01:22:34 - 
+2024-11-25 01:22:36 - 
+2024-11-25 01:22:37 - 
+2024-11-25 01:22:39 - 
+2024-11-25 01:22:40 - 
+2024-11-25 01:22:42 - 
+2024-11-25 01:22:43 - 
+2024-11-25 01:22:45 - 
+2024-11-25 01:22:46 - 
+2024-11-25 01:22:48 - 
+2024-11-25 01:22:49 - 
+2024-11-25 01:22:51 - 
+2024-11-25 01:22:52 - 
+2024-11-25 01:22:54 - 
+2024-11-25 01:22:55 - 
+2024-11-25 01:22:57 - 
+2024-11-25 01:22:58 - 
+2024-11-25 01:23:00 - 
+2024-11-25 01:23:01 - 
+2024-11-25 01:23:03 - 
+2024-11-25 01:23:04 - 
+2024-11-25 01:23:06 - 
+2024-11-25 01:23:08 - 
+2024-11-25 01:23:09 - 
+2024-11-25 01:23:11 - 
+2024-11-25 01:23:12 - 
+2024-11-25 01:23:14 - 
+2024-11-25 01:23:15 - 
+2024-11-25 01:23:17 - 
+2024-11-25 01:23:18 - 
+2024-11-25 01:23:20 - 
+2024-11-25 01:23:21 - 
+2024-11-25 01:23:23 - 
+2024-11-25 01:23:24 - 
+2024-11-25 01:23:26 - 
+2024-11-25 01:23:27 - 
+2024-11-25 01:23:29 - 
+2024-11-25 01:23:30 - 
+2024-11-25 01:23:32 - 
+2024-11-25 01:23:33 - 
+2024-11-25 01:23:34 - 
+2024-11-25 01:23:36 - 
+2024-11-25 01:23:37 - 
+2024-11-25 01:23:39 - 
+2024-11-25 01:23:40 - 
+2024-11-25 01:23:42 - 
+2024-11-25 01:23:43 - 
+2024-11-25 01:23:45 - 
+2024-11-25 01:23:46 - 
+2024-11-25 01:23:48 - 
+2024-11-25 01:23:49 - 
+2024-11-25 01:23:50 - 
+2024-11-25 01:23:52 - 
+2024-11-25 01:23:53 - 
+2024-11-25 01:23:55 - 
+2024-11-25 01:23:56 - 
+2024-11-25 01:23:58 - 
+2024-11-25 01:23:59 - 
+2024-11-25 01:24:01 - 
+2024-11-25 01:24:02 - 
+2024-11-25 01:24:03 - 
+2024-11-25 01:24:05 - 
+2024-11-25 01:24:06 - 
+2024-11-25 01:24:08 - 
+2024-11-25 01:24:09 - 
+2024-11-25 01:24:11 - 
+2024-11-25 01:24:12 - 
+2024-11-25 01:24:14 - 
+2024-11-25 01:24:15 - 
+2024-11-25 01:24:16 - 
+2024-11-25 01:24:18 - 
+2024-11-25 01:24:20 - 
+2024-11-25 01:24:21 - 
+2024-11-25 01:24:23 - 
+2024-11-25 01:24:24 - 
+2024-11-25 01:24:26 - 
+2024-11-25 01:24:27 - 
+2024-11-25 01:24:29 - 
+2024-11-25 01:24:30 - 
+2024-11-25 01:24:32 - 
+2024-11-25 01:24:33 - 
+2024-11-25 01:24:35 - 
+2024-11-25 01:24:37 - 
+2024-11-25 01:24:38 - 
+2024-11-25 01:24:40 - 
+2024-11-25 01:24:41 - 
+2024-11-25 01:24:43 - 
+2024-11-25 01:24:44 - 
+2024-11-25 01:24:45 - 
+2024-11-25 01:24:47 - 
+2024-11-25 01:24:48 - 
+2024-11-25 01:24:50 - 
+2024-11-25 01:24:51 - 
+2024-11-25 01:24:53 - 
+2024-11-25 01:24:54 - 
+2024-11-25 01:24:56 - 
+2024-11-25 01:24:57 - 
+2024-11-25 01:24:59 - 
+2024-11-25 01:25:00 - 
+2024-11-25 01:25:01 - 
+2024-11-25 01:25:03 - 
+2024-11-25 01:25:04 - 
+2024-11-25 01:25:06 - 
+2024-11-25 01:25:08 - 
+2024-11-25 01:25:09 - 
+2024-11-25 01:25:11 - 
+2024-11-25 01:25:12 - 
+2024-11-25 01:25:14 - 
+2024-11-25 01:25:15 - 
+2024-11-25 01:25:17 - 
+2024-11-25 01:25:18 - 
+2024-11-25 01:25:20 - 
+2024-11-25 01:25:21 - 
+2024-11-25 01:25:23 - 
+2024-11-25 01:25:24 - 
+2024-11-25 01:25:26 - 
+2024-11-25 01:25:27 - 
+2024-11-25 01:25:28 - 
+2024-11-25 01:25:30 - 
+2024-11-25 01:25:31 - 
+2024-11-25 01:25:33 - 
+2024-11-25 01:25:34 - 
+2024-11-25 01:25:36 - 
+2024-11-25 01:25:37 - 
+2024-11-25 01:25:39 - 
+2024-11-25 01:25:40 - 
+2024-11-25 01:25:41 - 
+2024-11-25 01:25:43 - 
+2024-11-25 01:25:44 - 
+2024-11-25 01:25:46 - 
+2024-11-25 01:25:47 - 
+2024-11-25 01:25:49 - 
+2024-11-25 01:25:50 - 
+2024-11-25 01:25:52 - 
+2024-11-25 01:25:53 - 
+2024-11-25 01:25:54 - 
+2024-11-25 01:25:56 - 
+2024-11-25 01:25:57 - 
+2024-11-25 01:25:59 - 
+2024-11-25 01:26:00 - 
+2024-11-25 01:26:02 - 
+2024-11-25 01:26:03 - 
+2024-11-25 01:26:05 - 
+2024-11-25 01:26:06 - 
+2024-11-25 01:26:08 - 
+2024-11-25 01:26:09 - 
+2024-11-25 01:26:11 - 
+2024-11-25 01:26:12 - 
+2024-11-25 01:26:14 - 
+2024-11-25 01:26:15 - 
+2024-11-25 01:26:17 - 
+2024-11-25 01:26:18 - 
+2024-11-25 01:26:20 - 
+2024-11-25 01:26:21 - 
+2024-11-25 01:26:23 - 
+2024-11-25 01:26:24 - 
+2024-11-25 01:26:26 - 
+2024-11-25 01:26:27 - 
+2024-11-25 01:26:29 - 
+2024-11-25 01:26:30 - 
+2024-11-25 01:26:32 - 
+2024-11-25 01:26:33 - 
+2024-11-25 01:26:34 - 
+2024-11-25 01:26:36 - 
+2024-11-25 01:26:37 - 
+2024-11-25 01:26:39 - 
+2024-11-25 01:26:40 - 
+2024-11-25 01:26:42 - 
+2024-11-25 01:26:43 - 
+2024-11-25 01:26:45 - 
+2024-11-25 01:26:46 - 
+2024-11-25 01:26:48 - 
+2024-11-25 01:26:49 - 
+2024-11-25 01:26:51 - 
+2024-11-25 01:26:52 - 
+2024-11-25 01:26:54 - 
+2024-11-25 01:26:55 - 
+2024-11-25 01:26:57 - 
+2024-11-25 01:26:58 - 
+2024-11-25 01:27:00 - 
+2024-11-25 01:27:01 - 
+2024-11-25 01:27:03 - 
+2024-11-25 01:27:04 - 
+2024-11-25 01:27:06 - 
+2024-11-25 01:27:07 - 
+2024-11-25 01:27:09 - 
+2024-11-25 01:27:10 - 
+2024-11-25 01:27:12 - 
+2024-11-25 01:27:13 - 
+2024-11-25 01:27:15 - 
+2024-11-25 01:27:16 - 
+2024-11-25 01:27:17 - 
+2024-11-25 01:27:19 - 
+2024-11-25 01:27:20 - 
+2024-11-25 01:27:22 - 
+2024-11-25 01:27:23 - 
+2024-11-25 01:27:25 - 
+2024-11-25 01:27:26 - 
+2024-11-25 01:27:28 - 
+2024-11-25 01:27:29 - 
+2024-11-25 01:27:30 - 
+2024-11-25 01:27:32 - 
+2024-11-25 01:27:33 - 
+2024-11-25 01:27:35 - 
+2024-11-25 01:27:36 - 
+2024-11-25 01:27:38 - 
+2024-11-25 01:27:39 - 
+2024-11-25 01:27:41 - 
+2024-11-25 01:27:42 - 
+2024-11-25 01:27:44 - 
+2024-11-25 01:27:45 - 
+2024-11-25 01:27:46 - 
+2024-11-25 01:27:48 - 
+2024-11-25 01:27:49 - 
+2024-11-25 01:27:51 - 
+2024-11-25 01:27:52 - 
+2024-11-25 01:27:54 - 
+2024-11-25 01:27:55 - 
+2024-11-25 01:27:57 - 
+2024-11-25 01:27:58 - 
+2024-11-25 01:28:00 - 
+2024-11-25 01:28:01 - 
+2024-11-25 01:28:03 - 
+2024-11-25 01:28:04 - 
+2024-11-25 01:28:06 - 
+2024-11-25 01:28:07 - 
+2024-11-25 01:28:09 - 
+2024-11-25 01:28:10 - 
+2024-11-25 01:28:11 - 
+2024-11-25 01:28:13 - 
+2024-11-25 01:28:14 - 
+2024-11-25 01:28:16 - 
+2024-11-25 01:28:17 - 
+2024-11-25 01:28:19 - 
+2024-11-25 01:28:20 - 
+2024-11-25 01:28:22 - 
+2024-11-25 01:28:23 - 
+2024-11-25 01:28:24 - 
+2024-11-25 01:28:26 - 
+2024-11-25 01:28:27 - 
+2024-11-25 01:28:29 - 
+2024-11-25 01:28:30 - 
+2024-11-25 01:28:32 - 
+2024-11-25 01:28:33 - 
+2024-11-25 01:28:35 - 
+2024-11-25 01:28:36 - 
+2024-11-25 01:28:38 - 
+2024-11-25 01:28:39 - 
+2024-11-25 01:28:40 - 
+2024-11-25 01:28:42 - 
+2024-11-25 01:28:43 - 
+2024-11-25 01:28:45 - 
+2024-11-25 01:28:46 - 
+2024-11-25 01:28:48 - 
+2024-11-25 01:28:49 - 
+2024-11-25 01:28:51 - 
+2024-11-25 01:28:52 - 
+2024-11-25 01:28:53 - 
+2024-11-25 01:28:55 - 
+2024-11-25 01:28:56 - 
+2024-11-25 01:28:58 - 
+2024-11-25 01:28:59 - 
+2024-11-25 01:29:01 - 
+2024-11-25 01:29:02 - 
+2024-11-25 01:29:04 - 
+2024-11-25 01:29:05 - 
+2024-11-25 01:29:06 - 
+2024-11-25 01:29:08 - 
+2024-11-25 01:29:09 - 
+2024-11-25 01:29:11 - 
+2024-11-25 01:29:12 - 
+2024-11-25 01:29:14 - 
+2024-11-25 01:29:15 - 
+2024-11-25 01:29:17 - 
+2024-11-25 01:29:18 - 
+2024-11-25 01:29:20 - 
+2024-11-25 01:29:21 - 
+2024-11-25 01:29:22 - 
+2024-11-25 01:29:24 - 
+2024-11-25 01:29:25 - 
+2024-11-25 01:29:27 - 
+2024-11-25 01:29:28 - 
+2024-11-25 01:29:30 - 
+2024-11-25 01:29:31 - 
+2024-11-25 01:29:33 - 
+2024-11-25 01:29:34 - 
+2024-11-25 01:29:35 - 
+2024-11-25 01:29:37 - 
+2024-11-25 01:29:38 - 
+2024-11-25 01:29:40 - 
+2024-11-25 01:29:42 - 
+2024-11-25 01:29:43 - 
+2024-11-25 01:29:45 - 
+2024-11-25 01:29:46 - 
+2024-11-25 01:29:48 - 
+2024-11-25 01:29:49 - 
+2024-11-25 01:29:50 - 
+2024-11-25 01:29:52 - 
+2024-11-25 01:29:53 - 
+2024-11-25 01:29:55 - 
+2024-11-25 01:29:56 - 
+2024-11-25 01:29:58 - 
+2024-11-25 01:29:59 - 
+2024-11-25 01:30:01 - 
+2024-11-25 01:30:02 - 
+2024-11-25 01:30:04 - 
+2024-11-25 01:30:05 - 
+2024-11-25 01:30:07 - 
+2024-11-25 01:30:08 - 
+2024-11-25 01:30:10 - 
+2024-11-25 01:30:11 - 
+2024-11-25 01:30:13 - 
+2024-11-25 01:30:14 - 
+2024-11-25 01:30:16 - 
+2024-11-25 01:30:17 - 
+2024-11-25 01:30:19 - 
+2024-11-25 01:30:20 - 
+2024-11-25 01:30:22 - 
+2024-11-25 01:30:23 - 
+2024-11-25 01:30:25 - 
+2024-11-25 01:30:26 - 
+2024-11-25 01:30:28 - 
+2024-11-25 01:30:29 - 
+2024-11-25 01:30:31 - 
+2024-11-25 01:30:32 - 
+2024-11-25 01:30:33 - 
+2024-11-25 01:30:35 - 
+2024-11-25 01:30:36 - 
+2024-11-25 01:30:38 - 
+2024-11-25 01:30:40 - 
+2024-11-25 01:30:41 - 
+2024-11-25 01:30:43 - 
+2024-11-25 01:30:44 - 
+2024-11-25 01:30:46 - 
+2024-11-25 01:30:47 - 
+2024-11-25 01:30:49 - 
+2024-11-25 01:30:50 - 
+2024-11-25 01:30:52 - 
+2024-11-25 01:30:53 - 
+2024-11-25 01:30:54 - 
+2024-11-25 01:30:56 - 
+2024-11-25 01:30:57 - 
+2024-11-25 01:30:59 - 
+2024-11-25 01:31:00 - 
+2024-11-25 01:31:02 - 
+2024-11-25 01:31:03 - 
+2024-11-25 01:31:04 - 
+2024-11-25 01:31:06 - 
+2024-11-25 01:31:07 - 
+2024-11-25 01:31:09 - 
+2024-11-25 01:31:10 - 
+2024-11-25 01:31:12 - 
+2024-11-25 01:31:13 - 
+2024-11-25 01:31:15 - 
+2024-11-25 01:31:16 - 
+2024-11-25 01:31:18 - 
+2024-11-25 01:31:20 - 
+2024-11-25 01:31:21 - 
+2024-11-25 01:31:23 - 
+2024-11-25 01:31:24 - 
+2024-11-25 01:31:26 - 
+2024-11-25 01:31:27 - 
+2024-11-25 01:31:28 - 
+2024-11-25 01:31:30 - 
+2024-11-25 01:31:31 - 
+2024-11-25 01:31:33 - 
+2024-11-25 01:31:35 - 
+2024-11-25 01:31:36 - 
+2024-11-25 01:31:38 - 
+2024-11-25 01:31:39 - 
+2024-11-25 01:31:40 - 
+2024-11-25 01:31:42 - 
+2024-11-25 01:31:43 - 
+2024-11-25 01:31:45 - 
+2024-11-25 01:31:46 - 
+2024-11-25 01:31:48 - 
+2024-11-25 01:31:49 - 
+2024-11-25 01:31:51 - 
+2024-11-25 01:31:52 - 
+2024-11-25 01:31:54 - 
+2024-11-25 01:31:55 - 
+2024-11-25 01:31:57 - 
+2024-11-25 01:31:58 - 
+2024-11-25 01:32:00 - 
+2024-11-25 01:32:01 - 
+2024-11-25 01:32:03 - 
+2024-11-25 01:32:04 - 
+2024-11-25 01:32:05 - 
+2024-11-25 01:32:07 - 
+2024-11-25 01:32:08 - 
+2024-11-25 01:32:10 - 
+2024-11-25 01:32:11 - 
+2024-11-25 01:32:13 - 
+2024-11-25 01:32:14 - 
+2024-11-25 01:32:16 - 
+2024-11-25 01:32:17 - 
+2024-11-25 01:32:19 - 
+2024-11-25 01:32:20 - 
+2024-11-25 01:32:21 - 
+2024-11-25 01:32:23 - 
+2024-11-25 01:32:24 - 
+2024-11-25 01:32:26 - 
+2024-11-25 01:32:27 - 
+2024-11-25 01:32:29 - 
+2024-11-25 01:32:30 - 
+2024-11-25 01:32:32 - 
+2024-11-25 01:32:33 - 
+2024-11-25 01:32:35 - 
+2024-11-25 01:32:36 - 
+2024-11-25 01:32:38 - 
+2024-11-25 01:32:39 - 
+2024-11-25 01:32:41 - 
+2024-11-25 01:32:42 - 
+2024-11-25 01:32:44 - 
+2024-11-25 01:32:45 - 
+2024-11-25 01:32:47 - 
+2024-11-25 01:32:48 - 
+2024-11-25 01:32:50 - 
+2024-11-25 01:32:51 - 
+2024-11-25 01:32:53 - 
+2024-11-25 01:32:54 - 
+2024-11-25 01:32:56 - 
+2024-11-25 01:32:57 - 
+2024-11-25 01:32:59 - 
+2024-11-25 01:33:00 - 
+2024-11-25 01:33:02 - 
+2024-11-25 01:33:03 - 
+2024-11-25 01:33:05 - 
+2024-11-25 01:33:06 - 
+2024-11-25 01:33:07 - 
+2024-11-25 01:33:09 - 
+2024-11-25 01:33:10 - 
+2024-11-25 01:33:12 - 
+2024-11-25 01:33:13 - 
+2024-11-25 01:33:15 - 
+2024-11-25 01:33:16 - 
+2024-11-25 01:33:18 - 
+2024-11-25 01:33:19 - 
+2024-11-25 01:33:21 - 
+2024-11-25 01:33:22 - 
+2024-11-25 01:33:24 - 
+2024-11-25 01:33:25 - 
+2024-11-25 01:33:26 - 
+2024-11-25 01:33:28 - 
+2024-11-25 01:33:29 - 
+2024-11-25 01:33:31 - 
+2024-11-25 01:33:32 - 
+2024-11-25 01:33:34 - 
+2024-11-25 01:33:35 - 
+2024-11-25 01:33:36 - 
+2024-11-25 01:33:38 - 
+2024-11-25 01:33:39 - 
+2024-11-25 01:33:41 - 
+2024-11-25 01:33:42 - 
+2024-11-25 01:33:44 - 
+2024-11-25 01:33:45 - 
+2024-11-25 01:33:47 - 
+2024-11-25 01:33:48 - 
+2024-11-25 01:33:49 - 
+2024-11-25 01:33:51 - 
+2024-11-25 01:33:52 - 
+2024-11-25 01:33:54 - 
+2024-11-25 01:33:55 - 
+2024-11-25 01:33:57 - 
+2024-11-25 01:33:58 - 
+2024-11-25 01:34:00 - 
+2024-11-25 01:34:01 - 
+2024-11-25 01:34:03 - 
+2024-11-25 01:34:04 - 
+2024-11-25 01:34:06 - 
+2024-11-25 01:34:07 - 
+2024-11-25 01:34:09 - 
+2024-11-25 01:34:11 - 
+2024-11-25 01:34:12 - 
+2024-11-25 01:34:14 - 
+2024-11-25 01:34:15 - 
+2024-11-25 01:34:17 - 
+2024-11-25 01:34:18 - 
+2024-11-25 01:34:20 - 
+2024-11-25 01:34:21 - 
+2024-11-25 01:34:23 - 
+2024-11-25 01:34:25 - 
+2024-11-25 01:34:26 - 
+2024-11-25 01:34:28 - 
+2024-11-25 01:34:29 - 
+2024-11-25 01:34:31 - 
+2024-11-25 01:34:32 - 
+2024-11-25 01:34:34 - 
+2024-11-25 01:34:35 - 
+2024-11-25 01:34:37 - 
+2024-11-25 01:34:38 - 
+2024-11-25 01:34:40 - 
+2024-11-25 01:34:41 - 
+2024-11-25 01:34:42 - 
+2024-11-25 01:34:44 - 
+2024-11-25 01:34:45 - 
+2024-11-25 01:34:47 - 
+2024-11-25 01:34:48 - 
+2024-11-25 01:34:50 - 
+2024-11-25 01:34:52 - 
+2024-11-25 01:34:53 - 
+2024-11-25 01:34:55 - 
+2024-11-25 01:34:56 - 
+2024-11-25 01:34:58 - 
+2024-11-25 01:34:59 - 
+2024-11-25 01:35:01 - 
+2024-11-25 01:35:02 - 
+2024-11-25 01:35:04 - 
+2024-11-25 01:35:05 - 
+2024-11-25 01:35:07 - 
+2024-11-25 01:35:08 - 
+2024-11-25 01:35:09 - 
+2024-11-25 01:35:11 - 
+2024-11-25 01:35:12 - 
+2024-11-25 01:35:14 - 
+2024-11-25 01:35:15 - 
+2024-11-25 01:35:17 - 
+2024-11-25 01:35:18 - 
+2024-11-25 01:35:19 - 
+2024-11-25 01:35:21 - 
+2024-11-25 01:35:22 - 
+2024-11-25 01:35:24 - 
+2024-11-25 01:35:25 - 
+2024-11-25 01:35:27 - 
+2024-11-25 01:35:28 - 
+2024-11-25 01:35:30 - 
+2024-11-25 01:35:31 - 
+2024-11-25 01:35:33 - 
+2024-11-25 01:35:34 - 
+2024-11-25 01:35:36 - 
+2024-11-25 01:35:38 - 
+2024-11-25 01:35:39 - 
+2024-11-25 01:35:41 - 
+2024-11-25 01:35:42 - 
+2024-11-25 01:35:44 - 
+2024-11-25 01:35:45 - 
+2024-11-25 01:35:47 - 
+2024-11-25 01:35:49 - 
+2024-11-25 01:35:50 - 
+2024-11-25 01:35:52 - 
+2024-11-25 01:35:53 - 
+2024-11-25 01:35:55 - 
+2024-11-25 01:35:56 - 
+2024-11-25 01:35:58 - 
+2024-11-25 01:35:59 - 
+2024-11-25 01:36:00 - 
+2024-11-25 01:36:02 - 
+2024-11-25 01:36:03 - 
+2024-11-25 01:36:05 - 
+2024-11-25 01:36:06 - 
+2024-11-25 01:36:08 - 
+2024-11-25 01:36:09 - 
+2024-11-25 01:36:11 - 
+2024-11-25 01:36:12 - 
+2024-11-25 01:36:13 - 
+2024-11-25 01:36:15 - 
+2024-11-25 01:36:16 - 
+2024-11-25 01:36:18 - 
+2024-11-25 01:36:19 - 
+2024-11-25 01:36:21 - 
+2024-11-25 01:36:22 - 
+2024-11-25 01:36:24 - 
+2024-11-25 01:36:25 - 
+2024-11-25 01:36:27 - 
+2024-11-25 01:36:28 - 
+2024-11-25 01:36:30 - 
+2024-11-25 01:36:31 - 
+2024-11-25 01:36:33 - 
+2024-11-25 01:36:34 - 
+2024-11-25 01:36:36 - 
+2024-11-25 01:36:37 - 
+2024-11-25 01:36:39 - 
+2024-11-25 01:36:40 - 
+2024-11-25 01:36:42 - 
+2024-11-25 01:36:43 - 
+2024-11-25 01:36:44 - 
+2024-11-25 01:36:46 - 
+2024-11-25 01:36:47 - 
+2024-11-25 01:36:49 - 
+2024-11-25 01:36:50 - 
+2024-11-25 01:36:52 - 
+2024-11-25 01:36:53 - 
+2024-11-25 01:36:55 - 
+2024-11-25 01:36:57 - 
+2024-11-25 01:36:58 - 
+2024-11-25 01:37:00 - 
+2024-11-25 01:37:01 - 
+2024-11-25 01:37:03 - 
+2024-11-25 01:37:04 - 
+2024-11-25 01:37:06 - 
+2024-11-25 01:37:07 - 
+2024-11-25 01:37:09 - 
+2024-11-25 01:37:10 - 
+2024-11-25 01:37:12 - 
+2024-11-25 01:37:13 - 
+2024-11-25 01:37:15 - 
+2024-11-25 01:37:16 - 
+2024-11-25 01:37:18 - 
+2024-11-25 01:37:20 - 
+2024-11-25 01:37:21 - 
+2024-11-25 01:37:23 - 
+2024-11-25 01:37:24 - 
+2024-11-25 01:37:26 - 
+2024-11-25 01:37:27 - 
+2024-11-25 01:37:29 - 
+2024-11-25 01:37:30 - 
+2024-11-25 01:37:32 - 
+2024-11-25 01:37:33 - 
+2024-11-25 01:37:35 - 
+2024-11-25 01:37:36 - 
+2024-11-25 01:37:37 - 
+2024-11-25 01:37:39 - 
+2024-11-25 01:37:40 - 
+2024-11-25 01:37:42 - 
+2024-11-25 01:37:43 - 
+2024-11-25 01:37:45 - 
+2024-11-25 01:37:46 - 
+2024-11-25 01:37:48 - 
+2024-11-25 01:37:49 - 
+2024-11-25 01:37:51 - 
+2024-11-25 01:37:52 - 
+2024-11-25 01:37:54 - 
+2024-11-25 01:37:55 - 
+2024-11-25 01:37:57 - 
+2024-11-25 01:37:58 - 
+2024-11-25 01:38:00 - 
+2024-11-25 01:38:02 - 
+2024-11-25 01:38:03 - 
+2024-11-25 01:38:05 - 
+2024-11-25 01:38:06 - 
+2024-11-25 01:38:08 - 
+2024-11-25 01:38:09 - 
+2024-11-25 01:38:11 - 
+2024-11-25 01:38:12 - 
+2024-11-25 01:38:14 - 
+2024-11-25 01:38:15 - 
+2024-11-25 01:38:17 - 
+2024-11-25 01:38:18 - 
+2024-11-25 01:38:20 - 
+2024-11-25 01:38:21 - 
+2024-11-25 01:38:22 - 
+2024-11-25 01:38:24 - 
+2024-11-25 01:38:25 - 
+2024-11-25 01:38:27 - 
+2024-11-25 01:38:28 - 
+2024-11-25 01:38:30 - 
+2024-11-25 01:38:31 - 
+2024-11-25 01:38:33 - 
+2024-11-25 01:38:34 - 
+2024-11-25 01:38:36 - 
+2024-11-25 01:38:37 - 
+2024-11-25 01:38:39 - 
+2024-11-25 01:38:40 - 
+2024-11-25 01:38:42 - 
+2024-11-25 01:38:43 - 
+2024-11-25 01:38:45 - 
+2024-11-25 01:38:46 - 
+2024-11-25 01:38:48 - 
+2024-11-25 01:38:49 - 
+2024-11-25 01:38:51 - 
+2024-11-25 01:38:52 - 
+2024-11-25 01:38:54 - 
+2024-11-25 01:38:55 - 
+2024-11-25 01:38:57 - 
+2024-11-25 01:38:58 - 
+2024-11-25 01:39:00 - 
+2024-11-25 01:39:01 - 
+2024-11-25 01:39:03 - 
+2024-11-25 01:39:04 - 
+2024-11-25 01:39:06 - 
+2024-11-25 01:39:07 - 
+2024-11-25 01:39:09 - 
+2024-11-25 01:39:10 - 
+2024-11-25 01:39:12 - 
+2024-11-25 01:39:13 - 
+2024-11-25 01:39:15 - 
+2024-11-25 01:39:16 - 
+2024-11-25 01:39:18 - 
+2024-11-25 01:39:19 - 
+2024-11-25 01:39:21 - 
+2024-11-25 01:39:22 - 
+2024-11-25 01:39:23 - 
+2024-11-25 01:39:25 - 
+2024-11-25 01:39:26 - 
+2024-11-25 01:39:28 - 
+2024-11-25 01:39:29 - 
+2024-11-25 01:39:31 - 
+2024-11-25 01:39:32 - 
+2024-11-25 01:39:34 - 
+2024-11-25 01:39:35 - 
+2024-11-25 01:39:37 - 
+2024-11-25 01:39:39 - 
+2024-11-25 01:39:40 - 
+2024-11-25 01:39:42 - 
+2024-11-25 01:39:43 - 
+2024-11-25 01:39:45 - 
+2024-11-25 01:39:47 - 
+2024-11-25 01:39:48 - 
+2024-11-25 01:39:50 - 
+2024-11-25 01:39:51 - 
+2024-11-25 01:39:53 - 
+2024-11-25 01:39:54 - 
+2024-11-25 01:39:55 - 
+2024-11-25 01:39:57 - 
+2024-11-25 01:39:58 - 
+2024-11-25 01:40:00 - 
+2024-11-25 01:40:01 - 
+2024-11-25 01:40:03 - 
+2024-11-25 01:40:04 - 
+2024-11-25 01:40:06 - 
+2024-11-25 01:40:07 - 
+2024-11-25 01:40:09 - 
+2024-11-25 01:40:11 - 
+2024-11-25 01:40:12 - 
+2024-11-25 01:40:14 - 
+2024-11-25 01:40:15 - 
+2024-11-25 01:40:17 - 
+2024-11-25 01:40:18 - 
+2024-11-25 01:40:19 - 
+2024-11-25 01:40:21 - 
+2024-11-25 01:40:22 - 
+2024-11-25 01:40:24 - 
+2024-11-25 01:40:25 - 
+2024-11-25 01:40:27 - 
+2024-11-25 01:40:28 - 
+2024-11-25 01:40:30 - 
+2024-11-25 01:40:31 - 
+2024-11-25 01:40:32 - 
+2024-11-25 01:40:34 - 
+2024-11-25 01:40:35 - 
+2024-11-25 01:40:37 - 
+2024-11-25 01:40:38 - 
+2024-11-25 01:40:40 - 
+2024-11-25 01:40:41 - 
+2024-11-25 01:40:43 - 
+2024-11-25 01:40:44 - 
+2024-11-25 01:40:46 - 
+2024-11-25 01:40:47 - 
+2024-11-25 01:40:49 - 
+2024-11-25 01:40:50 - 
+2024-11-25 01:40:51 - 
+2024-11-25 01:40:53 - 
+2024-11-25 01:40:54 - 
+2024-11-25 01:40:56 - 
+2024-11-25 01:40:57 - 
+2024-11-25 01:40:59 - 
+2024-11-25 01:41:00 - 
+2024-11-25 01:41:02 - 
+2024-11-25 01:41:03 - 
+2024-11-25 01:41:04 - 
+2024-11-25 01:41:06 - 
+2024-11-25 01:41:07 - 
+2024-11-25 01:41:09 - 
+2024-11-25 01:41:10 - 
+2024-11-25 01:41:12 - 
+2024-11-25 01:41:13 - 
+2024-11-25 01:41:15 - 
+2024-11-25 01:41:16 - 
+2024-11-25 01:41:18 - 
+2024-11-25 01:41:19 - 
+2024-11-25 01:41:20 - 
+2024-11-25 01:41:22 - 
+2024-11-25 01:41:24 - 
+2024-11-25 01:41:25 - 
+2024-11-25 01:41:26 - 
+2024-11-25 01:41:28 - 
+2024-11-25 01:41:29 - 
+2024-11-25 01:41:31 - 
+2024-11-25 01:41:32 - 
+2024-11-25 01:41:34 - 
+2024-11-25 01:41:35 - 
+2024-11-25 01:41:37 - 
+2024-11-25 01:41:38 - 
+2024-11-25 01:41:40 - 
+2024-11-25 01:41:41 - 
+2024-11-25 01:41:42 - 
+2024-11-25 01:41:44 - 
+2024-11-25 01:41:45 - 
+2024-11-25 01:41:47 - 
+2024-11-25 01:41:48 - 
+2024-11-25 01:41:50 - 
+2024-11-25 01:41:51 - 
+2024-11-25 01:41:53 - 
+2024-11-25 01:41:54 - 
+2024-11-25 01:41:55 - 
+2024-11-25 01:41:57 - 
+2024-11-25 01:41:58 - 
+2024-11-25 01:42:00 - 
+2024-11-25 01:42:01 - 
+2024-11-25 01:42:03 - 
+2024-11-25 01:42:04 - 
+2024-11-25 01:42:06 - 
+2024-11-25 01:42:07 - 
+2024-11-25 01:42:09 - 
+2024-11-25 01:42:10 - 
+2024-11-25 01:42:11 - 
+2024-11-25 01:42:13 - 
+2024-11-25 01:42:14 - 
+2024-11-25 01:42:16 - 
+2024-11-25 01:42:17 - 
+2024-11-25 01:42:19 - 
+2024-11-25 01:42:20 - 
+2024-11-25 01:42:22 - 
+2024-11-25 01:42:23 - 
+2024-11-25 01:42:25 - 
+2024-11-25 01:42:26 - 
+2024-11-25 01:42:28 - 
+2024-11-25 01:42:29 - 
+2024-11-25 01:42:31 - 
+2024-11-25 01:42:32 - 
+2024-11-25 01:42:33 - 
+2024-11-25 01:42:35 - 
+2024-11-25 01:42:36 - 
+2024-11-25 01:42:38 - 
+2024-11-25 01:42:39 - 
+2024-11-25 01:42:41 - 
+2024-11-25 01:42:42 - 
+2024-11-25 01:42:44 - 
+2024-11-25 01:42:45 - 
+2024-11-25 01:42:47 - 
+2024-11-25 01:42:48 - 
+2024-11-25 01:42:50 - 
+2024-11-25 01:42:51 - 
+2024-11-25 01:42:53 - 
+2024-11-25 01:42:54 - 
+2024-11-25 01:42:56 - 
+2024-11-25 01:42:57 - 
+2024-11-25 01:42:58 - 
+2024-11-25 01:43:00 - 
+2024-11-25 01:43:01 - 
+2024-11-25 01:43:03 - 
+2024-11-25 01:43:04 - 
+2024-11-25 01:43:06 - 
+2024-11-25 01:43:07 - 
+2024-11-25 01:43:09 - 
+2024-11-25 01:43:10 - 
+2024-11-25 01:43:12 - 
+2024-11-25 01:43:13 - 
+2024-11-25 01:43:14 - 
+2024-11-25 01:43:16 - 
+2024-11-25 01:43:17 - 
+2024-11-25 01:43:19 - 
+2024-11-25 01:43:20 - 
+2024-11-25 01:43:22 - 
+2024-11-25 01:43:23 - 
+2024-11-25 01:43:25 - 
+2024-11-25 01:43:26 - 
+2024-11-25 01:43:28 - 
+2024-11-25 01:43:29 - 
+2024-11-25 01:43:31 - 
+2024-11-25 01:43:33 - 
+2024-11-25 01:43:34 - 
+2024-11-25 01:43:36 - 
+2024-11-25 01:43:37 - 
+2024-11-25 01:43:39 - 
+2024-11-25 01:43:40 - 
+2024-11-25 01:43:41 - 
+2024-11-25 01:43:43 - 
+2024-11-25 01:43:44 - 
+2024-11-25 01:43:46 - 
+2024-11-25 01:43:47 - 
+2024-11-25 01:43:49 - 
+2024-11-25 01:43:50 - 
+2024-11-25 01:43:52 - 
+2024-11-25 01:43:53 - 
+2024-11-25 01:43:55 - 
+2024-11-25 01:43:56 - 
+2024-11-25 01:43:58 - 
+2024-11-25 01:43:59 - 
+2024-11-25 01:44:01 - 
+2024-11-25 01:44:02 - 
+2024-11-25 01:44:04 - 
+2024-11-25 01:44:05 - 
+2024-11-25 01:44:07 - 
+2024-11-25 01:44:08 - 
+2024-11-25 01:44:10 - 
+2024-11-25 01:44:11 - 
+2024-11-25 01:44:13 - 
+2024-11-25 01:44:14 - 
+2024-11-25 01:44:16 - 
+2024-11-25 01:44:17 - 
+2024-11-25 01:44:19 - 
+2024-11-25 01:44:20 - 
+2024-11-25 01:44:21 - 
+2024-11-25 01:44:23 - 
+2024-11-25 01:44:24 - 
+2024-11-25 01:44:26 - 
+2024-11-25 01:44:27 - 
+2024-11-25 01:44:29 - 
+2024-11-25 01:44:30 - 
+2024-11-25 01:44:32 - 
+2024-11-25 01:44:33 - 
+2024-11-25 01:44:35 - 
+2024-11-25 01:44:36 - 
+2024-11-25 01:44:38 - 
+2024-11-25 01:44:39 - 
+2024-11-25 01:44:40 - 
+2024-11-25 01:44:42 - 
+2024-11-25 01:44:43 - 
+2024-11-25 01:44:45 - 
+2024-11-25 01:44:46 - 
+2024-11-25 01:44:48 - 
+2024-11-25 01:44:49 - 
+2024-11-25 01:44:51 - 
+2024-11-25 01:44:52 - 
+2024-11-25 01:44:54 - 
+2024-11-25 01:44:55 - 
+2024-11-25 01:44:56 - 
+2024-11-25 01:44:58 - 
+2024-11-25 01:44:59 - 
+2024-11-25 01:45:01 - 
+2024-11-25 01:45:02 - 
+2024-11-25 01:45:04 - 
+2024-11-25 01:45:05 - 
+2024-11-25 01:45:07 - 
+2024-11-25 01:45:08 - 
+2024-11-25 01:45:09 - 
+2024-11-25 01:45:11 - 
+2024-11-25 01:45:12 - 
+2024-11-25 01:45:14 - 
+2024-11-25 01:45:15 - 
+2024-11-25 01:45:17 - 
+2024-11-25 01:45:18 - 
+2024-11-25 01:45:20 - 
+2024-11-25 01:45:21 - 
+2024-11-25 01:45:23 - 
+2024-11-25 01:45:24 - 
+2024-11-25 01:45:26 - 
+2024-11-25 01:45:27 - 
+2024-11-25 01:45:29 - 
+2024-11-25 01:45:30 - 
+2024-11-25 01:45:32 - 
+2024-11-25 01:45:33 - 
+2024-11-25 01:45:35 - 
+2024-11-25 01:45:36 - 
+2024-11-25 01:45:37 - 
+2024-11-25 01:45:39 - 
+2024-11-25 01:45:40 - 
+2024-11-25 01:45:42 - 
+2024-11-25 01:45:43 - 
+2024-11-25 01:45:45 - 
+2024-11-25 01:45:46 - 
+2024-11-25 01:45:48 - 
+2024-11-25 01:45:49 - 
+2024-11-25 01:45:50 - 
+2024-11-25 01:45:52 - 
+2024-11-25 01:45:53 - 
+2024-11-25 01:45:55 - 
+2024-11-25 01:45:56 - 
+2024-11-25 01:45:58 - 
+2024-11-25 01:45:59 - 

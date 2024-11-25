@@ -11,7 +11,9 @@ class Bid extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['land_area_id', 'user_id', 'bid_amount'];
+    protected $fillable = ['land_area_id', 'user_id', 'bid_amount', 'tax_end_time', 'tax', 'state'];
+
+    protected $dates = ['tax_end_time']; // هذا يسمح للـ Laravel باستخدام Carbon مع الحقول
 
     public function landArea()
     {

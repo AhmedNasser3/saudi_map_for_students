@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('land_area_id')->constrained()->onDelete('cascade'); // المساحة
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // المستخدم
             $table->decimal('bid_amount', 15, 2); // قيمة العرض
+            $table->tinyInteger('state')->default(1);
             $table->timestamps();
         });
     }

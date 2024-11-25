@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\admin\land;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\admin\bid\Bid;
+use App\Jobs\ProcessAuctionEnd;
 use App\Models\admin\land\Land;
 use App\Models\admin\land\LandArea;
 use App\Http\Controllers\Controller;
@@ -57,8 +59,10 @@ class LandAreasController extends Controller
             $path = $request->file('img')->store('images/land_areas', 'public'); // رفع الصورة
             $validated['img'] = $path;
         }
-
-        $landArea = LandArea::create($LandsArea);
+    // جدولة Job عند وقت انتهاء المزاد
+    $landArea = LandArea::create($LandsArea);
+    ProcessAuctionEnd::dispatch($landArea->id)
+        ->delay(Carbon::parse($landArea->auction_end_time)); // وقت المزاد
     }
     public function  edit($landArea){
         $landArea = LandArea::find($landArea);

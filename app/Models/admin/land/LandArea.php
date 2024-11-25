@@ -22,7 +22,9 @@ class LandArea extends Model
         'duration',
         'img',
         'highest_bidder_id',
-        'highest_bid'
+        'highest_bid',
+        'tax',
+        'tax_end_time',
     ];
 
     public function land()

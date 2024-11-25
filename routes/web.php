@@ -59,23 +59,10 @@ Route::get('/update-highest-bid/{landId}', function($landId) {
     ], 404);
 });
 Route::get('/get-bidders', [HomeController::class, 'getBidders']);
-Route::get('/get-land-details', function(Request $request) {
-    $landId = $request->input('id');
-    $land = Land::find($landId); // جلب الأرض باستخدام الـ ID
-
-    if ($land) {
-        return response()->json([
-            'land' => [
-                'area' => $land->area,
-                'starting_price' => $land->starting_price,
-                'duration' => $land->duration,
-                'day' => $land->day,
-                // أضف أي تفاصيل أخرى تحتاجها
-            ]
-        ]);
-    } else {
-        return response()->json(['message' => 'البيانات غير موجودة.'], 404);
-    }
-});
+Route::get('/get-land-details', [HomeController::class, 'getLandDetails']);
+Route::post('/update-auction-state', action: [AuctionController::class, 'updateState']);
+Route::get('/my/{user_id}/office',[HomeController::class, 'MyOffice'])->name('my.office');
+Route::post('/pay-tax', [AuctionController::class, 'payTax']);
+Route::post('/extend-tax-time', [AuctionController::class, 'extendTaxTime']);
 
 require __DIR__.'/auth.php';
