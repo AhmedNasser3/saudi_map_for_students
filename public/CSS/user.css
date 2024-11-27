@@ -1,0 +1,38 @@
+/* تنسيق زر الرفع */
+.btn-upload {
+    background-color: #5e8567;
+    color: white;
+    font-size: 1.1rem;
+    padding: 5px 20px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-upload:hover {
+    background-color: #204d29;
+}
+input[type="file"] {
+    display: none;
+}
+
+.btn-choose-file {
+    background-color: #b7c1cc;
+    color: white;
+    font-size: 1rem;
+    margin: 0 10px;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn-choose-file:hover {
+    background-color: #425f3f;
+}
+

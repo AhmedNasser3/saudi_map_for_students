@@ -37,8 +37,11 @@ class HomeController extends Controller
     }
     public function index()
     {
+        $user = auth()->user();
+        $balance = auth()->check() ? auth()->user()->balance : null;
+        $meters = $user ? LandArea::where('highest_bidder_id', $user->id)->sum('area') : 0;
         $landarea = LandArea::with('bids.user')->get();
-        return view('frontend.home.index', compact('landarea'));
+        return view('frontend.home.index', compact('landarea','meters', 'balance'));
     }
 
     public function myOffice($userId)

@@ -1,0 +1,230 @@
+/* header */
+.icon_price_1 button {
+    padding: 5px 10px;
+    background-color: #619e76;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.icon_price_2 button {
+    padding: 4px 9px;
+    border: 1px solid #619e76;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.icon_price_2 button a {
+    color: #619e76;
+}
+
+.icon_prices {
+    display: none;
+}
+
+.icons_price_lands {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.header {
+    margin: 0;
+}
+
+.header_container {
+    position: relative;
+    top: 0;
+    padding: 20px;
+    width: 100%;
+    z-index: 100000;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.header_data {
+    margin: 0 20px;
+    padding: 0 15%;
+}
+
+.header_content {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_logo img {
+    width: 50px;
+}
+
+.log-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_links ul li {
+    color: rgb(91, 91, 91);
+    transition: all .5s ease;
+    font-weight: 700;
+}
+
+.header_links ul li:hover {
+    transition: all .5s ease;
+    color: #311579;
+    border-bottom: 1px solid #131313;
+    padding: 9% 0;
+}
+
+.header_links ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_link {
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.header_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.log_in button {
+    padding: 10px 20px;
+    background-color: #619e76;
+    border: none;
+    border-radius: 8px;
+}
+
+.log_in button a {
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+.sign_up button {
+    padding: 10px 20px;
+    background-color: transparent;
+    border: #619e76 1px solid;
+    border-radius: 8px;
+}
+
+.sign_up button a {
+    font-size: 1.1rem;
+    color: #131313;
+}
+
+.sign_up {
+    margin: 0 5px;
+}
+
+.log_in {
+    margin: 0 5px;
+}
+
+.toggler {
+    display: none;
+}
+
+.toggler span {
+    border: 1px solid #131313;
+    margin: 5px;
+}
+
+#turnon-log {
+    display: none;
+}
+
+.menu-icon {
+    display: none;
+    color: #131313;
+}
+
+@media screen and (max-width: 1020px) {
+    .menuList li {
+        color: white;
+    }
+    .header_link a {
+        color: white;
+    }
+    .log_in button a {
+        color: #ffffff;
+    }
+    .sign_up button {
+        border: white 1px solid;
+    }
+    .icons_price_lands {
+        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .icon_prices {
+        display: block;
+    }
+    .menu-icon {
+        display: block;
+    }
+    .header_data {
+        padding: 0;
+    }
+    .menu-icon {
+        visibility: visible;
+    }
+    .header_links ul {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        text-align: center;
+        background: #5d926c;
+        gap: 0;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+    .header_links ul.opened {
+        max-height: 100vh;
+        padding: 100px 0;
+    }
+    .header_link {
+        color: green;
+        padding: 20px;
+        padding-top: 0;
+    }
+    .menu-icon {
+        display: block;
+    }
+    #menuList {
+        transition: all 0.5s;
+    }
+    .log_in button {
+        padding: 6px 20px;
+        background-color: #1d4718;
+        border: none;
+        border-radius: 8px;
+    }
+    .log_in button a {
+        font-size: .8rem;
+    }
+    .log_in button a {
+        font-size: .8rem;
+    }
+    .sign_up button {
+        padding: 1px 13px;
+    }
+    .header_logo img {
+        width: 20px;
+    }
+    #log-in {
+        display: none;
+    }
+    #turnon-log {
+        display: flex;
+    }
+}

@@ -56,5 +56,3 @@
         </div>
     </div>
 </header>
-{{-- header Js --}}
-<script src="{{ asset('JS/header.js') }}"></script>

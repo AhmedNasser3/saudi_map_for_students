@@ -1,16 +1,20 @@
 <?php
 
 use App\Models\admin\bid\Bid;
+use App\Models\admin\land\Land;
 use App\Models\admin\land\LandArea;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\ProfileController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Http\Controllers\admin\city\CityController;
 use App\Http\Controllers\admin\land\LandsController;
 use App\Http\Controllers\admin\land\AuctionController;
 use App\Http\Controllers\frontend\home\HomeController;
+use App\Http\Controllers\admin\land\MainLandController;
 use App\Http\Controllers\admin\land\LandAreasController;
-use App\Models\admin\land\Land;
+use App\Http\Controllers\admin\landarea\MainLandAreaController;
+use App\Http\Controllers\admin\user\UserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.page');
 Route::get('/dashboard', function () {
@@ -23,26 +27,28 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::controller(LandsController::class)->prefix('land')->group(function(){
-    Route::get('/', 'index')->name('admin.land.page');
-    Route::get('/create', 'create')->name('admin.land.create');
-    Route::post('/store', 'store')->name('admin.land.store');
-    Route::get('/edit', 'edit')->name('admin.land.edit');
-    Route::put('/update', 'update')->name('admin.land.update');
-    Route::delete('/delete', 'delete')->name('admin.land.delete');
-});
 
 Route::post('/finalize-auction/{landId}', [LandAreasController::class, 'finalizeAuction'])->name('finalizeAuction');
 Route::post('/place-bid/{id}', [AuctionController::class, 'placeBid'])->name('placeBid');
 
+
+Route::get('/get-bidders', [HomeController::class, 'getBidders']);
+Route::get('/get-land-details', [HomeController::class, 'getLandDetails']);
+Route::post('/update-auction-state', action: [AuctionController::class, 'updateState']);
+Route::get('/my/{user_id}/office',[HomeController::class, 'MyOffice'])->name('my.office');
+Route::post('/pay-tax', [AuctionController::class, 'payTax']);
+Route::post('/extend-tax-time', [AuctionController::class, 'extendTaxTime']);
+Route::post('/pay-fine', [AuctionController::class, 'payFine']);
+
+
+
+
 Route::get('/update-highest-bid/{landId}', function($landId) {
-    // احصل على أعلى عرض تم وضعه للأرض
     $highestBid = Bid::where('land_area_id', $landId)
                      ->orderBy('bid_amount', 'desc')
                      ->first();
 
     if ($highestBid) {
-        // تحديث highest_bid و highest_bidder_id
         $landArea = LandArea::find($landId);
         $landArea->highest_bid = $highestBid->bid_amount;
         $landArea->highest_bidder_id = $highestBid->user_id;
@@ -58,12 +64,42 @@ Route::get('/update-highest-bid/{landId}', function($landId) {
         'message' => 'No bids found'
     ], 404);
 });
-Route::get('/get-bidders', [HomeController::class, 'getBidders']);
-Route::get('/get-land-details', [HomeController::class, 'getLandDetails']);
-Route::post('/update-auction-state', action: [AuctionController::class, 'updateState']);
-Route::get('/my/{user_id}/office',[HomeController::class, 'MyOffice'])->name('my.office');
-Route::post('/pay-tax', [AuctionController::class, 'payTax']);
-Route::post('/extend-tax-time', [AuctionController::class, 'extendTaxTime']);
-Route::post('/pay-fine', [AuctionController::class, 'payFine']);
+
+
+
+
+Route::get('/admin/users', function(){
+    return view(view: 'admin.users.add_users');
+});
+
+
+
+Route::middleware([RoleMiddleware::class.':admin'])->prefix('admin')->group(function () {
+});
+
+Route::controller(MainLandController::class)->prefix('land')->group(function(){
+    Route::get('/', 'index')->name('land.page');
+    Route::get('/create', 'create')->name('land.create');
+    Route::post('/store', 'store')->name('land.store');
+    Route::get('/edit/{land_id}/', 'edit')->name('land.edit');
+    Route::put('/{land_id}/update', 'update')->name('land.update');
+    Route::delete('/{land_id}/delete', 'delete')->name('land.delete');
+});
+
+Route::controller(MainLandAreaController::class)->prefix('landArea')->group(function(){
+    Route::get('/', 'index')->name('landArea.page');
+    Route::get('/create', 'create')->name('landArea.create');
+    Route::post('/store', 'store')->name('landArea.store');
+    Route::get('/edit/{landArea_id}/', 'edit')->name('landArea.edit');
+    Route::put('/{landArea_id}/update', 'update')->name('landArea.update');
+    Route::delete('/{landArea_id}/delete', 'delete')->name('landArea.delete');
+    Route::delete('/land-area/delete-selected', action: 'deleteSelected')->name('landArea.deleteSelected');
+
+});
+Route::controller(UserController::class)->prefix('user')->group(function(){
+    Route::get('/', 'index')->name('user.page');
+    Route::post('/users/import',  'import')->name('user.import');
+});
+Route::post('/set-renew-days', action: [MainLandAreaController::class, 'setRenewDays']);
 
 require __DIR__.'/auth.php';

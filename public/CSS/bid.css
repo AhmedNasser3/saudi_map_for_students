@@ -1,0 +1,489 @@
+
+/* bid */
+
+.bid {
+    padding: 0 20%;
+}
+
+.bid_title {
+    display: flex;
+    align-items: center;
+    direction: rtl;
+}
+
+.bid_btn button {
+    padding: 15px 15px;
+    border: #619e76 1px solid;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.bid_btn button a {
+    color: #619e76;
+    font-size: 1.1rem;
+}
+
+.bid_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bid_body {
+    border-bottom: 1px solid #131313;
+    direction: rtl;
+    padding-top: 3%;
+}
+
+.bid_body ul {
+    display: flex;
+    align-items: center;
+}
+
+.bid_body ul li {
+    margin: 0 0 0 15px;
+    padding-bottom: 10px;
+}
+
+.bid_body ul li a {
+    color: #535353;
+    font-size: 1.1rem;
+}
+
+.bid_cards {
+    direction: rtl;
+    padding: 3% 0 0 0;
+}
+
+.bid_cards_img img {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    max-height: 300px;
+    min-height: 300px;
+    max-width: 350px;
+    min-width: 350px;
+}
+
+.bid_cards_data {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.bid_cards_content {
+    min-width: 350px;
+    max-width: 350px;
+    border: 1px solid #d2d2d2;
+    border-radius: 10px;
+}
+
+.bid_cards_timer {
+    transform: translateY(-35px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bid_cards_timer_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #cbead7;
+    padding: 5px 100px;
+    color: rgb(30, 119, 59);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.bid_cards_timer_body ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bid_cards_timer_body ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #d1d1d1;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.bid_cards_timer_body {
+    padding: 0 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 10px #13131335;
+    border-bottom: 1px solid #9f9f9f;
+    border-right: 1px solid #9f9f9f;
+    border-left: 1px solid #9f9f9f;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 9px;
+    padding: 5px 15px;
+}
+
+.bid_cards_timer_body_text {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.bid_cards_timer_body_text h3 {
+    text-align: center;
+}
+
+.bid_cards_footer ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.bid_cards_footer ul li a {
+    font-size: 1.3rem;
+    color: #414141;
+}
+
+.bid_cards_footer {
+    padding: 0 10px;
+}
+
+.bid_cards_footer ul li a i {
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+}
+
+.bid_cards_btns {
+    border-top: 1px solid #9f9f9f;
+    padding: 20px 0;
+}
+
+.bid_cards_btns_container button {
+    cursor: pointer;
+    padding: 10px 20px;
+    align-items: center;
+    background-color: #619e76;
+    border: none;
+    border-radius: 10px;
+    transition: all .7s ease;
+}
+
+.bid_cards_btns_container button:hover {
+    background-color: #11400f;
+    transition: all .7s ease;
+}
+
+.bid_cards_btns_container button a {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.bid_cards_btns {
+    direction: ltr;
+}
+
+.bid_cards_btns_container {
+    padding: 0 25px;
+}
+
+.bid_cards_btns_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width:1024px) {
+    .bid_btn button {
+        padding: 5px 5px;
+    }
+    .bid_btn button a {
+        font-size: .8rem;
+    }
+    .bid_btn {
+        padding: 5% 0;
+    }
+    .bid {
+        padding: 0 10%;
+    }
+}
+
+/* bid pop up */
+
+.bid_pop_up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1000;
+}
+
+.bid_pop_up_bg {
+    background-color: #fff;
+    border: 1px solid #d4d4d4;
+    width: 80vh;
+    height: 60vh;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.bid_pop_up_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999;
+}
+
+.bid_pop_up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1000;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 80vh;
+    height: 60vh;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform .5s ease, opacity .5s ease;
+    opacity: 0;
+}
+
+.bid_pop_up.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.close_button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #619e76;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close_button:hover {
+    color: rgb(37, 65, 24);
+}
+
+.bid_pop_up_cn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bid_pop_up_title {
+    padding: 50px 25%;
+    direction: rtl;
+    width: 100%;
+}
+
+.bid_pop_up_container {
+    width: 100%;
+}
+
+.bid_pop_up_title {
+    display: grid;
+    align-items: center;
+}
+
+.bid_pop_up_header_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 0 0 0;
+}
+
+.bid_pop_up_land_area h3 {
+    font-size: 1.5rem;
+    color: #575757;
+}
+
+.bid_pop_up_land h1 {
+    color: #619e76;
+}
+
+.bid_pop_up_inputs {
+    display: grid;
+    align-items: center;
+}
+
+.bid_pop_up_inputs input {
+    border: 1px solid #bebebe;
+    padding: 10px 60px;
+    border-radius: 10px;
+    background-color: transparent;
+    transition: all .5s ease;
+}
+
+.bid_pop_up_inputs input:hover {
+    border: 1px solid #102909;
+    transition: all .5s ease;
+}
+
+.bid_pop_up_inputs label {
+    color: #5c5c5c;
+    font-size: 1.1rem;
+    padding: 2% 0;
+}
+
+.bid_pop_up_btn button {
+    padding: 10px 30px;
+    background-color: #619e76;
+    border: none;
+    border-radius: 10px;
+}
+
+.bid_pop_up_btn button a {
+    color: #ffff;
+}
+
+.bid_pop_up_inputs_btn {
+    padding: 10% 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* خلفية النوافذ المنبثقة */
+
+.bid_pop_up_bg,
+.bidders_pop_up_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 99;
+}
+
+.bidders_pop_up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 500px;
+    z-index: 100;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bidders_pop_up.show {
+    display: flex;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.bidders_pop_up_container {
+    padding: 20px;
+}
+
+.bidders_pop_up_header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+
+/* زر الإغلاق */
+
+.close_button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.bidders_pop_up_title {
+    margin-bottom: 20px;
+}
+
+.bidders_pop_up_title h2 {
+    font-size: 1.5rem;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.bidders_pop_up_title ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bidders_pop_up_title ul li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.bidders_pop_up_title ul li p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.bidders_pop_up_cn {
+    max-height: 400px;
+    /* تحديد أقصى ارتفاع للنافذة */
+    overflow-y: auto;
+    /* تمكين التمرير العمودي */
+    padding-right: 30px;
+    /* زيادة المسافة بين المحتوى وشريط التمرير */
+    width: 220%;
+}
+
+.bidders_pop_up_title ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 100%;
+    /* التأكد من أن القائمة تأخذ المساحة المتاحة */
+    overflow-y: auto;
+    /* تمكين التمرير العمودي للقائمة */
+}
+
+.bidders_pop_up_title ul li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.bidders_pop_up_title ul li p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333;
+    text-align: right;
+    /* محاذاة النصوص إلى اليمين */
+}
+
+@media screen and (max-width:1024px) {
+    .bidders_pop_up_cn {
+        max-height: 400px;
+        /* تحديد أقصى ارتفاع للنافذة */
+        overflow-y: auto;
+        /* تمكين التمرير العمودي */
+        padding-right: 30px;
+        /* زيادة المسافة بين المحتوى وشريط التمرير */
+        width: 150%;
+    }
+}

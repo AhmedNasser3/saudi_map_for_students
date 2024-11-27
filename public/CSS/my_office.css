@@ -1,0 +1,147 @@
+
+/* my office */
+
+.office {
+    padding: 10% 15%;
+}
+
+.office_data {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.office_container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* السماح بالعناصر أن تكون في عدة أسطر */
+    gap: 20px;
+    /* تحديد المسافة بين العناصر */
+}
+
+.office_content {
+    display: flex;
+    flex-direction: row;
+    /* ترتيب المحتوى عمودياً */
+    align-items: center;
+    justify-content: end;
+    /* محاذاة المحتوى بشكل مركزي */
+    background-color: #f0f0f0;
+    padding: 15px;
+    width: 570px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.office_img img {
+    max-width: 250px;
+    min-width: 250px;
+    border-radius: 5px;
+}
+
+.office_titles {
+    padding: 20px;
+    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    /* ترتيب العناوين عمودياً */
+    height: auto;
+    background-color: #f0f0f0;
+    margin-bottom: 15px;
+    width: 100%;
+    /* المسافة بين المحتوى والصورة */
+}
+
+.office_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.office_titles_main {
+    width: 100%;
+}
+
+.office_price {
+    padding: 10% 0 0 0;
+}
+
+.office_header p {
+    font-weight: 600;
+    color: #4a794f;
+    border-bottom: 1px solid #00ff2f;
+}
+
+.office_header h2 {
+    color: #11400f;
+}
+
+.office_price h3 {
+    color: #6ea078;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.office_price_btn {
+    padding: 15% 0 0 0;
+}
+
+.office_price_btn button {
+    padding: 10px 20px;
+    background-color: #4a794f;
+    border: none;
+    border-radius: 10px;
+    margin: 5% 0 0 0;
+}
+
+.office_price_btn button a {
+    color: #ffff;
+}
+
+@media screen and (max-width:1024px) {
+    .office_content {
+        display: flex;
+        flex-direction: column;
+        /* ترتيب المحتوى عمودياً */
+        align-items: center;
+        /* محاذاة المحتوى بشكل مركزي */
+        background-color: #f0f0f0;
+        padding: 15px;
+        width: 300px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.renew-license {
+    cursor: pointer;
+    /* يظهر المؤشر عند مرور الماوس */
+    background-color: green;
+    /* تغيير اللون حسب الحالة */
+    padding: 10px 20px;
+    /* تحسين مظهر الزر */
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    /* إضافة حواف مدورة */
+    transition: background-color 0.3s ease;
+    /* إضافة تأثير عند التمرير */
+}
+
+.renew-license:hover {
+    background-color: darkgreen;
+    /* تغيير اللون عند المرور بالماوس */
+}
+
+.renew-license:disabled {
+    background-color: grey;
+    /* اللون عند تعطيل الزر */
+    cursor: not-allowed;
+    /* تغيير المؤشر عند تعطيل الزر */
+}

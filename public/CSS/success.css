@@ -1,0 +1,34 @@
+/* التصميم الأساسي للبطاقة */
+.notification-card {
+    position: fixed;
+    top: 20px;
+    left: -300px; /* خارج الشاشة */
+    width: 300px;
+    padding: 15px 20px;
+    background-color: #fff; /* خلفية بيضاء */
+    color: #000; /* النص باللون الأسود */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 9999;
+    transition: left 0.5s ease, opacity 0.5s ease; /* حركة سلسة */
+    opacity: 0; /* تبدأ غير مرئية */
+    z-index: 99999999;
+}
+
+/* رسالة النجاح */
+.notification-card.success {
+    border-left: 5px solid #28a745; /* شريط أخضر */
+}
+
+/* رسالة الخطأ */
+.notification-card.error {
+    border-left: 5px solid #dc3545; /* شريط أحمر */
+}
+
+/* عند إظهار الرسالة */
+.notification-card.show {
+    left: 20px; /* تظهر الرسالة */
+    opacity: 1; /* تصبح مرئية */
+}
