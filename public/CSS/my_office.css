@@ -1,4 +1,3 @@
-
 /* my office */
 
 .office {
@@ -30,7 +29,7 @@
     /* محاذاة المحتوى بشكل مركزي */
     background-color: #f0f0f0;
     padding: 15px;
-    width: 570px;
+    width: 560px;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -144,4 +143,14 @@
     /* اللون عند تعطيل الزر */
     cursor: not-allowed;
     /* تغيير المؤشر عند تعطيل الزر */
+}
+
+.office_discounts,
+.office_additions {
+    border-bottom: 1px solid #e7e7e7;
+    min-width: 1350px;
+    width: 100%;
+    direction: rtl;
+    padding: 10px;
+    margin: 2px 0;
 }

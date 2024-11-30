@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\admin\bid\Bid;
 use App\Models\admin\land\LandArea;
 use App\Http\Controllers\Controller;
+use App\Models\admin\addition\Addition;
+use App\Models\admin\discount\Discount;
 use TCPDF;
 use setasign\Fpdi\Fpdi;
 
@@ -45,7 +47,6 @@ class HomeController extends Controller
         $landarea = LandArea::with('bids.user')->get();
         return view('frontend.home.index', compact('landarea','meters', 'balance'));
     }
-
     public function myOffice($userId)
     {
         $user = auth()->user(); // الحصول على المستخدم الحالي
@@ -53,23 +54,39 @@ class HomeController extends Controller
             return redirect()->route('home')->with('error', 'أنت غير مخول للوصول إلى هذه الصفحة');
         }
 
+        // الحصول على جميع العطاءات المرتبطة بالأراضي
         $bids = LandArea::with('bids')
             ->where('highest_bidder_id', $userId)
             ->get();
 
+        // التحقق من حالة الغرامة بعد مرور الوقت
         foreach ($bids as $landArea) {
             foreach ($landArea->bids as $bid) {
-                // إذا كان هناك وقت متبقي في tax_end_time
                 if ($bid->tax_end_time && now()->greaterThanOrEqualTo($bid->tax_end_time)) {
                     // فرض غرامة إذا انتهى الوقت
-                    $bid->tax = 100; // الغرامة 100 ريال
+                    $bid->tax = 50; // فرض غرامة 50 ريال
                     $bid->save();
                 }
             }
         }
 
-        return view('frontend.home.my_office', compact('bids'));
+
+        $landAreasBids = LandArea::with('bids')
+        ->where('highest_bidder_id', auth()->user()->id)
+        ->get();
+        // الحصول على الإضافات والخصومات للمستخدم
+        $additions = Addition::where('user_id', auth()->user()->id)->get();
+        $discounts = Discount::where('user_id', auth()->user()->id)->get();
+
+        // دمج العطاءات والإضافات والخصومات في مجموعة واحدة
+        $allItems = $landAreasBids->pluck('bids')->flatten()->merge($additions)->merge($discounts);
+
+        // ترتيب العناصر حسب التاريخ
+        $sortedItems = $allItems->sortByDesc('created_at');
+
+        return view('frontend.home.my_office', compact('bids', 'additions','discounts','sortedItems'));
     }
+
 
 
 
@@ -83,60 +100,60 @@ class HomeController extends Controller
         }
 
         // تحميل الصورة
-        $imagePath = public_path('images/صك البورصة copy.jpg'); // استبدل بالمسار الصحيح للصورة
+        $imagePath = public_path('images/صك البورصة copy.jpg');
 
-        // التحقق إذا كانت الصورة موجودة
         if (!file_exists($imagePath)) {
             return redirect()->route('home')->with('error', 'Image not found');
         }
 
-        // إعداد TCPDF
         $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->AddPage();
 
-        // إضافة الصورة
-        $pdf->Image($imagePath, 0, 0, 235, 297, 'JPG'); // أبعاد الصورة وتنسيقها حسب الحجم المطلوب
+        $pdf->Image($imagePath, 0, 0, 235, 297, 'JPG');
 
-        $fontPath = public_path('fonts/Amiri-Regular.ttf');  // تأكد من أن الخط موجود
+        $fontPath = public_path('fonts/Amiri-Regular.ttf');
 
-        $pdf->SetFont('freeserif', '', 14); // اختيار خط مناسب
-        $pdf->SetTextColor(0, 0, 0); // تحديد لون النص
+        $pdf->SetFont('freeserif', '', 14);
+        $pdf->SetTextColor(69, 151, 80);
 
         $pdf->SetRTL(true);
 
-        $pdf->SetXY(50, 50); // تحديد مكان النص
-        $text1 = 'صك الأرض: ' . $landArea->land_deed;
-        $pdf->MultiCell(0, 10, $text1, 0, 'R'); // الكتابة من اليمين لليسار
+        $pdf->SetXY(62, 130);
+        $text1 = $landArea->land_deed;
+        $pdf->MultiCell(0, 10, $text1, 0, 'R');
 
-        $pdf->SetXY(50, 70);
-        $text2 = 'المساحة: ' . $landArea->area . ' متر مربع';
+        $pdf->SetXY(62, 138.5);
+        $text2 = $landArea->area;
         $pdf->MultiCell(0, 10, $text2, 0, 'R');
 
-        $pdf->SetXY(50, 90);
-        $text3 = 'العنوان: ' . $landArea->land->name;
+        $pdf->SetXY(62, 147.5);
+        $text3 = $landArea->land->name;
         $pdf->MultiCell(0, 10, $text3, 0, 'R');
 
-        $yPosition = 120;
-        foreach ($landArea->bids as $key => $bid) {
-            $text4 = 'المبلغ: ' . $bid->bid_amount;
-            $text5 = 'اسم المشتري: ' . $user->name;
-            $text6 = 'تاريخ العرض: ' . now()->toDateString();
-
-            $pdf->SetXY(50, $yPosition);
-            $pdf->MultiCell(0, 10, $text4, 0, 'R'); // الكتابة من اليمين لليسار
-
-            $pdf->SetXY(50, $yPosition + 10);
-            $pdf->MultiCell(0, 10, $text5, 0, 'R');
-
-            $pdf->SetXY(50, $yPosition + 20);
-            $pdf->MultiCell(0, 10, $text6, 0, 'R');
-
-            // زيادة الـ Y لإضافة العروض التالية
-            $yPosition += 40;
+        // استخراج أكبر قيمة bid_amount
+        if ($landArea->bids->isNotEmpty()) {
+            $maxBid = $landArea->bids->max('bid_amount'); // العثور على أكبر عرض
+        } else {
+            $maxBid = null;
         }
 
-        // إخراج PDF
-        return response($pdf->Output('S'), 200)->header('Content-Type', 'application/pdf');
-    }
+        if ($maxBid) {
+            // عرض أكبر عرض فقط
+            $pdf->SetXY(62, 157);
+            $text4 = $maxBid;
+            $pdf->MultiCell(0, 10, $text4, 0, 'R'); // الكتابة من اليمين لليسار
+        }
 
+        // إضافة باقي المعلومات مثل المشتري وتاريخ العرض بناءً على أكبر عرض
+        $text5 = $user->name;
+        $pdf->SetXY(62, 119.5);
+        $pdf->MultiCell(0, 10,  $text5, 0, 'R');
+
+        $text6 = now()->toDateString();
+        $pdf->SetXY(62, 199.5);
+        $pdf->MultiCell(0, 10, $text6, 0, 'R');
+
+        // إخراج PDF
+        return response($pdf->Output('deed.pdf', 'D'), 200)->header('Content-Type', 'application/pdf');
+    }
 }

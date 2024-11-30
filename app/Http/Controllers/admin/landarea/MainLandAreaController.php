@@ -32,6 +32,7 @@ class MainLandAreaController extends Controller
             'highest_bid' => 'nullable|numeric',
             'tax' => 'nullable|numeric',
             'tax_end_time' => 'nullable|date',
+            'start_time' => 'nullable|date',
             'state' => 'nullable|string|max:255',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20048',
             'number_of_auctions' => 'required|integer|min:1',
@@ -86,5 +87,19 @@ public function setRenewDays(Request $request)
         'message' => 'تم تحديث المدة بنجاح!',
     ]);
 }
+public function updateShow(Request $request)
+    {
+        $landId = $request->input('land_id');
+        $show = $request->input('show');
 
+        $landArea = LandArea::find($landId);
+        if ($landArea) {
+            $landArea->show = $show;
+            $landArea->save();
+
+            return response()->json(['success' => true, 'message' => 'تم تحديث الحقل show بنجاح']);
+        }
+
+        return response()->json(['success' => false, 'message' => 'العنصر غير موجود']);
+    }
 }
