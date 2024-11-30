@@ -1,5 +1,4 @@
 @extends('frontend.master')
-
 @section('content')
 <div class="office">
     <div class="office_container">
@@ -26,7 +25,11 @@
                                             <!-- سيتم التحديث هنا بواسطة JavaScript -->
                                         </span>
                                     </div>
-
+                                    <button
+                                        data-land-area-id="{{ $landArea->id }}"
+                                        style="background-color: rgb(91, 138, 127);">
+                                        طبع صك الارض
+                                </button>
                                     @if ($landArea->tax == 0 && \Carbon\Carbon::parse($landArea->tax_end_time)->lte(now()))
                                         <!-- يظهر زر دفع الغرامة -->
                                         <button class="pay-fine" id="btn-fine-{{ $landArea->id }}"
@@ -63,72 +66,29 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // تحديث الوقت المتبقي
-        function updateTaxTime() {
-            document.querySelectorAll('.days').forEach(function(element) {
-                var landAreaId = element.id.split('-')[2];
-                var endTimeString = element.getAttribute('data-end-time');
-                var tax = parseInt(element.getAttribute('data-tax'));
-                var endDate = new Date(endTimeString);
+    // استرجاع المدة المختارة من localStorage
+    var selectedDays = localStorage.getItem('selectedDays') || 7; // افتراضيًا 7 أيام إذا لم يتم تحديدها مسبقًا
 
-                var now = new Date();
-                var diffTime = endDate - now;
+    // تحديث الوقت المتبقي
+    function updateTaxTime() {
+        document.querySelectorAll('.days').forEach(function(element) {
+            var landAreaId = element.id.split('-')[2];
+            var endTimeString = element.getAttribute('data-end-time');
+            var tax = parseInt(element.getAttribute('data-tax'));
+            var endDate = new Date(endTimeString);
 
-                if (diffTime <= 0 && tax == 1) {
-                    var newEndDate = new Date(now);
-                    newEndDate.setDate(newEndDate.getDate() + 7); // تمديد الوقت لمدة 7 أيام
-                    var newEndTime = newEndDate.toISOString();
+            var now = new Date();
+            var diffTime = endDate - now;
 
-                    element.setAttribute('data-end-time', newEndTime);
+            if (diffTime <= 0 && tax == 1) {
+                var newEndDate = new Date(now);
+                newEndDate.setDate(newEndDate.getDate() + parseInt(selectedDays)); // تمديد الوقت حسب المدة المختارة
+                var newEndTime = newEndDate.toISOString();
 
-                    // تمديد الرخصة تلقائيًا بعد دفع الغرامة
-                    fetch('/extend-tax-time', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({
-                            landAreaId: landAreaId,
-                            newEndTime: newEndTime
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert('تم تمديد الرخصة بنجاح!');
-                        } else {
-                            alert('حدث خطأ أثناء التمديد.');
-                        }
-                    }).catch(error => {
-                        console.error('Error:', error);
-                    });
-                }
+                element.setAttribute('data-end-time', newEndTime);
 
-                if (diffTime > 0) {
-                    var diffDays = Math.floor(diffTime / (1000 * 3600 * 24));
-                    var diffHours = Math.floor((diffTime % (1000 * 3600 * 24)) / (1000 * 3600));
-                    var diffMinutes = Math.floor((diffTime % (1000 * 3600)) / (1000 * 60));
-                    var diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
-
-                    element.innerText = `${diffDays} يوم ${diffHours} ساعة ${diffMinutes} دقيقة ${diffSeconds} ثانية`;
-                } else {
-                    element.innerText = 'انتهت المدة';
-                }
-            });
-        }
-
-        setInterval(updateTaxTime, 1000);
-        updateTaxTime();
-
-        // تجديد الرخصة أو دفع الغرامة عند الضغط على الزر
-        document.querySelectorAll('.renew-license, .pay-fine').forEach(button => {
-            button.addEventListener('click', function () {
-                let landAreaId = this.getAttribute('data-land-area-id');
-                let btn = this;
-                let action = this.classList.contains('renew-license') ? 'renew' : 'fine';
-
-                fetch('/pay-tax', {
+                // تمديد الرخصة تلقائيًا بعد دفع الغرامة
+                fetch('/extend-tax-time', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -136,31 +96,102 @@
                     },
                     body: JSON.stringify({
                         landAreaId: landAreaId,
-                        action: action
+                        newEndTime: newEndTime
                     })
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        if (action === 'fine') {
-                            // بعد دفع الغرامة: تمديد الوقت وتغيير الزر إلى الأخضر لتجديد الرخصة
-                            btn.innerText = "دفع 50 ريال لتجديد الرخصة";
-                            btn.style.backgroundColor = "green";
-                        } else if (action === 'renew') {
-                            // بعد دفع 50 ريال: تغيير الزر إلى رمادي
-                            btn.innerText = "تم الدفع";
-                            btn.style.backgroundColor = "grey";
-                            btn.disabled = true;
-                        }
+                        alert('تم تمديد الرخصة بنجاح!');
                     } else {
-                        alert(data.message);
+                        alert('حدث خطأ أثناء التمديد.');
                     }
                 }).catch(error => {
                     console.error('Error:', error);
                 });
+            }
+
+            if (diffTime > 0) {
+                var diffDays = Math.floor(diffTime / (1000 * 3600 * 24));
+                var diffHours = Math.floor((diffTime % (1000 * 3600 * 24)) / (1000 * 3600));
+                var diffMinutes = Math.floor((diffTime % (1000 * 3600)) / (1000 * 60));
+                var diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+                element.innerText = `${diffDays} يوم ${diffHours} ساعة ${diffMinutes} دقيقة ${diffSeconds} ثانية`;
+            } else {
+                element.innerText = 'انتهت المدة';
+            }
+        });
+    }
+
+    setInterval(updateTaxTime, 1000);
+    updateTaxTime();
+
+    // إضافة حقل الإدخال لاختيار عدد الأيام
+    var inputField = document.createElement('input');
+    inputField.type = 'number';
+    inputField.id = 'duration-input';
+    inputField.min = 1;
+    inputField.max = 30;
+    inputField.value = selectedDays; // القيمة الافتراضية
+    inputField.style.width = '60px';
+
+    var saveButton = document.createElement('button');
+    saveButton.innerText = 'حفظ المدة';
+    saveButton.style.marginLeft = '10px';
+
+    document.body.appendChild(inputField);
+    document.body.appendChild(saveButton);
+
+    // حفظ المدة المدخلة في localStorage عند الضغط على زر "حفظ المدة"
+    saveButton.addEventListener('click', function() {
+        var duration = inputField.value;
+        localStorage.setItem('selectedDays', duration); // حفظ القيمة في localStorage
+        selectedDays = duration; // تحديث المتغير الذي يحفظ المدة
+        alert('تم حفظ المدة: ' + selectedDays + ' يوم');
+    });
+
+    // تجديد الرخصة أو دفع الغرامة عند الضغط على الزر
+    document.querySelectorAll('.renew-license, .pay-fine').forEach(button => {
+        button.addEventListener('click', function () {
+            let landAreaId = this.getAttribute('data-land-area-id');
+            let btn = this;
+            let action = this.classList.contains('renew-license') ? 'renew' : 'fine';
+
+            fetch('/pay-tax', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    landAreaId: landAreaId,
+                    action: action
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if (action === 'fine') {
+                        // بعد دفع الغرامة: تمديد الوقت وتغيير الزر إلى الأخضر لتجديد الرخصة
+                        btn.innerText = "دفع 50 ريال لتجديد الرخصة";
+                        btn.style.backgroundColor = "green";
+                    } else if (action === 'renew') {
+                        // بعد دفع 50 ريال: تغيير الزر إلى رمادي
+                        btn.innerText = "تم الدفع";
+                        btn.style.backgroundColor = "grey";
+                        btn.disabled = true;
+                    }
+                } else {
+                    alert(data.message);
+                }
+            }).catch(error => {
+                console.error('Error:', error);
             });
         });
     });
+});
+
 </script>
 
 @endsection

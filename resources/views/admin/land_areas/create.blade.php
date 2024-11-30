@@ -58,7 +58,17 @@
                                         <label for="starting_price">: اقل سعر للبداية</label>
                                     </td>
                                 </tr>
-
+                                <tr>
+                                    <td>
+                                        <input type="datetime-local" id="start_time" name="start_time" value="{{ old('start_time') }}" required>
+                                        @error('start_time')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </td>
+                                    <td>
+                                        <label for="start_time">: وقت بداية المزاد</label>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
                                         <input type="datetime-local" id="auction_end_time" name="auction_end_time" value="{{ old('auction_end_time') }}" required>
@@ -70,6 +80,7 @@
                                         <label for="auction_end_time">: وقت انتهاء المزاد</label>
                                     </td>
                                 </tr>
+
 
                                 <tr>
                                     <td>

@@ -14,6 +14,7 @@
             <div class="admin_land_data">
                 <div class="admin_land_content">
                     <div class="container mt-5">
+                        {{-- زر رفع ملف Excel --}}
                         <form action="{{ route('user.import') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
@@ -24,6 +25,8 @@
                             </div>
                             <button type="submit" class="btn-upload">رفع الملف</button>
                         </form>
+
+
                         <table id="userTable" class="table display nowrap table-striped table-bordered" style="width:100%">
                             <thead class="head_table">
                                 <tr>

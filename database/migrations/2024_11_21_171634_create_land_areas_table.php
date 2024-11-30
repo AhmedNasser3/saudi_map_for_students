@@ -13,21 +13,23 @@ return new class extends Migration
     {
         Schema::create('land_areas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('land_id')->constrained()->onDelete('cascade');
-            $table->decimal('area', 10, 2);
-            $table->decimal('starting_price', 15, 2);
-            $table->timestamp('auction_end_time');
+            $table->foreignId('land_id')->constrained()->onDelete('cascade')->nullable();
+            $table->decimal('area', 10, 2)->nullable();
+            $table->decimal('starting_price', 15, 2)->nullable();
+            $table->timestamp('auction_end_time')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->decimal('final_price', 15, 2)->nullable();
-            $table->string('day');
-            $table->string('duration');
+            $table->string('day')->nullable();
+            $table->string('duration')->nullable();
             $table->foreignId('highest_bidder_id')->nullable()->constrained('users')->onDelete('set null')->nullable();
             $table->decimal('highest_bid', 15, 2)->nullable();
-            $table->string('tax')->default(0);
+            $table->string('tax')->default(0)->nullable();
             $table->timestamp('tax_end_time')->nullable();
-            $table->string('state')->default('1');
-            $table->string('img');
-
+            $table->string('state')->default('1')->nullable();
+            $table->string('img')->nullable();
+            $table->string(column: 'land_deed')->nullable();
+            $table->dateTime(column: 'start_time')->nullable();
+            $table->boolean('show')->default(true);
             $table->timestamps();
         });
     }

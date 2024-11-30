@@ -8,13 +8,15 @@ use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\ProfileController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Http\Controllers\admin\city\CityController;
+use App\Http\Controllers\admin\user\UserController;
 use App\Http\Controllers\admin\land\LandsController;
 use App\Http\Controllers\admin\land\AuctionController;
 use App\Http\Controllers\frontend\home\HomeController;
 use App\Http\Controllers\admin\land\MainLandController;
 use App\Http\Controllers\admin\land\LandAreasController;
 use App\Http\Controllers\admin\landarea\MainLandAreaController;
-use App\Http\Controllers\admin\user\UserController;
+use App\Http\Controllers\admin\add_discount\AddDiscountController;
+use App\Http\Controllers\admin\add_discount\DiscountController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.page');
 Route::get('/dashboard', function () {
@@ -27,9 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-Route::post('/finalize-auction/{landId}', [LandAreasController::class, 'finalizeAuction'])->name('finalizeAuction');
-Route::post('/place-bid/{id}', [AuctionController::class, 'placeBid'])->name('placeBid');
 
 
 Route::get('/get-bidders', [HomeController::class, 'getBidders']);
@@ -101,5 +100,18 @@ Route::controller(UserController::class)->prefix('user')->group(function(){
     Route::post('/users/import',  'import')->name('user.import');
 });
 Route::post('/set-renew-days', action: [MainLandAreaController::class, 'setRenewDays']);
+Route::post('/extend-tax-time', [MainLandAreaController::class, 'extendTaxTime']);
+Route::post('/set-tax-end-time', [MainLandAreaController::class, 'updateTaxEndTime']);
+Route::post('/update-show', [MainLandAreaController::class, 'updateShow'])->name('update.show');
+Route::post('/finalize-auction/{landId}', [LandAreasController::class, 'finalizeAuction'])->name('finalizeAuction');
+Route::post('/place-bid/{id}', [AuctionController::class, 'placeBid'])->name('placeBid');
 
+
+
+
+Route::get('/add-balance', [AddDiscountController::class, 'showAdditions'])->name('add_balance.form');
+Route::post('/add-balance', [AddDiscountController::class, 'addBalance'])->name('add_balance');
+
+
+Route::post('/minus-balance', [DiscountController::class, 'minusBalance'])->name('minus_balance');
 require __DIR__.'/auth.php';

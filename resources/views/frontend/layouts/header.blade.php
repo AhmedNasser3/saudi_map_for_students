@@ -5,21 +5,33 @@
             <div class="header_content">
                 <div id="log-in" class="log-up">
                     <div class="log_in">
+                        @if (auth()->check())
                         <button><a href="#">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
+                        <button><a href="#">🪙 الرصيد المعلق  : {{ auth()->user()->freeze_balance  }}</a></button>
+                        @else
+                        <button><a href="{{ route('login') }}">تسجيل الدخول</a></button>
+                        @endif
                     </div>
                     <div class="sign_up">
                         @php
-                            use App\Models\admin\land\LandArea;
+                        use App\Models\admin\land\LandArea;
+                        $meters = 0;
+                        if (auth()->check()) {
                             $meters = LandArea::where('user_id', auth()->user()->id)->sum('area');
-                            @endphp
+                        }
+                        @endphp
+                        @if (auth()->check())
                         <button><a href="#">📏 المساحة : {{ floor($meters) }} متر</a></button>
+                        @else
+                        <button><a href="{{ route('register') }}">مستخدم جديد</a></button>
+                        @endif
                     </div>
                 </div>
                 <div class="header_logo">
                     <div class="header_links" id="header_links">
                         <ul id="menuList" class="menuList">
+                            @if (auth()->check())
                             <li class="header_link" style="color: white">الخريطة</li>
-
                             <li class="header_link"><a href="{{ route('my.office', ['user_id' => auth()->user()->id]) }}" style="color: #131313">مكتبي</a></li>
                             <li class="header_link">
                                 <div id="turnon-log" class="log-up">
@@ -31,6 +43,19 @@
                                     </div>
                                 </div>
                             </li>
+                            @else
+                            <li class="header_link">
+                                <div id="turnon-log" class="log-up">
+                                    <div class="log_in">
+                                        <button><a href="{{ route('login') }}">تسجيل دخول</a></button>
+                                    </div>
+                                    <div class="sign_up" >
+                                        <button><a href="{{ route('register') }}">مستخدم جديد</a></button>
+                                    </div>
+                                </div>
+                            </li>
+                            @endif
+
                         </ul>
                     </div>
                     <a href="{{ route('home.page') }}">
@@ -40,12 +65,20 @@
                 <div class="icons_price_lands">
                     <div class="icon_prices">
                         <div class="icon_price_1">
+                            @if (auth()->check())
                             <button><a href="#"  style="color: white;">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
+                            @else
+                            <button><a href="#">تسجيل الدخول</a></button>
+                            @endif
                         </div>
                     </div>
                     <div class="icon_prices">
                         <div class="icon_price_2">
+                            @if (auth()->check())
                             <button><a href="#">📏 المساحة : 300 متر</a></button>
+                            @else
+                            <button><a href="#">مستخدم جديد</a></button>
+                            @endif
                         </div>
                     </div>
                 </div>

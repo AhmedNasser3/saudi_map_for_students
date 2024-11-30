@@ -487,3 +487,136 @@
         width: 150%;
     }
 }
+
+
+/* pop_after_win */
+
+/* خلفية النوافذ المنبثقة */
+
+.bid_pop_up_bg,
+.bidders_pop_up_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 99;
+}
+
+.bidders_pop_up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 500px;
+    z-index: 100;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bidders_pop_up.show {
+    display: flex;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.bidders_pop_up_container {
+    padding: 20px;
+}
+
+.bidders_pop_up_header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+
+/* زر الإغلاق */
+
+.close_button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.bidders_pop_up_title {
+    margin-bottom: 20px;
+}
+
+.bidders_pop_up_title h2 {
+    font-size: 1.5rem;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.bidders_pop_up_title ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bidders_pop_up_title ul li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.bidders_pop_up_title ul li p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.bidders_pop_up_cn {
+    max-height: 400px;
+    /* تحديد أقصى ارتفاع للنافذة */
+    overflow-y: auto;
+    /* تمكين التمرير العمودي */
+    padding-right: 30px;
+    /* زيادة المسافة بين المحتوى وشريط التمرير */
+    width: 220%;
+}
+
+.bidders_pop_up_title ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 100%;
+    /* التأكد من أن القائمة تأخذ المساحة المتاحة */
+    overflow-y: auto;
+    /* تمكين التمرير العمودي للقائمة */
+}
+
+.bidders_pop_up_title ul li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.bidders_pop_up_title ul li p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333;
+    text-align: right;
+    /* محاذاة النصوص إلى اليمين */
+}
+
+@media screen and (max-width:1024px) {
+    .bidders_pop_up_cn {
+        max-height: 400px;
+        /* تحديد أقصى ارتفاع للنافذة */
+        overflow-y: auto;
+        /* تمكين التمرير العمودي */
+        padding-right: 30px;
+        /* زيادة المسافة بين المحتوى وشريط التمرير */
+        width: 150%;
+    }
+}

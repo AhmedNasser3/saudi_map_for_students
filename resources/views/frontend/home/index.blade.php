@@ -12,15 +12,31 @@
     </div>
 @endif
 
-
-{{-- map --}}
-@include('frontend.home.map')
+@if (auth()->check())
 {{-- banner --}}
-@include('frontend.home.banner')
+<div style="padding: 10% 0 0 0">
+    @include('frontend.home.banner')
+</div>
 {{-- Bid --}}
 @include('frontend.home.bid')
 {{-- QA --}}
 @include('frontend.home.QA')
+@else
+{{-- map --}}
+@include('frontend.home.map')
+{{-- banner --}}
+@include('frontend.home.banner')
+{{-- QA --}}
+@include('frontend.home.QA')
+@endif
+{{-- map --}}
+{{-- @include('frontend.home.map') --}}
+{{-- banner --}}
+{{-- @include('frontend.home.banner') --}}
+{{-- Bid --}}
+{{-- @include('frontend.home.bid') --}}
+{{-- QA --}}
+{{-- @include('frontend.home.QA') --}}
 <script>
     document.addEventListener("DOMContentLoaded", function () {
     const timers = document.querySelectorAll("[id^='timer-']");
