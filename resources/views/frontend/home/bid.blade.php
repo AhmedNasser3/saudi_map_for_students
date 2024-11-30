@@ -154,7 +154,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <h3>لا يوجد مزاد حتي الان</h3>
                             @endif
 
 <div class="bid_pop_up_bg"></div>

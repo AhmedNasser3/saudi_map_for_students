@@ -26,9 +26,10 @@
                                         </span>
                                     </div>
                                     <button
-                                        data-land-area-id="{{ $landArea->id }}"
-                                        style="background-color: rgb(91, 138, 127);">
-                                        طبع صك الارض
+                                    data-land-area-id="{{ $landArea->id }}"
+                                    class="btn-print-deed"
+                                    style="background-color: rgb(91, 138, 127);">
+                                    طبع صك الأرض
                                 </button>
                                     @if ($landArea->tax == 0 && \Carbon\Carbon::parse($landArea->tax_end_time)->lte(now()))
                                         <!-- يظهر زر دفع الغرامة -->
@@ -191,6 +192,20 @@
         });
     });
 });
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.btn-print-deed').forEach(button => {
+        button.addEventListener('click', function () {
+            let landAreaId = this.getAttribute('data-land-area-id');
+
+            // فتح نافذة جديدة لعرض الـ PDF للطباعة
+            window.open('/print-deed/' + landAreaId, '_blank');
+        });
+    });
+});
+
 
 </script>
 

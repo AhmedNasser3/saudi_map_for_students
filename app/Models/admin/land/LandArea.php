@@ -24,6 +24,8 @@ class LandArea extends Model
         'highest_bidder_id',
         'highest_bid',
         'tax',
+        'start_time',
+        'show',
         'tax_end_time',
         'state',
         'img',

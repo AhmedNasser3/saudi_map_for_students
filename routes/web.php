@@ -111,7 +111,7 @@ Route::post('/place-bid/{id}', [AuctionController::class, 'placeBid'])->name('pl
 
 Route::get('/add-balance', [AddDiscountController::class, 'showAdditions'])->name('add_balance.form');
 Route::post('/add-balance', [AddDiscountController::class, 'addBalance'])->name('add_balance');
-
-
 Route::post('/minus-balance', [DiscountController::class, 'minusBalance'])->name('minus_balance');
+Route::get('/print-deed/{landId}', [HomeController::class, 'printDeed']);
+
 require __DIR__.'/auth.php';
