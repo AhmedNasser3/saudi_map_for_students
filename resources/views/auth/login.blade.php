@@ -426,11 +426,11 @@
                         <h2 class="title">تسجيل دخول</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" name="phone" placeholder="Username" />
+                            <input type="text" name="phone" placeholder="رقم الهاتف" />
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" name="password" placeholder="Password" />
+                            <input type="password" name="password" placeholder="الرقم السري" />
                         </div>
                         <input type="submit" value="تسجيل دخول" class="btn solid" />
                         <p class="social-text">او سجل عن طريق المنصات الاخري</p>
@@ -453,15 +453,15 @@
                         <h2 class="title">مستخدم جديد</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" name="name" placeholder="Username" />
+                            <input type="text" name="name" placeholder="اسم المستخدم" />
                         </div>
                         <div class="input-field">
                             <i class="fas fa-envelope"></i>
-                            <input type="phone" name="phone" placeholder="phone" />
+                            <input type="phone" name="phone" placeholder="رقم الهاتف" />
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" name="password" placeholder="Password" />
+                            <input type="password" name="password" placeholder="الرقم السري" />
                         </div>
                         <input type="submit" class="btn" value="مستخدم جديد" />
                         <p class="social-text">او سجل عن طريق المنصات الاخري</p>
@@ -487,8 +487,7 @@
                 <div class="panel left-panel">
                     <div class="content">
                         <h3>جديد هنا ؟</h3>
-                        <p>منصة تعلم افضل منصة للدورات التعليمية المتنوعة في العالم التقني والجامعي والدراسي
-                        </p>
+                        <p>اكبر منصة مزايدات في السعدية اشتري ارضك وكبرها بنفسك                        </p>
                         <button class="btn transparent" id="sign-up-btn">
                             مستخدم جديد
                         </button>
@@ -498,7 +497,7 @@
                 <div class="panel right-panel">
                     <div class="content">
                         <h3>واحد مننا؟</h3>
-                        <p>منصة تعلم افضل منصة للدورات التعليمية المتنوعة في العالم التقني والجامعي والدراسي</p>
+                        <p>اكبر منصة مزايدات في السعدية اشتري ارضك وكبرها بنفسك                        </p>
                         <button class="btn transparent" id="sign-in-btn">
                             تسجيل دخول
                         </button>

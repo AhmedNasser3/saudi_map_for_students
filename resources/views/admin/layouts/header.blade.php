@@ -3,7 +3,7 @@
     <div class="header_container">
         <div class="header_data">
             <div class="header_content">
-                <div id="log-in" class="log-up">
+                {{-- <div id="log-in" class="log-up">
                     <div class="log_in">
                         <button><a href="#">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
                     </div>
@@ -14,11 +14,11 @@
                             @endphp
                         <button><a href="#">📏 المساحة : {{ floor($meters) }} متر</a></button>
                     </div>
-                </div>
+                </div> --}}
                 <div class="header_logo">
                     <div class="header_links" id="header_links">
                         <ul id="menuList" class="menuList">
-                            <li class="header_link" style="color: white">الخريطة</li>
+                            {{-- <li class="header_link" style="color: white">الخريطة</li>
 
                             <li class="header_link"><a href="{{ route('my.office', ['user_id' => auth()->user()->id]) }}" style="color: #131313">مكتبي</a></li>
                             <li class="header_link">
@@ -30,7 +30,7 @@
                                         <button><a href="#">مستخدم جديد</a></button>
                                     </div>
                                 </div>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                     <a href="{{ route('home.page') }}">

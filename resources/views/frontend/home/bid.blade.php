@@ -208,38 +208,30 @@
         </div>
     </div>
 </div>
-@if ($land->state == 1)
+{{-- @if ($land->state == 1) --}}
 
-    <div class="bidders_pop_up_bg"></div>
-    <div class="bidders_pop_up">
-        <div class="bidders_pop_up_container">
-            <div class="bidders_pop_up_data">
-                <div class="bidders_pop_up_content">
-                    <div class="bidders_pop_up_header">
-                        <button id="closeBiddersPopUp" class="close_button"><i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-                    <div class="bidders_pop_up_cn">
-                        <div class="bidders_pop_up_title">
-                            <h2>قائمة المزايدين</h2>
-                            <ul>
-                                @if ($land->bids->count())
-                                    @foreach ($land->bids as $bidder)
-                                        <li>
-                                            <p>اسم المزايد: {{ $bidder->user->name }}</p>
-                                            <p>قيمة المزايدة: {{ $bidder->bid_amount }} ريال</p>
-                                        </li>
-                                    @endforeach
-                                @else
-                                    <p>لا توجد مزايدات على هذه الأرض حتى الآن.</p>
-                                @endif
-                            </ul>
-                        </div>
+<div class="bidders_pop_up_bg"></div>
+<div class="bidders_pop_up">
+    <div class="bidders_pop_up_container">
+        <div class="bidders_pop_up_data">
+            <div class="bidders_pop_up_content">
+                <div class="bidders_pop_up_header">
+                    <button id="closeBiddersPopUp" class="close_button"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div class="bidders_pop_up_cn">
+                    <div class="bidders_pop_up_title">
+                        <h2>قائمة المزايدين</h2>
+                        <ul>
+                            <p>جاري تحميل المزايدات...</p>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@else
+</div>
+
+{{-- @else
     <div class="bidders_pop_up_bg"></div>
     <div class="bidders_pop_up">
         <div class="bidders_pop_up_container">
@@ -277,7 +269,7 @@
             </div>
         </div>
     </div>
-@endif
+@endif --}}
 
         <script>
 document.querySelectorAll(".bidButton").forEach(function(button) {
@@ -331,90 +323,72 @@ function openBiddersPopup(landId) {
     var biddersPopUp = document.querySelector(".bidders_pop_up");
     var biddersPopUpBg = document.querySelector(".bidders_pop_up_bg");
 
+    // عرض نافذة المزايدين
     biddersPopUp.style.display = "flex";
     biddersPopUpBg.style.display = "block";
 
-    setTimeout(function() {
+    setTimeout(function () {
         biddersPopUp.classList.add("show");
     }, 50);
 
-    fetch(`/get-bidders?land_id=${landId}`)
-        .then(response => response.json())
-        .then(data => {
-            biddersList.innerHTML = "";
+    // دالة لتحديث قائمة المزايدين
+    function updateBiddersList(data) {
+        biddersList.innerHTML = "";
 
-            if (data.bidders.length > 0) {
-                // تصنيف المزايدين حسب أعلى قيمة
-                data.bidders.sort((a, b) => b.bid_amount - a.bid_amount);
-
-                // إضافة كل مزايد إلى القائمة مع تغيير اللون للمزايد الأعلى
-                data.bidders.forEach(function(bidder, index) {
+        if (data.bidders.length > 0) {
+            if (Number(data.state) === 0) {
+                // عرض المزايد الأعلى فقط عند state == 0
+                var highestBidder = data.bidders.sort((a, b) => b.bid_amount - a.bid_amount)[0]; // أعلى مزايد
+                var listItem = document.createElement('li');
+                listItem.style.color = "#28a745"; // النص باللون الأخضر
+                listItem.innerHTML = `
+                    <p>اسم المزايد: ${highestBidder.user.name}</p>
+                    <p>قيمة المزايدة: ${highestBidder.bid_amount} ريال</p>
+                    <p style="font-weight: bold; color: #28a745;">الفائز</p>
+                `;
+                biddersList.appendChild(listItem);
+            } else {
+                // عرض جميع المزايدين عند state == 1 بترتيب تصاعدي
+                data.bidders.sort((a, b) => a.bid_amount - b.bid_amount); // ترتيب تصاعدي
+                data.bidders.forEach(function (bidder) {
                     var listItem = document.createElement('li');
-                    listItem.innerHTML = `<p>اسم المزايد: ${bidder.user.name}</p><p>قيمة المزايدة: ${bidder.bid_amount} ريال</p>`;
-
-                    // تغيير الخلفية للمزايد الأعلى قيمة عند حالة state == 0
-                    if (data.state == 0 && index === 0) {
-                        listItem.style.backgroundColor = "#28a745"; // اللون الأخضر
-                        listItem.style.color = "#fff"; // تغيير النص إلى اللون الأبيض
-                        listItem.innerHTML += `<p style="font-weight: bold; color: #fff;">الفائز</p>`; // إضافة كلمة "الفائز"
-                    }
-
+                    listItem.innerHTML = `
+                        <p>اسم المزايد: ${bidder.user.name}</p>
+                        <p>قيمة المزايدة: ${bidder.bid_amount} ريال</p>
+                    `;
                     biddersList.appendChild(listItem);
                 });
-            } else {
-                biddersList.innerHTML = "<p>لا توجد مزايدات على هذه الأرض حتى الآن.</p>";
             }
-        });
+        } else {
+            // إذا لم تكن هناك مزايدات
+            biddersList.innerHTML = "<p>لا توجد مزايدات على هذه الأرض حتى الآن.</p>";
+        }
+    }
 
-    const pollingInterval = setInterval(function() {
+    // جلب المزايدين للمرة الأولى
+    fetch(`/get-bidders?land_id=${landId}`)
+        .then(response => response.json())
+        .then(updateBiddersList);
+
+    // استعلام دوري لتحديث المزايدين كل 5 ثوانٍ
+    const pollingInterval = setInterval(function () {
         fetch(`/get-bidders?land_id=${landId}`)
             .then(response => response.json())
-            .then(data => {
-                biddersList.innerHTML = "";
-                if (data.bidders.length > 0) {
-                    // تصنيف المزايدين حسب أعلى قيمة
-                    data.bidders.sort((a, b) => b.bid_amount - a.bid_amount);
-
-                    // إضافة كل مزايد إلى القائمة مع تغيير اللون للمزايد الأعلى
-                    data.bidders.forEach(function(bidder, index) {
-                        var listItem = document.createElement('li');
-                        listItem.innerHTML = `<p>اسم المزايد: ${bidder.user.name}</p><p>قيمة المزايدة: ${bidder.bid_amount} ريال</p>`;
-
-                        // تغيير الخلفية للمزايد الأعلى قيمة عند حالة state == 0
-                        if (data.state == 0 && index === 0) {
-                            listItem.style.backgroundColor = "#28a745"; // اللون الأخضر
-                            listItem.style.color = "#fff"; // تغيير النص إلى اللون الأبيض
-                            listItem.innerHTML += `<p style="font-weight: bold; color: #fff;">الفائز</p>`; // إضافة كلمة "الفائز"
-                        }
-
-                        biddersList.appendChild(listItem);
-                    });
-                } else {
-                    biddersList.innerHTML = "<p>لا توجد مزايدات على هذه الأرض حتى الآن.</p>";
-                }
-            });
+            .then(updateBiddersList);
     }, 5000);
 
-    document.querySelector("#closeBiddersPopUp").addEventListener("click", function() {
-        clearInterval(pollingInterval);
+    // إغلاق النافذة عند النقر على زر الإغلاق
+    document.querySelector("#closeBiddersPopUp").addEventListener("click", function () {
+        clearInterval(pollingInterval); // إيقاف الاستعلام الدوري
         biddersPopUp.classList.remove("show");
-        setTimeout(function() {
+        setTimeout(function () {
             biddersPopUp.style.display = "none";
             biddersPopUpBg.style.display = "none";
         }, 1000);
     });
 }
 
-document.querySelector("#closeBiddersPopUp").addEventListener("click", function() {
-    var biddersPopUp = document.querySelector(".bidders_pop_up");
-    var biddersPopUpBg = document.querySelector(".bidders_pop_up_bg");
 
-    biddersPopUp.classList.remove("show");
-    setTimeout(function() {
-        biddersPopUp.style.display = "none";
-        biddersPopUpBg.style.display = "none";
-    }, 1000);
-});
 
 // التأكد من تعطيل الزر بعد انتهاء المزاد
 document.querySelectorAll(".bidButton").forEach(function(button) {

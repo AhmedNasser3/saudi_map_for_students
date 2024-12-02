@@ -15,16 +15,14 @@
 body {
     background: #eaeef6;
     font-family: 'Open Sans', sans-serif;
-}
-.navbar {
+}.navbar {
     position: fixed;
-    top: 6rem;
-    right: 1rem;
+    top: 5rem;
+    right: 0rem;
     background: #fff;
-    border-radius: 10px;
     padding: 1rem 0;
-    box-shadow: 0 0 40px #00000008;
-    height: calc(100vh - 8rem);
+    border: none;
+    height: calc(100vh - 0rem);
 }
 .navbar__menu {
     position: relative;

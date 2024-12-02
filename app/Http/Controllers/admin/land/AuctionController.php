@@ -15,25 +15,33 @@ class AuctionController extends Controller
     {
         $landArea = LandArea::findOrFail($id);
 
+        // التحقق من قيمة المزايدة
         if ($request->bid_amount <= $landArea->highest_bid ?? 0) {
             return redirect()->back()->with('error', 'يجب أن تكون المزايدة أعلى.');
         }
 
         $user = Auth::user();
+
+        // خصم المبلغ من balance ونقله إلى freeze_balance
+        $user->balance -= $request->bid_amount;
+        $user->freeze_balance += $request->bid_amount;
+        $user->update();
+        // التحقق من الرصيد المتاح
         if ($user->balance < $request->bid_amount) {
             return redirect()->back()->with('error', 'لا يوجد رصيد كافي.');
         }
 
+
+        // إنشاء المزايدة
         Bid::create([
             'land_area_id' => $landArea->id,
             'user_id' => $user->id,
             'bid_amount' => $request->bid_amount,
         ]);
 
-        $user->save();
-
         return redirect()->back()->with('success', 'تم تقديم المزايدة بنجاح!');
     }
+
 
     public function payFine(Request $request)
     {

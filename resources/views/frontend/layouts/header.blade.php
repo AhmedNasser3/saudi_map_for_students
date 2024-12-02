@@ -15,9 +15,11 @@
                     <div class="sign_up">
                         @php
                         use App\Models\admin\land\LandArea;
-                        $meters = 0;
                         if (auth()->check()) {
-                            $meters = LandArea::where('user_id', auth()->user()->id)->sum('area');
+
+                        $meters = LandArea::with('bids')
+            ->where('highest_bidder_id', auth()->user()->id)
+            ->get()->sum('area');;
                         }
                         @endphp
                         @if (auth()->check())

@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\admin\land\Land;
 use App\Models\admin\land\LandArea;
 use App\Http\Controllers\Controller;
+use App\Models\admin\tax\Tax;
 
 class MainLandAreaController extends Controller
 {
+
     public function index(){
         $landAreas = LandArea::orderBy('id', 'asc')->get();
         return view('admin.land_areas.index', compact('landAreas'));
@@ -46,8 +48,9 @@ class MainLandAreaController extends Controller
                 $image->storeAs('public/lands', $imageName);
                 $landAreaData['img'] = 'lands/' . $imageName;
             }
-            LandArea::create($landAreaData);
+            $landArea =  LandArea::create($landAreaData);
         }
+        Tax::create(['landArea_id' => $landArea->id]);
 
         return redirect()->route('landArea.page')->with('success', 'تم إنشاء المزادات بنجاح');
     }
@@ -102,4 +105,47 @@ public function updateShow(Request $request)
 
         return response()->json(['success' => false, 'message' => 'العنصر غير موجود']);
     }
+// في Controller الذي يتعامل مع المزادات
+
+public function updateLandDuration(Request $request)
+{
+    // التحقق من وجود الـ id و الـ newDays في الطلب
+    $request->validate([
+        'landId' => 'required|exists:land_areas,id',
+        'newDays' => 'required|integer|min:1|max:30',
+    ]);
+
+    // العثور على المزاد بناءً على الـ id
+    $landArea = LandArea::find($request->landId);
+
+    // تحديث المدة للمزاد
+    $landArea->duration = $request->newDays;
+    $landArea->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'تم تحديث المدة بنجاح'
+    ]);
 }
+public function updateTax(Request $request)
+{
+    $landAreaId = $request->input('landAreaId');
+    $tax = $request->input('tax');
+
+    // البحث عن الأرض باستخدام الـ ID
+    $landArea = LandArea::find($landAreaId);
+
+    if ($landArea) {
+        // تحديث قيمة tax إلى 0
+        $landArea->tax = $tax;
+        $landArea->save();
+
+        return response()->json(['success' => true]);
+    } else {
+        return response()->json(['success' => false, 'message' => 'الأرض غير موجودة.']);
+    }
+}
+
+
+}
+

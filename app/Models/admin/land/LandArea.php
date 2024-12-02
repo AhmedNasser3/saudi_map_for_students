@@ -4,6 +4,7 @@ namespace App\Models\admin\land;
 
 use App\Models\admin\bid\Bid;
 use App\Models\admin\land\Land;
+use App\Models\admin\tax\Tax;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,6 +29,7 @@ class LandArea extends Model
         'show',
         'tax_end_time',
         'state',
+        'land_deed',
         'img',
     ];
     public function land()
@@ -43,5 +45,21 @@ class LandArea extends Model
     {
         return $this->hasMany(Bid::class, 'land_area_id');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($landArea) {
+            if (empty($landArea->land_deed)) {
+                $landArea->land_deed = $landArea->land->id.'0' . mt_rand(10000000, max: 99999999);
+            }
+        });
+    }
+    public function taxD()
+    {
+        return $this->hasMany(Tax::class, 'landArea_id');
+    }
+
 
 }

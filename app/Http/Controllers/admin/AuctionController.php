@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\admin\land;
 
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\admin\bid\Bid;
+use Illuminate\Support\Facades\DB;
 use App\Models\admin\land\LandArea;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,25 +17,33 @@ class AuctionController extends Controller
     {
         $landArea = LandArea::findOrFail($id);
 
+        // التحقق من قيمة المزايدة
         if ($request->bid_amount <= $landArea->highest_bid ?? 0) {
             return redirect()->back()->with('error', 'يجب أن تكون المزايدة أعلى.');
         }
 
         $user = Auth::user();
+
+        // خصم المبلغ من balance ونقله إلى freeze_balance
+        $user->balance -= $request->bid_amount;
+        $user->freeze_balance += $request->bid_amount;
+        $user->update();
+        // التحقق من الرصيد المتاح
         if ($user->balance < $request->bid_amount) {
             return redirect()->back()->with('error', 'لا يوجد رصيد كافي.');
         }
 
+
+        // إنشاء المزايدة
         Bid::create([
             'land_area_id' => $landArea->id,
             'user_id' => $user->id,
             'bid_amount' => $request->bid_amount,
         ]);
 
-        $user->save();
-
         return redirect()->back()->with('success', 'تم تقديم المزايدة بنجاح!');
     }
+
 
     public function payFine(Request $request)
     {
@@ -135,6 +145,41 @@ class AuctionController extends Controller
          return response()->json(['message' => 'المزاد غير موجود'], 404);
      }
  }
+// AuctionController
+public function adjustBalance(Request $request)
+{
+    $validated = $request->validate([
+        'user_id' => 'required|exists:users,id',
+        'bid_amount' => 'required|numeric|min:0',
+        'action' => 'required|string|in:return',
+    ]);
 
+    $user = User::find($validated['user_id']);
+
+    try {
+        DB::beginTransaction(); // بدء المعاملة
+
+        if ($validated['action'] === 'return') {
+            if ($user->freeze_balance >= $validated['bid_amount']) {
+                // تحديث الرصيد داخل المعاملة
+                $user->balance += $validated['bid_amount'];
+                $user->freeze_balance -= $validated['bid_amount'];
+                $user->save();
+
+                DB::commit(); // تأكيد العملية
+                return response()->json(['success' => true, 'message' => 'تم تعديل الرصيد بنجاح']);
+            } else {
+                DB::rollBack(); // إلغاء العملية في حالة خطأ
+                return response()->json(['success' => false, 'error' => 'رصيد التجميد غير كافٍ']);
+            }
+        }
+
+        DB::rollBack(); // إلغاء العملية لأي إجراء غير مدعوم
+        return response()->json(['success' => false, 'error' => 'إجراء غير مدعوم']);
+    } catch (\Exception $e) {
+        DB::rollBack(); // إلغاء العملية في حالة حدوث خطأ
+        return response()->json(['success' => false, 'error' => 'حدث خطأ أثناء تعديل الرصيد: ' . $e->getMessage()]);
+    }
+}
 
 }

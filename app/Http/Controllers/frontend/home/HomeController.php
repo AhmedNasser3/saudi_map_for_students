@@ -1,15 +1,16 @@
 <?php
 namespace App\Http\Controllers\frontend\home;
 
+use TCPDF;
 use Carbon\Carbon;
+use setasign\Fpdi\Fpdi;
 use Illuminate\Http\Request;
 use App\Models\admin\bid\Bid;
 use App\Models\admin\land\LandArea;
 use App\Http\Controllers\Controller;
+use App\Models\frontend\messages\Send;
 use App\Models\admin\addition\Addition;
 use App\Models\admin\discount\Discount;
-use TCPDF;
-use setasign\Fpdi\Fpdi;
 
 class HomeController extends Controller
 {
@@ -31,14 +32,17 @@ class HomeController extends Controller
     {
         $landId = $request->get('land_id');
 
+        // جلب بيانات الأرض والمزايدات
         $landarea = LandArea::with('bids.user')->findOrFail($landId);
 
         $bidders = $landarea->bids;
 
         return response()->json([
-            'bidders' => $bidders
+            'bidders' => $bidders,
+            'state' => $landarea->state // إرسال حالة المزاد
         ]);
     }
+
     public function index()
     {
         $user = auth()->user();
@@ -70,21 +74,24 @@ class HomeController extends Controller
             }
         }
 
-
-        $landAreasBids = LandArea::with('bids')
-        ->where('highest_bidder_id', auth()->user()->id)
-        ->get();
         // الحصول على الإضافات والخصومات للمستخدم
         $additions = Addition::where('user_id', auth()->user()->id)->get();
         $discounts = Discount::where('user_id', auth()->user()->id)->get();
 
-        // دمج العطاءات والإضافات والخصومات في مجموعة واحدة
-        $allItems = $landAreasBids->pluck('bids')->flatten()->merge($additions)->merge($discounts);
+        $landAreasBids = LandArea::where('highest_bidder_id', auth()->user()->id)->get();
 
+        // دمج البيانات
+        $allItems = collect($landAreasBids)
+            ->merge($additions)
+            ->merge($discounts)
+            ->unique() // إزالة العناصر المكررة
+            ->sortBy('id') // ترتيب حسب الحقل الذي تريده، مثل id
+            ->values(); // إعادة ضبط المفاتيح
         // ترتيب العناصر حسب التاريخ
         $sortedItems = $allItems->sortByDesc('created_at');
+        $sends = Send::where('user_id', auth()->user()->id)->get();
 
-        return view('frontend.home.my_office', compact('bids', 'additions','discounts','sortedItems'));
+        return view('frontend.home.my_office', compact('bids', 'additions','discounts','sortedItems','landAreasBids','sends'));
     }
 
 

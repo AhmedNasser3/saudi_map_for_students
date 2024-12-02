@@ -145,12 +145,129 @@
     /* تغيير المؤشر عند تعطيل الزر */
 }
 
-.office_discounts,
-.office_additions {
-    border-bottom: 1px solid #e7e7e7;
-    min-width: 1350px;
+
+/* messages */
+
+.message {
+    padding: 2% 0 0 0;
+    width: 100%;
+}
+
+.message_content {
+    display: grid;
+}
+
+.message_title {
+    width: 1350px;
+    display: flex;
+    justify-content: space-between;
+    align-items: ce;
+}
+
+.message_title h2 {
+    color: #4a794f;
+}
+
+.message_btns button {
+    border: 1px solid #4a794f;
+    padding: 10px 20px;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.message_btns button a {
+    color: #4a794f;
+    font-size: 1.1rem;
+}
+
+.message_body {
+    width: 100%;
+    margin: 2% 0 0 0;
+}
+
+.message_body_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.message_body_title button {
+    border: 1px solid #4a794f;
+    padding: 5px 15px;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.message_box_bg_text {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.message_box_bg_text h1 {
+    color: #4a794f;
+}
+
+.message_box_bg_text p {
+    border-bottom: 1px solid #c5c5c5;
+    margin: 0 0 20px 0;
+    color: #8db490;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.message_box_bg form {
+    padding: 0 35%;
+}
+
+.message_box_bg_text {
+    padding: 0 0 4% 0;
+}
+
+.message_box_title {
     width: 100%;
     direction: rtl;
-    padding: 10px;
-    margin: 2px 0;
+    padding: 0 25%;
+    margin: 5% 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message_box_title_btn button {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #71ad77;
+    border: none;
+    border-radius: 5px;
+    transition: .5s ease all;
+}
+
+.message_box_title_btn button:hover {
+    background-color: #55885a;
+    transition: .5s ease all;
+}
+
+.message_box_title_btn button a {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.message_box_title h2 {
+    color: #6a856f;
+    border-bottom: 1px solid #8ce794;
+}
+
+
+/* history */
+
+.office_data {
+    direction: rtl;
+    display: grid;
+    justify-content: end;
+}
+
+.office_additions {
+    background-color: #dbdbdb;
 }

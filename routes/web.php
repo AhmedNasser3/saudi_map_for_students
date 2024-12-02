@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\ProfileController;
 use Symfony\Component\HttpFoundation\Request;
+use App\Http\Controllers\admin\tax\TaxController;
 use App\Http\Controllers\admin\city\CityController;
 use App\Http\Controllers\admin\user\UserController;
 use App\Http\Controllers\admin\land\LandsController;
@@ -14,9 +15,10 @@ use App\Http\Controllers\admin\land\AuctionController;
 use App\Http\Controllers\frontend\home\HomeController;
 use App\Http\Controllers\admin\land\MainLandController;
 use App\Http\Controllers\admin\land\LandAreasController;
+use App\Http\Controllers\frontend\messages\SendController;
+use App\Http\Controllers\admin\add_discount\DiscountController;
 use App\Http\Controllers\admin\landarea\MainLandAreaController;
 use App\Http\Controllers\admin\add_discount\AddDiscountController;
-use App\Http\Controllers\admin\add_discount\DiscountController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.page');
 Route::get('/dashboard', function () {
@@ -28,8 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
 
 Route::get('/get-bidders', [HomeController::class, 'getBidders']);
 Route::get('/get-land-details', [HomeController::class, 'getLandDetails']);
@@ -104,6 +104,7 @@ Route::post('/extend-tax-time', [MainLandAreaController::class, 'extendTaxTime']
 Route::post('/set-tax-end-time', [MainLandAreaController::class, 'updateTaxEndTime']);
 Route::post('/update-show', [MainLandAreaController::class, 'updateShow'])->name('update.show');
 Route::post('/finalize-auction/{landId}', [LandAreasController::class, 'finalizeAuction'])->name('finalizeAuction');
+
 Route::post('/place-bid/{id}', [AuctionController::class, 'placeBid'])->name('placeBid');
 
 
@@ -113,5 +114,21 @@ Route::get('/add-balance', [AddDiscountController::class, 'showAdditions'])->nam
 Route::post('/add-balance', [AddDiscountController::class, 'addBalance'])->name('add_balance');
 Route::post('/minus-balance', [DiscountController::class, 'minusBalance'])->name('minus_balance');
 Route::get('/print-deed/{landId}', [HomeController::class, 'printDeed']);
+
+
+Route::get('/create/message' ,[SendController::class, 'create'])->name('message.index');
+Route::post('/create/message' ,[SendController::class, 'store'])->name('message.create');
+Route::get('/message/{message_id}/view' ,[SendController::class, 'view'])->name('message.view');
+Route::post('/messages/mark-read', [SendController::class, 'markAsRead'])->name('messages.markRead');
+Route::post('/create/message/chat/store' ,action: [SendController::class, 'sendStore'])->name('message.sendStore');
+Route::post('/message/chat/store' ,action: [SendController::class, 'replayStore'])->name('message.replay');
+Route::post('/adjust-balance', [AuctionController::class, 'adjustBalance']);
+
+Route::get('/get-tax-info', [TaxController::class, 'getTaxInfo'])->name('get.tax.info');
+
+Route::post('/update-tax-status', [TaxController::class, 'updateTaxStatus']);
+Route::post('/extend-tax-time', [TaxController::class, 'extendTaxTime']);
+Route::post('/update-tax-status', [TaxController::class, 'updateTaxStatus']);
+Route::get('/taxTimeUpdate/{id}', [TaxController::class, 'update'])->name('tax.update.time');
 
 require __DIR__.'/auth.php';
