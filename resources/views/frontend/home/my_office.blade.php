@@ -1,5 +1,10 @@
 @extends('frontend.master')
 @section('content')
+ @php
+                                    use App\Models\admin\price\Price;
+
+                                    $price = Price::first(); // إذا كنت تريد تحديث أول سجل فقط. يمكنك تخصيص البحث إذا كان هناك أكثر من سجل
+                                    @endphp
 <div class="office">
     <div class="bid_header">
         <div class="bid_btn">
@@ -41,7 +46,10 @@
                     </div>
                     <div class="office_price_btn">
                         <div class="office_price_btn_timer">
-                            متبقي على تجديد الرخصة:
+                            <h3>
+                                متبقي على تجديد الرخصة:
+
+                            </h3>
                             <span class="days" id="tax-time-{{ $landArea->id }}"
                                 data-end-time="{{ \Carbon\Carbon::parse($landArea->tax_end_time)->toIso8601String() }}"
                                 data-tax="{{ $landArea->tax }}">
@@ -51,21 +59,21 @@
                         <button
                             data-land-area-id="{{ $landArea->id }}"
                             class="btn-print-deed"
-                            style="background-color: rgb(91, 138, 127);">
+                            style="background-color: rgb(91, 138, 127);border:2px solid#8ac7c4;color:white" >
                             طبع صك الأرض
                         </button>
                         @if ($landArea->show_to_estate == 0)
 
                         <button
                         class="btn_estate"
-                        style="background-color: rgb(91, 111, 138);"
+                        style="background-color: #5b6f8a; border:2px solid#abccf7;color:white"
                         id="btn-estate-{{ $landArea->id }}"
                         data-land-area-id="{{ $landArea->id }}">
                         بيع الارض
                     </button>
                     @elseif($landArea->show_to_estate == 3)
                     <button
-                    style="background-color: rgb(130, 206, 154);">
+                    style="background-color: rgb(130, 206, 154); border:2px solid#abf7af;color:white">
                     <a href="{{ route('estate.create', ['landArea_id' => $landArea->id]) }}" style="color: white">                    تم قبول الطلب اضغط للبيع
                     </a>
                 </button>
@@ -78,20 +86,21 @@
                             <!-- يظهر زر دفع الغرامة -->
                             <button class="pay-fine" id="btn-fine-{{ $landArea->id }}"
                                     data-land-area-id="{{ $landArea->id }}"
-                                    style="background-color: red;">
+                                    style="background-color: rgb(153, 37, 37);border:2px solid#f09797;color:white">
                                 دفع الغرامة 100 ريال
                             </button>
                         @elseif ($landArea->tax == 0)
                             <!-- يظهر زر تجديد الرخصة -->
                             <button class="renew-license" id="btn-renew-{{ $landArea->id }}"
                                     data-land-area-id="{{ $landArea->id }}"
-                                    style="background-color: green;">
-                                تجديد الرخصة ب 50 ريال
+                                    style="background-color: green; border:2px solid#acf097;color:white">
+
+                                تجديد الرخصة ب {{ $price->tax_price }} ريال
                             </button>
                         @else
                             <!-- لا تظهر أزرار إذا تم الدفع -->
                             <button class="renew-license" id="btn-renew-{{ $landArea->id }}"
-                                    style="background-color: grey;" disabled>
+                                    style="background-color: grey; border:2px solid#e7e7e7;color:white" disabled>
                                 تم الدفع
                             </button>
                         @endif
@@ -107,18 +116,33 @@
 </div>
 
         <div class="office_data" id="content-ongoing" style="display: none;">
-            <div class="office_additions_all"  style="display: grid">
+            <div class="office_additions_all"  >
                 @foreach ($sortedItems as $item)
-                <div class="office_additions" style="display: flex">
-                    @if ($item instanceof App\Models\admin\land\LandArea)
-                        <h3 style="color: #ad2310d5">ارض تم شرائها:&nbsp;&nbsp;</h3>
-                        <h3 style="color: #ad2310d5">{{ $item->highest_bid}}-</h3>
+                <div class="office_additions"  style="display: grid">
+                @if ($item instanceof App\Models\admin\land\LandArea)
+                    <div class="office_additions_title">
+                        <h3 style="color: #770e00d5">ارض تم شرائها:&nbsp;&nbsp;</h3>
+                        <h3 style="color: #df4b37">{{ $item->highest_bid}}-</h3>
+                    </div>
+                    <div class="office_additions_history">
+                        <p>{{ $item->created_at->format('d') }}/{{ $item->created_at->format('m') }}/{{ $item->created_at->format('Y') }}</p>
+                    </div>
                     @elseif ($item instanceof App\Models\admin\addition\Addition)
+                    <div class="office_additions_title">
                         <h3 style="color: #36b927">{{ $item->title }}: &nbsp;&nbsp;</h3>
                         <h3 style="color: #36b927">{{ $item->addition }}+</h3>
+                    </div>
+                    <div class="office_additions_history">
+                        <p>{{ $item->created_at->format('d') }}/{{ $item->created_at->format('m') }}/{{ $item->created_at->format('Y') }}</p>
+                    </div>
                     @elseif ($item instanceof App\Models\admin\discount\Discount)
+                    <div class="office_additions_title">
                         <h3 style="color: #ad2310d5">{{ $item->title }}:&nbsp;&nbsp;</h3>
                         <h3 style="color: #ad2310d5">{{ $item->discount }}-</h3>
+                    </div>
+                    <div class="office_additions_history">
+                        <p>{{ $item->created_at->format('d') }}/{{ $item->created_at->format('m') }}/{{ $item->created_at->format('Y') }}</p>
+                    </div>
                     @endif
                 </div>
             @endforeach

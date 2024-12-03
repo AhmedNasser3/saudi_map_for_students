@@ -4,7 +4,7 @@
 <div class="admin_land">
     <div class="admin_land_header">
         <div class="admin_land_header_title">
-            <h1>عرض المستخدمين</h1>
+            <h1>خصم رصيد</h1>
         </div>
     </div>
     <div class="admin_land_container">
@@ -16,8 +16,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>اسم المستخدم</th>
-                                <th>إضافة رصيد</th>
-                                <th>سبب الإضافة</th>
                                 <th>خصم رصيد</th>
                                 <th>سبب الخصم</th>
                                 <th>تنفيذ</th>
@@ -28,12 +26,7 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>
-                                    <input type="number" id="addition_{{ $user->id }}" placeholder="أضف الرصيد" class="form-control">
-                                </td>
-                                <td>
-                                    <input style="width: 250px" type="text" id="title_add_{{ $user->id }}" placeholder="أضف سبب الإضافة" class="form-control">
-                                </td>
+
                                 <td>
                                     <input type="number" id="discount_{{ $user->id }}" placeholder="خصم الرصيد" class="form-control">
                                 </td>
@@ -41,7 +34,6 @@
                                     <input style="width: 250px" type="text" id="title_discount_{{ $user->id }}" placeholder="أضف سبب الخصم" class="form-control">
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary" onclick="addBalance({{ $user->id }})">إضافة رصيد</button>
                                     <button class="btn btn-danger" onclick="minusBalance({{ $user->id }})">خصم رصيد</button>
                                 </td>
                             </tr>

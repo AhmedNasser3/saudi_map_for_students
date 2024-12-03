@@ -11,5 +11,6 @@ class Send extends Model
         'message',
         'user_id',
         'read',
+        'state',
     ];
 }

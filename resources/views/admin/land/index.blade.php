@@ -4,10 +4,10 @@
 <div class="admin_land">
     <div class="admin_land_header">
         <div class="admin_land_btn">
-            <button><a href="{{ route('land.create') }}">انشيئ ارض اخري </a></button>
+            <button><a href="{{ route('land.create') }}">انشيئ مدينة اخري </a></button>
         </div>
         <div class="admin_land_header_title">
-            <h1>عرض الاراضي</h1>
+            <h1>عرض المدن</h1>
         </div>
     </div>
     <div class="admin_land_container">
@@ -19,8 +19,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>اسم المدينة</th>
-                                <th>ازالة الارض</th>
-                                <th>تعديل الارض</th>
+                                <th>ازالة المدينة</th>
+                                <th>تعديل المدينة</th>
                             </tr>
                         </thead>
                         <tbody>

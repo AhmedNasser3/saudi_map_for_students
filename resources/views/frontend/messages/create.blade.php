@@ -44,8 +44,13 @@
                                 </tr>
                                 <tr>
                                   <td colspan="2">
-                                    <input style="text-align: center" type="submit" value="انشيئي استشارة ب 50 ريال">
-                                  </td>
+                                    @php
+                                    use App\Models\admin\price\Price;
+
+                                    $price = Price::first(); // إذا كنت تريد تحديث أول سجل فقط. يمكنك تخصيص البحث إذا كان هناك أكثر من سجل
+                                    @endphp
+<input style="text-align: center" type="submit" value="انشيئي استشارة ب{{ $price->first()->message_price }} ريال">
+</td>
                                 </tr>
                               </table>
                             </form>

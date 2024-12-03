@@ -4,7 +4,6 @@
     <div class="admin_land">
         <div class="admin_land_header">
             <div class="admin_land_btn">
-                <button><a href="{{ route('land.create') }}">انشيئ ارض اخري </a></button>
             </div>
             <div class="admin_land_header_title">
                 <h1>عرض الطلاب</h1>

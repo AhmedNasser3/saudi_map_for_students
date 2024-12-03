@@ -4,10 +4,9 @@
 <div class="admin_land">
     <div class="admin_land_header">
         <div class="admin_land_btn">
-            <button><a href="{{ route('land.create') }}">انشيئ ارض اخري </a></button>
         </div>
         <div class="admin_land_header_title">
-            <h1>عرض الاراضي</h1>
+            <h1 style="color: rgb(73, 119, 94);">شيخ العقار</h1>
         </div>
     </div>
     <div class="admin_land_container">
@@ -18,10 +17,9 @@
                         <thead class="head_table">
                             <tr>
                                 <th>ID</th>
-                                <th>اسم المدينة</th>
-                                <th>ازالة الارض</th>
-                                <th>تعديل الارض</th>
-                                <th>تقدير سعر البيع</th>
+                                <th>مساحة الارض</th>
+                                <th>السعر الذي اشترا به الطالب الارض</th>
+                                <th>السعر الذي يجب ان لا يقل عنه بيع هذه الارض</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,18 +28,9 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $landArea->area }}</td>
-                                <td>
-                                    <form action="{{ route('land.delete', ['land_id' => $landArea->id]) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="delete_button" type="submit" style="border: none; background: none; cursor: pointer;">
-                                            <i class="fa-solid fa-trash" ></i>
-                                        </button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <a class="edit_button" href="{{ route('land.edit', ['land_id' => $landArea->id]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                                </td>
+                                <td>{{ $landArea->highest_bid }}</td>
+
+
                                 <form action="{{ route('estate.store') }}" method="post">
                                     @csrf
                                     @method('post')

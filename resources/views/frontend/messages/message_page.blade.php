@@ -7,8 +7,19 @@
                 <div class="message_box_title">
                     <h2>الاستشارات</h2>
                     <div class="message_box_title_btn">
-                        <button><a href="#">انهاء الاستشارة</a></button>
-                    </div>
+                        @foreach ($messages as $message)
+                        <form action="{{ route('end.chat', $message->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            @if ($message->state == 0)
+
+                            <button type="submit" class="btn btn-danger">إنهاء المحادثة</button>
+                            @else
+                            <button type="submit" class="btn btn-danger" disabled>تم انهاء الاستشارة</button>
+                            @endif
+                        </form>
+
+                        @endforeach                    </div>
                 </div>
                 <div class="message_box_body">
                     <div class="message_box_bg">

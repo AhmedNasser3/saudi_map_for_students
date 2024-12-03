@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('password');
             $table->string('phone')->unique();
+            $table->string('role')->default('user');
             $table->decimal('balance', 15, 2)->default(3000);
             $table->decimal('freeze_balance', 15, 2)->default(0);
             $table->string('unique_number', 5)->unique();

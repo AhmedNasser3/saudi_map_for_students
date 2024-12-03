@@ -24,8 +24,8 @@
                         @endphp
                         @if (auth()->check())
                         <button><a href="#">📏 المساحة : {{ floor($meters) }} متر</a></button>
+                        <button><a href="{{ route('logout') }}">تسجيل خروج</a></button>
                         @else
-                        <button><a href="{{ route('register') }}">مستخدم جديد</a></button>
                         @endif
                     </div>
                 </div>
@@ -34,14 +34,15 @@
                         <ul id="menuList" class="menuList">
                             @if (auth()->check())
                             <li class="header_link" style="color: white">الخريطة</li>
+                            @if (auth()->user()->role == 'admin')
+                            <li class="header_link"><a href="{{ route('user.page') }}" style="color: #131313">الدخول الي صفحة الادمن</a></li>
+                            @else
+                            @endif
                             <li class="header_link"><a href="{{ route('my.office', ['user_id' => auth()->user()->id]) }}" style="color: #131313">مكتبي</a></li>
                             <li class="header_link">
                                 <div id="turnon-log" class="log-up">
                                     <div class="log_in">
-                                        <button><a href="#">تسجيل دخول</a></button>
-                                    </div>
-                                    <div class="sign_up" >
-                                        <button><a href="#">مستخدم جديد</a></button>
+                                        <button><a href="{{ route('logout') }}">تسجيل خروج</a></button>
                                     </div>
                                 </div>
                             </li>
@@ -52,7 +53,6 @@
                                         <button><a href="{{ route('login') }}">تسجيل دخول</a></button>
                                     </div>
                                     <div class="sign_up" >
-                                        <button><a href="{{ route('register') }}">مستخدم جديد</a></button>
                                     </div>
                                 </div>
                             </li>

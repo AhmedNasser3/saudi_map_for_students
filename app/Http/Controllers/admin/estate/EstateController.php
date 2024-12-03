@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin\estate;
 use Illuminate\Http\Request;
 use App\Models\admin\land\LandArea;
 use App\Http\Controllers\Controller;
+use App\Models\admin\bid\Bid;
 use App\Models\admin\estate\Estate;
 
 class EstateController extends Controller
@@ -66,7 +67,7 @@ public function storeLandArea(Request $request,$LandAreaId)
         'area' => '|string|max:255',
         'starting_price' => '|numeric',
         'auction_end_time' => '|date',
-        'user_id' => '|integer',
+        'user_id',
         'final_price' => 'nullable|numeric',
         'day' => '',
         'duration' => '|integer',
@@ -77,8 +78,9 @@ public function storeLandArea(Request $request,$LandAreaId)
         'start_time' => 'nullable|date',
         'state' => 'nullable|string|max:255',
         'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20048',
-        'show_to_estate' ,
+        'show_to_estate'  => 'nullable|string|max:255',
         'number_of_auctions' => '|integer|min:1',
+        'add_balance_to_seller',
     ]);
 
     // إذا لم يتم توفير معلومات العطاء، قم بتعيينها إلى null
@@ -89,11 +91,26 @@ public function storeLandArea(Request $request,$LandAreaId)
     if (!$request->has('highest_bid')) {
         $LandsAreaStore['highest_bid'] = null;
     }
+    $bids = Bid::where('land_area_id', $landAreas->id)->get();
+    $bids->each(function ($bid) {
+        $bid->delete();
+    });
+
+    // تعيين الحالة إلى 1
+    $LandsAreaStore['state'] = 1;
 
     // تعيين الحالة إلى 1
     $LandsAreaStore['state'] = 1;
     // تعيين الحالة إلى 0
-    $LandsAreaStore['show_to_estate'] = 0;
+    $LandsAreaStore['add_balance_to_seller'] = 1;
+
+
+    $bids_amount = Bid::create([
+        'land_area_id' => $landAreas->id, // استخدم معرف قطعة الأرض هنا
+        'user_id' => 1, // استخدم معرف المستخدم
+        'bid_amount' => $LandsAreaStore['starting_price'], // استخدم السعر الابتدائي
+        'state' => 1, // الحالة الافتراضية للعطاء
+    ]);
 
     $landAreas->update($LandsAreaStore);
 

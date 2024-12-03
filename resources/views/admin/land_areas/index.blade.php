@@ -1,14 +1,13 @@
 @extends('admin.master')
-
 @section('admin_content')
 <div class="admin_land_bg">
     <div class="admin_land">
         <div class="admin_land_header">
             <div class="admin_land_btn">
-                <button><a href="{{ route('landArea.create') }}">انشيئ مزاد اخر </a></button>
+                <button><a href="{{ route('landArea.create') }}">انشيئ ارض اخر </a></button>
             </div>
             <div class="admin_land_header_title">
-                <h1>عرض المزادات</h1>
+                <h1>عرض الاراضي</h1>
             </div>
         </div>
         <div class="admin_land_container">

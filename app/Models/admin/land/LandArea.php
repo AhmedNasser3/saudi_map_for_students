@@ -31,7 +31,9 @@ class LandArea extends Model
         'tax_end_time',
         'state',
         'land_deed',
+        'show_to_estate',
         'img',
+        'add_balance_to_seller',
     ];
     public function land()
     {

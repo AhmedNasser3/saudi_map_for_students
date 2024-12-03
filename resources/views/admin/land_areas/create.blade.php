@@ -167,7 +167,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <input type="submit" value="انشيئي الارض">
+                                        <input type="submit" value="انشيئ الارض">
                                     </td>
                                 </tr>
                             </table>

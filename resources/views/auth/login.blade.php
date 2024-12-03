@@ -433,23 +433,12 @@
                             <input type="password" name="password" placeholder="الرقم السري" />
                         </div>
                         <input type="submit" value="تسجيل دخول" class="btn solid" />
-                        <p class="social-text">او سجل عن طريق المنصات الاخري</p>
-                        <div class="social-media">
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-google"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </div>
+                        <p class="social-text">كن شخصا من المنافسين !</p>
+
                     </form>
-                    <form action="#" class="sign-up-form">
+                    <form method="POST" action="{{ route('register') }}" class="sign-up-form">
+                        @csrf
+                        @method('post')
                         <h2 class="title">مستخدم جديد</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
@@ -463,22 +452,13 @@
                             <i class="fas fa-lock"></i>
                             <input type="password" name="password" placeholder="الرقم السري" />
                         </div>
-                        <input type="submit" class="btn" value="مستخدم جديد" />
-                        <p class="social-text">او سجل عن طريق المنصات الاخري</p>
-                        <div class="social-media">
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-google"></i>
-                            </a>
-                            <a href="#" class="social-icon">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
+                        <div class="input-field">
+                            <i class="fas fa-lock"></i>
+                            <input type="password"  name="password_confirmation" placeholder="الرقم السري" />
                         </div>
+                        <input type="submit" class="btn" value="مستخدم جديد" />
+                        <p class="social-text">كن شخصا من المنافسين !</p>
+
                     </form>
                 </div>
             </div>

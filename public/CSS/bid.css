@@ -620,3 +620,14 @@
         width: 150%;
     }
 }
+/* bid form */
+.bid_pop_up_title{
+    border-bottom: 1px solid #131313;
+    background-color: #f1f1f1;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.bid_pop_up_land_area h3,.bid_pop_up_land_duration h3,.bid_pop_up_land_price h3{
+    color: #685959;
+    font-size: 1rem;
+}

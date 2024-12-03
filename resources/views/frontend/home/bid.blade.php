@@ -159,7 +159,7 @@
                     <div class="bid_pop_up_title">
                         <div class="bid_pop_up_header_title">
                             <div class="bid_pop_up_land">
-                                <h1>مكان الارض:</h1>
+                                <h3>صك الارض:</h3>
                             </div>
                             <div class="bid_pop_up_land_duration">
                                 <h3></h3>
@@ -167,7 +167,7 @@
                         </div>
                         <div class="bid_pop_up_header_title">
                             <div class="bid_pop_up_land">
-                                <h1>عدد الأمتار:</h1>
+                                <h3>عدد الأمتار:</h3>
                             </div>
                             <div class="bid_pop_up_land_area">
                                 <h3> كم</h3>
@@ -175,7 +175,7 @@
                         </div>
                         <div class="bid_pop_up_header_title">
                             <div class="bid_pop_up_land">
-                                <h1>اقل سعر للمزايدة:</h1>
+                                <h3>اقل سعر للمزايدة:</h3>
                             </div>
                             <div class="bid_pop_up_land_price">
                                 <h3> ريال</h3>
@@ -232,7 +232,7 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
 .then(data => {
     document.querySelector(".bid_pop_up_land_area h3").innerText = `${data.land.area} كم`;
     document.querySelector(".bid_pop_up_land_price h3").innerText = `${data.land.starting_price} ريال`;
-    document.querySelector(".bid_pop_up_land_duration h3").innerText = `${data.land.duration} أيام`;
+    document.querySelector(".bid_pop_up_land_duration h3").innerText = `${data.land.land_deed} `;
 
     var bidForm = document.querySelector("#placeBidForm");
     bidForm.action = `/place-bid/${landId}`;
@@ -272,7 +272,6 @@ document.querySelectorAll(".bidButton2").forEach(function(button) {
         openBiddersPopup(landId);
     });
 });
-
 function openBiddersPopup(landId) {
     var biddersList = document.querySelector(".bidders_pop_up_title ul");
     var biddersPopUp = document.querySelector(".bidders_pop_up");
@@ -285,7 +284,6 @@ function openBiddersPopup(landId) {
     setTimeout(function () {
         biddersPopUp.classList.add("show");
     }, 50);
-
     // دالة لتحديث قائمة المزايدين
     function updateBiddersList(data) {
         biddersList.innerHTML = "";
@@ -297,7 +295,7 @@ function openBiddersPopup(landId) {
                 var listItem = document.createElement('li');
                 listItem.style.color = "#28a745"; // النص باللون الأخضر
                 listItem.innerHTML = `
-                    <p>اسم المزايد: ${highestBidder.user.name}</p>
+                    <p>اسم المزايد: ${highestBidder.user.name}👑</p>
                     <p>قيمة المزايدة: ${highestBidder.bid_amount} ريال</p>
                     <p style="font-weight: bold; color: #28a745;">الفائز</p>
                 `;
@@ -422,12 +420,10 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
     const timerInterval = setInterval(updateTimer, 1000);
     updateTimer(); // Call immediately to initialize
 });
-
             </script>
-
 @endforeach
 @else
-    <p>لا توجد بيانات لعرضها.</p>
+    <p>لا توجد مزادات لعرضها.</p>
 @endif
                         </div>
                     </div>

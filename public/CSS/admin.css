@@ -12,3 +12,32 @@
     scroll-behavior: smooth;
 }
 /* messages */
+.message {
+    padding: 0 15%;
+}
+.message_title {
+    padding: 5% 0 0 0 ;
+    display: flex;
+    justify-content: space-between;
+}
+.message_title h2 {
+    color: #62a189;
+    border-bottom: 1px solid #78db9e;
+}
+.message_body {
+    padding: 5% 0 0 0;
+}
+.message_title {
+    direction: rtl;
+}
+.message_body_title {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+
+}
+.message_body_title form button{
+    padding: 10px 20px;
+    border-radius: 10px ;
+}

@@ -30,7 +30,8 @@ return new class extends Migration
             $table->string(column: 'land_deed')->nullable();
             $table->dateTime(column: 'start_time')->nullable();
             $table->boolean('show')->default(true);
-            $table->string('show_to_estate')->default(0);
+            $table->integer('show_to_estate')->default(0);
+            $table->integer('add_balance_to_seller')->default(0);
             $table->timestamps();
         });
     }

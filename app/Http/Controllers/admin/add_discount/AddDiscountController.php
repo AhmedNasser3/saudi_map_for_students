@@ -13,7 +13,14 @@ class AddDiscountController extends Controller
     {
         $userAdditions =User::all();
         return view('admin.add_points.index',compact('userAdditions'));
-    }public function addBalance(Request $request)
+    }
+    public function minusAdditions()
+    {
+        $userAdditions =User::all();
+        return view('admin.add_points.add',compact('userAdditions'));
+    }
+
+    public function addBalance(Request $request)
     {
         $userId = $request->input('user_id');
         $addition = $request->input('addition');
