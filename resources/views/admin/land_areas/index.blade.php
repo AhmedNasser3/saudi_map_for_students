@@ -15,9 +15,6 @@
             <div class="admin_land_data">
                 <div class="admin_land_content">
                     <div class="container mt-5">
-                        <form action="{{ route('landArea.deleteSelected') }}" method="POST" id="deleteForm">
-                            @csrf
-                            <button type="submit" class="delete_btn_header" id="deleteSelectedButton" disabled >حذف المزادات المحددة</button>
                             <table id="userTable" class="table display nowrap table-striped table-bordered" style="width:100%">
                                 <thead class="head_table">
                                     <tr>
@@ -36,7 +33,6 @@
                                         <th>صورة المزاد</th>
                                         <th>حالة المزاد</th>
                                         <th>ازالة المزاد</th>
-                                        <th><input type="checkbox" id="selectAll"> تحديد الكل</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +46,7 @@
                                                 @csrf
                                                 @method('put')
                                                 <div class="btns_land" style="display: grid">
-                                                    <input type="text" name="taxDays" value="{{ $tax->taxDays }}">
+                                                    <input type="number" name="taxDays" value="{{ $tax->taxDays }}" >
                                                     <input type="submit">
                                                 </div>
                                             </form>
@@ -71,7 +67,6 @@
                                         <td>{{ $landArea->highest_bid }}</td>
                                         <td><img src="{{ asset('storage/' . $landArea->img) }}" alt="صورة الأرض"></td>
                                         <td>{{ $landArea->state }}</td>
-                                        <td><input type="checkbox" class="selectLand" name="selected[]" value="{{ $landArea->id }}"></td>
                                         <td>
                                             <form action="{{ route('landArea.delete', ['landArea_id' => $landArea->id]) }}" method="POST" style="display: inline;">
                                                 @csrf
@@ -85,7 +80,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </form>
                     </div>
                 </div>
             </div>

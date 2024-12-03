@@ -54,6 +54,26 @@
                             style="background-color: rgb(91, 138, 127);">
                             طبع صك الأرض
                         </button>
+                        @if ($landArea->show_to_estate == 0)
+
+                        <button
+                        class="btn_estate"
+                        style="background-color: rgb(91, 111, 138);"
+                        id="btn-estate-{{ $landArea->id }}"
+                        data-land-area-id="{{ $landArea->id }}">
+                        بيع الارض
+                    </button>
+                    @elseif($landArea->show_to_estate == 3)
+                    <button
+                    style="background-color: rgb(130, 206, 154);">
+                    <a href="{{ route('estate.create', ['landArea_id' => $landArea->id]) }}" style="color: white">                    تم قبول الطلب اضغط للبيع
+                    </a>
+                </button>
+                    @else
+                    <button
+                    style="color:white;background-color: rgb(78, 78, 78);"
+                   >تم ارسال طلب البيع</button>
+                    @endif
                         @if ($landArea->tax == 0 && \Carbon\Carbon::parse($landArea->tax_end_time)->lte(now()))
                             <!-- يظهر زر دفع الغرامة -->
                             <button class="pay-fine" id="btn-fine-{{ $landArea->id }}"
@@ -299,4 +319,43 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // إضافة حدث الضغط على زر "بيع الأرض"
+        document.querySelectorAll('.btn_estate').forEach(button => {
+            button.addEventListener('click', function () {
+                let landAreaId = this.getAttribute('data-land-area-id');
+                let btn = this;
+
+                // إرسال طلب AJAX لتحديث show_to_estate إلى 1
+                fetch('/update-land-estate-status', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        landAreaId: landAreaId,
+                        showToEstate: 1
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // في حالة النجاح، تحديث الزر أو إجراء آخر
+                        btn.innerText = "تم بيع الأرض";
+                        btn.style.backgroundColor = "grey";
+                        btn.disabled = true; // تعطيل الزر بعد البيع
+                    } else {
+                        alert(data.message || "حدث خطأ أثناء بيع الأرض.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+    });
+    </script>
 @endsection

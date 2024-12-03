@@ -2,10 +2,11 @@
 
 namespace App\Models\admin\land;
 
-use App\Models\admin\bid\Bid;
-use App\Models\admin\land\Land;
-use App\Models\admin\tax\Tax;
 use App\Models\User;
+use App\Models\admin\bid\Bid;
+use App\Models\admin\tax\Tax;
+use App\Models\admin\land\Land;
+use App\Models\admin\estate\Estate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -39,6 +40,10 @@ class LandArea extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function estate()
+    {
+        return $this->belongsTo(Estate::class);
     }
 
     public function bids()

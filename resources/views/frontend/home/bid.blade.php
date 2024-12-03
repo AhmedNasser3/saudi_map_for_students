@@ -13,24 +13,14 @@
                 <div class="bid_body">
                     <ul>
                         <li style="    border-bottom: 1px solid #36b927;"><a href="#" style="    color: #36b927;">الكل</a></li>
-                        <li><a href="#">جاري</a></li>
-                        <li><a href="#">قادم</a></li>
-                        <li><a href="#">منتهي</a></li>
                     </ul>
                 </div>
-
                 <div class="bid_cards">
                     <div class="bid_cards_container">
                         <div class="bid_cards_data">
                             @if($landarea && $landarea->count())
                             @foreach ($landarea as $land)
                             @if ($land->show == 0)
-                            {{-- <div class="countdown" data-id="{{ $land->id }}" data-starttime="{{ $land->start_time }}">
-                                <span   class="timer-days">0</span> يوم
-                                <span   class="timer-hours">0</span> ساعة
-                                <span   class="timer-minutes">0</span> دقيقة
-                                <span   class="timer-seconds">0</span> ثانية
-                            </div> --}}
                             <div class="bid_cards_content">
                                 <div class="bid_cards_img">
                                     <img src="https://www.auctions.com.sa/web/binary/image/?model=auction.auction&field=image&id=15760" alt="">
@@ -195,7 +185,7 @@
                             <div class="bid_pop_up_inputs">
                                 <form id="placeBidForm" action="{{ route('placeBid', $land->id) }}" method="POST">
                                     @csrf
-                                    <input type="number" name="bid_amount" placeholder="ادخل سعر المزايدة" required>
+                                    <input type="number" name="bid_amount" placeholder="ادخل سعر المزايدة" required >
                                 </div>
                                 <div class="bid_pop_up_btn">
                                     <button id="placeBidButton" type="submit" style="cursor: pointer;">اضف مزايدة</button>
@@ -208,8 +198,6 @@
         </div>
     </div>
 </div>
-{{-- @if ($land->state == 1) --}}
-
 <div class="bidders_pop_up_bg"></div>
 <div class="bidders_pop_up">
     <div class="bidders_pop_up_container">
@@ -231,45 +219,6 @@
     </div>
 </div>
 
-{{-- @else
-    <div class="bidders_pop_up_bg"></div>
-    <div class="bidders_pop_up">
-        <div class="bidders_pop_up_container">
-            <div class="bidders_pop_up_data">
-                <div class="bidders_pop_up_content">
-                    <div class="bidders_pop_up_header">
-                        <button id="closeBiddersPopUp" class="close_button"><i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-                    <div class="cc_cn">
-                        <div class="cc_title">
-                            <h2>قائمة المزايدين</h2>
-                            <ul>
-                                @if ($land->bids->count())
-                                    @php
-                                        $maxBid = $land->bids->max('bid_amount'); // الحصول على أكبر قيمة للمزايدة
-                                        $winningBid = $land->bids->where('bid_amount', $maxBid)->first(); // الحصول على المزايد الذي قدم أكبر قيمة
-                                    @endphp
-
-                                    @if ($winningBid)
-                                        <li>
-                                            <p>اسم المزايد: {{ $winningBid->user->name }}</p>
-                                            <p>قيمة المزايدة: {{ $winningBid->bid_amount }} ريال</p>
-                                            <p style="font-weight: bold; color: #28a745;">الفائز</p> <!-- إضافة كلمة الفائز -->
-                                        </li>
-                                    @else
-                                        <p>لا توجد مزايدات على هذه الأرض حتى الآن.</p>
-                                    @endif
-                                @else
-                                    <p>لا توجد مزايدات على هذه الأرض حتى الآن.</p>
-                                @endif
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif --}}
 
         <script>
 document.querySelectorAll(".bidButton").forEach(function(button) {
@@ -279,18 +228,24 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
         var bidPopUpBg = document.querySelector(".bid_pop_up_bg");
 
         fetch(`/get-land-details?id=${landId}`)
-            .then(response => response.json())
-            .then(data => {
-                document.querySelector(".bid_pop_up_land_area h3").innerText = `${data.land.area} كم`;
-                document.querySelector(".bid_pop_up_land_price h3").innerText = `${data.land.starting_price} ريال`;
-                document.querySelector(".bid_pop_up_land_duration h3").innerText = `${data.land.duration} أيام`;
+        .then(response => response.json())
+.then(data => {
+    document.querySelector(".bid_pop_up_land_area h3").innerText = `${data.land.area} كم`;
+    document.querySelector(".bid_pop_up_land_price h3").innerText = `${data.land.starting_price} ريال`;
+    document.querySelector(".bid_pop_up_land_duration h3").innerText = `${data.land.duration} أيام`;
 
-                var bidForm = document.querySelector("#placeBidForm");
-                bidForm.action = `/place-bid/${landId}`;
+    var bidForm = document.querySelector("#placeBidForm");
+    bidForm.action = `/place-bid/${landId}`;
 
-                var bidButton = document.querySelector("#placeBidButton");
-                bidButton.setAttribute("data-id", landId);
-            });
+ // إضافة min تلقائيًا
+ var inputField = document.querySelector('input[name="bid_amount"]');
+        if (inputField) {
+            inputField.setAttribute("min", data.land.starting_price);  // إضافة min تلقائيًا
+        }
+
+        var bidButton = document.querySelector("#placeBidButton");
+        bidButton.setAttribute("data-id", landId);
+    });
 
         bidPopUp.style.display = "flex";
         bidPopUpBg.style.display = "block";

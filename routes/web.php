@@ -19,6 +19,7 @@ use App\Http\Controllers\frontend\messages\SendController;
 use App\Http\Controllers\admin\add_discount\DiscountController;
 use App\Http\Controllers\admin\landarea\MainLandAreaController;
 use App\Http\Controllers\admin\add_discount\AddDiscountController;
+use App\Http\Controllers\admin\estate\EstateController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.page');
 Route::get('/dashboard', function () {
@@ -92,7 +93,6 @@ Route::controller(MainLandAreaController::class)->prefix('landArea')->group(func
     Route::get('/edit/{landArea_id}/', 'edit')->name('landArea.edit');
     Route::put('/{landArea_id}/update', 'update')->name('landArea.update');
     Route::delete('/{landArea_id}/delete', 'delete')->name('landArea.delete');
-    Route::delete('/land-area/delete-selected', action: 'deleteSelected')->name('landArea.deleteSelected');
 
 });
 Route::controller(UserController::class)->prefix('user')->group(function(){
@@ -130,5 +130,10 @@ Route::post('/update-tax-status', [TaxController::class, 'updateTaxStatus']);
 Route::post('/extend-tax-time', [TaxController::class, 'extendTaxTime']);
 Route::post('/update-tax-status', [TaxController::class, 'updateTaxStatus']);
 Route::get('/taxTimeUpdate/{id}', [TaxController::class, 'update'])->name('tax.update.time');
+Route::post('/update-land-estate-status', [EstateController::class, 'updateLandEstateStatus']);
+Route::get('/estate', [EstateController::class, 'index'])->name('estate.index');
+Route::post('/estate/store', [EstateController::class, 'store'])->name('estate.store');
+Route::get('/estate/{landArea_id}/create', [EstateController::class, 'create'])->name('estate.create');
+Route::post('/estate/{landArea_id}/create', [EstateController::class, 'storeLandArea'])->name('estate.create.landArea');
 
 require __DIR__.'/auth.php';
