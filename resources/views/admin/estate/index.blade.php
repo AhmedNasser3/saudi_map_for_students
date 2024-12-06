@@ -42,8 +42,15 @@
                                     </td>
                                     </form>
                             </tr>
-                            @else
-
+                            @elseif($landArea->show_to_estate == 4)
+                            <tr>
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $landArea->area }}</td>
+                                <td>{{ $landArea->highest_bid }}</td>
+                                <td>
+                                    <button style="padding: 5px 10px;background-color: #6aa181; border:none;border-radius:5px;"><a href="{{ route('estate.create', ['landArea_id' => $landArea->id]) }}" style="color: white">لقد قبل صاحب الارض البيع</a></button>
+                                </td>
+                            </tr>
                             @endif
                             @endforeach
                         </tbody>

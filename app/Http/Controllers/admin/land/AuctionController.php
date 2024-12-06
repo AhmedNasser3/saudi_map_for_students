@@ -16,12 +16,27 @@ class AuctionController extends Controller
 {
     $landArea = LandArea::findOrFail($id);
     $bids = Bid::where('land_area_id', $id)->orderBy('bid_amount', 'desc')->first();
+    $bid = Bid::orderBy('bid_amount', 'desc')->first();
+
+    // التحقق من وجود السجل ووجود المستخدم المرتبط به
+    if ($bid) {
+        // تعديل balance و freeze_balance للمستخدم
+        $bid->user->balance += $bid->bid_amount;
+        $bid->user->freeze_balance -= $bid->bid_amount;
+        // حفظ التعديلات على المستخدم
+        $bid->user->save();
+    }
+
 
     // التحقق إذا كانت المزايدة موجودة
     if ($bids && $bids->user_id == 1423523523532523532) {
         // حذف المزايدة إذا كانت موجودة
         $bids->delete();
     }
+
+
+
+
 
     // التحقق من وجود مزايدات
     $price = Price::first(); // إذا كنت تريد تحديث أول سجل فقط. يمكنك تخصيص البحث إذا كان هناك أكثر من سجل

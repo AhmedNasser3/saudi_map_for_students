@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use App\Models\frontend\messages\Send;
 use App\Models\admin\addition\Addition;
 use App\Models\admin\discount\Discount;
+use App\Models\frontend\expandArea\ExpandArea;
+use App\Models\frontend\message\LawyerSend;
 
 class HomeController extends Controller
 {
@@ -32,14 +34,13 @@ class HomeController extends Controller
     {
         $landId = $request->get('land_id');
 
-        // جلب بيانات الأرض والمزايدات
         $landarea = LandArea::with('bids.user')->findOrFail($landId);
 
         $bidders = $landarea->bids;
 
         return response()->json([
             'bidders' => $bidders,
-            'state' => $landarea->state // إرسال حالة المزاد
+            'state' => $landarea->state
         ]);
     }
 
@@ -53,45 +54,40 @@ class HomeController extends Controller
     }
     public function myOffice($userId)
     {
-        $user = auth()->user(); // الحصول على المستخدم الحالي
+        $user = auth()->user();
         if ($user->id != $userId) {
             return redirect()->route('home')->with('error', 'أنت غير مخول للوصول إلى هذه الصفحة');
         }
 
-        // الحصول على جميع العطاءات المرتبطة بالأراضي
         $bids = LandArea::with('bids')
             ->where('highest_bidder_id', $userId)
             ->get();
 
-        // التحقق من حالة الغرامة بعد مرور الوقت
         foreach ($bids as $landArea) {
             foreach ($landArea->bids as $bid) {
                 if ($bid->tax_end_time && now()->greaterThanOrEqualTo($bid->tax_end_time)) {
-                    // فرض غرامة إذا انتهى الوقت
-                    $bid->tax = 50; // فرض غرامة 50 ريال
+                    $bid->tax = 50;
                     $bid->save();
                 }
             }
         }
 
-        // الحصول على الإضافات والخصومات للمستخدم
         $additions = Addition::where('user_id', auth()->user()->id)->get();
         $discounts = Discount::where('user_id', auth()->user()->id)->get();
 
         $landAreasBids = LandArea::where('highest_bidder_id', auth()->user()->id)->get();
 
-        // دمج البيانات
         $allItems = collect($landAreasBids)
             ->merge($additions)
             ->merge($discounts)
-            ->unique() // إزالة العناصر المكررة
-            ->sortBy('id') // ترتيب حسب الحقل الذي تريده، مثل id
-            ->values(); // إعادة ضبط المفاتيح
-        // ترتيب العناصر حسب التاريخ
+            ->unique()
+            ->sortBy('id')
+            ->values();
         $sortedItems = $allItems->sortByDesc('created_at');
         $sends = Send::where('user_id', auth()->user()->id)->get();
-
-        return view('frontend.home.my_office', compact('bids', 'additions','discounts','sortedItems','landAreasBids','sends'));
+        $lawyerSends = LawyerSend::where('user_id', auth()->user()->id)->get();
+        $bonusAreas = ExpandArea::all();
+        return view('frontend.home.my_office', compact('bids', 'additions','discounts','sortedItems','landAreasBids','sends','lawyerSends','bonusAreas'));
     }
 
 
@@ -106,7 +102,6 @@ class HomeController extends Controller
             return redirect()->route('home')->with('error', 'Land not found');
         }
 
-        // تحميل الصورة
         $imagePath = public_path('images/صك البورصة copy.jpg');
 
         if (!file_exists($imagePath)) {

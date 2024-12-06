@@ -297,7 +297,7 @@ function openBiddersPopup(landId) {
                 listItem.innerHTML = `
                     <p>اسم المزايد: ${highestBidder.user.name}👑</p>
                     <p>قيمة المزايدة: ${highestBidder.bid_amount} ريال</p>
-                    <p style="font-weight: bold; color: #28a745;">الفائز</p>
+                    <p style="font-weight: bold; color: #28a745;">المشتري</p>
                 `;
                 biddersList.appendChild(listItem);
             } else {
@@ -421,6 +421,46 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
     updateTimer(); // Call immediately to initialize
 });
             </script>
+
+            <style>
+                /* الحركة الافتراضية للعناصر المخفية */
+.bid_cards_content {
+    opacity: 0;
+    transform: translateX(100%); /* تبدأ العناصر من اليمين */
+    transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+/* عند إضافة الكلاس .visible سيتم تحريك العناصر إلى اليسار وتظهر */
+.bid_cards_content.visible {
+    opacity: 1;
+    transform: translateX(0); /* تنتقل إلى الموضع الطبيعي */
+}
+
+            </style>
+            <script>// دالة للكشف عن التمرير وإظهار العناصر
+                function handleScroll() {
+                    // التحقق من العناصر في الصفحة
+                    const cards = document.querySelectorAll('.bid_cards_content');
+
+                    cards.forEach(card => {
+                        // الحصول على المسافة بين العنصر وأعلى الصفحة
+                        const cardPosition = card.getBoundingClientRect().top;
+                        const windowHeight = window.innerHeight;
+
+                        // إذا كان العنصر في شاشة المستخدم (داخل النطاق المرئي)
+                        if (cardPosition < windowHeight - 100) {
+                            // إضافة الكلاس "visible" لتفعيل الحركة
+                            card.classList.add('visible');
+                        }
+                    });
+                }
+
+                // الاستماع لحدث التمرير
+                window.addEventListener('scroll', handleScroll);
+
+                // استدعاء الدالة عند تحميل الصفحة للتأكد من إضافة الحركة إذا كانت العناصر مرئية
+                document.addEventListener('DOMContentLoaded', handleScroll);
+                </script>
 @endforeach
 @else
     <p>لا توجد مزادات لعرضها.</p>

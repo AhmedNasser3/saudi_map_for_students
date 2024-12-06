@@ -339,3 +339,76 @@
 .btn_replay input {
     text-align: center;
 }
+
+
+/* products */
+
+.products_title h3 {
+    color: #6ea078;
+    font-size: 2rem;
+}
+
+.products_bg_container {
+    padding: 30px 0 0 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.products_bg {
+    padding: 15px;
+    background-color: #dbdbdb;
+    border-radius: 5px;
+    width: 225px;
+    height: 125px;
+    max-width: 225px;
+    max-height: 125px;
+}
+
+.products_bg_title h3 {
+    font-size: 1.2rem;
+    color: #71ad77;
+}
+
+.products_bg_area p {
+    color: #374d36;
+    border-bottom: 1px solid #5e925c;
+    font-size: 1rem;
+}
+
+.products_bg_title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.products_bg_des div p {
+    padding: 10px 0 0 0;
+    color: #797979;
+    font-size: 1rem;
+}
+
+.products_bg_des {
+    display: grid;
+    align-items: center;
+}
+
+.products_bg_btn button {
+    background-color: #374d36;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.products_bg_des div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.products_bg_btn {
+    padding: 10px 0 0 0;
+}
+
+.products_bg_btn button a {
+    color: white;
+}

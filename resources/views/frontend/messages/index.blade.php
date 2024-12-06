@@ -4,7 +4,7 @@
             <div class="message_content">
                 <div class="message_title">
                     <div class="message_btns">
-                        <button><a href="{{ route('message.index') }}">انشاء استشارة</a></button>
+                        <button><a href="{{ route('message.index') }}">طلب استشارة</a></button>
                     </div>
                     <h2>الاستشارات</h2>
                 </div>

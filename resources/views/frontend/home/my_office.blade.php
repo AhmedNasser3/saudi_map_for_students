@@ -1,10 +1,11 @@
 @extends('frontend.master')
 @section('content')
  @php
-                                    use App\Models\admin\price\Price;
+use App\Models\admin\price\Price;
+use App\Models\admin\estate\Estate;
 
-                                    $price = Price::first(); // إذا كنت تريد تحديث أول سجل فقط. يمكنك تخصيص البحث إذا كان هناك أكثر من سجل
-                                    @endphp
+$price = Price::first();
+@endphp
 <div class="office">
     <div class="bid_header">
         <div class="bid_btn">
@@ -19,9 +20,15 @@
             <li class="filter-item" id="btn-all" data-filter="all" style="border-bottom: 1px solid #36b927;">
                 <a href="#">الكل</a>
             </li>
+            {{-- <li class="filter-item" id="btn-ongoing" data-filter="ongoing"><a href="#"><img  style="width: 75px" src="{{ asset('images/pngtree-historical-scroll-book-illustration-free-png-image_4079215.png') }}" alt=""></a></li>
+            <li class="filter-item"id="btn-upcoming"  data-filter="upcoming"><a href="#"><img style="width: 60px; transform:translateY(-7px)" src="{{ asset('images/person-silhouette-with-question-mark-vector-13296363.png') }}" alt=""></a></li>
+            <li class="filter-item"id="btn-lawyer" data-filter="lawyer"><a href="#"><img style="width: 75px" src="{{ asset('images/Faceless-Male-Avatar-In-Suit-2.png') }}" alt=""></a></li>
+            <li class="filter-item"id="btn-finished" data-filter="finished"><a href="#"><img style="width: 75px" src="{{ asset('images/old-man-8731130_1280.png') }}" alt=""></a></li> --}}
             <li class="filter-item" id="btn-ongoing" data-filter="ongoing"><a href="#">سجل المعاملات</a></li>
             <li class="filter-item"id="btn-upcoming"  data-filter="upcoming"><a href="#">استشارة</a></li>
+            <li class="filter-item"id="btn-lawyer" data-filter="lawyer"><a href="#">المحامي</a></li>
             <li class="filter-item"id="btn-finished" data-filter="finished"><a href="#">شيخ العقار</a></li>
+            <li class="filter-item"id="btn-product" data-filter="product"><a href="#">الدرج السري</a></li>
         </ul>
     </div>
     <div class="office_container" style="    display: flex
@@ -72,11 +79,27 @@
                         بيع الارض
                     </button>
                     @elseif($landArea->show_to_estate == 3)
+                    <p style="color: #5b6f8a;font-size:1rem;margin:10px 0 0 0;">
+                        @php
+$estates = Estate::where('landArea_id', $landArea->id)
+    ->orderBy('id', 'desc') // استبدل "created_at" بالعمود الذي ترغب بالترتيب بناءً عليه
+    ->first();
+                        @endphp
+                        تم تقدير السعر ب {{ floor($estates->min_price) }} ريال
+                    </p>
                     <button
-                    style="background-color: rgb(130, 206, 154); border:2px solid#abf7af;color:white">
-                    <a href="{{ route('estate.create', ['landArea_id' => $landArea->id]) }}" style="color: white">                    تم قبول الطلب اضغط للبيع
-                    </a>
+                    class="apply-btn"
+                    data-id="{{ $landArea->id }}"
+                    style="background-color: rgb(130, 206, 187); border:2px solid #abf7cd;color:white">
+                    قبول
                 </button>
+                <button
+                class="reject-btn"
+                data-id="{{ $landArea->id }}"
+                style="background-color: rgb(206, 130, 130); border:2px solid #f7abab;color:white">
+                رفض
+            </button>
+                <br>
                     @else
                     <button
                     style="color:white;background-color: rgb(78, 78, 78);"
@@ -114,7 +137,6 @@
     </div>
     @endforeach
 </div>
-
         <div class="office_data" id="content-ongoing" style="display: none;">
             <div class="office_additions_all"  >
                 @foreach ($sortedItems as $item)
@@ -153,9 +175,40 @@
         <div class="office_data" id="content-upcoming" style="display: none;">
             @include('frontend.messages.index')
         </div>
+        <div class="office_data" id="content-lawyer" style="display: none;">
+            <div class="office_additions_all" style="display: grid">
+            @include('frontend.lawyerMessage.index')
+            </div>
+        </div>
         <div class="office_data" id="content-finished" style="display: none;">
             <div class="office_additions_all" style="display: grid">
-                <h1>aasd</h1>
+                @foreach ($bids as $landArea)
+    <div class="office_content" data-land-area-id="{{ $landArea->id }}">
+        <div class="office_titles">
+            <div class="office_titles_main">
+                <div class="office_header">
+                    <h2>ارض في تبوك</h2>
+                    <p>مساحة {{ $landArea->area }} كم</p>
+                </div>
+                <div class="office_price">
+                    <div class="office_price_titles">
+                        <h3>{{ $landArea->highest_bid }} ريال</h3>
+                        <p>اقل سعر سوف يصلك</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="office_img">
+            <img src="https://www.auctions.com.sa/web/binary/image/?model=auction.auction&field=image&id=15760" alt="">
+        </div>
+    </div>
+    @endforeach
+            </div>
+        </div>
+        <div class="office_data" id="content-product" style="display: none;">
+            <div class="office_additions_all" style="display: grid">
+                <h1>@include('frontend.products.index')</h1>
             </div>
         </div>
     </div>
@@ -382,4 +435,62 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
     </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).on('click', '.reject-btn', function(e) {
+        e.preventDefault();
+
+        var landAreaId = $(this).data('id');
+
+        $.ajax({
+            url: "{{ route('updateState') }}",
+            type: "POST",
+            data: {
+                _token: "{{ csrf_token() }}",
+                landArea_id: landAreaId,
+                state: 0
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('تم تحديث الحالة بنجاح.');
+                    location.reload();
+                } else {
+                    alert('حدث خطأ أثناء تحديث الحالة.');
+                }
+            },
+            error: function(xhr) {
+                alert('حدث خطأ غير متوقع.');
+            }
+        });
+    });
+</script>
+<script>
+    $(document).on('click', '.apply-btn', function(e) {
+        e.preventDefault();
+
+        var landAreaId = $(this).data('id');
+
+        $.ajax({
+            url: "{{ route('updateState_apply') }}",
+            type: "POST",
+            data: {
+                _token: "{{ csrf_token() }}",
+                landArea_id: landAreaId,
+                state: 4
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('تم تحديث الحالة بنجاح.');
+                    location.reload();
+                } else {
+                    alert('حدث خطأ أثناء تحديث الحالة.');
+                }
+            },
+            error: function(xhr) {
+                alert('حدث خطأ غير متوقع.');
+            }
+        });
+    });
+</script>
 @endsection

@@ -10,7 +10,6 @@ use App\Models\admin\estate\Estate;
 
 class EstateController extends Controller
 {
-    // في الـController الخاص بك
 public function updateLandEstateStatus(Request $request)
 {
     $landArea = LandArea::find($request->landAreaId);
@@ -100,7 +99,7 @@ public function storeLandArea(Request $request,$LandAreaId)
     $LandsAreaStore['state'] = 1;
 
     // تعيين الحالة إلى 1
-    $LandsAreaStore['state'] = 1;
+    $LandsAreaStore['show_to_estate'] = 0;
     // تعيين الحالة إلى 0
     $LandsAreaStore['add_balance_to_seller'] = 1;
 

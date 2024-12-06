@@ -7,7 +7,7 @@
                 <button><a href="{{ route('my.office', ['user_id' => auth()->user()->id]) }}">رجوع</a></button>
             </div>
             <div class="admin_land_header_title">
-                <h1>انشاء استشارة</h1>
+                <h1>طلب استشارة</h1>
             </div>
         </div>
         <div class="admin_land_create_data">

@@ -22,6 +22,9 @@
       <a href="{{ route('admin.chat.view') }}" class="navbar__link"><i class="fa-solid fa-envelope"></i><span>الاستشارات</span></a>
     </li>
     <li class="navbar__item">
+      <a href="{{ route('admin.lawyerMessage.chat.view') }}" class="navbar__link"><i class="fa-solid fa-envelope"></i><span>القضايا</span></a>
+    </li>
+    <li class="navbar__item">
       <a href="{{ route('estate.index') }}" class="navbar__link"><i class="fa-solid fa-person-cane"></i><span>شيخ العقار</span></a>
     </li>
     <li class="navbar__item">

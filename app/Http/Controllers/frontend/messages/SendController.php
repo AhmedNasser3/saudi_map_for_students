@@ -118,7 +118,7 @@ class SendController extends Controller
         return redirect()->back();
     }
 
-    // amin viev
+    // admin view
     public function adminView(){
         $sends = Send::all();
         return view('admin.messages.index', data: compact('sends'));
