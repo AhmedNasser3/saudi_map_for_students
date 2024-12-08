@@ -413,7 +413,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css" />
-        <title>تسجيل دخول & مستخدم جديد</title>
+        <title>تسجيل الدخول & مستخدم جديد</title>
     </head>
 
     <body>
@@ -423,7 +423,7 @@
                     <form action="{{ route('login') }}" method="post" class="sign-in-form">
                         @csrf
                         @method('post')
-                        <h2 class="title">تسجيل دخول</h2>
+                        <h2 class="title">تسجيل الدخول</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
                             <input type="text" name="phone" placeholder="رقم الهاتف" />
@@ -432,14 +432,14 @@
                             <i class="fas fa-lock"></i>
                             <input type="password" name="password" placeholder="الرقم السري" />
                         </div>
-                        <input type="submit" value="تسجيل دخول" class="btn solid" />
-                        <p class="social-text">كن شخصا من المنافسين !</p>
+                        <input type="submit" value="تسجيل الدخول" class="btn solid" />
+                        <p class="social-text">شارك في البورصة وكن دائما في المقدمة</p>
 
                     </form>
                     <form method="POST" action="{{ route('register') }}" class="sign-up-form">
                         @csrf
                         @method('post')
-                        <h2 class="title">مستخدم جديد</h2>
+                        {{-- <h2 class="title">مستخدم جديد</h2> --}}
                         <div class="input-field">
                             <i class="fas fa-user"></i>
                             <input type="text" name="name" placeholder="اسم المستخدم" />
@@ -457,7 +457,7 @@
                             <input type="password"  name="password_confirmation" placeholder="الرقم السري" />
                         </div>
                         <input type="submit" class="btn" value="مستخدم جديد" />
-                        <p class="social-text">كن شخصا من المنافسين !</p>
+                        <p class="social-text">شارك في البورصة وكن دائما في المقدمة</p>
 
                     </form>
                 </div>
@@ -479,7 +479,7 @@
                         <h3>واحد مننا؟</h3>
                         <p>اكبر منصة مزايدات في السعدية اشتري ارضك وكبرها بنفسك                        </p>
                         <button class="btn transparent" id="sign-in-btn">
-                            تسجيل دخول
+                            تسجيل الدخول
                         </button>
                     </div>
                     <img src="https://i.ibb.co/nP8H853/Mobile-login-rafiki.png"  class="image" alt="" />

@@ -86,7 +86,7 @@ class lawyerController extends Controller
     public function replayStore(Request $request)
     {
         $chat = $request->validate([
-            'send_id' => 'required|exists:sends,id',
+            'send_id' => 'required|exists:lawyer_sents,id',
             'text' => 'required|string',
         ]);
 
@@ -118,7 +118,7 @@ class lawyerController extends Controller
     ->merge($replays)
     ->unique() // إزالة العناصر المكررة
     ->sortBy('id') // ترتيب حسب الحقل الذي تريده، مثل id
-    ->values(); // إعادة ضبط المفاتيح
+    ->values();
     $sortedItems = $all_chats->sortBy('created_at'); // ترتيب تصاعدي (الأقدم فالأحدث)
         return view('admin.lawyerMessage.create', compact('messages', 'sortedItems'));
     }

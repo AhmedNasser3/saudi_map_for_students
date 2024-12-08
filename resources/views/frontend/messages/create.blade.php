@@ -20,7 +20,7 @@
                               <table>
                                 <tr>
                                     <td>
-                                        <input type="text" id="title" name="title" placeholder="ادخل عنوان الرسالة..." required>
+                                        <input type="text" id="title" name="title" placeholder="ادخل عنوان الاستشارة..." required>
                                     </td>
                                     <td>
                                       <label for="title">: عنوان الاستشارة</label>
@@ -28,7 +28,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" id="message" name="message" placeholder="ادخل تفاصيل الرسالة..." required>
+                                        <input type="text" id="message" name="message" placeholder="ادخل تفاصيل الاستشارة..." required>
                                     </td>
                                     <td>
                                       <label for="message">: تفاصيل الاستشارة</label>
@@ -36,7 +36,7 @@
                                 </tr>
                                 <tr hidden>
                                     <td>
-                                        <input type="text" id="user_id" name="user_id" value="{{ auth()->user()->id }}" placeholder="ادخل تفاصيل الرسالة..." required>
+                                        <input type="text" id="user_id" name="user_id" value="{{ auth()->user()->id }}" placeholder="ادخل تفاصيل الاستشارة..." required>
                                     </td>
                                     <td>
                                       <label for="user_id">: المستخدم</label>
@@ -49,7 +49,7 @@
 
                                     $price = Price::first(); // إذا كنت تريد تحديث أول سجل فقط. يمكنك تخصيص البحث إذا كان هناك أكثر من سجل
                                     @endphp
-<input style="text-align: center" type="submit" value="انشيئي استشارة ب{{ $price->first()->message_price }} ريال">
+<input style="text-align: center" type="submit" value="انشاء استشارة ب{{ $price->first()->message_price }} ريال">
 </td>
                                 </tr>
                               </table>

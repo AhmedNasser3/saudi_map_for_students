@@ -58,6 +58,7 @@ Route::get('/admin/users', function(){
     return view(view: 'admin.users.add_users');
 });
 // ========================================================== chat Controller ==========================================================
+Route::get('/message/{userId}' ,[HomeController::class, 'message'])->name('message.home');
 Route::get('/create/message' ,[SendController::class, 'create'])->name('message.index');
 Route::post('/create/message' ,[SendController::class, 'store'])->name('message.create');
 Route::get('/message/{message_id}/view' ,[SendController::class, 'view'])->name('message.view');
@@ -65,6 +66,11 @@ Route::post('/messages/mark-read', [SendController::class, 'markAsRead'])->name(
 Route::post('/create/message/chat/store' , [SendController::class, 'sendStore'])->name('message.sendStore');
 Route::post('/message/chat/store' , [SendController::class, 'replayStore'])->name('message.replay');
 Route::put('/chat/{id}/update', [SendController::class, 'endChat'])->name('end.chat');
+// ========================================================== HomePages Controller ==========================================================
+Route::get('/history/{userId}' ,[HomeController::class, 'history'])->name('home.history');
+Route::get('/secret/{userId}' ,[HomeController::class, 'secret'])->name('home.secret');
+Route::get('/lawyer/{userId}' ,[HomeController::class, 'lawyer'])->name('home.lawyer');
+Route::get('/beard/{userId}' ,[HomeController::class, 'beard'])->name('home.beard');
 
 
 // ========================================================== lawyerMessage Controller ==========================================================
@@ -113,11 +119,11 @@ Route::controller(MainLandAreaController::class)->prefix('landArea')->group(func
 });
 
 // ========================================================== users Controller ==========================================================
-
 Route::controller(UserController::class)->prefix('user')->group(function(){
     Route::get('/', 'index')->name('user.page');
     Route::post('/users/import',  'import')->name('user.import');
 });
+
 // ========================================================== add and minus balance Controller ==========================================================
 Route::controller(AddDiscountController::class)->group(callback: function(){
 
@@ -133,7 +139,7 @@ Route::get('/message/{message_id}/chat/view' ,[SendController::class, 'adminView
 
 // ========================================================== lawyerMessage Controller ==========================================================
 Route::get('/lawyerMessage/chat/replay',[lawyerController::class, 'adminView'])->name('admin.lawyerMessage.chat.view');
-Route::get('/lawyerMessage/{LawyerMessage_id}/chat/view' ,[lawyerController::class, 'adminViewChat'])->name('lawyer.view.admin');
+Route::get('/lawyerMessage/{LawyerMessage_id}/chat/view' ,[lawyerController::class, 'adminViewChat'])->name('LawyerMessage.view.admin');
 // ========================================================== estate Controller ==========================================================
 Route::get('/estate', [EstateController::class, 'index'])->name('estate.index');
 // ========================================================== price Controller ==========================================================
@@ -142,9 +148,11 @@ Route::controller(PriceController::class)->prefix('price')->group(function(){
     Route::get('/', 'index')->name('price.page');
     Route::post('/update', 'update')->name('price.update');
 });
-
+// ========================================================== product Controller ==========================================================
+Route::get('/product/view', [ProductController::class, 'adminView'])->name('admin.view.product');
+Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+Route::post('/product/store', [ProductController::class, 'AdminStore'])->name('product.store');
 });
-
 
 
 

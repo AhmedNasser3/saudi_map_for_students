@@ -160,10 +160,19 @@
 }
 
 .message_title {
-    width: 1350px;
     display: flex;
+    flex-wrap: wrap;
+    gap: 0 70rem;
     justify-content: space-between;
-    align-items: ce;
+}
+
+@media screen and (max-width:1024px) {
+    .message_title {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 1rem;
+        justify-content: space-between;
+    }
 }
 
 .message_title h2 {
@@ -411,4 +420,72 @@
 
 .products_bg_btn button a {
     color: white;
+}
+
+.bid_title h1 {
+    color: #357c32;
+}
+
+
+/* icons */
+
+.office_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my_icons_title {
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+.my_icons_img {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my_icons_img img {
+    cursor: pointer;
+    width: 100px;
+    padding: 30px 0 0 0;
+    max-width: 100px;
+}
+
+.my_icons_title_bg {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.my_icons_title_bg button {
+    cursor: pointer;
+    margin: 10px 0 0 0;
+    background-color: #477575;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: none;
+}
+
+.my_icons_title_bg h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+.my_icons_content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }

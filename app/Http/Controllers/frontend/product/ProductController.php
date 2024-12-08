@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\admin\land\LandArea;
 use App\Http\Controllers\Controller;
 use App\Models\frontend\expand\BuyArea;
+use App\Models\frontend\expandArea\ExpandArea;
 
 class ProductController extends Controller
 {
@@ -47,5 +48,29 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'قمت بشراء زيادة مساحة الأرض بنجاح!');
     }
+
+    public function adminView(){
+        $products = ExpandArea::all();
+        return view('admin.expandArea.index', compact('products'));
+    }
+
+    public function create(){
+        return view('admin.expandArea.create');
+    }
+
+    public function AdminStore(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'number_products' => 'required|integer|min:1',
+            'area' => 'required|numeric|min:0',
+            'state' => 'required|string|max:255',
+        ]);
+
+        ExpandArea::create($data);
+
+        return redirect()->route('admin.view.product')->with('success', 'تم إضافة زيادة مساحة الأرض بنجاح.');
+    }
+
 
 }

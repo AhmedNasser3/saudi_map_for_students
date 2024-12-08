@@ -31,7 +31,7 @@
                             </form>
                             <!-- نهاية النموذج -->
                             <h3>
-                                <a href="{{ route('LawyerMessage.view.admin', ['message_id'=> $message->id]) }}" style="color: {{ $message->read == 1 ? '#5d9c40' : '#9b9b9b' }}">
+                                <a href="{{ route('LawyerMessage.view.admin', ['LawyerMessage_id'=> $message->id]) }}" style="color: {{ $message->read == 1 ? '#5d9c40' : '#9b9b9b' }}">
                                     {{ $message->title }}
                                 </a>
                             </h3>

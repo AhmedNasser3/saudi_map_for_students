@@ -30,5 +30,8 @@
     <li class="navbar__item">
       <a href="{{ route('price.page') }}" class="navbar__link"><i class="fa-solid fa-coins"></i><span>تعديل اسعارالمنتجات</span></a>
     </li>
+    <li class="navbar__item">
+        <a href="{{ route('admin.view.product') }}" class="navbar__link"><i class="fa-solid fa-lines-leaning"></i><span>المنتجات</span></a>
+      </li>
   </ul>
 </nav>

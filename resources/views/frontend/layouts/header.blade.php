@@ -50,7 +50,7 @@
                             <li class="header_link">
                                 <div id="turnon-log" class="log-up">
                                     <div class="log_in">
-                                        <button><a href="{{ route('login') }}">تسجيل دخول</a></button>
+                                        <button><a href="{{ route('login') }}">تسجيل الدخول</a></button>
                                     </div>
                                     <div class="sign_up" >
                                     </div>

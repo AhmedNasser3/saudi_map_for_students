@@ -7,37 +7,23 @@ use App\Models\admin\estate\Estate;
 $price = Price::first();
 @endphp
 <div class="office">
-    <div class="bid_header">
-        <div class="bid_btn">
-            <button><a href="#">مشاهدة جميع المزادات</a></button>
-        </div>
-        <div class="bid_title">
-            <h1>المزادات</h1>
+    <div class="bid_header" style="direction: rtl">
+        {{-- <div class="bid_btn">
+            <button><a href="#">مشاهدة الجميع </a></button>
+        </div> --}}
+        <div class="bid_title" >
+            <h1>مكتبي</h1>
         </div>
     </div>
     <div class="bid_body">
         <ul>
-            <li class="filter-item" id="btn-all" data-filter="all" style="border-bottom: 1px solid #36b927;">
+            <li class="" id="btn-all" data-filter="all" style="border-bottom: 1px solid #36b927;">
                 <a href="#">الكل</a>
             </li>
-            {{-- <li class="filter-item" id="btn-ongoing" data-filter="ongoing"><a href="#"><img  style="width: 75px" src="{{ asset('images/pngtree-historical-scroll-book-illustration-free-png-image_4079215.png') }}" alt=""></a></li>
-            <li class="filter-item"id="btn-upcoming"  data-filter="upcoming"><a href="#"><img style="width: 60px; transform:translateY(-7px)" src="{{ asset('images/person-silhouette-with-question-mark-vector-13296363.png') }}" alt=""></a></li>
-            <li class="filter-item"id="btn-lawyer" data-filter="lawyer"><a href="#"><img style="width: 75px" src="{{ asset('images/Faceless-Male-Avatar-In-Suit-2.png') }}" alt=""></a></li>
-            <li class="filter-item"id="btn-finished" data-filter="finished"><a href="#"><img style="width: 75px" src="{{ asset('images/old-man-8731130_1280.png') }}" alt=""></a></li> --}}
-            <li class="filter-item" id="btn-ongoing" data-filter="ongoing"><a href="#">سجل المعاملات</a></li>
-            <li class="filter-item"id="btn-upcoming"  data-filter="upcoming"><a href="#">استشارة</a></li>
-            <li class="filter-item"id="btn-lawyer" data-filter="lawyer"><a href="#">المحامي</a></li>
-            <li class="filter-item"id="btn-finished" data-filter="finished"><a href="#">شيخ العقار</a></li>
-            <li class="filter-item"id="btn-product" data-filter="product"><a href="#">الدرج السري</a></li>
         </ul>
     </div>
-    <div class="office_container" style="    display: flex
-;
-    justify-content: end;
-    flex-wrap: wrap;
-    gap: 1px;">
-
-<div class="office_data" id="content-all" style="display: flex; margin:2% 0 0 0;">
+    <div class="office_container" style="display: flex;justify-content: center;flex-wrap: wrap;gap: 1px;">
+<div class="office_data" id="content-all" style="display: flex; margin:2% 0 0 0;justify-content: center;">
     @foreach ($bids as $landArea)
     <div class="office_content" data-land-area-id="{{ $landArea->id }}">
         <div class="office_titles">
@@ -136,50 +122,69 @@ $estates = Estate::where('landArea_id', $landArea->id)
         </div>
     </div>
     @endforeach
-</div>
-        <div class="office_data" id="content-ongoing" style="display: none;">
-            <div class="office_additions_all"  >
-                @foreach ($sortedItems as $item)
-                <div class="office_additions"  style="display: grid">
-                @if ($item instanceof App\Models\admin\land\LandArea)
-                    <div class="office_additions_title">
-                        <h3 style="color: #770e00d5">ارض تم شرائها:&nbsp;&nbsp;</h3>
-                        <h3 style="color: #df4b37">{{ $item->highest_bid}}-</h3>
+    <div class="my_icons">
+        <div class="my_icons_container">
+            <div class="my_icons_data">
+                <div class="my_icons_content">
+                    <div class="my_icons_title">
+                        <a href="{{ route('home.lawyer',['userId' => auth()->user()->id]) }}">
+                            <div class="my_icons_img">
+                                <img src="{{ asset('images/Faceless-Male-Avatar-In-Suit-2.png') }}" alt="">
+                            </div>
+                            <div class="my_icons_title_bg">
+                                <button><h3>محامي</h3></button>
+                            </div>
+                        </a>
                     </div>
-                    <div class="office_additions_history">
-                        <p>{{ $item->created_at->format('d') }}/{{ $item->created_at->format('m') }}/{{ $item->created_at->format('Y') }}</p>
+                    <div class="my_icons_title">
+                        {{-- <a href="{{ route('home.beard', ['userId' => auth()->user()->id]) }}" > --}}
+                        <a href="#">
+                            <div class="my_icons_img">
+                                <img src="{{ asset('images/portrait-elderly-arab-man-white-260nw-2450117663.png') }}" alt="">
+                            </div>
+                            <div class="my_icons_title_bg">
+                                <button><h3>شيخ العقار</h3></button>
+                            </div>
+                        </a>
                     </div>
-                    @elseif ($item instanceof App\Models\admin\addition\Addition)
-                    <div class="office_additions_title">
-                        <h3 style="color: #36b927">{{ $item->title }}: &nbsp;&nbsp;</h3>
-                        <h3 style="color: #36b927">{{ $item->addition }}+</h3>
+                    <div class="my_icons_title">
+                        <a href="{{ route('home.secret',['userId' => auth()->user()->id]) }}">
+                            <div class="my_icons_img">
+                                <img src="{{ asset('images/hand-drawn-key-icon-sticker-style-vector-illustration_755164-11592.png') }}" alt="">
+                            </div>
+                            <div class="my_icons_title_bg">
+                                <button><h3>الدرج السري</h3></button>
+                            </div>
+                        </a>
                     </div>
-                    <div class="office_additions_history">
-                        <p>{{ $item->created_at->format('d') }}/{{ $item->created_at->format('m') }}/{{ $item->created_at->format('Y') }}</p>
+                    <div class="my_icons_title">
+                        <a href="{{ route('home.history', ['userId' => auth()->user()->id]) }}">
+                            <div style="padding:33px 0 0 0" class="my_icons_img">
+                                <img src="{{ asset('images/pngtree-historical-scroll-book-illustration-free-png-image_4079215.png') }}" alt="">
+                            </div>
+                            <div class="my_icons_title_bg">
+                                <button><h3>السجل المالي</h3></button>
+                            </div>
+                        </a>
                     </div>
-                    @elseif ($item instanceof App\Models\admin\discount\Discount)
-                    <div class="office_additions_title">
-                        <h3 style="color: #ad2310d5">{{ $item->title }}:&nbsp;&nbsp;</h3>
-                        <h3 style="color: #ad2310d5">{{ $item->discount }}-</h3>
+                    <div class="my_icons_title">
+                        <a href="{{ route('message.home', ['userId' => auth()->user()->id]) }}">
+                            <div class="my_icons_img">
+                                <img src="{{ asset('images/flat-cartoon-happy-character-joyful-moodpositive-emotions-vector-illustration-concept_189557-2711.png') }}" alt="">
+                            </div>
+                            <div class="my_icons_title_bg">
+                                <button><h3>استشارة</h3></button>
+                            </div>
+                        </a>
                     </div>
-                    <div class="office_additions_history">
-                        <p>{{ $item->created_at->format('d') }}/{{ $item->created_at->format('m') }}/{{ $item->created_at->format('Y') }}</p>
-                    </div>
-                    @endif
                 </div>
-            @endforeach
-
-        </div>
-
-    </div>
-        <div class="office_data" id="content-upcoming" style="display: none;">
-            @include('frontend.messages.index')
-        </div>
-        <div class="office_data" id="content-lawyer" style="display: none;">
-            <div class="office_additions_all" style="display: grid">
-            @include('frontend.lawyerMessage.index')
             </div>
         </div>
+    </div>
+</div>
+
+    </div>
+
         <div class="office_data" id="content-finished" style="display: none;">
             <div class="office_additions_all" style="display: grid">
                 @foreach ($bids as $landArea)
@@ -204,11 +209,6 @@ $estates = Estate::where('landArea_id', $landArea->id)
         </div>
     </div>
     @endforeach
-            </div>
-        </div>
-        <div class="office_data" id="content-product" style="display: none;">
-            <div class="office_additions_all" style="display: grid">
-                <h1>@include('frontend.products.index')</h1>
             </div>
         </div>
     </div>
@@ -362,39 +362,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const filterItems = document.querySelectorAll('.filter-item');
-        const contentSections = document.querySelectorAll('.office_data');
-
-        filterItems.forEach(item => {
-            item.addEventListener('click', function () {
-                const filter = this.getAttribute('data-filter');
-
-                // إخفاء جميع الصفحات
-                contentSections.forEach(section => {
-                    section.style.display = 'none';
-                });
-
-                // عرض الصفحة المطلوبة
-                const targetSection = document.getElementById('content-' + filter);
-                targetSection.style.display = 'flex';
-
-                // تحديث الزر المحدد
-                filterItems.forEach(i => i.style.borderBottom = 'none');
-                this.style.borderBottom = '1px solid #36b927';
-            });
-        });
-
-        // تعيين الفلتر الافتراضي (الكل)
-        const defaultFilter = 'all';
-        filterItems.forEach(i => {
-            if (i.getAttribute('data-filter') === defaultFilter) {
-                i.style.borderBottom = '1px solid #36b927';
-            }
-        });
-    });
 </script>
 
 <script>

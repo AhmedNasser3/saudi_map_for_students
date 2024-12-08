@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('password');
+            $table->string('level')->nullable();
             $table->string('phone')->unique();
             $table->string('role')->default('user');
             $table->decimal('balance', 15, 2)->default(3000);

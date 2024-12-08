@@ -28,7 +28,7 @@
                                 <div class="bid_cards_timer">
                                     <div class="bid_cards_timer_container">
                                         <div class="bid_cards_timer_title">
-                                            <h3>مزايدة حالية تنتهي</h3>
+                                            <h3>المزايدة الحالية تنتهي بعد</h3>
                                         </div>
                                         <div class="bid_cards_timer_body">
                                             <ul id="timer-{{ $land->id }}" data-endtime="{{ $land->auction_end_time }}">
@@ -93,7 +93,7 @@
                                 <div class="bid_cards_timer">
                                     <div class="bid_cards_timer_container">
                                         <div class="bid_cards_timer_title">
-                                            <h3>مزايدة حالية تنتهي</h3>
+                                            <h3>المزايدة الحالية تنتهي بعد</h3>
                                         </div>
                                         <div class="bid_cards_timer_body">
                                             <ul id="timer-{{ $land->id }}" data-endtime="{{ $land->auction_end_time }}">

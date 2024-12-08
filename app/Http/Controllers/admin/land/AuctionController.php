@@ -13,59 +13,51 @@ use Illuminate\Support\Facades\Auth;
 class AuctionController extends Controller
 {
     public function placeBid(Request $request, $id)
-{
-    $landArea = LandArea::findOrFail($id);
-    $bids = Bid::where('land_area_id', $id)->orderBy('bid_amount', 'desc')->first();
-    $bid = Bid::orderBy('bid_amount', 'desc')->first();
+    {
+        $landArea = LandArea::findOrFail($id);
+        $currentHighestBid = Bid::where('land_area_id', $id)->orderBy('bid_amount', 'desc')->first();
 
-    // التحقق من وجود السجل ووجود المستخدم المرتبط به
-    if ($bid) {
-        // تعديل balance و freeze_balance للمستخدم
-        $bid->user->balance += $bid->bid_amount;
-        $bid->user->freeze_balance -= $bid->bid_amount;
-        // حفظ التعديلات على المستخدم
-        $bid->user->save();
+        $price = Price::first(); // إذا كنت تريد تحديث أول سجل فقط. يمكنك تخصيص البحث إذا كان هناك أكثر من سجل
+
+        $user = Auth::user();
+
+        // تحديد الحد الأدنى للمزايدة المطلوبة
+        $minimumBidAmount = $currentHighestBid ? $currentHighestBid->bid_amount + $price->bid_price : $price->bid_price;
+
+        // التحقق إذا كانت المزايدة الجديدة أعلى من المبلغ المطلوب
+        if ($request->bid_amount < $minimumBidAmount) {
+            return redirect()->back()->with('error', sprintf('يجب أن تكون المزايدة أعلى من %d.', $minimumBidAmount));
+        }
+
+
+
+
+        if ($user->balance < $request->bid_amount) {
+            return redirect()->back()->with('error', 'لا يوجد رصيد كافي.');
+        }
+        if($currentHighestBid){
+
+            if ($request->bid_amount > $currentHighestBid->bid_amount) {
+                $user->balance += $currentHighestBid->bid_amount;
+                $user->freeze_balance -= $currentHighestBid->bid_amount;
+                $user->save();
+            }
+        }
+
+
+        $user->balance -= $request->bid_amount;
+        $user->freeze_balance += $request->bid_amount;
+        $user->update();
+
+        // إنشاء المزايدة الجديدة
+        Bid::create([
+            'land_area_id' => $landArea->id,
+            'user_id' => $user->id,
+            'bid_amount' => $request->bid_amount,
+        ]);
+
+        return redirect()->back()->with('success', 'تم تقديم المزايدة بنجاح!');
     }
-
-
-    // التحقق إذا كانت المزايدة موجودة
-    if ($bids && $bids->user_id == 1423523523532523532) {
-        // حذف المزايدة إذا كانت موجودة
-        $bids->delete();
-    }
-
-
-
-
-
-    // التحقق من وجود مزايدات
-    $price = Price::first(); // إذا كنت تريد تحديث أول سجل فقط. يمكنك تخصيص البحث إذا كان هناك أكثر من سجل
-
-    // التحقق إذا كانت المزايدة الجديدة أكبر من المزايدة الحالية
-    if ($bids && $request->bid_amount <= $bids->bid_amount + $price->bid_price) {
-        return redirect()->back()->with('error', sprintf('يجب أن تكون المزايدة أعلى من %d.', $bids->bid_amount + $price->bid_price));
-    }
-
-    // التحقق من الرصيد المتاح
-    $user = Auth::user();
-    if ($user->balance < $request->bid_amount) {
-        return redirect()->back()->with('error', 'لا يوجد رصيد كافي.');
-    }
-
-    // خصم المبلغ من balance ونقله إلى freeze_balance
-    $user->balance -= $request->bid_amount;
-    $user->freeze_balance += $request->bid_amount;
-    $user->update();
-
-    // إنشاء المزايدة الجديدة
-    Bid::create([
-        'land_area_id' => $landArea->id,
-        'user_id' => $user->id,
-        'bid_amount' => $request->bid_amount,
-    ]);
-
-    return redirect()->back()->with('success', 'تم تقديم المزايدة بنجاح!');
-}
 
 
     public function payFine(Request $request)
