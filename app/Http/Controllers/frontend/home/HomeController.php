@@ -43,14 +43,32 @@ class HomeController extends Controller
             'state' => $landarea->state
         ]);
     }
-
     public function index()
     {
         $user = auth()->user();
+        if (auth()->check()) {
+            $bids = LandArea::with('bids')
+            ->whereHas('user', function ($query) {
+                $query->where('id', auth()->id())
+                      ->orWhereIn('id', auth()->user()->children->pluck('child_id'));
+            })
+            ->get();
+        } else {
+            $bids = LandArea::all();
+        }
+        foreach ($bids as $landArea) {
+            foreach ($landArea->bids as $bid) {
+                if ($bid->tax_end_time && now()->greaterThanOrEqualTo($bid->tax_end_time)) {
+                    $bid->tax = 50;
+                    $bid->save();
+                }
+            }
+        }
+        $bonusAreas = ExpandArea::all();
         $balance = auth()->check() ? auth()->user()->balance : null;
         $meters = $user ? LandArea::where('highest_bidder_id', $user->id)->sum('area') : 0;
         $landarea = LandArea::with('bids.user')->get();
-        return view('frontend.home.index', compact('landarea','meters', 'balance'));
+        return view('frontend.home.index', compact('landarea','meters', 'balance','bids', ));
     }
     public function myOffice($userId)
     {
@@ -278,6 +296,86 @@ class HomeController extends Controller
         $meters = $user ? LandArea::where('highest_bidder_id', $user->id)->sum('area') : 0;
         $landarea = LandArea::with('bids.user')->get();
         return view('frontend.beard.index', data: compact('bids', 'additions','discounts','sortedItems','landAreasBids','sends','lawyerSends','bonusAreas','landarea'));
+
+    }
+    public function rate($userId){
+        $user = auth()->user();
+        if ($user->id != $userId) {
+            return redirect()->route('home')->with('error', 'أنت غير مخول للوصول إلى هذه الصفحة');
+        }
+
+        $bids = LandArea::with('bids')
+            ->where('highest_bidder_id', $userId)
+            ->get();
+
+        foreach ($bids as $landArea) {
+            foreach ($landArea->bids as $bid) {
+                if ($bid->tax_end_time && now()->greaterThanOrEqualTo($bid->tax_end_time)) {
+                    $bid->tax = 50;
+                    $bid->save();
+                }
+            }
+        }
+        $additions = Addition::where('user_id', auth()->user()->id)->get();
+        $discounts = Discount::where('user_id', auth()->user()->id)->get();
+
+        $landAreasBids = LandArea::where('highest_bidder_id', auth()->user()->id)->get();
+
+        $allItems = collect($landAreasBids)
+            ->merge($additions)
+            ->merge($discounts)
+            ->unique()
+            ->sortBy('id')
+            ->values();
+        $sortedItems = $allItems->sortByDesc('created_at');
+        $sends = Send::where('user_id', auth()->user()->id)->get();
+        $lawyerSends = LawyerSend::where('user_id', auth()->user()->id)->get();
+        $bonusAreas = ExpandArea::all();
+        $user = auth()->user();
+        $balance = auth()->check() ? auth()->user()->balance : null;
+        $meters = $user ? LandArea::where('highest_bidder_id', $user->id)->sum('area') : 0;
+        $landarea = LandArea::with('bids.user')->get();
+        return view('frontend.beard.rate.index', data: compact('bids', 'additions','discounts','sortedItems','landAreasBids','sends','lawyerSends','bonusAreas','landarea'));
+
+    }
+    public function land($userId){
+        $user = auth()->user();
+        if ($user->id != $userId) {
+            return redirect()->route('home')->with('error', 'أنت غير مخول للوصول إلى هذه الصفحة');
+        }
+
+        $bids = LandArea::with('bids')
+            ->where('highest_bidder_id', $userId)
+            ->get();
+
+        foreach ($bids as $landArea) {
+            foreach ($landArea->bids as $bid) {
+                if ($bid->tax_end_time && now()->greaterThanOrEqualTo($bid->tax_end_time)) {
+                    $bid->tax = 50;
+                    $bid->save();
+                }
+            }
+        }
+        $additions = Addition::where('user_id', auth()->user()->id)->get();
+        $discounts = Discount::where('user_id', auth()->user()->id)->get();
+
+        $landAreasBids = LandArea::where('highest_bidder_id', auth()->user()->id)->get();
+
+        $allItems = collect($landAreasBids)
+            ->merge($additions)
+            ->merge($discounts)
+            ->unique()
+            ->sortBy('id')
+            ->values();
+        $sortedItems = $allItems->sortByDesc('created_at');
+        $sends = Send::where('user_id', auth()->user()->id)->get();
+        $lawyerSends = LawyerSend::where('user_id', auth()->user()->id)->get();
+        $bonusAreas = ExpandArea::all();
+        $user = auth()->user();
+        $balance = auth()->check() ? auth()->user()->balance : null;
+        $meters = $user ? LandArea::where('highest_bidder_id', $user->id)->sum('area') : 0;
+        $landarea = LandArea::with('bids.user')->get();
+        return view('frontend.home.lands', data: compact('bids', 'additions','discounts','sortedItems','landAreasBids','sends','lawyerSends','bonusAreas','landarea'));
 
     }
 

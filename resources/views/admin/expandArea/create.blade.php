@@ -14,7 +14,7 @@
             <div class="admin_land_create_content">
                     <div class="admin_land_create_body">
                         <div class="form-container">
-                            <form action="{{ route('product.store') }}" method="POST">
+                            <form action="{{ route('product.admin.store') }}" method="POST">
                                 @method('post')
                                 @csrf
                               <table>

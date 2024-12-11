@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\admin\land\LandArea;
+use App\Models\frontend\parents\Child;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,7 +20,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'phone', 'password', 'balance', 'freeze_balance','level',
+        'name', 'phone', 'password', 'balance', 'freeze_balance','level','phone_parent'
 
     ];
 
@@ -60,5 +61,21 @@ class User extends Authenticatable
 public function landAreas()
 {
     return $this->hasMany(LandArea::class); // علاقة One-to-Many
+}
+
+public function user(){
+    return $this->belongsTo(User::class);
+}
+
+// علاقة مع الأبناء
+public function children()
+{
+    return $this->hasMany(Child::class, 'parent_id');
+}
+
+// علاقة مع الآباء
+public function parents()
+{
+    return $this->hasMany(Child::class, 'child_id');
 }
 }

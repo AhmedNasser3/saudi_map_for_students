@@ -1,5 +1,12 @@
 @extends('frontend.master')
 @section('content')
+@php
+use App\Models\admin\price\Price;
+use App\Models\admin\estate\Estate;
+
+$price = Price::first();
+@endphp
+@if (!auth()->check() || auth()->user()->son == null)
 @if (session('success'))
     <div class="notification-card success" id="success-alert">
         ✅ {{ session('success') }}
@@ -115,4 +122,81 @@
 });
 </script>
 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+@elseif(auth()->check() && auth()->user()->children->isNotEmpty())
+<div class="office">
+    <div class="bid_header" style="direction: rtl">
+        {{-- <div class="bid_btn">
+            <button><a href="#">مشاهدة الجميع </a></button>
+        </div> --}}
+        <div class="bid_title" >
+            <h1>الاراضي</h1>
+        </div>
+    </div>
+    <div class="bid_body">
+        <ul>
+            <li class="" id="btn-all" data-filter="all" style="border-bottom: 1px solid #36b927;">
+                <a href="#">كل الاراضي</a>
+            </li>
+        </ul>
+    </div>
+    <div class="office_container" style="display: flex;justify-content: center;flex-wrap: wrap;gap: 1px;">
+<div class="office_data" id="content-all" style="display: flex; margin:2% 0 0 0;justify-content: center;">
+@foreach ($bids as $landArea)
+<div class="office_content" data-land-area-id="{{ $landArea->id }}">
+    <div class="office_titles">
+        <div class="office_titles_main">
+            <div class="office_header">
+                <h2>ارض في تبوك</h2>
+                <p>مساحة {{ $landArea->area }} كم</p>
+            </div>
+            <div class="office_price">
+                <div class="office_price_titles">
+                    <h3>{{ $landArea->highest_bid }} ريال</h3>
+                    <p>تم خصمهم من رصيدك</p>
+                </div>
+                <div class="office_price_btn">
+                    <div class="office_price_btn_timer">
+                        <h3>
+                            متبقي على تجديد الرخصة:
+
+                        </h3>
+                        <span class="days" id="tax-time-{{ $landArea->id }}"
+                            data-end-time="{{ \Carbon\Carbon::parse($landArea->tax_end_time)->toIso8601String() }}"
+                            data-tax="{{ $landArea->tax }}">
+                            <!-- سيتم التحديث هنا بواسطة JavaScript -->
+                        </span>
+                    </div>
+                    <button
+                        data-land-area-id="{{ $landArea->id }}"
+                        class="btn-print-deed"
+                        style="background-color: rgb(91, 138, 127);border:2px solid#8ac7c4;color:white" >
+                        طبع صك الأرض
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="office_img">
+        <img src="https://www.auctions.com.sa/web/binary/image/?model=auction.auction&field=image&id=15760" alt="">
+    </div>
+</div>
+@if (auth()->check() && auth()->user()->children->isNotEmpty())
+    <h1>أبناؤك</h1>
+    <ul>
+        @foreach (auth()->user()->children as $child)
+            <li>{{ $child->child->name }}</li>
+        @endforeach
+    </ul>
+@else
+    <p>ليس لديك أبناء مسجلين.</p>
+@endif
+@endforeach
+</div>
+</div>
+</div>
+
+</div>
+@endif
 @endsection

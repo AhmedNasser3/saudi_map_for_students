@@ -466,8 +466,10 @@
             <div class="panels-container">
                 <div class="panel left-panel">
                     <div class="content">
-                        <h3>جديد هنا ؟</h3>
-                        <p>اكبر منصة مزايدات في السعدية اشتري ارضك وكبرها بنفسك                        </p>
+                        <h3>أهلا بك من جديد!
+                        </h3>
+                        <p>أكمل ما بدأته وواصل تحقيق الإنجازات! تذكر أن كل يوم هو فرصة لتحقيق المزيد .
+                            شارك في البورصة، وكن دائمًا في المقدمة!                     </p>
                         <button class="btn transparent" id="sign-up-btn">
                             مستخدم جديد
                         </button>

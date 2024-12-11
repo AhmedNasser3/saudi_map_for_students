@@ -17,7 +17,7 @@ class AuctionController extends Controller
         $landArea = LandArea::findOrFail($id);
         $currentHighestBid = Bid::where('land_area_id', $id)->orderBy('bid_amount', 'desc')->first();
 
-        $price = Price::first(); // إذا كنت تريد تحديث أول سجل فقط. يمكنك تخصيص البحث إذا كان هناك أكثر من سجل
+        $price = Price::first(); // إذا كنت تريد تحديث أول سجل فقط. يمكنك تخصيص البحث إذا كان هناك أكثر من سجل.
 
         $user = Auth::user();
 
@@ -29,25 +29,28 @@ class AuctionController extends Controller
             return redirect()->back()->with('error', sprintf('يجب أن تكون المزايدة أعلى من %d.', $minimumBidAmount));
         }
 
+        // التحقق إذا كان لدى المستخدم مزايدة سابقة على نفس المزاد
+        $userHighestBid = Bid::where('land_area_id', $id)
+            ->where('user_id', $user->id)
+            ->orderBy('bid_amount', 'desc')
+            ->first();
 
+        if ($userHighestBid) {
+            // إعادة أعلى مزايدة سابقة للمستخدم من freeze_balance إلى balance
+            $user->balance += $userHighestBid->bid_amount;
+            $user->freeze_balance -= $userHighestBid->bid_amount;
+            $user->save();
+        }
 
-
+        // التحقق من الرصيد
         if ($user->balance < $request->bid_amount) {
             return redirect()->back()->with('error', 'لا يوجد رصيد كافي.');
         }
-        if($currentHighestBid){
 
-            if ($request->bid_amount > $currentHighestBid->bid_amount) {
-                $user->balance += $currentHighestBid->bid_amount;
-                $user->freeze_balance -= $currentHighestBid->bid_amount;
-                $user->save();
-            }
-        }
-
-
+        // خصم المبلغ الجديد من balance وإضافته إلى freeze_balance
         $user->balance -= $request->bid_amount;
         $user->freeze_balance += $request->bid_amount;
-        $user->update();
+        $user->save();
 
         // إنشاء المزايدة الجديدة
         Bid::create([
@@ -58,6 +61,7 @@ class AuctionController extends Controller
 
         return redirect()->back()->with('success', 'تم تقديم المزايدة بنجاح!');
     }
+
 
 
     public function payFine(Request $request)

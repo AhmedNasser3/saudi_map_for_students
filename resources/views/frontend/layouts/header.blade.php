@@ -1,31 +1,39 @@
 <!-- header -->
+@php
+use App\Models\admin\land\LandArea;
+if (auth()->check()) {
+
+$meters = LandArea::with('bids')
+->where('highest_bidder_id', auth()->user()->id)
+->get()->sum('area');;
+}
+@endphp
 <header class="header">
     <div class="header_container">
         <div class="header_data">
             <div class="header_content">
                 <div id="log-in" class="log-up">
+
+                    @if (!auth()->check() || auth()->user()->son == null)
                     <div class="log_in">
                         @if (auth()->check())
                         <button><a href="#">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
-                        <button><a href="#">🪙 الرصيد المعلق  : {{ auth()->user()->freeze_balance  }}</a></button>
+                        <button style="background: #4d4d4d"><a href="#">🪙 الرصيد المعلق  : {{ auth()->user()->freeze_balance  }}</a></button>
                         @else
                         <button><a href="{{ route('login') }}">تسجيل الدخول</a></button>
                         @endif
                     </div>
                     <div class="sign_up">
-                        @php
-                        use App\Models\admin\land\LandArea;
-                        if (auth()->check()) {
 
-                        $meters = LandArea::with('bids')
-            ->where('highest_bidder_id', auth()->user()->id)
-            ->get()->sum('area');;
-                        }
-                        @endphp
                         @if (auth()->check())
                         <button><a href="#">📏 المساحة : {{ floor($meters) }} متر</a></button>
                         <button><a href="{{ route('logout') }}">تسجيل خروج</a></button>
                         @else
+                        @endif
+                        @else
+                        <div class="sign_up">
+                            <button><a href="{{ route('logout') }}">تسجيل خروج</a></button>
+                        </div>
                         @endif
                     </div>
                 </div>
@@ -33,12 +41,14 @@
                     <div class="header_links" id="header_links">
                         <ul id="menuList" class="menuList">
                             @if (auth()->check())
-                            <li class="header_link" style="color: white">الخريطة</li>
                             @if (auth()->user()->role == 'admin')
                             <li class="header_link"><a href="{{ route('user.page') }}" style="color: #131313">الدخول الي صفحة الادمن</a></li>
                             @else
                             @endif
+                            @if (!auth()->check() || auth()->user()->son == null)
                             <li class="header_link"><a href="{{ route('my.office', ['user_id' => auth()->user()->id]) }}" style="color: #131313">مكتبي</a></li>
+                            @else
+                            @endif
                             <li class="header_link">
                                 <div id="turnon-log" class="log-up">
                                     <div class="log_in">
@@ -60,9 +70,13 @@
 
                         </ul>
                     </div>
+                    @if (!auth()->check() || auth()->user()->son == null)
                     <a href="{{ route('home.page') }}">
                         <img src="/images/logo.png" alt="">
                     </a>
+                    @else
+                    @endif
+
                 </div>
                 <div class="icons_price_lands">
                     <div class="icon_prices">

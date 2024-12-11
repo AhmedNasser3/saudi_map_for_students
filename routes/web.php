@@ -1,5 +1,4 @@
 <?php
-
 use App\Models\admin\bid\Bid;
 use App\Models\admin\land\Land;
 use App\Models\admin\land\LandArea;
@@ -11,19 +10,19 @@ use App\Http\Controllers\admin\tax\TaxController;
 use App\Http\Controllers\admin\city\CityController;
 use App\Http\Controllers\admin\user\UserController;
 use App\Http\Controllers\admin\land\LandsController;
+use App\Http\Controllers\admin\price\PriceController;
 use App\Http\Controllers\admin\land\AuctionController;
 use App\Http\Controllers\frontend\home\HomeController;
 use App\Http\Controllers\admin\estate\EstateController;
 use App\Http\Controllers\admin\land\MainLandController;
 use App\Http\Controllers\admin\land\LandAreasController;
 use App\Http\Controllers\frontend\messages\SendController;
+use App\Http\Controllers\frontend\messages\lawyerController;
+use App\Http\Controllers\frontend\product\ProductController;
 use App\Http\Controllers\admin\add_discount\DiscountController;
+
 use App\Http\Controllers\admin\landarea\MainLandAreaController;
 use App\Http\Controllers\admin\add_discount\AddDiscountController;
-use App\Http\Controllers\admin\price\PriceController;
-use App\Http\Controllers\frontend\messages\lawyerController;
-
-use App\Http\Controllers\frontend\product\ProductController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -49,7 +48,7 @@ Route::controller(AuctionController::class)->group(function(){
 });
 // ========================================================== LandArea Controller ==========================================================
 Route::post('/set-renew-days',  [MainLandAreaController::class, 'setRenewDays']);
-Route::post('/extend-tax-time', [MainLandAreaController::class, 'extendTaxTime']);
+// Route::post('/extend-tax-time', [MainLandAreaController::class, 'extendTaxTime']);
 Route::post('/set-tax-end-time', [MainLandAreaController::class, 'updateTaxEndTime']);
 Route::post('/update-show', [MainLandAreaController::class, 'updateShow'])->name('update.show');
 Route::post('/finalize-auction/{landId}', [LandAreasController::class, 'finalizeAuction'])->name('finalizeAuction');
@@ -71,6 +70,8 @@ Route::get('/history/{userId}' ,[HomeController::class, 'history'])->name('home.
 Route::get('/secret/{userId}' ,[HomeController::class, 'secret'])->name('home.secret');
 Route::get('/lawyer/{userId}' ,[HomeController::class, 'lawyer'])->name('home.lawyer');
 Route::get('/beard/{userId}' ,[HomeController::class, 'beard'])->name('home.beard');
+Route::get('/rate/{userId}' ,[HomeController::class, 'rate'])->name('home.rate');
+Route::get('/lands/{userId}' ,[HomeController::class, 'land'])->name('home.land');
 
 
 // ========================================================== lawyerMessage Controller ==========================================================
@@ -95,6 +96,10 @@ Route::get('/estate/{landArea_id}/create', [EstateController::class, 'create'])-
 Route::post('/estate/{landArea_id}/create', [EstateController::class, 'storeLandArea'])->name('estate.create.landArea');
 // ========================================================== products Controller ==========================================================
 Route::post('/get/bonus/area', [ProductController::class, 'store'])->name('product.store');
+
+
+
+
 // admin
 Route::middleware([RoleMiddleware::class.':admin'])->prefix('admin')->group(function () {
 // ========================================================== Land Controller ==========================================================
@@ -151,11 +156,19 @@ Route::controller(PriceController::class)->prefix('price')->group(function(){
 // ========================================================== product Controller ==========================================================
 Route::get('/product/view', [ProductController::class, 'adminView'])->name('admin.view.product');
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-Route::post('/product/store', [ProductController::class, 'AdminStore'])->name('product.store');
+Route::post('/product/store', [ProductController::class, 'AdminStore'])->name('product.admin.store');
 });
 
 
-
+Route::post('/update-product/{id}', function ($id) {
+    $bonusArea = App\Models\frontend\expandArea\ExpandArea::find($id);
+    if ($bonusArea && $bonusArea->number_products > 0) {
+        $bonusArea->number_products -= 1;
+        $bonusArea->save();
+        return response()->json(['success' => true, 'newNumber' => $bonusArea->number_products]);
+    }
+    return response()->json(['success' => false]);
+});
 
 
 

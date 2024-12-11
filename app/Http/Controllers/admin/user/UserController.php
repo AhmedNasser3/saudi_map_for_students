@@ -23,11 +23,12 @@ class UserController extends Controller
 
         try {
             Excel::import(new UsersImport, $request->file('excel_file'));
-            return redirect()->route('user.page')->with('success', 'تم استيراد الطلاب بنجاح');
+            return redirect()->route('user.page')->with('success', 'تم استيراد الطلاب وحسابات أولياء الأمور بنجاح');
         } catch (\Exception $e) {
             return redirect()->route('user.page')->with('error', 'حدث خطأ أثناء الاستيراد: ' . $e->getMessage());
         }
     }
+
 
 
 }

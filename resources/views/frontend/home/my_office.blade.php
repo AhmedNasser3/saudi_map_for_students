@@ -24,104 +24,7 @@ $price = Price::first();
     </div>
     <div class="office_container" style="display: flex;justify-content: center;flex-wrap: wrap;gap: 1px;">
 <div class="office_data" id="content-all" style="display: flex; margin:2% 0 0 0;justify-content: center;">
-    @foreach ($bids as $landArea)
-    <div class="office_content" data-land-area-id="{{ $landArea->id }}">
-        <div class="office_titles">
-            <div class="office_titles_main">
-                <div class="office_header">
-                    <h2>ارض في تبوك</h2>
-                    <p>مساحة {{ $landArea->area }} كم</p>
-                </div>
-                <div class="office_price">
-                    <div class="office_price_titles">
-                        <h3>{{ $landArea->highest_bid }} ريال</h3>
-                        <p>تم خصمهم من رصيدك</p>
-                    </div>
-                    <div class="office_price_btn">
-                        <div class="office_price_btn_timer">
-                            <h3>
-                                متبقي على تجديد الرخصة:
 
-                            </h3>
-                            <span class="days" id="tax-time-{{ $landArea->id }}"
-                                data-end-time="{{ \Carbon\Carbon::parse($landArea->tax_end_time)->toIso8601String() }}"
-                                data-tax="{{ $landArea->tax }}">
-                                <!-- سيتم التحديث هنا بواسطة JavaScript -->
-                            </span>
-                        </div>
-                        <button
-                            data-land-area-id="{{ $landArea->id }}"
-                            class="btn-print-deed"
-                            style="background-color: rgb(91, 138, 127);border:2px solid#8ac7c4;color:white" >
-                            طبع صك الأرض
-                        </button>
-                        @if ($landArea->show_to_estate == 0)
-
-                        <button
-                        class="btn_estate"
-                        style="background-color: #5b6f8a; border:2px solid#abccf7;color:white"
-                        id="btn-estate-{{ $landArea->id }}"
-                        data-land-area-id="{{ $landArea->id }}">
-                        بيع الارض
-                    </button>
-                    @elseif($landArea->show_to_estate == 3)
-                    <p style="color: #5b6f8a;font-size:1rem;margin:10px 0 0 0;">
-                        @php
-$estates = Estate::where('landArea_id', $landArea->id)
-    ->orderBy('id', 'desc') // استبدل "created_at" بالعمود الذي ترغب بالترتيب بناءً عليه
-    ->first();
-                        @endphp
-                        تم تقدير السعر ب {{ floor($estates->min_price) }} ريال
-                    </p>
-                    <button
-                    class="apply-btn"
-                    data-id="{{ $landArea->id }}"
-                    style="background-color: rgb(130, 206, 187); border:2px solid #abf7cd;color:white">
-                    قبول
-                </button>
-                <button
-                class="reject-btn"
-                data-id="{{ $landArea->id }}"
-                style="background-color: rgb(206, 130, 130); border:2px solid #f7abab;color:white">
-                رفض
-            </button>
-                <br>
-                    @else
-                    <button
-                    style="color:white;background-color: rgb(78, 78, 78);"
-                   >تم ارسال طلب البيع</button>
-                    @endif
-                        @if ($landArea->tax == 0 && \Carbon\Carbon::parse($landArea->tax_end_time)->lte(now()))
-                            <!-- يظهر زر دفع الغرامة -->
-                            <button class="pay-fine" id="btn-fine-{{ $landArea->id }}"
-                                    data-land-area-id="{{ $landArea->id }}"
-                                    style="background-color: rgb(153, 37, 37);border:2px solid#f09797;color:white">
-                                دفع الغرامة 100 ريال
-                            </button>
-                        @elseif ($landArea->tax == 0)
-                            <!-- يظهر زر تجديد الرخصة -->
-                            <button class="renew-license" id="btn-renew-{{ $landArea->id }}"
-                                    data-land-area-id="{{ $landArea->id }}"
-                                    style="background-color: green; border:2px solid#acf097;color:white">
-
-                                تجديد الرخصة ب {{ $price->tax_price }} ريال
-                            </button>
-                        @else
-                            <!-- لا تظهر أزرار إذا تم الدفع -->
-                            <button class="renew-license" id="btn-renew-{{ $landArea->id }}"
-                                    style="background-color: grey; border:2px solid#e7e7e7;color:white" disabled>
-                                تم الدفع
-                            </button>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="office_img">
-            <img src="https://www.auctions.com.sa/web/binary/image/?model=auction.auction&field=image&id=15760" alt="">
-        </div>
-    </div>
-    @endforeach
     <div class="my_icons">
         <div class="my_icons_container">
             <div class="my_icons_data">
@@ -129,28 +32,37 @@ $estates = Estate::where('landArea_id', $landArea->id)
                     <div class="my_icons_title">
                         <a href="{{ route('home.lawyer',['userId' => auth()->user()->id]) }}">
                             <div class="my_icons_img">
-                                <img src="{{ asset('images/Faceless-Male-Avatar-In-Suit-2.png') }}" alt="">
+                                <img src="{{ asset('images/1153269.png') }}" alt="">
                             </div>
                             <div class="my_icons_title_bg">
-                                <button><h3>محامي</h3></button>
+                                <button><h3>المحامي</h3></button>
                             </div>
                         </a>
                     </div>
-                    <div class="my_icons_title">
-                        {{-- <a href="{{ route('home.beard', ['userId' => auth()->user()->id]) }}" > --}}
-                        <a href="#">
+                    <div class="my_icons_title" >
+                            <a href="{{ route('home.beard', ['userId' => auth()->user()->id]) }}" >
                             <div class="my_icons_img">
                                 <img src="{{ asset('images/portrait-elderly-arab-man-white-260nw-2450117663.png') }}" alt="">
                             </div>
                             <div class="my_icons_title_bg">
-                                <button><h3>شيخ العقار</h3></button>
+                                <button ><h3>شيخ العقار</h3></button>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="my_icons_title" >
+                        <a href="{{ route('home.land', ['userId' => auth()->user()->id]) }}" >
+                            <div  style="padding: 23px 0 0 0" class="my_icons_img">
+                                <img src="{{ asset('images/map-icon-2048x1599-py8gxxw9.png') }}" alt="">
+                            </div>
+                            <div class="my_icons_title_bg">
+                                <button disabled><h3>الصكوك</h3></button>
                             </div>
                         </a>
                     </div>
                     <div class="my_icons_title">
                         <a href="{{ route('home.secret',['userId' => auth()->user()->id]) }}">
                             <div class="my_icons_img">
-                                <img src="{{ asset('images/hand-drawn-key-icon-sticker-style-vector-illustration_755164-11592.png') }}" alt="">
+                                <img src="{{ asset('images/istockphoto-1066964788-612x612.png') }}" alt="">
                             </div>
                             <div class="my_icons_title_bg">
                                 <button><h3>الدرج السري</h3></button>
@@ -159,24 +71,24 @@ $estates = Estate::where('landArea_id', $landArea->id)
                     </div>
                     <div class="my_icons_title">
                         <a href="{{ route('home.history', ['userId' => auth()->user()->id]) }}">
-                            <div style="padding:33px 0 0 0" class="my_icons_img">
-                                <img src="{{ asset('images/pngtree-historical-scroll-book-illustration-free-png-image_4079215.png') }}" alt="">
+                            <div style="padding: 0 0 0" class="my_icons_img">
+                                <img src="{{ asset('images/sm_5b33460f04516.png') }}" alt="">
                             </div>
                             <div class="my_icons_title_bg">
                                 <button><h3>السجل المالي</h3></button>
                             </div>
                         </a>
                     </div>
-                    <div class="my_icons_title">
+                    {{-- <div class="my_icons_title">
                         <a href="{{ route('message.home', ['userId' => auth()->user()->id]) }}">
                             <div class="my_icons_img">
-                                <img src="{{ asset('images/flat-cartoon-happy-character-joyful-moodpositive-emotions-vector-illustration-concept_189557-2711.png') }}" alt="">
+                                <img src="{{ asset('images/question-mark-icon-free-vector.png') }}" alt="">
                             </div>
                             <div class="my_icons_title_bg">
                                 <button><h3>استشارة</h3></button>
                             </div>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
