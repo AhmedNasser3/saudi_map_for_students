@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('img')->nullable();
             $table->string(column: 'land_deed')->nullable();
             $table->dateTime(column: 'start_time')->nullable();
+            $table->dateTime(column: 'before_start_time')->nullable();
+            $table->integer('before_show')->default(0);
             $table->boolean('show')->default(true);
             $table->integer('show_to_estate')->default(0);
             $table->integer('add_balance_to_seller')->default(0);

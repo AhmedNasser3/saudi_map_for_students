@@ -51,6 +51,7 @@ Route::post('/set-renew-days',  [MainLandAreaController::class, 'setRenewDays'])
 // Route::post('/extend-tax-time', [MainLandAreaController::class, 'extendTaxTime']);
 Route::post('/set-tax-end-time', [MainLandAreaController::class, 'updateTaxEndTime']);
 Route::post('/update-show', [MainLandAreaController::class, 'updateShow'])->name('update.show');
+Route::post('/update-before-show', [MainLandAreaController::class, 'updateBeforeShow']);
 Route::post('/finalize-auction/{landId}', [LandAreasController::class, 'finalizeAuction'])->name('finalizeAuction');
 // ========================================================== users Controller ==========================================================
 Route::get('/admin/users', function(){

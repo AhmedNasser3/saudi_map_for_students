@@ -91,20 +91,43 @@ public function setRenewDays(Request $request)
     ]);
 }
 public function updateShow(Request $request)
-    {
-        $landId = $request->input('land_id');
-        $show = $request->input('show');
+{
+    $landId = $request->input('land_id');
+    $show = $request->input('show');
 
-        $landArea = LandArea::find($landId);
-        if ($landArea) {
+    $landArea = LandArea::find($landId);
+    if ($landArea) {
+        // تأكد من أن التغيير يحدث بناءً على start_time وليس before_start_time
+        if ($landArea->start_time <= now()) {
             $landArea->show = $show;
             $landArea->save();
 
             return response()->json(['success' => true, 'message' => 'تم تحديث الحقل show بنجاح']);
         }
-
-        return response()->json(['success' => false, 'message' => 'العنصر غير موجود']);
     }
+
+    return response()->json(['success' => false, 'message' => 'العنصر غير موجود أو الوقت لم ينتهي بعد']);
+}
+
+
+public function updateBeforeShow(Request $request)
+{
+    // البحث عن المزاد الذي يكون قبل الوقت الحالي (before_start_time أقل من الآن)
+    $currentTimestamp = now();
+    $landArea = LandArea::where('before_start_time', '<=', $currentTimestamp)
+                        ->where('before_show', 0)
+                        ->first();
+
+    if ($landArea) {
+        $landArea->before_show = 1;
+        $landArea->save();
+
+        return response()->json(['success' => true, 'message' => 'تم التحديث بنجاح.']);
+    }
+
+    return response()->json(['success' => false, 'message' => 'لم يتم العثور على المزاد المناسب.']);
+}
+
 // في Controller الذي يتعامل مع المزادات
 
 public function updateLandDuration(Request $request)

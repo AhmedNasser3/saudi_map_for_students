@@ -1,55 +1,33 @@
 <?php
 
-namespace App\Imports;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use App\Models\frontend\parents\Child;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
-
-class UsersImport implements ToModel, WithHeadingRow
+return new class extends Migration
 {
-    public function model(array $row)
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
-        // تحقق من صحة البيانات
-        if (empty($row['phone']) || empty($row['phone_parent'])) {
-            return null; // تخطي الصف إذا كان الحقلان فارغين
-        }
+        Schema::create('children', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('child_id');
+            $table->timestamps();
 
-        // إنشاء حساب الطالب
-        $studentAccount = User::create([
-            'name' => $row['name'],
-            'phone' => $row['phone'],
-            'level' => $row['level'],
-            'password' => Hash::make($row['password']),
-            'balance' => is_numeric($row['balance']) ? $row['balance'] : 3000,
-        ]);
-
-        // تحقق إذا كان رقم ولي الأمر موجودًا مسبقًا
-        $parentAccount = User::firstOrCreate(
-            ['phone' => $row['phone_parent']], // تحقق من وجود الرقم
-            [
-                'name' => $row['name'] . ' - ولي الأمر',
-                'level' => $row['level'],
-                'password' => Hash::make($row['password']),
-                'balance' => is_numeric($row['balance']) ? $row['balance'] : 3000,
-            ]
-        );
-
-        // تحقق من وجود العلاقة في جدول children لتجنب التكرار
-        $existingChildRelationship = Child::where('parent_id', $parentAccount->id)
-            ->where('child_id', $studentAccount->id)
-            ->first();
-
-        if (!$existingChildRelationship) {
-            // إضافة العلاقة بين الطالب وولي الأمر
-            Child::create([
-                'parent_id' => $parentAccount->id,
-                'child_id' => $studentAccount->id,
-            ]);
-        }
-
-        return $studentAccount; // إرجاع حساب الطالب
+            // إضافة علاقات مع جدول المستخدمين
+            $table->foreign('parent_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('child_id')->references('id')->on('users')->onDelete('cascade');
+        });
     }
-}
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('children');
+    }
+};

@@ -145,7 +145,12 @@
                                 </div>
                             </div>
                             @endif
-
+                            <div hidden class="countdown" data-id="{{ $land->id }}" data-starttime="{{ $land->before_start_time }}">
+                                <span class="timer-days">0</span> يوم
+                                <span class="timer-hours">0</span> ساعة
+                                <span class="timer-minutes">0</span> دقيقة
+                                <span class="timer-seconds">0</span> ثانية
+                            </div>
 <div class="bid_pop_up_bg"></div>
 
 <div class="bid_pop_up">
@@ -372,7 +377,7 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
 });
             </script>
             <script>
-                document.querySelectorAll(".countdown").forEach(function (countdownElement) {
+document.querySelectorAll(".countdown").forEach(function (countdownElement) {
     const landId = countdownElement.getAttribute("data-id");
     const startTime = new Date(countdownElement.getAttribute("data-starttime")).getTime();
 
@@ -472,3 +477,60 @@ document.querySelectorAll(".bidButton").forEach(function(button) {
         </div>
     </div>
 </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const countdowns = document.querySelectorAll('.countdown');
+
+    countdowns.forEach(function (countdown) {
+        const id = countdown.dataset.id;
+        const startTime = new Date(countdown.dataset.starttime).getTime();
+
+        const timerInterval = setInterval(function () {
+            const now = new Date().getTime();
+            const distance = startTime - now;
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+
+                // إرسال طلب Ajax لتحديث before_show إلى 1
+                updateBeforeShow();
+            } else {
+                // تحديث العد التنازلي
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdown.querySelector('.timer-days').textContent = days;
+                countdown.querySelector('.timer-hours').textContent = hours;
+                countdown.querySelector('.timer-minutes').textContent = minutes;
+                countdown.querySelector('.timer-seconds').textContent = seconds;
+            }
+        }, 1000);
+    });
+
+    // دالة إرسال طلب Ajax
+    function updateBeforeShow() {
+        fetch('/update-before-show', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Land area updated successfully!');
+                } else {
+                    console.error('No matching land area found.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+});
+
+</script>
+
