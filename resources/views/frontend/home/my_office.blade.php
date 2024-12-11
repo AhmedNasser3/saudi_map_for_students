@@ -79,16 +79,7 @@ $price = Price::first();
                             </div>
                         </a>
                     </div>
-                    {{-- <div class="my_icons_title">
-                        <a href="{{ route('message.home', ['userId' => auth()->user()->id]) }}">
-                            <div class="my_icons_img">
-                                <img src="{{ asset('images/question-mark-icon-free-vector.png') }}" alt="">
-                            </div>
-                            <div class="my_icons_title_bg">
-                                <button><h3>استشارة</h3></button>
-                            </div>
-                        </a>
-                    </div> --}}
+
                 </div>
             </div>
         </div>

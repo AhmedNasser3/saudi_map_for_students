@@ -253,7 +253,7 @@
     background-color: #fff;
     border-radius: 8px;
     width: 80vh;
-    height: 60vh;
+    height: 50vh;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform .5s ease, opacity .5s ease;
     opacity: 0;
@@ -625,13 +625,6 @@
 
 
 /* bid form */
-
-.bid_pop_up_title {
-    border-bottom: 1px solid #131313;
-    background-color: #f1f1f1;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
 
 .bid_pop_up_land_area h3,
 .bid_pop_up_land_duration h3,

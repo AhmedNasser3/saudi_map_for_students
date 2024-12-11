@@ -74,7 +74,7 @@ class HomeController extends Controller
     {
         $user = auth()->user();
         if ($user->id != $userId) {
-            return redirect()->route('home')->with('error', 'أنت غير مخول للوصول إلى هذه الصفحة');
+            return redirect()->route('home.page')->with('error', 'أنت غير مخول للوصول إلى هذه الصفحة');
         }
 
         $bids = LandArea::with('bids')

@@ -31,9 +31,11 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>اسم المستخدم</th>
-                                    <th>الايميل</th>
+                                    <th>باسسورد الطالب</th>
+                                    <th>المرحلة</th>
                                     <th>الرصيد</th>
                                     <th>كود الطالب</th>
+                                    <th>ازالة الطالب</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,10 +43,19 @@
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->level }}</td>
                                     <td>{{ $user->balance }}</td>
                                     <td>{{ $user->unique_number }}</td>
-                                </tr>
+                                    <td>
+                                        <form action="{{ route('user.delete', ['user_id' => $user->id]) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="delete_button" type="submit" style="border: none; background: none; cursor: pointer;">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>                                </tr>
                                 @endforeach
                             </tbody>
                         </table>

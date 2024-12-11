@@ -128,6 +128,7 @@ Route::controller(MainLandAreaController::class)->prefix('landArea')->group(func
 Route::controller(UserController::class)->prefix('user')->group(function(){
     Route::get('/', 'index')->name('user.page');
     Route::post('/users/import',  'import')->name('user.import');
+    Route::delete('/{user_id}/id', 'delete')->name('user.delete');
 });
 
 // ========================================================== add and minus balance Controller ==========================================================

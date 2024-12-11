@@ -55,11 +55,53 @@ class MainLandAreaController extends Controller
         return redirect()->route('landArea.page')->with('success', 'تم إنشاء المزادات بنجاح');
     }
 
-    public function edit(Request $request, LandArea $landArea){
+    public function edit($landArea_id)
+    {
+        // العثور على المزاد باستخدام الـ ID المرسل من الرابط
+        $landArea = LandArea::findOrFail($landArea_id);
 
+        // استرجاع جميع الأراضي المتاحة لتكون في الاختيار في الـ dropdown
+        $landAreas = Land::all();
+
+        // عرض صفحة التعديل مع إرسال بيانات الأرض والمزاد
+        return view('admin.land_areas.edit', compact('landArea', 'landAreas'));
     }
-    public function update(){}
-    public function delete ($id){
+
+    public function update(Request $request, $landArea_id)
+    {
+        // التحقق من البيانات المدخلة
+        $LandsAreaUpdate = $request->validate([
+            'land_id' => 'required|integer',
+            'area' => 'required|string|max:255',
+            'starting_price' => 'required|numeric',
+            'auction_end_time' => 'required|date',
+            'user_id' => 'required|integer',
+            'final_price' => 'nullable|numeric',
+            'day' => 'required',
+            'duration' => 'required|integer',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20048',
+            'number_of_auctions' => 'required|integer|min:1',
+        ]);
+
+        // العثور على المزاد المحدد باستخدام الـ ID
+        $landArea = LandArea::findOrFail($landArea_id);
+
+        // تحديث البيانات
+        $landArea->update($LandsAreaUpdate);
+
+        // إذا كانت هناك صورة جديدة، يجب تخزينها
+        if ($request->hasFile('img')) {
+            $image = $request->file('img');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs('public/lands', $imageName);
+            $landArea->img = 'lands/' . $imageName;
+            $landArea->save();
+        }
+
+        // إعادة التوجيه إلى صفحة المزادات مع رسالة نجاح
+        return redirect()->route('landArea.page')->with('success', 'تم تحديث المزاد بنجاح');
+    }
+        public function delete ($id){
         $landArea = LandArea::find($id);
         $landArea->delete();
         return redirect()->route('landArea.page')->with('تم ازالة المزاد بنجاح');

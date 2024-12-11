@@ -20,7 +20,8 @@
                                         <th>ID</th>
                                         <th>تغيير الوقت الرخصة</th>
                                         <th>اسم المدينة</th>
-                                        <th>السماحة</th>
+                                        <th>صك الارض</th>
+                                        <th>المساحة</th>
                                         <th>السعر يبدأ من</th>
                                         <th>انتهاء المزاد في</th>
                                         <th>منشيئ المزاد</th>
@@ -32,6 +33,7 @@
                                         <th>صورة المزاد</th>
                                         <th>حالة المزاد</th>
                                         <th>ازالة المزاد</th>
+                                        <th>تعديل المزاد</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,6 +57,7 @@
                                             @endif                                            </form>
                                         </td>
                                         <td>{{ $landArea->land->name }}</td>
+                                        <td>{{ $landArea->land_deed }}</td>
                                         <td>{{ $landArea->area }}</td>
                                         <td>{{ $landArea->starting_price }}</td>
                                         <td>{{ $landArea->auction_end_time }}</td>
@@ -74,6 +77,9 @@
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </form>
+                                        </td>
+                                        <td>
+                                            <a class="edit_button" href="{{ route('landArea.edit', ['landArea_id' => $landArea->id]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

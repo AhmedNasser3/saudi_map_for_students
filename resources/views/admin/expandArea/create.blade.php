@@ -20,7 +20,7 @@
                               <table>
                                 <tr>
                                     <td>
-                                        <input type="text" id="name" name="name" placeholder="ادخل اسم الارض هنا ..." required>
+                                        <input type="text" id="name" name="name" placeholder="ادخل اسم العنوان هنا ..." required>
                                     </td>
                                     <td>
                                       <label for="name">: العنوان</label>
@@ -28,7 +28,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" id="number_products" name="number_products" placeholder="ادخل اسم الارض هنا ..." required>
+                                        <input type="text" id="number_products" name="number_products" placeholder="ادخل اسم عدد المنتج هنا ..." required>
                                     </td>
                                     <td>
                                       <label for="number_products">: عدد المنتج</label>
@@ -36,7 +36,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text" id="name" name="area" placeholder="ادخل اسم الارض هنا ..." required>
+                                        <input type="text" id="name" name="area" placeholder="ادخل اسم المساحة هنا ..." required>
                                     </td>
                                     <td>
                                       <label for="area">: المساحة</label>
@@ -52,6 +52,14 @@
                                     </td>
                                     <td>
                                         <label for="land_id">: الزيادة</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" id="name" name="area" placeholder="ادخل اسم سعر هنا ..." required>
+                                    </td>
+                                    <td>
+                                      <label for="area">: سعر المنتج</label>
                                     </td>
                                 </tr>
                                 <tr>

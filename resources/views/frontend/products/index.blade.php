@@ -55,16 +55,32 @@ $price = Price::first();
                                 </div>
                                 <div class="products_bg_btn">
                                     <select name="landArea_id" id="locations" required>
-                                        @foreach ($bids as $landArea)
-                                        <option value="{{ $landArea->id }}">{{ $landArea->land_deed }}</option>
-                                        @endforeach
+                                        @if ($bids->isEmpty())
+                                            <option value="#">ليس لديك أرض لشراء منتج</option>
+                                        @else
+                                            @foreach ($bids as $landArea)
+                                                <option value="{{ $landArea->id }}">{{ $landArea->land_deed }}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                     <input type="text" name="bonus_area_price" value="{{ $bonusArea->bonus_area_price }}" id="" hidden>
                                     <input type="text" name="state" value="{{ $bonusArea->state }}" id="" hidden>
                                     <input type="hidden" id="bonus-area-id-{{ $bonusArea->id }}" value="{{ $bonusArea->id }}">
+                                    @foreach ($bids as $landArea)
+
+                                    @if (auth()->user()->balance < $bonusArea->bonus_area_price)
+
+                                    <button  style="color: white">
+                                        رصيدك غير كاف
+                                    </button>
+                                    @else
                                     <button type="submit" class="buy-btn" data-id="{{ $bonusArea->id }}" style="color: white">
                                         شراء واحدة بسعر {{ floor($bonusArea->bonus_area_price) }}
-                                    </button>                                </div>
+                                    </button>
+                                    @endif
+                                    @endforeach
+
+                                </div>
                             </div>
                         </div>
                     </form>

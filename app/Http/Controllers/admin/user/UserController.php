@@ -15,6 +15,16 @@ class UserController extends Controller
         $users = User::orderBy('id', 'asc')->get();
         return view('admin.user.index', data: compact('users'));
     }
+
+    public function delete($user_id){
+        $user = User::find($user_id);
+        $user->delete();
+        return redirect()->back()->with('message', 'تم ازالة المستخدم بنجاح');
+    }
+    public function edit($userId){
+        $user = User::find($user_id);
+        return view('admin.user.edit', data: compact('user'));
+    }
     public function import(Request $request)
     {
         $request->validate([
