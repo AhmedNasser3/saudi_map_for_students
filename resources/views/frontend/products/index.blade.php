@@ -159,49 +159,7 @@ $price = Price::first();
                                                 data-tax="{{ $landArea->tax }}">
                                                 <!-- سيتم التحديث هنا بواسطة JavaScript -->
                                             </span>
-                                        </div>
-                                        {{-- <button
-                                            data-land-area-id="{{ $landArea->id }}"
-                                            class="btn-print-deed"
-                                            style="background-color: rgb(91, 138, 127);border:2px solid#8ac7c4;color:white" >
-                                            طبع صك الأرض
-                                        </button> --}}
-                                        {{-- @if ($landArea->show_to_estate == 0)
 
-                                        <button
-                                        class="btn_estate"
-                                        style="background-color: #5b6f8a; border:2px solid#abccf7;color:white"
-                                        id="btn-estate-{{ $landArea->id }}"
-                                        data-land-area-id="{{ $landArea->id }}">
-                                        بيع الارض
-                                    </button>
-                                    @elseif($landArea->show_to_estate == 3)
-                                    <p style="color: #5b6f8a;font-size:1rem;margin:10px 0 0 0;">
-                                        @php
-                $estates = Estate::where('landArea_id', $landArea->id)
-                    ->orderBy('id', 'desc') // استبدل "created_at" بالعمود الذي ترغب بالترتيب بناءً عليه
-                    ->first();
-                                        @endphp
-                                        تم تقدير السعر ب {{ floor($estates->min_price) }} ريال
-                                    </p>
-                                    <button
-                                    class="apply-btn"
-                                    data-id="{{ $landArea->id }}"
-                                    style="background-color: rgb(130, 206, 187); border:2px solid #abf7cd;color:white">
-                                    قبول
-                                </button>
-                                <button
-                                class="reject-btn"
-                                data-id="{{ $landArea->id }}"
-                                style="background-color: rgb(206, 130, 130); border:2px solid #f7abab;color:white">
-                                رفض
-                            </button>
-                                <br>
-                                    @else
-                                    <button
-                                    style="color:white;background-color: rgb(78, 78, 78);"
-                                   >تم ارسال طلب البيع</button>
-                                    @endif --}}
                                         @if ($landArea->tax == 0 && \Carbon\Carbon::parse($landArea->tax_end_time)->lte(now()))
                                             <!-- يظهر زر دفع الغرامة -->
                                             <button class="pay-fine" id="btn-fine-{{ $landArea->id }}"

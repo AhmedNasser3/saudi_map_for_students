@@ -128,6 +128,8 @@ Route::controller(MainLandAreaController::class)->prefix('landArea')->group(func
 Route::controller(UserController::class)->prefix('user')->group(function(){
     Route::get('/', 'index')->name('user.page');
     Route::post('/users/import',  'import')->name('user.import');
+    Route::get('/create', 'create')->name('user.create');
+    Route::post('/store', 'store')->name('user.store');
     Route::delete('/{user_id}/id', 'delete')->name('user.delete');
 });
 
@@ -238,5 +240,9 @@ Route::post('/update-state_apply', function (Request $request) {
 
     return response()->json(['success' => false, 'message' => 'لم يتم العثور على العنصر.']);
 })->name('updateState_apply');
+
+
+Route::post('/change-password', [UserController::class, 'changePassword'])->name('user.update-password');
+Route::post('/change-password/{userId}', [UserController::class, 'changePasswordId'])->name('user.update-passwordId');
 
 require __DIR__.'/auth.php';

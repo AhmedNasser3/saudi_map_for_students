@@ -165,4 +165,14 @@ class AuctionController extends Controller
          return response()->json(['message' => 'المزاد غير موجود'], 404);
      }
  }
+
+
+
+
+
+
+
+
+
+
 }

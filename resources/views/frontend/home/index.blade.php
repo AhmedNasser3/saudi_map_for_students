@@ -6,7 +6,7 @@ use App\Models\admin\estate\Estate;
 
 $price = Price::first();
 @endphp
-@if (!auth()->check() || auth()->user()->son == null)
+@if(!auth()->check() || auth()->user()->children->isEmpty())
 @if (session('success'))
     <div class="notification-card success" id="success-alert">
         ✅ {{ session('success') }}
@@ -18,7 +18,6 @@ $price = Price::first();
         ❌ {{ session('error') }}
     </div>
 @endif
-
 @if (auth()->check())
 {{-- banner --}}
 <div style="padding: 10% 0 0 0">
@@ -122,7 +121,7 @@ $price = Price::first();
 });
 </script>
 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-@elseif(auth()->check() && auth()->user()->children->isNotEmpty())
+@else
 <div class="office">
     <div class="bid_header" style="direction: rtl">
         {{-- <div class="bid_btn">

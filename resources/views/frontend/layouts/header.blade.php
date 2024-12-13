@@ -23,7 +23,6 @@ $meters = LandArea::with('bids')
                         @endif
                     </div>
                     <div class="sign_up">
-
                         @if (auth()->check())
                         <button><a href="#">📏 المساحة : {{ floor($meters) }} متر</a></button>
                         <button><a href="{{ route('logout') }}">تسجيل خروج</a></button>

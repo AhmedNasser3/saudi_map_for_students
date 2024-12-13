@@ -4,6 +4,7 @@
     <div class="admin_land">
         <div class="admin_land_header">
             <div class="admin_land_btn">
+                <button><a href="{{ route('user.create') }}">انشيئ طالب اخري </a></button>
             </div>
             <div class="admin_land_header_title">
                 <h1>عرض الطلاب</h1>
@@ -48,16 +49,30 @@
                                     <td>{{ $user->level }}</td>
                                     <td>{{ $user->balance }}</td>
                                     <td>{{ $user->unique_number }}</td>
-                                    <td><input type="text" name="" id=""></td>
                                     <td>
-                                        <form action="{{ route('user.delete', ['user_id' => $user->id]) }}" method="POST" style="display: inline;">
+                                        <form action="{{ route('user.update-passwordId', ['userId' => $user->id]) }}" method="post" style="display: inline;">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label class="group_label" for="new_password">كلمة المرور الجديدة</label><br>
+                                                <input type="password" class="form-control" id="new_password" name="new_password" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="new_password_confirmation">تأكيد كلمة المرور الجديدة</label><br>
+                                                <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" required>
+                                            </div>
+                                            <button type="submit" class="btn_gr">تغيير كلمة المرور</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('land.delete', ['land_id' => $user->id]) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button class="delete_button" type="submit" style="border: none; background: none; cursor: pointer;">
-                                                <i class="fa-solid fa-trash"></i>
+                                                <i class="fa-solid fa-trash" ></i>
                                             </button>
                                         </form>
-                                    </td>                                </tr>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>

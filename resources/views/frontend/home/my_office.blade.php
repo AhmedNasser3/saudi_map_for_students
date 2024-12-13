@@ -6,11 +6,58 @@ use App\Models\admin\estate\Estate;
 
 $price = Price::first();
 @endphp
+<style>
+    .card {
+        margin-top: 50px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    .form-group label {
+        margin: 5px 0;
+
+    }
+
+    .btn-block {
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .btn_gr{
+        border: 1px solid #dadada;
+        margin: 10px 0 0 0 ;
+    }
+    .form-control{
+        border: 1px solid #dadada;
+        border-radius: 10px;
+        padding: 5px 20px
+    }
+</style>
+
 <div class="office">
-    <div class="bid_header" style="direction: rtl">
-        {{-- <div class="bid_btn">
-            <button><a href="#">مشاهدة الجميع </a></button>
-        </div> --}}
+    <div class="bid_header" style="direction: ltr">
+        <div class="bid_btn">
+            <form action="{{ route('user.update-password') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label class="group_label" for="new_password">كلمة المرور الجديدة</label><br>
+                    <input type="password" class="form-control" id="new_password" name="new_password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new_password_confirmation">تأكيد كلمة المرور الجديدة</label><br>
+                    <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" required>
+                </div>
+                <button type="submit" class="btn_gr">تغيير كلمة المرور</button>
+            </form>
+        </div>
         <div class="bid_title" >
             <h1>مكتبي</h1>
         </div>
