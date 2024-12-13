@@ -10,6 +10,7 @@ class ExpandArea extends Model
         'name',
         'number_products',
         'area',
+        'bonus_area_price',
         'state',
     ];
 }

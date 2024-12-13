@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\frontend\product;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\admin\land\LandArea;
 use App\Http\Controllers\Controller;
@@ -57,12 +58,55 @@ class ProductController extends Controller
     public function create(){
         return view('admin.expandArea.create');
     }
+    public function edit($productId)
+    {
+        // جلب المنتج باستخدام ID
+        $product = ExpandArea::findOrFail($productId);
+
+        // إرجاع العرض مع بيانات المنتج
+        return view('admin.expandArea.edit', compact('product'));
+    }
+
+
+    public function update(Request $request, $productId)
+    {
+        // جلب المنتج باستخدام ID
+        $product = ExpandArea::findOrFail($productId);
+
+        // التحقق من المدخلات وتحديث البيانات
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'number_products' => 'required|integer',
+            'area' => 'required|string',
+            'state' => 'required|integer',
+            'bonus_area_price' => 'required|numeric',
+        ]);
+
+        // تحديث البيانات
+        $product->update([
+            'name' => $request->name,
+            'number_products' => $request->number_products,
+            'area' => $request->area,
+            'state' => $request->state,
+            'bonus_area_price' => $request->bonus_area_price,
+        ]);
+
+        // إرجاع إلى الصفحة السابقة أو أي صفحة أخرى مع رسالة نجاح
+        return redirect()->route('admin.view.product')->with('success', 'تم تحديث المنتج بنجاح');
+    }
+
+    public function delete($id){
+        $product = ExpandArea::findOrFail($id);
+        $product->delete();
+        return redirect()->back();
+    }
 
     public function AdminStore(Request $request)
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'number_products' => 'required|integer|min:1',
+            'bonus_area_price' => 'required|integer|min:1',
             'area' => 'required|numeric|min:0',
             'state' => 'required|string|max:255',
         ]);

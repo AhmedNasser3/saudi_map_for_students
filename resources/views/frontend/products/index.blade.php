@@ -66,19 +66,28 @@ $price = Price::first();
                                     <input type="text" name="bonus_area_price" value="{{ $bonusArea->bonus_area_price }}" id="" hidden>
                                     <input type="text" name="state" value="{{ $bonusArea->state }}" id="" hidden>
                                     <input type="hidden" id="bonus-area-id-{{ $bonusArea->id }}" value="{{ $bonusArea->id }}">
-                                    @foreach ($bids as $landArea)
+                                    @php
+                                    $isButtonShown = false; // متغير لتتبع إذا تم عرض الزر بالفعل
+                                @endphp
 
-                                    @if (auth()->user()->balance < $bonusArea->bonus_area_price)
+                                @foreach ($bids as $landArea)
+                                    @if (!$isButtonShown) <!-- تحقق إذا لم يتم عرض الزر بعد -->
+                                        @if (auth()->user()->balance < $bonusArea->bonus_area_price)
+                                            <button style="color: white">
+                                                رصيدك غير كاف
+                                            </button>
+                                        @else
+                                            <button type="submit" class="buy-btn" data-id="{{ $bonusArea->id }}" style="color: white">
+                                                شراء واحدة بسعر {{ floor($bonusArea->bonus_area_price) }}
+                                            </button>
+                                        @endif
 
-                                    <button  style="color: white">
-                                        رصيدك غير كاف
-                                    </button>
-                                    @else
-                                    <button type="submit" class="buy-btn" data-id="{{ $bonusArea->id }}" style="color: white">
-                                        شراء واحدة بسعر {{ floor($bonusArea->bonus_area_price) }}
-                                    </button>
+                                        @php
+                                            $isButtonShown = true; // بعد عرض الزر، قم بتحديث المتغير لمنع تكرار الزر
+                                        @endphp
                                     @endif
-                                    @endforeach
+                                @endforeach
+
 
                                 </div>
                             </div>

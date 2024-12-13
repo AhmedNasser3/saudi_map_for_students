@@ -2,7 +2,6 @@
 @php
 use App\Models\admin\land\LandArea;
 if (auth()->check()) {
-
 $meters = LandArea::with('bids')
 ->where('highest_bidder_id', auth()->user()->id)
 ->get()->sum('area');;
@@ -17,7 +16,7 @@ $meters = LandArea::with('bids')
                     @if (!auth()->check() || auth()->user()->son == null)
                     <div class="log_in">
                         @if (auth()->check())
-                        <button><a href="#">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
+                        <button><a href="{{ route('home.history', ['userId' => auth()->user()->id]) }}">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
                         <button style="background: #4d4d4d"><a href="#">🪙 الرصيد المعلق  : {{ auth()->user()->freeze_balance  }}</a></button>
                         @else
                         <button><a href="{{ route('login') }}">تسجيل الدخول</a></button>

@@ -133,23 +133,22 @@ public function setRenewDays(Request $request)
     ]);
 }
 public function updateShow(Request $request)
-{
-    $landId = $request->input('land_id');
-    $show = $request->input('show');
+    {
+        $landId = $request->input('land_id');
+        $show = $request->input('show');
 
-    $landArea = LandArea::find($landId);
-    if ($landArea) {
-        // تأكد من أن التغيير يحدث بناءً على start_time وليس before_start_time
-        if ($landArea->start_time <= now()) {
+        $landArea = LandArea::find($landId);
+        if ($landArea) {
             $landArea->show = $show;
             $landArea->save();
 
             return response()->json(['success' => true, 'message' => 'تم تحديث الحقل show بنجاح']);
         }
-    }
 
-    return response()->json(['success' => false, 'message' => 'العنصر غير موجود أو الوقت لم ينتهي بعد']);
-}
+        return response()->json(['success' => false, 'message' => 'العنصر غير موجود']);
+    }
+// في Controller الذي يتعامل مع المزادات
+
 
 
 public function updateBeforeShow(Request $request)

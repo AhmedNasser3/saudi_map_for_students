@@ -35,6 +35,7 @@
                                     <th>المرحلة</th>
                                     <th>الرصيد</th>
                                     <th>كود الطالب</th>
+                                    <th>تغيير باسوورد الطالب الي</th>
                                     <th>ازالة الطالب</th>
                                 </tr>
                             </thead>
@@ -47,6 +48,7 @@
                                     <td>{{ $user->level }}</td>
                                     <td>{{ $user->balance }}</td>
                                     <td>{{ $user->unique_number }}</td>
+                                    <td><input type="text" name="" id=""></td>
                                     <td>
                                         <form action="{{ route('user.delete', ['user_id' => $user->id]) }}" method="POST" style="display: inline;">
                                             @csrf

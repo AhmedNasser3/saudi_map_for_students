@@ -159,6 +159,9 @@ Route::controller(PriceController::class)->prefix('price')->group(function(){
 Route::get('/product/view', [ProductController::class, 'adminView'])->name('admin.view.product');
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
 Route::post('/product/store', [ProductController::class, 'AdminStore'])->name('product.admin.store');
+Route::get('/product/{productId}/edit', [ProductController::class, 'edit'])->name('product.admin.edit');
+Route::post('/product/{productId}/update', [ProductController::class, 'update'])->name('product.admin.update');
+Route::delete('/product/{productId}/delete', [ProductController::class, 'delete'])->name('product.admin.delete');
 });
 
 

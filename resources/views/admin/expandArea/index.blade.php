@@ -21,6 +21,7 @@
                                 <th>عنوان المنتج</th>
                                 <th>عدد المنتج</th>
                                 <th>المساحة بنسبة</th>
+                                <th>سعر المنتج</th>
                                 <th>الحاله</th>
                                 <th>مسح</th>
                                 <th>تعديل</th>
@@ -33,9 +34,20 @@
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->number_products }}</td>
                                 <td>{{ $product->area }}</td>
+                                <td>{{ $product->bonus_area_price }}</td>
                                 <td>{{ $product->state }}</td>
-                                <td>مسح</td>
-                                <td>تعديل</td>
+                                <td>
+                                    <form action="{{ route('product.admin.delete', ['productId' => $product->id]) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="delete_button" type="submit" style="border: none; background: none; cursor: pointer;">
+                                            <i class="fa-solid fa-trash" ></i>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <a class="edit_button" href="{{ route('product.admin.edit', ['productId' => $product->id]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
