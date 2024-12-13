@@ -32,12 +32,13 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>اسم المستخدم</th>
-                                    <th>باسسورد الطالب</th>
+                                    <th>رقم الطالب</th>
                                     <th>المرحلة</th>
                                     <th>الرصيد</th>
                                     <th>كود الطالب</th>
                                     <th>تغيير باسوورد الطالب الي</th>
                                     <th>ازالة الطالب</th>
+                                    <th>تعديل المستخدم</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,7 +46,7 @@
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->phone }}</td>
                                     <td>{{ $user->level }}</td>
                                     <td>{{ $user->balance }}</td>
                                     <td>{{ $user->unique_number }}</td>
@@ -64,13 +65,16 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <form action="{{ route('land.delete', ['land_id' => $user->id]) }}" method="POST" style="display: inline;">
+                                        <form action="{{ route('user.delete', ['user_id' => $user->id]) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button class="delete_button" type="submit" style="border: none; background: none; cursor: pointer;">
                                                 <i class="fa-solid fa-trash" ></i>
                                             </button>
                                         </form>
+                                    </td>
+                                    <td>
+                                        <a class="edit_button" href="{{ route('user.edit', [ 'userId'=> $user->id]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

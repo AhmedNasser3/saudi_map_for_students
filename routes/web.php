@@ -244,5 +244,7 @@ Route::post('/update-state_apply', function (Request $request) {
 
 Route::post('/change-password', [UserController::class, 'changePassword'])->name('user.update-password');
 Route::post('/change-password/{userId}', [UserController::class, 'changePasswordId'])->name('user.update-passwordId');
+Route::get('/user/edit/{userId}', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/user/update/{userId}', [UserController::class, 'update'])->name('user.update');
 
 require __DIR__.'/auth.php';

@@ -19,15 +19,50 @@ class UserController extends Controller
         return view('admin.user.index', data: compact('users'));
     }
 
-    public function delete($user_id){
-        $user = User::find($user_id);
+    public function delete($userId){
+        $user = User::find($userId);
         $user->delete();
-        return redirect()->back()->with('message', 'تم ازالة المستخدم بنجاح');
+        return redirect()->back()->with('successful', 'لقد قمت بحذف المستخدم');
     }
-    public function edit($userId){
-        $user = User::find($user_id);
-        return view('admin.user.edit', data: compact('user'));
+    public function edit($userId)
+    {
+        $user = User::find($userId);
+        if (!$user) {
+            return redirect()->route('user.page')->with('error', 'المستخدم غير موجود');
+        }
+        return view('admin.user.edit', compact('user'));
     }
+    public function update(Request $request, $userId)
+    {
+        // تحقق من صحة البيانات المدخلة
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|unique:users,phone,' . $userId,
+            'new_password' => 'nullable|min:8|confirmed',
+            'level' => 'required|string|in:admin,user',
+            'balance' => 'nullable|numeric|min:0',
+        ]);
+
+        // العثور على المستخدم باستخدام الـ ID
+        $user = User::find($userId);
+        if (!$user) {
+            return redirect()->route('user.page')->with('error', 'المستخدم غير موجود');
+        }
+
+        // تحديث بيانات المستخدم
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        if ($request->new_password) {
+            $user->password = Hash::make($request->new_password); // تحديث كلمة المرور فقط إذا تم تقديمها
+        }
+        $user->level = $request->level;
+        $user->balance = $request->balance ?? 3000; // تعيين قيمة افتراضية إذا لم يتم تقديم الرصيد
+
+        $user->save();
+
+        return redirect()->route('user.page')->with('success', 'تم تحديث بيانات المستخدم بنجاح');
+    }
+
     public function import(Request $request)
     {
         $request->validate([
@@ -141,6 +176,4 @@ public function changePasswordId(Request $request, $userId)
 
     return redirect()->back()->with('success', 'تم تغيير كلمة المرور بنجاح');
 }
-
-
 }
