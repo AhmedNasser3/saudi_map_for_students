@@ -14,10 +14,10 @@
         <a href="{{route('user.page')}}" class="navbar__link"><i class="fa-solid fa-users"></i><span>المستخدمين</span></a>
       </li>
       <li class="navbar__item">
-        <a href="{{ route('add_balance') }}" class="navbar__link"><i class="fa-solid fa-plus"></i><span>اضف رصيد للطلاب</span></a>
+        <a href="{{ route('minus_balance.form') }}" class="navbar__link"><i class="fa-solid fa-plus"></i><span>اضف رصيد للطلاب</span></a>
       </li>
       <li class="navbar__item">
-        <a href="{{ route('minus_balance.form') }}" class="navbar__link"><i class="fa-solid fa-minus"></i><span>اخصم رصيد للطلاب</span></a>
+        <a href="{{ route('add_balance') }}" class="navbar__link"><i class="fa-solid fa-minus"></i><span>اخصم رصيد للطلاب</span></a>
       </li>
       <li class="navbar__item">
         <a href="{{ route('admin.chat.view') }}" class="navbar__link"><i class="fa-solid fa-envelope"></i><span>الاستشارات</span></a>

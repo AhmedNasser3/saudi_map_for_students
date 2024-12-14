@@ -80,6 +80,28 @@
                                         <label for="auction_end_time">: وقت انتهاء المزاد</label>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <input type="datetime-local" id="go_time" name="go_time" value="{{ old('go_time') }}" required>
+                                        @error('go_time')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </td>
+                                    <td>
+                                        <label for="auction_end_time">: وقت عرض متي سيبدأ المزاد</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="datetime-local" id="stop_time" name="stop_time" value="{{ old('stop_time') }}" required>
+                                        @error('stop_time')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </td>
+                                    <td>
+                                        <label for="auction_end_time">: وقت اختفاء المزاد من الصفحة</label>
+                                    </td>
+                                </tr>
 
 
                                 <tr>

@@ -17,23 +17,27 @@ class UsersImport implements ToModel, WithHeadingRow
             return null; // تخطي الصف إذا كانت الحقول فارغة
         }
 
+        // تأكد من أن الأرقام محفوظة كـ string مع الحفاظ على الصفر في البداية
+        $phone = (string) $row['phone']; // تأكد من أن الرقم يتم تخزينه كـ string
+        $phoneParent = (string) $row['phone_parent']; // نفس الشيء لرقم ولي الأمر
+
         // إنشاء حساب الطالب
         $studentAccount = User::create([
             'name' => $row['name'],
-            'phone' => $row['phone'],
+            'phone' => $phone,
             'level' => $row['level'],
             'password' => Hash::make($row['password']),
-            'balance' => is_numeric($row['balance']) ? $row['balance'] : 3000,
+            'balance' => is_numeric($row['balance']) ? $row['balance'] : 0,
         ]);
 
         // تحقق إذا كان رقم ولي الأمر موجودًا مسبقًا
         $parentAccount = User::firstOrCreate(
-            ['phone' => $row['phone_parent']], // تحقق من وجود الرقم
+            ['phone' => $phoneParent], // تحقق من وجود الرقم
             [
                 'name' => $row['name'] . ' - ولي الأمر', // اسم ولي الأمر مبدئيًا
                 'level' => $row['level'],
                 'password' => Hash::make($row['password']),
-                'balance' => is_numeric($row['balance']) ? $row['balance'] : 3000,
+                'balance' => is_numeric($row['balance']) ? $row['balance'] : 0,
             ]
         );
 

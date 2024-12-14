@@ -64,31 +64,6 @@ class AuctionController extends Controller
 
 
 
-    public function payFine(Request $request)
-    {
-        $landAreaId = $request->input('landAreaId');
-        $landArea = LandArea::find($landAreaId);
-        if (!$landArea) {
-            return response()->json(['success' => false, 'message' => 'المنطقة الأرضية غير موجودة']);
-        }
-
-        $user = Auth::user();
-        $fineAmount = 100;
-
-        if ($user->balance < $fineAmount) {
-            return response()->json(['success' => false, 'message' => 'رصيدك غير كافٍ لدفع الغرامة']);
-        }
-
-        $user->balance -= $fineAmount;
-        $user->save();
-
-        $landArea->tax_end_time = now()->addDays(7);
-        $landArea->tax = 0;
-        $landArea->save();
-
-        return response()->json(['success' => true, 'message' => 'تم دفع الغرامة بنجاح']);
-    }
-
     public function payTax(Request $request)
     {
         $landAreaId = $request->input('landAreaId');
@@ -100,7 +75,8 @@ class AuctionController extends Controller
 
         $user = Auth::user();
 
-        if ($user->balance < 50) {
+        $price = Price::all();
+        if ($user->balance < price->tax_price) {
             return response()->json(['success' => false, 'message' => 'رصيدك غير كافٍ للدفع']);
         }
         $price = Price::first(); // إذا كنت تريد تحديث أول سجل فقط. يمكنك تخصيص البحث إذا كان هناك أكثر من سجل
@@ -121,7 +97,6 @@ class AuctionController extends Controller
             'tax_end_time' => $landArea->tax_end_time
         ]);
     }
-
     public function extendTaxTime(Request $request)
     {
         try {
@@ -133,10 +108,24 @@ class AuctionController extends Controller
                 return response()->json(['success' => false, 'message' => 'المنطقة الأرضية غير موجودة']);
             }
 
+            // التحقق إذا كان لدى المستخدم رصيد كافٍ
+            $user = auth()->user();
+            $price = Price::first(); // إذا كنت تريد تخصيص السعر من جدول الأسعار
+
+            if ($user->balance < $price->tax_price) {
+                return response()->json(['success' => false, 'message' => 'رصيدك غير كافٍ للدفع']);
+            }
+
+            // خصم المبلغ من رصيد المستخدم
+            $user->balance -= $price->tax_price;
+            $user->save();
+
+            // تمديد الوقت وتحديث حالة الضريبة
             $landArea->tax_end_time = Carbon::parse($newEndTime);
-            $landArea->tax = 0; // تحديث tax إلى 0
+            $landArea->tax = 0; // تعيين tax إلى 0 بعد تمديد الوقت
             $landArea->save();
 
+            // تسجيل العملية في السجل
             \Log::info('Land area tax time updated', ['land_area_id' => $landAreaId, 'new_end_time' => $newEndTime]);
 
             return response()->json(['success' => true, 'message' => 'تم تمديد الرخصة بنجاح!']);
@@ -145,6 +134,8 @@ class AuctionController extends Controller
             return response()->json(['success' => false, 'message' => 'حدث خطأ أثناء التمديد: ' . $e->getMessage()]);
         }
     }
+
+
  // دالة لتحديث حالة المزاد
  public function updateState(Request $request)
  {
@@ -173,6 +164,39 @@ class AuctionController extends Controller
 
 
 
+// دالة لتحديث قيمة go إلى 1 عندما ينتهي الوقت
+public function updateGoTime(Request $request)
+{
+    // التحقق من أن البيانات صحيحة
+    $validated = $request->validate([
+        'land_area_id' => 'required|exists:land_areas,id',
+    ]);
 
+    $landArea = LandArea::find($validated['land_area_id']);
+    if ($landArea && $landArea->go_time <= now()) {
+        // تحديث قيمة go إلى 1
+        $landArea->update(['go' => 1]);
 
+        return response()->json(['success' => true]);
+    }
+
+    return response()->json(['success' => false, 'message' => 'الوقت لم ينته بعد']);
+}
+public function updateStop(Request $request)
+{
+    $landArea = LandArea::where('stop', false)  // تأكد من أن stop = 0 فقط
+                         ->whereNotNull('stop_time') // تأكد من وجود stop_time
+                         ->get();
+
+    foreach ($landArea as $area) {
+        // التحقق إذا كان الوقت الحالي قد مرّ على stop_time
+        if (now() > $area->stop_time) {
+            // إذا مر الوقت، يتم تحديث stop إلى 1
+            $area->stop = 1;
+            $area->save();
+        }
+    }
+
+    return response()->json(['success' => true, 'message' => 'تم تحديث الحقل stop بنجاح']);
+}
 }

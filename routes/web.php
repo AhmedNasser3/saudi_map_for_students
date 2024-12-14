@@ -48,7 +48,6 @@ Route::controller(AuctionController::class)->group(function(){
 });
 // ========================================================== LandArea Controller ==========================================================
 Route::post('/set-renew-days',  [MainLandAreaController::class, 'setRenewDays']);
-// Route::post('/extend-tax-time', [MainLandAreaController::class, 'extendTaxTime']);
 Route::post('/set-tax-end-time', [MainLandAreaController::class, 'updateTaxEndTime']);
 Route::post('/update-show', [MainLandAreaController::class, 'updateShow'])->name('update.show');
 Route::post('/update-before-show', [MainLandAreaController::class, 'updateBeforeShow']);
@@ -86,8 +85,6 @@ Route::put('/lawyerChat/{id}/update', [lawyerController::class, 'endChat'])->nam
 // ========================================================== tax Controller ==========================================================
 
 Route::get('/get-tax-info', [TaxController::class, 'getTaxInfo'])->name('get.tax.info');
-Route::post('/update-tax-status', [TaxController::class, 'updateTaxStatus']);
-Route::post('/extend-tax-time', [TaxController::class, 'extendTaxTime']);
 Route::post('/update-tax-status', [TaxController::class, 'updateTaxStatus']);
 Route::get('/taxTimeUpdate/{id}', [TaxController::class, 'update'])->name('tax.update.time');
 // ========================================================== estate Controller ==========================================================
@@ -246,5 +243,9 @@ Route::post('/change-password', [UserController::class, 'changePassword'])->name
 Route::post('/change-password/{userId}', [UserController::class, 'changePasswordId'])->name('user.update-passwordId');
 Route::get('/user/edit/{userId}', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/user/update/{userId}', [UserController::class, 'update'])->name('user.update');
+Route::post('/grace-time', [AuctionController::class, 'graceTime']);
+Route::get('/check-and-renew-license/{landAreaId}', [AuctionController::class, 'checkAndRenewLicense']);
+Route::post('/land-areas/update-go', [AuctionController::class, 'updateGoTime']);
+Route::post('/land-areas/update-stop', [AuctionController::class, 'updateStop']);
 
 require __DIR__.'/auth.php';

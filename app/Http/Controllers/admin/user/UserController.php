@@ -65,12 +65,15 @@ class UserController extends Controller
 
     public function import(Request $request)
     {
+        // التحقق من نوع الملف
         $request->validate([
             'excel_file' => 'required|mimes:xls,xlsx',
         ]);
 
         try {
+            // استيراد البيانات من الملف
             Excel::import(new UsersImport, $request->file('excel_file'));
+
             return redirect()->route('user.page')->with('success', 'تم استيراد الطلاب وحسابات أولياء الأمور بنجاح');
         } catch (\Exception $e) {
             return redirect()->route('user.page')->with('error', 'حدث خطأ أثناء الاستيراد: ' . $e->getMessage());

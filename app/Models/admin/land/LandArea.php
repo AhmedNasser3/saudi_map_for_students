@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class LandArea extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'land_id',
         'area',
@@ -34,6 +33,10 @@ class LandArea extends Model
         'show_to_estate',
         'img',
         'add_balance_to_seller',
+        'go_time',
+        'go',
+        'stop_time',
+        'stop',
     ];
     public function land()
     {

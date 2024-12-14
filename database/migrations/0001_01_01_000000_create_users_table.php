@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('phone_parent')->unique()->nullable();;
             $table->string('role')->default('user');
-            $table->decimal('balance', 15, 2)->default(3000);
+            $table->decimal('balance', 15, 2)->default(0);
             $table->decimal('freeze_balance', 15, 2)->default(0);
             $table->string('unique_number', 5)->unique();
             $table->rememberToken();

@@ -160,14 +160,8 @@ $price = Price::first();
                                                 <!-- سيتم التحديث هنا بواسطة JavaScript -->
                                             </span>
 
-                                        @if ($landArea->tax == 0 && \Carbon\Carbon::parse($landArea->tax_end_time)->lte(now()))
-                                            <!-- يظهر زر دفع الغرامة -->
-                                            <button class="pay-fine" id="btn-fine-{{ $landArea->id }}"
-                                                    data-land-area-id="{{ $landArea->id }}"
-                                                    style="background-color: rgb(153, 37, 37);border:2px solid#f09797;color:white">
-                                                دفع الغرامة 100 ريال
-                                            </button>
-                                        @elseif ($landArea->tax == 0)
+
+                                        @if ($landArea->tax == 0)
                                             <!-- يظهر زر تجديد الرخصة -->
                                             <button class="renew-license" id="btn-renew-{{ $landArea->id }}"
                                                     data-land-area-id="{{ $landArea->id }}"
@@ -194,39 +188,7 @@ $price = Price::first();
 </div>
 </div>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const buttons = document.querySelectorAll('.buy-btn');
 
-        buttons.forEach(button => {
-            button.addEventListener('click', function () {
-                const bonusAreaId = this.getAttribute('data-id');
-                const productNumberSpan = document.getElementById(`product-number-${bonusAreaId}`);
-
-                // إرسال طلب AJAX لتحديث العدد
-                fetch(`/update-product/${bonusAreaId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: JSON.stringify({ id: bonusAreaId })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // تحديث العدد في الواجهة
-                        productNumberSpan.textContent = data.newNumber;
-                        alert('تم الشراء بنجاح!');
-                    } else {
-                        alert('حدث خطأ أثناء الشراء.');
-                    }
-                })
-
-            });
-        });
-    });
-</script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // استرجاع المدة المختارة من الخادم بناءً على landAreaId
@@ -362,7 +324,12 @@ $price = Price::first();
     });
 
 
-    document.addEventListener("DOMContentLoaded", function() {
+
+
+    </script>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll('.btn-print-deed').forEach(button => {
             button.addEventListener('click', function () {
                 let landAreaId = this.getAttribute('data-land-area-id');
@@ -373,9 +340,7 @@ $price = Price::first();
         });
     });
 
-
-    </script>
-
+</script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // إضافة حدث الضغط على زر "بيع الأرض"
@@ -472,4 +437,136 @@ $price = Price::first();
             });
         });
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll('.buy-btn');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                const bonusAreaId = this.getAttribute('data-id');
+                const productNumberSpan = document.getElementById(`product-number-${bonusAreaId}`);
+
+                // إرسال طلب AJAX لتحديث العدد
+                fetch(`/update-product/${bonusAreaId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: JSON.stringify({ id: bonusAreaId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // تحديث العدد في الواجهة
+                        productNumberSpan.textContent = data.newNumber;
+                        alert('تم الشراء بنجاح!');
+                    } else {
+                        alert('حدث خطأ أثناء الشراء.');
+                    }
+                })
+
+            });
+        });
+    });
+</script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    // استرجاع المدة المختارة من الخادم بناءً على landAreaId
+    document.querySelectorAll('.days').forEach(function(element) {
+        var landAreaId = element.id.split('-')[2]; // استخراج landArea_id من الـ id
+
+        fetch(`/get-tax-info?land_area_id=${landAreaId}`)
+            .then(response => response.json())
+            .then(data => {
+                var selectedDays = data.taxDays || 7; // إذا لم توجد مدة، يتم تعيين 7 أيام افتراضيًا
+
+                // تحديث الوقت المتبقي بناءً على selectedDays
+                function updateTaxTime() {
+                    var endTimeString = element.getAttribute('data-end-time');
+                    var tax = parseInt(element.getAttribute('data-tax'));
+                    var endDate = new Date(endTimeString);
+                    var now = new Date();
+                    var diffTime = endDate - now;
+
+                    if (diffTime <= 0 && tax == 0) {
+                        var newEndDate = new Date(now);
+                        newEndDate.setDate(newEndDate.getDate() + selectedDays); // تمديد الوقت حسب المدة المختارة
+                        var newEndTime = newEndDate.toISOString();
+
+                        element.setAttribute('data-end-time', newEndTime);
+
+                        // تمديد الرخصة تلقائيًا بعد انتهاء الوقت
+                        fetch('/extend-tax-time', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            body: JSON.stringify({
+                                landAreaId: landAreaId,
+                                newEndTime: newEndTime,
+                                addedDays: selectedDays // إرسال الأيام المضافة إلى الخادم
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('تم تمديد الرخصة بنجاح!');
+                            } else {
+                                alert('حدث خطأ أثناء التمديد.');
+                            }
+                        }).catch(error => {
+                            console.error('Error:', error);
+                        });
+
+                        // تحديث قيمة tax إلى 1 بعد تمديد الوقت
+                        fetch(`/update-tax-status`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            body: JSON.stringify({
+                                landAreaId: landAreaId,
+                                taxStatus: 1 // تعيين tax إلى 1 بعد تمديد الوقت
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                console.log(`تم تحديث قيمة tax إلى 1 للمنطقة ${landAreaId}`);
+                            } else {
+                                console.error('حدث خطأ أثناء تحديث tax');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+
+                    if (diffTime > 0) {
+                        var diffDays = Math.floor(diffTime / (1000 * 3600 * 24));
+                        var diffHours = Math.floor((diffTime % (1000 * 3600 * 24)) / (1000 * 3600));
+                        var diffMinutes = Math.floor((diffTime % (1000 * 3600)) / (1000 * 60));
+                        var diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+                        element.innerText = `${diffDays} يوم ${diffHours} ساعة ${diffMinutes} دقيقة ${diffSeconds} ثانية`;
+                    } else {
+                        element.innerText = 'انتهت المدة';
+                    }
+                }
+
+                setInterval(updateTaxTime, 1000);
+                updateTaxTime();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+});
+
+</script>
 @endsection

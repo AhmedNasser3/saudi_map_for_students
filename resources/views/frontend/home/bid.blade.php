@@ -20,7 +20,7 @@
                         <div class="bid_cards_data">
                             @if($landarea && $landarea->count())
                             @foreach ($landarea as $land)
-                            @if ($land->show == 0)
+                            @if ($land->go == 1 && now() > $land->start_time && $land->stop == 0)
                             <div class="bid_cards_content">
                                 <div class="bid_cards_img">
                                     <img src="https://www.auctions.com.sa/web/binary/image/?model=auction.auction&field=image&id=15760" alt="">
@@ -145,6 +145,8 @@
                                 </div>
                             </div>
                             @endif
+                            @include('frontend.home.timre')
+                            @include('frontend.home.stop')
                             <div hidden class="countdown" data-id="{{ $land->id }}" data-starttime="{{ $land->before_start_time }}">
                                 <span class="timer-days">0</span> يوم
                                 <span class="timer-hours">0</span> ساعة
@@ -397,7 +399,7 @@ document.querySelectorAll(".countdown").forEach(function (countdownElement) {
             countdownElement.querySelector(".timer-seconds").innerText = seconds;
         } else {
             clearInterval(timerInterval);
-            countdownElement.innerHTML = "<span style='color: red;'>الوقت انتهى!</span>";
+            countdownElement.innerHTML = "<span style='color: red;'></span>";
 
             // Update `show` field in database via AJAX
             fetch(`/update-show`, {
@@ -406,7 +408,6 @@ document.querySelectorAll(".countdown").forEach(function (countdownElement) {
                     "Content-Type": "application/json",
                     "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
                 },
-                body: JSON.stringify({ land_id: landId, show: 0 })
             })
                 .then(response => response.json())
                 .then(data => {

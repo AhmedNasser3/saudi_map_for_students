@@ -35,6 +35,8 @@ class MainLandAreaController extends Controller
             'tax' => 'nullable|numeric',
             'tax_end_time' => 'nullable|date',
             'start_time' => 'nullable|date',
+            'stop_time' => 'nullable|date',
+            'go_time' => 'nullable|date',
             'state' => 'nullable|string|max:255',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20048',
             'number_of_auctions' => 'required|integer|min:1',
@@ -81,6 +83,8 @@ class MainLandAreaController extends Controller
             'duration' => 'required|integer',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20048',
             'number_of_auctions' => 'required|integer|min:1',
+            'stop_time' => 'nullable|date',
+            'go_time' => 'nullable|date',
         ]);
 
         // العثور على المزاد المحدد باستخدام الـ ID
@@ -133,20 +137,28 @@ public function setRenewDays(Request $request)
     ]);
 }
 public function updateShow(Request $request)
-    {
-        $landId = $request->input('land_id');
-        $show = $request->input('show');
+{
+    $landId = $request->input('land_id');
 
-        $landArea = LandArea::find($landId);
-        if ($landArea) {
-            $landArea->show = $show;
-            $landArea->save();
-
-            return response()->json(['success' => true, 'message' => 'تم تحديث الحقل show بنجاح']);
+    $landArea = LandArea::find($landId);
+    if ($landArea) {
+        // التحقق إذا كان الوقت الحالي قد مرّ على go_time
+        if (now() > $landArea->go_time) {
+            // إذا مر الوقت، يتم تحديث go إلى 0 و show إلى 1
+            $landArea->go = 0;
+            $landArea->show = 1;
         }
 
-        return response()->json(['success' => false, 'message' => 'العنصر غير موجود']);
+        // حفظ التحديثات في قاعدة البيانات
+        $landArea->save();
+
+        return response()->json(['success' => true, 'message' => 'تم تحديث الحقول بنجاح']);
     }
+
+    return response()->json(['success' => false, 'message' => 'العنصر غير موجود']);
+}
+
+
 // في Controller الذي يتعامل مع المزادات
 
 
