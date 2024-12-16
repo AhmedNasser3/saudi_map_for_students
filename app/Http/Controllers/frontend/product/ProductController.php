@@ -42,7 +42,7 @@ class ProductController extends Controller
             $landArea->area += $data['bonus_area'];
             $landArea->save();
         } else {
-            $landArea->area *= $data['bonus_area'];
+            $landArea->area *= ($data['bonus_area'] / 100); // ضرب في النسبة المئوية
             $landArea->save();
         }
         BuyArea::create($data);

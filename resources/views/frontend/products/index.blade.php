@@ -134,10 +134,11 @@ $price = Price::first();
                 </div>
                 <h3 style="text-align: center;margin:30px 0 0 0;color:#477938;font-size:1.2rem">تجديد الرخص</h3>
             </div>
+            <div style="display: flex; flex-wrap:wrap; gap:1rem;">
             @foreach ($bids as $landArea)
-                    <div class="office_content" style="width:320px;margin:30px 0 0 0;" data-land-area-id="{{ $landArea->id }}">
-                        <div class="office_titles">
-                            <div class="office_titles_des">
+            <div class="office_content" style="width:320px;margin:30px 0 0 0;" data-land-area-id="{{ $landArea->id }}">
+                <div class="office_titles">
+                    <div class="office_titles_des">
                             </div>
                             <div class="office_titles_main">
                                 <div class="office_header">
@@ -181,8 +182,9 @@ $price = Price::first();
                             </div>
                         </div>
                     </div>
-                    @endforeach
-        </div>
+                </div>
+                @endforeach
+            </div>
     </div>
 </div>
 </div>

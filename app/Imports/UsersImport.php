@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Imports;
 
 use App\Models\User;
-use App\Models\frontend\parents\Child;
 use Illuminate\Support\Facades\Hash;
+use App\Models\frontend\parents\Child;
+use App\Models\admin\addition\Addition;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -12,19 +12,42 @@ class UsersImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
-        // تحقق من صحة البيانات
+        // تحقق إذا كان الحقل id موجودًا في الملف
+        if (!empty($row['id'])) {
+            $user = User::find($row['id']); // ابحث عن المستخدم بناءً على id
+            if ($user) {
+                // إذا تم العثور على المستخدم، قم بتسجيل المبلغ والسبب في جدول التحديثات
+                if (!empty($row['balance']) && is_numeric($row['balance'])) {
+                    $additionAmount = $row['balance'] - $user->balance; // حساب الفرق
+                    Addition::create([
+                        'user_id' => $user->id,
+                        'addition' => $additionAmount,
+                        'title' => $row['title'] ?? 'No Title Provided',
+                    ]);
+                }
+
+                // قم بتحديث البيانات
+                $user->update([
+                    'name' => $row['name'] ?? $user->name,
+                    'phone' => $row['phone'] ?? $user->phone,
+                    'level' => $row['level'] ?? $user->level,
+                    'password' => !empty($row['password']) ? Hash::make($row['password']) : $user->password,
+                    'balance' => is_numeric($row['balance']) ? $row['balance'] : $user->balance,
+                ]);
+
+                return null; // العودة وعدم إنشاء سجل جديد
+            }
+        }
+
+        // في حالة عدم وجود id أو عدم العثور على المستخدم
         if (empty($row['phone']) || empty($row['phone_parent'])) {
             return null; // تخطي الصف إذا كانت الحقول فارغة
         }
 
-        // تأكد من أن الأرقام محفوظة كـ string مع الحفاظ على الصفر في البداية
-        $phone = (string) $row['phone']; // تأكد من أن الرقم يتم تخزينه كـ string
-        $phoneParent = (string) $row['phone_parent']; // نفس الشيء لرقم ولي الأمر
-
         // إنشاء حساب الطالب
         $studentAccount = User::create([
             'name' => $row['name'],
-            'phone' => $phone,
+            'phone' => (string)$row['phone'],
             'level' => $row['level'],
             'password' => Hash::make($row['password']),
             'balance' => is_numeric($row['balance']) ? $row['balance'] : 0,
@@ -32,9 +55,9 @@ class UsersImport implements ToModel, WithHeadingRow
 
         // تحقق إذا كان رقم ولي الأمر موجودًا مسبقًا
         $parentAccount = User::firstOrCreate(
-            ['phone' => $phoneParent], // تحقق من وجود الرقم
+            ['phone' => (string)$row['phone_parent']],
             [
-                'name' => $row['name'] . ' - ولي الأمر', // اسم ولي الأمر مبدئيًا
+                'name' => $row['name'] . ' - ولي الأمر',
                 'level' => $row['level'],
                 'password' => Hash::make($row['password']),
                 'balance' => is_numeric($row['balance']) ? $row['balance'] : 0,
@@ -47,9 +70,9 @@ class UsersImport implements ToModel, WithHeadingRow
             ->get();
 
         $childNames = $relatedChildren->map(fn($relation) => $relation->child->name)->toArray();
-        $childNames[] = $studentAccount->name; // إضافة اسم الطالب الحالي
+        $childNames[] = $studentAccount->name;
         $parentAccount->update([
-            'name' => implode(', ', $childNames) . ' - ولي الأمر', // تحديث الاسم
+            'name' => implode(', ', $childNames) . ' - ولي الأمر',
         ]);
 
         // تحقق من وجود العلاقة في جدول children لتجنب التكرار
@@ -58,13 +81,12 @@ class UsersImport implements ToModel, WithHeadingRow
             ->first();
 
         if (!$existingChildRelationship) {
-            // إضافة العلاقة بين الطالب وولي الأمر
             Child::create([
                 'parent_id' => $parentAccount->id,
                 'child_id' => $studentAccount->id,
             ]);
         }
 
-        return $studentAccount; // إرجاع حساب الطالب
+        return $studentAccount;
     }
 }

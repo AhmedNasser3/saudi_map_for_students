@@ -38,6 +38,12 @@ $price = Price::first();
                     <p>تم خصمهم من رصيدك</p>
                 </div>
             </div>
+            <button
+            data-land-area-id="{{ $landArea->id }}"
+            class="btn-print-deed"
+            style="background-color: rgb(91, 138, 127);border:2px solid#8ac7c4;color:white" >
+            طبع صك الأرض
+        </button>
         </div>
     </div>
     <div class="office_img">

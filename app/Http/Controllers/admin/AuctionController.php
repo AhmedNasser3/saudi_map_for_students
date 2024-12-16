@@ -9,6 +9,7 @@ use App\Models\admin\bid\Bid;
 use Illuminate\Support\Facades\DB;
 use App\Models\admin\land\LandArea;
 use App\Http\Controllers\Controller;
+use App\Models\admin\price\Price;
 use Illuminate\Support\Facades\Auth;
 
 class AuctionController extends Controller
@@ -81,11 +82,12 @@ class AuctionController extends Controller
 
         $user = Auth::user();
 
-        if ($user->balance < 50) {
+        $price = Price::all();
+        if ($user->balance < $price->tax_price) {
             return response()->json(['success' => false, 'message' => 'رصيدك غير كافٍ للدفع']);
         }
 
-        $user->balance -= 50;
+        $user->balance -= $price->tax_price;
         $user->save();
 
         if ($landArea->tax == 1 && $landArea->tax_end_time < now()) {

@@ -52,13 +52,6 @@
                                 <button disabled type="submit" hidden>تم الانهاء</button>
                             </form>
                             @endif
-                            {{-- <form action="{{ route('message.replay') }}" method="post">
-                                @csrf
-                                @method('post')
-                                <input style="width: 100px" type="text" name="send_id" value="{{ $message->id }}" id="">
-                                <input type="text" name="text" value="" id="">
-                                <button type="submit">ارسل</button>
-                            </form> --}}
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('additions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->nullable();
-            $table->decimal('addition', 15, 2)->default(3000)->nullable();
+            $table->decimal('addition', total: 15, 2)->default(3000)->nullable();
             $table->string('title')->nullable();
             $table->timestamps();
         });

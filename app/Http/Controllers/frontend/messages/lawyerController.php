@@ -19,7 +19,7 @@ class lawyerController extends Controller
     public function markAsRead(Request $request)
     {
         $request->validate([
-            'id' => 'required|integer|exists:sends,id',
+'id' => 'required|integer|exists:lawyer_sends,id',
         ]);
 
         $message = LawyerSend::find($request->id);
@@ -71,7 +71,7 @@ class lawyerController extends Controller
     public function sendStore(Request $request)
     {
         $chat = $request->validate([
-            'send_id' => 'required|exists:lawyer_sents,id', // استخدم اسم الجدول الصحيح
+            'send_id' => 'required|exists:lawyer_sents,id',
             'text' => 'required|string',
         ]);
 
