@@ -20,7 +20,7 @@
                         <div class="bid_cards_data">
                             @if($landarea && $landarea->count())
                             @foreach ($landarea as $land)
-                            @if ($land->go == 1 && now() > $land->start_time && $land->stop == 0)
+                            @if ($land->go == 1 && $land->stop == 0)
                             <div class="bid_cards_content">
                                 <div class="bid_cards_img">
                                     <img src="{{ asset('images/soul.jpeg') }}" alt="">
@@ -145,14 +145,14 @@
                                 </div>
                             </div>
                             @endif
-                            @include('frontend.home.timre')
-                            @include('frontend.home.stop')
+
                             <div hidden class="countdown" data-id="{{ $land->id }}" data-starttime="{{ $land->before_start_time }}">
                                 <span class="timer-days">0</span> يوم
                                 <span class="timer-hours">0</span> ساعة
                                 <span class="timer-minutes">0</span> دقيقة
                                 <span class="timer-seconds">0</span> ثانية
                             </div>
+
 <div class="bid_pop_up_bg"></div>
 
 <div class="bid_pop_up">
@@ -534,11 +534,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 </script>
-
-
-
-
-
-
-
-
+<div style="display: flex;justify-content:center;align-content:center;padding:100px 0 0 0;">
+    @include('frontend.home.timre')
+    @include('frontend.home.stop')
+</div>

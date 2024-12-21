@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 use DB;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\admin\bid\Bid;
 use Illuminate\Console\Command;
@@ -13,6 +14,21 @@ class CheckExpiredAuctionsCommand extends Command
     protected $description = 'Process auctions where state is 0 and determine the winner';
     public function handle()
     {
+            // الحصول على جميع السجلات التي تحتاج إلى تحديث
+        $lands = LandArea::where('go', 0)
+        ->where('start_time', '<=', Carbon::now())
+        ->get();
+
+foreach ($lands as $land) {
+// تحديث قيمة go إلى 1
+$land->go = 1;
+$land->save();
+$this->info("تم تحديث العملية للمزرعة {$land->id} إلى 1");
+}
+
+$this->info('تم إتمام تحديث العمليات.');
+
+$this->info('تم إتمام تحديث العمليات.');
         // جلب جميع المزادات التي حالتها (state) تساوي 0 وأعلى مزايدة غير موجودة
         $expiredAuctions = LandArea::where('state', 0)->whereNull('highest_bid')->get();
 

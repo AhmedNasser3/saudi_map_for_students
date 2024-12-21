@@ -35,7 +35,7 @@ return new class extends Migration
             $table->integer('show_to_estate')->default(0)->nullable();;
             $table->integer('add_balance_to_seller')->default(0)->nullable();;
             $table->dateTime(column: 'go_time')->nullable();
-            $table->boolean('go')->default(false)->nullable();;
+            $table->boolean('go')->default(true)->nullable();;
             $table->dateTime(column: 'stop_time')->nullable();
             $table->boolean('stop')->default(false)->nullable();;
             $table->timestamps();

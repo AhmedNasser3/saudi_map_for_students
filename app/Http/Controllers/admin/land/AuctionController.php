@@ -163,25 +163,29 @@ class AuctionController extends Controller
 
 
 
+ public function updateGoTime(Request $request)
+ {
+     // التحقق من أن البيانات صحيحة
+     $validated = $request->validate([
+         'land_area_id' => 'required|exists:land_areas,id',
+     ]);
 
-// دالة لتحديث قيمة go إلى 1 عندما ينتهي الوقت
-public function updateGoTime(Request $request)
-{
-    // التحقق من أن البيانات صحيحة
-    $validated = $request->validate([
-        'land_area_id' => 'required|exists:land_areas,id',
-    ]);
+     $landArea = LandArea::find($validated['land_area_id']);
+     if ($landArea) {
+         // التحقق إذا كانت قيمة go_time قد مرت
+         if ($landArea->go_time <= now()) {
+             // تحديث قيمة go إلى 1
+             $landArea->update(['go' => 1]);
 
-    $landArea = LandArea::find($validated['land_area_id']);
-    if ($landArea && $landArea->go_time <= now()) {
-        // تحديث قيمة go إلى 1
-        $landArea->update(['go' => 1]);
+             return response()->json(['success' => true]);
+         } else {
+             return response()->json(['success' => false, 'message' => 'الوقت لم ينته بعد']);
+         }
+     }
 
-        return response()->json(['success' => true]);
-    }
+     return response()->json(['success' => false, 'message' => 'المنطقة غير موجودة']);
+ }
 
-    return response()->json(['success' => false, 'message' => 'الوقت لم ينته بعد']);
-}
 public function updateStop(Request $request)
 {
     $landArea = LandArea::where('stop', false)  // تأكد من أن stop = 0 فقط
