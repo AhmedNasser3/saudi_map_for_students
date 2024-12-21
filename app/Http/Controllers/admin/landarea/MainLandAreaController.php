@@ -41,17 +41,38 @@ class MainLandAreaController extends Controller
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20048',
             'number_of_auctions' => 'required|integer|min:1',
         ]);
+
         $numberOfAuctions = $request->number_of_auctions;
         for ($i = 0; $i < $numberOfAuctions; $i++) {
             $landAreaData = $LandsAreaStore;
+
+            // التحقق إذا كان هناك صورة تم تحميلها
             if ($request->hasFile('img')) {
                 $image = $request->file('img');
-                $imageName = time() . '_' . $image->getClientOriginalName();
-                $image->storeAs('public/lands', $imageName);
-                $landAreaData['img'] = 'lands/' . $imageName;
+
+                // التحقق من صحة الصورة
+                if ($image->isValid()) {
+                    // اسم الصورة
+                    $imageName = time() . '_' . $image->getClientOriginalName();
+
+                    // مسار الصورة في مجلد التخزين
+                    $imagePath = 'lands/' . $imageName;
+
+                    // تخزين الصورة في مجلد storage/lands
+                    $image->storeAs('public/lands', $imageName);
+
+                    // إضافة المسار إلى البيانات التي سيتم تخزينها في قاعدة البيانات
+                    $landAreaData['img'] = $imagePath;
+                } else {
+                    return redirect()->back()->withErrors(['img' => 'خطأ في رفع الصورة.']);
+                }
             }
-            $landArea =  LandArea::create($landAreaData);
+
+            // إنشاء المزاد
+            $landArea = LandArea::create($landAreaData);
         }
+
+        // إنشاء سجل في جدول Tax
         Tax::create(['landArea_id' => $landArea->id]);
 
         return redirect()->route('landArea.page')->with('success', 'تم إنشاء المزادات بنجاح');
@@ -224,4 +245,3 @@ public function updateTax(Request $request)
 
 
 }
-

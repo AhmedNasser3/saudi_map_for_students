@@ -12,13 +12,13 @@
                 </div>
                 <div class="map_main_titles">
                     <h1>البورصة</h1>
-                    <p>"تميز على زملائك في الإنجاز اليومي!" <br>النجاح يبدأ بالاجتهاد والمثابرة، وكل خطوة بذكاء تقربك من هدفك. كن دائمًا مستعدًا في اغتنام الفرص!<br>كن الأفضل في إدارة صكوكك!</p>
+                    <p>تميز على زملائك في الإنجاز اليومي" النجاح يبدأ بالاجتهاد والمثابرة، وكل خطوة بذكاء تقربك من هدفك.</p>
                     <div class="map_main_btn">
                         <div class="map_main_btn_1">
                             <button><a href="#info">شاهد التعليمات</a></button>
                         </div>
                         <div class="map_main_btn_2">
-                            <button><a href="#bidds">شاهد المزادات</a></button>
+                            {{--  <button><a href="#bidds">شاهد المزادات</a></button>  --}}
                         </div>
                     </div>
                 </div>
@@ -340,7 +340,7 @@ if ($createdAt) {
 
                 ]
             },
-            madinah: '{{ $hdood->landAreas->sum() }}',
+madinah: '{{ $riad->landAreas->count() }}',
             area: '{{ $riad->landAreas->isNotEmpty() ? floor($riad->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -359,8 +359,8 @@ if ($createdAt) {
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-            madinah: '{{ $hdood->landAreas->sum() }}',
-            area: '1200 كم²',
+            madinah: '{{ $makah->landAreas->count() }}',
+            area: '{{ $makah->landAreas->isNotEmpty() ? floor($makah->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
                     color: '#FF7043'
@@ -368,8 +368,9 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-md',
-            madinah: '{{ $hdood->landAreas->sum() }}',
-            area: '{{ $makah->landAreas->isNotEmpty() ? floor($makah->landAreas->first()->area) : "مغلقة" }}',
+            name: '{{ $mdinah->name }} ',
+            madinah: '{{ $tabok->landAreas->count() }}',
+            area: '{{ $mdinah->landAreas->isNotEmpty() ? floor($mdinah->landAreas->first()->area) : "مغلقة" }}',
             link: 'https://example.com/madina',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
@@ -379,9 +380,9 @@ if ($createdAt) {
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-            madinah: '{{ $hdood->landAreas->sum() }}',
-            area: 'مغلقة',
-            states: {
+madinah: '{{ $mdinah->landAreas->count() }}',
+area: '{{ $mdinah->landAreas->isNotEmpty() ? floor($mdinah->landAreas->first()->area) : "مغلقة" }}',
+states: {
                 hover: {
                     color: '#81C784'
                 }
@@ -398,7 +399,7 @@ if ($createdAt) {
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-            madinah: '{{ $hdood->landAreas->sum() }}',
+madinah: '{{ $sharqia->landAreas->count() }}',
             area: '{{ $sharqia->landAreas->isNotEmpty() ? floor($sharqia->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -417,7 +418,7 @@ if ($createdAt) {
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-            madinah: '{{ $hdood->landAreas->sum() }}',
+madinah: '{{ $aser->landAreas->count() }}',
             area: '{{ $aser->landAreas->isNotEmpty() ? floor($aser->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -436,7 +437,7 @@ if ($createdAt) {
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-            madinah: '{{ $hdood->landAreas->sum() }}',
+madinah: '{{ $baha->landAreas->count() }}',
             area: '{{ $baha->landAreas->isNotEmpty() ? floor($baha->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -455,7 +456,7 @@ if ($createdAt) {
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-            madinah: '{{ $hdood->landAreas->sum() }}',
+madinah: '{{ $gof->landAreas->count() }}',
             area: '{{ $gof->landAreas->isNotEmpty() ? floor($gof->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -474,7 +475,7 @@ if ($createdAt) {
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-            madinah: '{{ $hdood->landAreas->sum() }}',
+madinah: '{{ $hael->landAreas->count() }}',
             area: '{{ $hael->landAreas->isNotEmpty() ? floor($hael->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -494,7 +495,7 @@ if ($createdAt) {
         ]
 },
 
-madinah: '{{ $tabok->landAreas->sum("id") }}',
+madinah: '{{ $tabok->landAreas->count() }}',
 area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -513,7 +514,7 @@ area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->ar
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-            madinah: '{{ $hdood->landAreas->sum() }}',
+madinah: '{{ $gezan->landAreas->count() }}',
             area: '{{ $gezan->landAreas->isNotEmpty() ? floor($gezan->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -532,7 +533,7 @@ area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->ar
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-            madinah: '{{ $hdood->landAreas->sum() }}',
+madinah: '{{ $ngran->landAreas->count() }}',
             area: '{{ $ngran->landAreas->isNotEmpty() ? floor($ngran->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -551,7 +552,7 @@ area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->ar
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-            madinah: '{{ $hdood->landAreas->sum() }}',
+madinah: '{{ $kasem->landAreas->count() }}',
             area: '{{ $kasem->landAreas->isNotEmpty() ? floor($kasem->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -571,7 +572,7 @@ area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->ar
                 ]
             },
             area: '{{ $hdood->landAreas->isNotEmpty() ? floor($hdood->landAreas->first()->area) : "مغلقة" }}',
-            madinah: '{{ $hdood->landAreas->sum() }}',
+madinah: '{{ $hdood->landAreas->count() }}',
             states: {
                 hover: {
                     color: '#4DD0E1'

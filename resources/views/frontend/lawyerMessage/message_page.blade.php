@@ -129,13 +129,17 @@
                 method: form.attr('method'),
                 data: form.serialize(),
                 success: function (response) {
-                    $('.chat-container').append(`
-                        <div class="chat-message sent">
-                            <p>${response.text}</p>
-                            <small>${response.created_at}</small>
-                        </div>
-                    `);
-                    form.find('input[name="text"]').val('');
+                    if (response.success) {
+                        $('.chat-container').append(`
+                            <div class="chat-message sent">
+                                <p>${response.text}</p>
+                                <small>${response.created_at}</small>
+                            </div>
+                        `);
+                        form.find('input[name="text"]').val('');
+                    } else {
+                        alert('حدث خطأ أثناء إرسال الرسالة.');
+                    }
                 },
                 error: function () {
                     alert('حدث خطأ أثناء إرسال الرسالة.');
@@ -143,5 +147,6 @@
             });
         });
     });
+
 </script>
 @endsection

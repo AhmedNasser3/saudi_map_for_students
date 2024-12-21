@@ -171,6 +171,14 @@
                                         <label for="img">: اختر صورة</label>
                                     </td>
                                 </tr>
+
+                                <!-- حقل المعاينة -->
+                                <tr>
+                                    <td colspan="2">
+                                        <img id="img-preview" style="max-width: 200px; margin-top: 10px; display: none;" alt="صورة المعاينة">
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td colspan="2">
                                         <img id="preview" src="" alt="معاينة الصورة" style="max-width: 200px; max-height: 200px; display: none;">
@@ -200,4 +208,22 @@
         </div>
     </div>
 </div>
+<script>
+    function previewImage(event) {
+        // الحصول على العنصر الذي يحتوي على الصورة
+        var reader = new FileReader();
+        var preview = document.getElementById('img-preview');
+
+        // عندما يتم تحميل الملف
+        reader.onload = function() {
+            // تحديث المصدر في العنصر <img>
+            preview.src = reader.result;
+            preview.style.display = 'block'; // إظهار الصورة
+        };
+
+        // قراءة الملف
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+</script>
 @endsection

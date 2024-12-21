@@ -67,7 +67,8 @@
                                         <td>{{ $landArea->duration }}</td>
                                         <td>{{ $landArea->highest_bidder_id }}</td>
                                         <td>{{ $landArea->highest_bid }}</td>
-                                        <td><img src="{{ asset('storage/' . $landArea->img) }}" alt="صورة الأرض"></td>
+                                        <td><img src="{{ asset('storage/' . $landArea->img) }}" alt="صورة الأرض" style="max-width: 200px;">
+                                        </td>
                                         <td>{{ $landArea->state }}</td>
                                         <td>
                                             <form action="{{ route('landArea.delete', ['landArea_id' => $landArea->id]) }}" method="POST" style="display: inline;">

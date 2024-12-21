@@ -70,33 +70,45 @@ class lawyerController extends Controller
 
     public function sendStore(Request $request)
     {
-        $chat = $request->validate([
-            'send_id' => 'required|exists:lawyer_sents,id',
+        $validated = $request->validate([
+            'send_id' => 'required|exists:lawyer_sends,id',
             'text' => 'required|string',
         ]);
 
-        $chat = LawyerSent::create($chat);
+        // إنشاء الرسالة في جدول LawyerSent
+        $chat = LawyerSent::create([
+            'send_id' => $validated['send_id'],
+            'text' => $validated['text'],
+        ]);
 
         if ($chat) {
             return redirect()->back()->with('success', 'تم إرسال الرسالة بنجاح.');
         }
+
         return redirect()->back()->with('error', 'فشل إرسال الرسالة. حاول مرة أخرى.');
     }
+
 
     public function replayStore(Request $request)
-    {
-        $chat = $request->validate([
-            'send_id' => 'required|exists:lawyer_sents,id',
-            'text' => 'required|string',
-        ]);
+{
+    $validated = $request->validate([
+        'send_id' => 'required|exists:lawyer_sents,id',
+        'text' => 'required|string',
+    ]);
 
-        $chat = LawyerReplay::create($chat);
-        if ($chat) {
-            return redirect()->back()->with('success', 'تم إرسال الرسالة بنجاح.');
-        }
+    // إنشاء الرد في جدول LawyerReplay
+    $chat = LawyerReplay::create([
+        'send_id' => $validated['send_id'],
+        'text' => $validated['text'],
+    ]);
 
-        return redirect()->back()->with('error', 'فشل إرسال الرسالة. حاول مرة أخرى.');
+    if ($chat) {
+        return redirect()->back()->with('success', 'تم إرسال الرد بنجاح.');
     }
+
+    return redirect()->back()->with('error', 'فشل إرسال الرد. حاول مرة أخرى.');
+}
+
 
     public function endChat($id){
         $chat = LawyerSend::find($id);

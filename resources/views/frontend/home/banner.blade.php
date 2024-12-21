@@ -3,11 +3,11 @@
 		<h2><img class="banner_img" src="{{ asset('images/WhatsApp Image 2024-12-14 at 6.50.52 PM.jpeg') }}" alt=""></h2>
 	</div>
 	<div class="layer two">
-		<h2><img class="banner_img" src="{{ asset('images/WhatsApp Image 2024-12-14 at 6.50.52 PM.jpeg') }}" alt=""></h2>
+		<h2><img class="banner_img" src="{{ asset('images/22.jpeg') }}" alt=""></h2>
 	</div>
-	<div class="layer three">
+	{{--  <div class="layer three">
 		<h2><img class="banner_img" src="{{ asset('images/WhatsApp Image 2024-12-14 at 6.50.52 PM.jpeg') }}" alt=""></h2>
-	</div>
+	</div>  --}}
 </article>
 
 <ul class="bullets"></ul>
@@ -253,7 +253,7 @@
             text-align: center;
         }
         .banner_img {
-            width: 200px;
+            width: 250px;
         }
 
     .kontext {
