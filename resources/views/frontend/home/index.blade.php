@@ -178,7 +178,7 @@ $price = Price::first();
         </div>
     </div>
     <div class="office_img">
-        <img src="https://www.auctions.com.sa/web/binary/image/?model=auction.auction&field=image&id=15760" alt="">
+        <img src="{{ asset('images/soul.jpeg') }}" alt="">
     </div>
 </div>
 @if (auth()->check() && auth()->user()->children->isNotEmpty())

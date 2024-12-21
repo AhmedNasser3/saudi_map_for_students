@@ -79,9 +79,9 @@ $meters = LandArea::with('bids')
                     <div class="icon_prices">
                         <div class="icon_price_1">
                             @if (auth()->check())
-                            <button><a href="#"  style="color: white;">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
+                            <button><a href="{{ route('home.history', ['userId' => auth()->user()->id]) }}">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
                             @else
-                            <button><a href="#">تسجيل الدخول</a></button>
+                            <button><a href="{{ route('login') }}">تسجيل الدخول</a></button>
                             @endif
                         </div>
                     </div>

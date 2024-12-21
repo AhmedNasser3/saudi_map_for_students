@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Imports;
 
 use App\Models\User;
@@ -16,23 +17,30 @@ class UsersImport implements ToModel, WithHeadingRow
         if (!empty($row['id'])) {
             $user = User::find($row['id']); // ابحث عن المستخدم بناءً على id
             if ($user) {
-                // إذا تم العثور على المستخدم، قم بتسجيل المبلغ والسبب في جدول التحديثات
+                // إذا كان هناك مبلغ (balance) في الملف، قم بإضافته إلى الرصيد الحالي
                 if (!empty($row['balance']) && is_numeric($row['balance'])) {
-                    $additionAmount = $row['balance'] - $user->balance; // حساب الفرق
+                    $additionAmount = $row['balance']; // المبلغ الجديد
+                    $newBalance = $user->balance + $additionAmount; // الرصيد الجديد
+
+                    // تحديث الرصيد في جدول users
+                    $user->update([
+                        'balance' => $newBalance,
+                    ]);
+
+                    // تسجيل العملية في جدول additions
                     Addition::create([
                         'user_id' => $user->id,
-                        'addition' => $additionAmount,
-                        'title' => $row['title'] ?? 'No Title Provided',
+                        'addition' => $additionAmount, // المبلغ المضاف
+                        'title' => $row['title'] ?? 'No Title Provided', // السبب
                     ]);
                 }
 
-                // قم بتحديث البيانات
+                // قم بتحديث باقي التفاصيل (بدون تعديل الرصيد)
                 $user->update([
                     'name' => $row['name'] ?? $user->name,
                     'phone' => $row['phone'] ?? $user->phone,
                     'level' => $row['level'] ?? $user->level,
                     'password' => !empty($row['password']) ? Hash::make($row['password']) : $user->password,
-                    'balance' => is_numeric($row['balance']) ? $row['balance'] : $user->balance,
                 ]);
 
                 return null; // العودة وعدم إنشاء سجل جديد
@@ -50,7 +58,7 @@ class UsersImport implements ToModel, WithHeadingRow
             'phone' => (string)$row['phone'],
             'level' => $row['level'],
             'password' => Hash::make($row['password']),
-            'balance' => is_numeric($row['balance']) ? $row['balance'] : 0,
+            'balance' => 0, // اترك الرصيد صفرًا عند الإنشاء
         ]);
 
         // تحقق إذا كان رقم ولي الأمر موجودًا مسبقًا
@@ -60,7 +68,7 @@ class UsersImport implements ToModel, WithHeadingRow
                 'name' => $row['name'] . ' - ولي الأمر',
                 'level' => $row['level'],
                 'password' => Hash::make($row['password']),
-                'balance' => is_numeric($row['balance']) ? $row['balance'] : 0,
+                'balance' => 0,
             ]
         );
 

@@ -329,15 +329,18 @@ if ($createdAt) {
         // Data for cities with vibrant colors and emojis
         const data = [{
             'hc-key': 'sa-ri',
-            name: '{{ $riad->name }} 🌆', // Dynamically inject the name with emoji
+            name: '{{ $riad->name }} ', // Dynamically inject the name with emoji
             link: 'https://example.com/riyadh',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color }}'],
-                    [1, '{{ $color }}']
+                    [0.6, '{{ $color }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
+
                 ]
             },
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: '{{ $riad->landAreas->isNotEmpty() ? floor($riad->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -346,15 +349,17 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-mk',
-            name: '{{ $makah->name }} 🕋',
+            name: '{{ $makah->name }} ',
             link: 'https://example.com/mecca',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color_makah }}'],
-                    [1, '{{ $color_makah }}']
+                    [0.6, '{{ $color_makah }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: '1200 كم²',
             states: {
                 hover: {
@@ -363,15 +368,18 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-md',
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: '{{ $makah->landAreas->isNotEmpty() ? floor($makah->landAreas->first()->area) : "مغلقة" }}',
             link: 'https://example.com/madina',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color }}'],
-                    [1, '{{ $color }}']
+                    [0.6, '{{ $color }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: 'مغلقة',
             states: {
                 hover: {
@@ -380,15 +388,17 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-sh',
-            name: '{{ $sharqia->name }} 🌊',
+            name: '{{ $sharqia->name }}',
             link: 'https://example.com/eastern',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color }}'],
-                    [1, '{{ $color }}']
+                    [0.6, '{{ $color }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: '{{ $sharqia->landAreas->isNotEmpty() ? floor($sharqia->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -397,15 +407,17 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-as',
-            name: '{{ $aser->name }} 🏞️',
+            name: '{{ $aser->name }} ',
             link: 'https://example.com/aseer',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color }}'],
-                    [1, '{{ $color }}']
+                    [0.6, '{{ $color }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: '{{ $aser->landAreas->isNotEmpty() ? floor($aser->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -414,15 +426,17 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-ba',
-            name: '{{ $baha->name }} 🌳',
+            name: '{{ $baha->name }} ',
             link: 'https://example.com/baha',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color }}'],
-                    [1, '{{ $color }}']
+                    [0.6, '{{ $color }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: '{{ $baha->landAreas->isNotEmpty() ? floor($baha->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -431,15 +445,17 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-jf',
-            name: '{{ $gof->name }} 🌵',
+            name: '{{ $gof->name }} ',
             link: 'https://example.com/jouf',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color }}'],
-                    [1, '{{ $color }}']
+                    [0.6, '{{ $color }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: '{{ $gof->landAreas->isNotEmpty() ? floor($gof->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -448,15 +464,17 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-ha',
-            name: '{{ $hael->name }} 🏜️',
+            name: '{{ $hael->name }} ',
             link: 'https://example.com/hail',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color }}'],
-                    [1, '{{ $color }}']
+                    [0.6, '{{ $color }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: '{{ $hael->landAreas->isNotEmpty() ? floor($hael->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -465,17 +483,19 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-tb',
-            name: '{{ $tabok->name }} ❄️',
+            name: '{{ $tabok->name }}',
             link: 'https://example.com/tabuk',
             color: {
     radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
     stops: [
         [0, '{{ $color_tabok }}'],
-        [1, '{{ $color_tabok }}']
-    ]
+        [0.6, '{{ $color_tabok }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
+        ]
 },
 
-            area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->area) : "مغلقة" }}',
+madinah: '{{ $tabok->landAreas->sum("id") }}',
+area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
                     color: '#4FC3F7'
@@ -483,15 +503,17 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-jz',
-            name: '{{ $gezan->name }} 🦀',
+            name: '{{ $gezan->name }} ',
             link: 'https://example.com/jazan',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color_gezan }}'],
-                    [1, '{{ $color_gezan }}']
+                    [0.6, '{{ $color_gezan }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: '{{ $gezan->landAreas->isNotEmpty() ? floor($gezan->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -500,15 +522,17 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-nj',
-            name: '{{$ngran->name}} 🌞',
+            name: '{{$ngran->name}} ',
             link: 'https://example.com/najran',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color_ngran }}'],
-                    [1, '{{ $color_ngran }}']
+                    [0.6, '{{ $color_ngran }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: '{{ $ngran->landAreas->isNotEmpty() ? floor($ngran->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -517,15 +541,17 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-qs',
-            name: '{{ $kasem->name }} 🌾',
+            name: '{{ $kasem->name }} ',
             link: 'https://example.com/qassim',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color_kasem }}'],
-                    [1, '{{ $color_kasem }}']
+                    [0.6, '{{ $color_kasem }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
+            madinah: '{{ $hdood->landAreas->sum() }}',
             area: '{{ $kasem->landAreas->isNotEmpty() ? floor($kasem->landAreas->first()->area) : "مغلقة" }}',
             states: {
                 hover: {
@@ -534,16 +560,18 @@ if ($createdAt) {
             },
         }, {
             'hc-key': 'sa-hs',
-            name: '{{ $hdood->name }} ❄️',
+            name: '{{ $hdood->name }} ',
             link: 'https://example.com/northern',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
                     [0, '{{ $color_hdood }}'],
-                    [1, '{{ $color_hdood }}']
+                    [0.6, '{{ $color_hdood }}'],
+        [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
             area: '{{ $hdood->landAreas->isNotEmpty() ? floor($hdood->landAreas->first()->area) : "مغلقة" }}',
+            madinah: '{{ $hdood->landAreas->sum() }}',
             states: {
                 hover: {
                     color: '#4DD0E1'
@@ -567,7 +595,7 @@ if ($createdAt) {
             },
             tooltip: {
                 headerFormat: '',
-                pointFormat: '<b>{point.name}</b><br>المساحة: {point.area}'
+                pointFormat: '<b>{point.name}</b><br>المدينة: {point.area}<br> {point.madinah}'
             },
             series: [{
                 name: 'خريطة السعودية 🌟',
@@ -579,7 +607,7 @@ if ($createdAt) {
                     formatter: function() {
                         const point = this.point;
                         return `<a href="${point.link}" style="color: white; text-decoration: none;">
-                                        ${point.name} <br> مساحة ${point.area}
+                                        ${point.name} <br>  ${point.area}
                                     </a>`;
                     },
                     useHTML: true

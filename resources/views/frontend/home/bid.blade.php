@@ -23,7 +23,7 @@
                             @if ($land->go == 1 && now() > $land->start_time && $land->stop == 0)
                             <div class="bid_cards_content">
                                 <div class="bid_cards_img">
-                                    <img src="https://www.auctions.com.sa/web/binary/image/?model=auction.auction&field=image&id=15760" alt="">
+                                    <img src="{{ asset('images/soul.jpeg') }}" alt="">
                                 </div>
                                 <div class="bid_cards_timer">
                                     <div class="bid_cards_timer_container">
@@ -88,7 +88,7 @@
                             </div>
                             <div   hidden class="bid_cards_content">
                                 <div class="bid_cards_img">
-                                    <img src="https://www.auctions.com.sa/web/binary/image/?model=auction.auction&field=image&id=15760" alt="">
+                                    <img src="{{ asset('images/soul.jpeg') }}" alt="">
                                 </div>
                                 <div class="bid_cards_timer">
                                     <div class="bid_cards_timer_container">
