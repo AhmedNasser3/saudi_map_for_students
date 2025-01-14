@@ -44,7 +44,6 @@ $price = Price::first();
             @endif
         </div>
     @endforeach
-
 </div>
                     </div>
                 </div>

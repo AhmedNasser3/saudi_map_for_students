@@ -8,6 +8,9 @@
         <a href="{{ route('land.page') }}" class="navbar__link"><i class="fa-solid fa-earth-africa"></i><span>الأراضي</span></a>
       </li>
       <li class="navbar__item">
+        <a href="{{ route('statement.page') }}" class="navbar__link"><i class="fa-solid fa-earth-africa"></i><span>احصائيات</span></a>
+      </li>
+      <li class="navbar__item">
         <a href="{{ route('landArea.page') }}" class="navbar__link"><i class="fa-solid fa-lines-leaning"></i><span>المزادات</span></a>
       </li>
       <li class="navbar__item">

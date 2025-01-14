@@ -97,9 +97,11 @@ Route::post('/get/bonus/area', [ProductController::class, 'store'])->name('produ
 
 
 
+Route::get('/metres-history/{Id}',[HomeController::class, 'metres'])->name('metres.history');
 
 // admin
 Route::middleware([RoleMiddleware::class.':admin'])->prefix('admin')->group(function () {
+    Route::get('/statements',[HomeController::class, 'statement'])->name('statement.page');
 // ========================================================== Land Controller ==========================================================
     Route::controller(MainLandController::class)->prefix('land')->group(function(){
         Route::get('/', 'index')->name('land.page');
@@ -174,8 +176,6 @@ Route::post('/update-product/{id}', function ($id) {
     return response()->json(['success' => false]);
 });
 
-
-Route::get('/metres-history/{Id}',[HomeController::class, 'metres'])->name('metres.history');
 
 
 

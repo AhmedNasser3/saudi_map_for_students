@@ -3,16 +3,18 @@ namespace App\Http\Controllers\frontend\home;
 
 use TCPDF;
 use Carbon\Carbon;
+use App\Models\User;
 use setasign\Fpdi\Fpdi;
 use Illuminate\Http\Request;
 use App\Models\admin\bid\Bid;
+use App\Models\admin\land\Land;
 use App\Models\admin\land\LandArea;
 use App\Http\Controllers\Controller;
 use App\Models\frontend\messages\Send;
 use App\Models\admin\addition\Addition;
 use App\Models\admin\discount\Discount;
-use App\Models\frontend\expandArea\ExpandArea;
 use App\Models\frontend\message\LawyerSend;
+use App\Models\frontend\expandArea\ExpandArea;
 
 class HomeController extends Controller
 {
@@ -460,6 +462,11 @@ class HomeController extends Controller
 
         // تمرير البيانات إلى الواجهة
         return view('frontend.home.metres', compact('sortedItems'));
+    }
+
+    public function statement(){
+
+        return view('frontend.home.statement');
     }
 
 }
