@@ -330,7 +330,6 @@ if ($createdAt) {
         const data = [{
             'hc-key': 'sa-ri',
             name: '{{ $riad->name }} ', // Dynamically inject the name with emoji
-            link: 'https://example.com/riyadh',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
@@ -348,7 +347,6 @@ madinah: '{{ $riad->landAreas->count() }}',
         }, {
             'hc-key': 'sa-mk',
             name: '{{ $makah->name }} ',
-            link: 'https://example.com/mecca',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
@@ -367,7 +365,6 @@ madinah: '{{ $riad->landAreas->count() }}',
             name: '{{ $mdinah->name }} ',
             madinah: '{{ $tabok->landAreas->count() }}',
             area: '{{ $mdinah->landAreas->isNotEmpty() ? floor($mdinah->landAreas->first()->area) : "مغلقة" }}',
-            link: 'https://example.com/madina',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
@@ -384,7 +381,6 @@ states: {
         }, {
             'hc-key': 'sa-sh',
             name: '{{ $sharqia->name }}',
-            link: 'https://example.com/eastern',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
@@ -401,7 +397,6 @@ madinah: '{{ $sharqia->landAreas->count() }}',
         }, {
             'hc-key': 'sa-as',
             name: '{{ $aser->name }} ',
-            link: 'https://example.com/aseer',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
@@ -418,7 +413,6 @@ madinah: '{{ $aser->landAreas->count() }}',
         }, {
             'hc-key': 'sa-ba',
             name: '{{ $baha->name }} ',
-            link: 'https://example.com/baha',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
@@ -435,7 +429,6 @@ madinah: '{{ $baha->landAreas->count() }}',
         }, {
             'hc-key': 'sa-jf',
             name: '{{ $gof->name }} ',
-            link: 'https://example.com/jouf',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
@@ -452,7 +445,6 @@ madinah: '{{ $gof->landAreas->count() }}',
         }, {
             'hc-key': 'sa-ha',
             name: '{{ $hael->name }} ',
-            link: 'https://example.com/hail',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
@@ -469,7 +461,6 @@ madinah: '{{ $hael->landAreas->count() }}',
         }, {
             'hc-key': 'sa-tb',
             name: '{{ $tabok->name }}',
-            link: 'https://example.com/tabuk',
             color: {
     radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
     stops: [
@@ -487,7 +478,6 @@ area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->ar
         }, {
             'hc-key': 'sa-jz',
             name: '{{ $gezan->name }} ',
-            link: 'https://example.com/jazan',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
@@ -504,7 +494,6 @@ madinah: '{{ $gezan->landAreas->count() }}',
         }, {
             'hc-key': 'sa-nj',
             name: '{{$ngran->name}} ',
-            link: 'https://example.com/najran',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
@@ -521,7 +510,6 @@ madinah: '{{ $ngran->landAreas->count() }}',
         }, {
             'hc-key': 'sa-qs',
             name: '{{ $kasem->name }} ',
-            link: 'https://example.com/qassim',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
@@ -538,7 +526,6 @@ madinah: '{{ $kasem->landAreas->count() }}',
         }, {
             'hc-key': 'sa-hs',
             name: '{{ $hdood->name }} ',
-            link: 'https://example.com/northern',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
                 stops: [
