@@ -444,4 +444,22 @@ class HomeController extends Controller
         // إخراج PDF
         return response($pdf->Output('deed.pdf', 'D'), 200)->header('Content-Type', 'application/pdf');
     }
+
+    public function metres($Id){
+        // الحصول على الأراضي التي تم المزايدة عليها بواسطة هذا المعرف
+        $metres = LandArea::where('highest_bidder_id', $Id)->get();
+
+        // الحصول على المزايدات نفسها (من الممكن أن تكون نفس المجموعات)
+        $landAreasBids = LandArea::where('highest_bidder_id', $Id)->get();
+
+        // دمج المجموعات بطريقة صحيحة باستخدام merge()
+        $allItems = $landAreasBids->merge($metres)->unique('id')->sortBy('id')->values();
+
+        // ترتيب العناصر حسب التاريخ بشكل تنازلي
+        $sortedItems = $allItems->sortByDesc('created_at');
+
+        // تمرير البيانات إلى الواجهة
+        return view('frontend.home.metres', compact('sortedItems'));
+    }
+
 }

@@ -175,7 +175,7 @@ Route::post('/update-product/{id}', function ($id) {
 });
 
 
-
+Route::get('/metres-history/{Id}',[HomeController::class, 'metres'])->name('metres.history');
 
 
 
