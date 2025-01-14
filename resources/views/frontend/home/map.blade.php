@@ -339,7 +339,7 @@ if ($createdAt) {
 
                 ]
             },
-madinah: '{{ $riad->landAreas->count() }}',
+madinah: '{{ $riad->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             area: '{{ $riad->landAreas->isNotEmpty() ? floor($riad->landAreas->first()->area) : "مغلقة" }}',
             states: {
 
@@ -355,7 +355,7 @@ madinah: '{{ $riad->landAreas->count() }}',
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-            madinah: '{{ $makah->landAreas->count() }}',
+            madinah: '{{ $makah->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             area: '{{ $makah->landAreas->isNotEmpty() ? floor($makah->landAreas->first()->area) : "مغلقة" }}',
             states: {
 
@@ -363,7 +363,7 @@ madinah: '{{ $riad->landAreas->count() }}',
         }, {
             'hc-key': 'sa-md',
             name: '{{ $mdinah->name }} ',
-            madinah: '{{ $tabok->landAreas->count() }}',
+            madinah: '{{ $tabok->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             area: '{{ $mdinah->landAreas->isNotEmpty() ? floor($mdinah->landAreas->first()->area) : "مغلقة" }}',
             color: {
                 radialGradient: { cx: 0.5, cy: 0.5, r: 0.5 },
@@ -373,7 +373,7 @@ madinah: '{{ $riad->landAreas->count() }}',
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-madinah: '{{ $mdinah->landAreas->count() }}',
+madinah: '{{ $mdinah->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
 area: '{{ $mdinah->landAreas->isNotEmpty() ? floor($mdinah->landAreas->first()->area) : "مغلقة" }}',
 states: {
 
@@ -389,7 +389,7 @@ states: {
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-madinah: '{{ $sharqia->landAreas->count() }}',
+madinah: '{{ $sharqia->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             area: '{{ $sharqia->landAreas->isNotEmpty() ? floor($sharqia->landAreas->first()->area) : "مغلقة" }}',
             states: {
 
@@ -405,7 +405,7 @@ madinah: '{{ $sharqia->landAreas->count() }}',
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-madinah: '{{ $aser->landAreas->count() }}',
+madinah: '{{ $aser->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             area: '{{ $aser->landAreas->isNotEmpty() ? floor($aser->landAreas->first()->area) : "مغلقة" }}',
             states: {
 
@@ -421,7 +421,7 @@ madinah: '{{ $aser->landAreas->count() }}',
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-madinah: '{{ $baha->landAreas->count() }}',
+madinah: '{{ $baha->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             area: '{{ $baha->landAreas->isNotEmpty() ? floor($baha->landAreas->first()->area) : "مغلقة" }}',
             states: {
 
@@ -437,7 +437,7 @@ madinah: '{{ $baha->landAreas->count() }}',
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-madinah: '{{ $gof->landAreas->count() }}',
+madinah: '{{ $gof->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             area: '{{ $gof->landAreas->isNotEmpty() ? floor($gof->landAreas->first()->area) : "مغلقة" }}',
             states: {
 
@@ -453,7 +453,7 @@ madinah: '{{ $gof->landAreas->count() }}',
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-madinah: '{{ $hael->landAreas->count() }}',
+madinah: '{{ $hael->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             area: '{{ $hael->landAreas->isNotEmpty() ? floor($hael->landAreas->first()->area) : "مغلقة" }}',
             states: {
 
@@ -470,7 +470,7 @@ madinah: '{{ $hael->landAreas->count() }}',
         ]
 },
 
-madinah: '{{ $tabok->landAreas->count() }}',
+madinah: '{{ $tabok->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count() }}',
 area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->area) : "مغلقة" }}',
             states: {
 
@@ -486,7 +486,7 @@ area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->ar
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-madinah: '{{ $gezan->landAreas->count() }}',
+madinah: '{{ $gezan->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             area: '{{ $gezan->landAreas->isNotEmpty() ? floor($gezan->landAreas->first()->area) : "مغلقة" }}',
             states: {
 
@@ -502,7 +502,7 @@ madinah: '{{ $gezan->landAreas->count() }}',
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-madinah: '{{ $ngran->landAreas->count() }}',
+madinah: '{{ $ngran->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             area: '{{ $ngran->landAreas->isNotEmpty() ? floor($ngran->landAreas->first()->area) : "مغلقة" }}',
             states: {
 
@@ -518,7 +518,7 @@ madinah: '{{ $ngran->landAreas->count() }}',
         [1, 'rgba(50, 50, 50, 0.4)'] // Darker gray with transparency for glossy effect
                 ]
             },
-madinah: '{{ $kasem->landAreas->count() }}',
+madinah: '{{ $kasem->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             area: '{{ $kasem->landAreas->isNotEmpty() ? floor($kasem->landAreas->first()->area) : "مغلقة" }}',
             states: {
 
@@ -535,7 +535,7 @@ madinah: '{{ $kasem->landAreas->count() }}',
                 ]
             },
             area: '{{ $hdood->landAreas->isNotEmpty() ? floor($hdood->landAreas->first()->area) : "مغلقة" }}',
-madinah: '{{ $hdood->landAreas->count() }}',
+madinah: '{{ $hdood->landAreas->where('created_at', '>=', \Carbon\Carbon::now()->subDay())->count()  }}',
             states: {
 
             },
@@ -557,7 +557,7 @@ madinah: '{{ $hdood->landAreas->count() }}',
             },
             tooltip: {
                 headerFormat: '',
-                pointFormat: '<b>{point.name}</b><br>المدينة: {point.area}<br> عدد المزادات :{point.madinah}'
+                pointFormat: '<b>{point.name}</b><br>المدينة: {point.area}<br> عدد المزادات الحالية :{point.madinah}'
             },
             series: [{
                 name: 'خريطة السعودية 🌟',
