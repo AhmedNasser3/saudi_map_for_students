@@ -35,16 +35,17 @@ class AuctionController extends Controller
             ->orderBy('bid_amount', 'desc')
             ->first();
 
+        // التحقق من الرصيد الكافي قبل استرجاع مبلغ المزايدة السابقة
+        $totalAvailableBalance = $user->balance + ($userHighestBid ? $userHighestBid->bid_amount : 0);
+        if ($totalAvailableBalance < $request->bid_amount) {
+            return redirect()->back()->with('error', 'لا يوجد رصيد كافي.');
+        }
+
         if ($userHighestBid) {
             // إعادة أعلى مزايدة سابقة للمستخدم من freeze_balance إلى balance
             $user->balance += $userHighestBid->bid_amount;
             $user->freeze_balance -= $userHighestBid->bid_amount;
             $user->save();
-        }
-
-        // التحقق من الرصيد
-        if ($user->balance < $request->bid_amount) {
-            return redirect()->back()->with('error', 'لا يوجد رصيد كافي.');
         }
 
         // خصم المبلغ الجديد من balance وإضافته إلى freeze_balance
@@ -64,39 +65,51 @@ class AuctionController extends Controller
 
 
 
+
     public function payTax(Request $request)
     {
+        // استلام معرف المنطقة الأرضية
         $landAreaId = $request->input('landAreaId');
 
+        // العثور على المنطقة الأرضية
         $landArea = LandArea::find($landAreaId);
         if (!$landArea) {
             return response()->json(['success' => false, 'message' => 'المنطقة الأرضية غير موجودة']);
         }
 
+        // الحصول على المستخدم الحالي
         $user = Auth::user();
 
-        $price = Price::all();
-        if ($user->balance < price->tax_price) {
+        // الحصول على أول سجل للسعر
+        $price = Price::first(); // تعديل لاختيار أول سجل فقط
+        if (!$price) {
+            return response()->json(['success' => false, 'message' => 'لم يتم العثور على سعر الضريبة']);
+        }
+
+        // التحقق من رصيد المستخدم
+        if ($user->balance < $price->tax_price) {
             return response()->json(['success' => false, 'message' => 'رصيدك غير كافٍ للدفع']);
         }
-        $price = Price::first(); // إذا كنت تريد تحديث أول سجل فقط. يمكنك تخصيص البحث إذا كان هناك أكثر من سجل
 
+        // خصم السعر من رصيد المستخدم
         $user->balance -= $price->tax_price;
         $user->save();
 
+        // تحديث بيانات المنطقة الأرضية
         if ($landArea->tax == 1 && $landArea->tax_end_time < now()) {
             $landArea->tax_end_time = now()->addDays(7);
         }
-
         $landArea->tax = 1;
         $landArea->save();
 
+        // إعادة استجابة JSON عند النجاح
         return response()->json([
             'success' => true,
             'message' => 'تم الدفع بنجاح',
             'tax_end_time' => $landArea->tax_end_time
         ]);
     }
+
     public function extendTaxTime(Request $request)
     {
         try {
@@ -202,5 +215,19 @@ public function updateStop(Request $request)
     }
 
     return response()->json(['success' => true, 'message' => 'تم تحديث الحقل stop بنجاح']);
+}
+
+public function updateGoStatus(Request $request)
+{
+    $land = LandArea::find($request->id);
+
+    if ($land) {
+        $land->go = 1;
+        $land->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    return response()->json(['success' => false, 'message' => 'Land not found']);
 }
 }

@@ -470,9 +470,9 @@
                         </h3>
                         <p>أكمل ما بدأته وواصل تحقيق الإنجازات! تذكر أن كل يوم هو فرصة لتحقيق المزيد .
                             شارك في البورصة، وكن دائمًا في المقدمة!                     </p>
-                        <button class="btn transparent" id="sign-up-btn">
+                        {{--  <button class="btn transparent" id="sign-up-btn">
                             مستخدم جديد
-                        </button>
+                        </button>  --}}
                     </div>
                     <img  src="https://i.ibb.co/6HXL6q1/Privacy-policy-rafiki.png" class="image" alt="" />
                 </div>

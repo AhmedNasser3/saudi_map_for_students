@@ -11,118 +11,115 @@
             </p>
         </div>
     @else
-        <div class="countdown" data-id="{{ $land->id }}" data-starttime="{{ $land->start_time }}">
-            <h3>سوف يبدأ مزاد جديد خلال:</h3>
-            <span class="timer-days">0</span> يوم
-            <span class="timer-hours">0</span> ساعة
-            <span class="timer-minutes">0</span> دقيقة
-            <span class="timer-seconds">0</span> ثانية
+    <div class="bid_cards_content">
+        <div class="bid_cards_img">
+            <img src="{{ asset('images/soul.jpeg') }}" alt="">
         </div>
+        <div class="bid_cards_timer">
+            <div class="bid_cards_timer_container">
+                <div class="bid_cards_timer_title">
+                    <h3>مزاد سوف يبدأ بعد :</h3>
+                </div>
+                <div class="bid_cards_timer_body">
+                    <ul class="countdown" data-id="{{ $land->id }}" data-starttime="{{ $land->start_time }}">
+                        <li>
+                            <div class="bid_cards_timer_body_text">
+                                <h3 class="timer-days">0</h3>
+                                <p>يوم</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="bid_cards_timer_body_text">
+                                <h3 class="timer-hours">0</h3>
+                                <p>ساعة</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="bid_cards_timer_body_text">
+                                <h3 class="timer-minutes">0</h3>
+                                <p>دقيقة</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="bid_cards_timer_body_text">
+                                <h3 class="timer-seconds">0</h3>
+                                <p>ثانية</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bid_cards_footer">
+            <ul>
+                <li><a href="#"><i style="color: rgb(255, 217, 0)" class="fa-solid fa-ruler"></i>&nbsp;&nbsp;{{ floor($land->area) }} كم</a></li>
+                <li><a href="#"><i class="fa-solid fa-money-bill" style="color: rgb(47, 187, 47);"></i>&nbsp;&nbsp;تبدأ من {{ floor($land->starting_price) }} ريال</a></li>
+            </ul>
+        </div>
+        <div class="bid_cards_btns">
+            <div class="bid_cards_btns_container">
+                <button class="bidButton" data-endtime="{{ $land->auction_end_time }}" data-id="{{ $land->id }}" style="color: #a0a0a0">مزايدة</button>
+                <div class="bid_cards_btns_2">
+                    <button class="bidButton2" data-endtime="{{ $land->auction_end_time }}" data-land-id="{{ $land->id }}" style="color: #a0a0a0; font-size:1.1rem; cursor: pointer;">مشاهدة المزايدين</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @endif
+
 @endforeach
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const csrfToken = "{{ csrf_token() }}";
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get all countdown containers
+        const countdownContainers = document.querySelectorAll(".countdown-container");
 
-        // استخدام مجموعة لتخزين المزايدات المعالجة
-        const processedLandIds = new Set();
+        countdownContainers.forEach((container) => {
+            const goTime = new Date(container.getAttribute("data-go-time")).getTime();
+            const landId = container.getAttribute("data-id");
 
-        // معالجة العد التنازلي
-        document.querySelectorAll(".countdown-container, .countdown").forEach(container => {
-            const id = container.dataset.id;
-
-            // إذا كان تم معالجة هذا المزايد بالفعل، تجاهله
-            if (processedLandIds.has(id)) return;
-
-            // إضافة المعرف إلى مجموعة المعالجين
-            processedLandIds.add(id);
-
-            const goTime = container.dataset.goTime ? new Date(container.dataset.goTime).getTime() : null;
-            const startTime = container.dataset.starttime ? new Date(container.dataset.starttime).getTime() : null;
-
-            let interval = setInterval(() => {
+            const interval = setInterval(() => {
                 const now = new Date().getTime();
-                const timeRemaining = (goTime || startTime) - now;
+                const distance = goTime - now;
 
-                if (timeRemaining > 0) {
-                    updateCountdown(container, timeRemaining);
-                } else {
+                if (distance <= 0) {
                     clearInterval(interval);
 
-                    if (goTime) {
-                        // عند انتهاء وقت go_time
-                        container.querySelector("h3").innerText = "تم تفعيل العملية!";
-                        container.querySelector("p").innerHTML = "جارٍ تحديث الحالة...";
-
-                        // إرسال تحديث AJAX لتغيير go إلى 1
-                        fetch('/land-areas/update-go', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': csrfToken
-                            },
-                            body: JSON.stringify({
-                                land_area_id: id  // إرسال المعرف فقط
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
+                    // AJAX request to update go to 0
+                    fetch("/update-go-status", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                        },
+                        body: JSON.stringify({ id: landId }),
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
                             if (data.success) {
-                                console.log(`تم تحديث قيمة go إلى 1`);
-                                container.querySelector("h3").innerText = "تم تفعيل العملية!";
-                                container.querySelector("p").innerHTML = "تم تفعيل العملية بنجاح";
+                                console.log(`Land ID ${landId} updated successfully.`);
+                                container.style.display = "none"; // Hide the countdown container
                             } else {
-                                console.log('فشل التحديث');
-                                alert(data.message); // عرض رسالة الخطأ إذا فشل التحديث
+                                console.error(`Failed to update Land ID ${landId}.`);
                             }
                         })
-                        .catch(error => console.error('خطأ في الطلب:', error)); // إضافة التعامل مع الأخطاء
+                        .catch((error) => console.error("Error:", error));
+                } else {
+                    // Update countdown display (optional if the container is hidden)
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                    }
+                    container.querySelector(".timer-days").textContent = days;
+                    container.querySelector(".timer-hours").textContent = hours;
+                    container.querySelector(".timer-minutes").textContent = minutes;
+                    container.querySelector(".timer-seconds").textContent = seconds;
                 }
             }, 1000);
-
-            // دالة لتحديث العد التنازلي
-            function updateCountdown(container, timeRemaining) {
-                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-                container.querySelector(".timer-days").innerText = days;
-                container.querySelector(".timer-hours").innerText = hours;
-                container.querySelector(".timer-minutes").innerText = minutes;
-                container.querySelector(".timer-seconds").innerText = seconds;
-
-                // إذا كانت جميع القيم (الساعات والدقائق والثواني) تساوي 0، قم بتحديث go إلى 1
-                if (hours === 0 && minutes === 0 && seconds === 0) {
-                    // إرسال تحديث إلى الخادم لتغيير قيمة go إلى 1
-                    fetch('/land-areas/update-go', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': csrfToken
-                        },
-                        body: JSON.stringify({
-                            land_area_id: container.dataset.id  // إرسال المعرف فقط
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            console.log(`تم تحديث قيمة go إلى 1`);
-                            container.querySelector("h3").innerText = "تم تفعيل العملية!";
-                            container.querySelector("p").innerHTML = "تم تفعيل العملية بنجاح";
-                        } else {
-                            console.log('فشل التحديث');
-                            alert(data.message); // عرض رسالة الخطأ إذا فشل التحديث
-                        }
-                    })
-                    .catch(error => console.error('خطأ في الطلب:', error));
-                }
-            }
         });
     });
+
 
 </script>

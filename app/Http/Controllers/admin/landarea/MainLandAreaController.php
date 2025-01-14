@@ -21,6 +21,7 @@ class MainLandAreaController extends Controller
     }
     public function store(Request $request)
     {
+        // التحقق من صحة البيانات
         $LandsAreaStore = $request->validate([
             'land_id' => 'required|integer',
             'area' => 'required|string|max:255',
@@ -28,8 +29,8 @@ class MainLandAreaController extends Controller
             'auction_end_time' => 'required|date',
             'user_id' => 'required|integer',
             'final_price' => 'nullable|numeric',
-            'day' => 'required',
-            'duration' => 'required|integer',
+            'day' => 'nullable|string',
+            'duration' => 'nullable|string',
             'highest_bidder_id' => 'nullable|integer',
             'highest_bid' => 'nullable|numeric',
             'tax' => 'nullable|numeric',
@@ -43,30 +44,16 @@ class MainLandAreaController extends Controller
         ]);
 
         $numberOfAuctions = $request->number_of_auctions;
+
+        // معالجة الصورة إذا تم رفعها
+        $imagePath = null;
+        if ($request->hasFile('img')) {
+            $imagePath = $this->storeImage($request->file('img'));
+        }
+
         for ($i = 0; $i < $numberOfAuctions; $i++) {
             $landAreaData = $LandsAreaStore;
-
-            // التحقق إذا كان هناك صورة تم تحميلها
-            if ($request->hasFile('img')) {
-                $image = $request->file('img');
-
-                // التحقق من صحة الصورة
-                if ($image->isValid()) {
-                    // اسم الصورة
-                    $imageName = time() . '_' . $image->getClientOriginalName();
-
-                    // مسار الصورة في مجلد التخزين
-                    $imagePath = 'lands/' . $imageName;
-
-                    // تخزين الصورة في مجلد storage/lands
-                    $image->storeAs('public/lands', $imageName);
-
-                    // إضافة المسار إلى البيانات التي سيتم تخزينها في قاعدة البيانات
-                    $landAreaData['img'] = $imagePath;
-                } else {
-                    return redirect()->back()->withErrors(['img' => 'خطأ في رفع الصورة.']);
-                }
-            }
+            $landAreaData['img'] = $imagePath;
 
             // إنشاء المزاد
             $landArea = LandArea::create($landAreaData);
@@ -76,6 +63,25 @@ class MainLandAreaController extends Controller
         Tax::create(['landArea_id' => $landArea->id]);
 
         return redirect()->route('landArea.page')->with('success', 'تم إنشاء المزادات بنجاح');
+    }
+
+    /**
+     * وظيفة لمعالجة الصور وتخزينها باستخدام Storage
+     */
+    private function storeImage($image)
+    {
+        if ($image->isValid()) {
+            // إنشاء اسم مميز للصورة
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            // تخزين الصورة في مجلد lands باستخدام Storage
+            $path = $image->storeAs('public/lands', $imageName);
+
+            // إعادة المسار بدون "public/"
+            return str_replace('public/', 'storage/', $path);
+        }
+
+        throw new \Exception('خطأ في رفع الصورة.');
     }
 
     public function edit($landArea_id)
@@ -99,13 +105,19 @@ class MainLandAreaController extends Controller
             'starting_price' => 'required|numeric',
             'auction_end_time' => 'required|date',
             'user_id' => 'required|integer',
-            'final_price' => 'nullable|numeric',
-            'day' => 'required',
-            'duration' => 'required|integer',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20048',
-            'number_of_auctions' => 'required|integer|min:1',
+            'final_price',
+            'day',
+            'duration',
+            'highest_bidder_id' => 'nullable|integer',
+            'highest_bid' => 'nullable|numeric',
+            'tax' => 'nullable|numeric',
+            'tax_end_time' => 'nullable|date',
+            'start_time' => 'nullable|date',
             'stop_time' => 'nullable|date',
             'go_time' => 'nullable|date',
+            'state' => 'nullable|string|max:255',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:20048',
+            'number_of_auctions' => 'required|integer|min:1',
         ]);
 
         // العثور على المزاد المحدد باستخدام الـ ID

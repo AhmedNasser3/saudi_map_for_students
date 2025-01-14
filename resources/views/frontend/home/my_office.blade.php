@@ -116,7 +116,7 @@ $price = Price::first();
                             </div>
                         </a>
                     </div>
-                    <div class="my_icons_title">
+                    {{--  <div class="my_icons_title">
                         <a href="{{ route('home.history', ['userId' => auth()->user()->id]) }}">
                             <div style="padding: 0 0 0" class="my_icons_img">
                                 <img src="{{ asset('images/sm_5b33460f04516.png') }}" alt="">
@@ -125,7 +125,7 @@ $price = Price::first();
                                 <button><h3>السجل المالي</h3></button>
                             </div>
                         </a>
-                    </div>
+                    </div>  --}}
 
                 </div>
             </div>

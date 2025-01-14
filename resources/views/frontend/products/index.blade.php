@@ -142,7 +142,7 @@ $price = Price::first();
                             </div>
                             <div class="office_titles_main">
                                 <div class="office_header">
-                                    <h2>ارض في تبوك</h2>
+                                    <h2>ارض في {{ $landArea->land->name }}</h2>
                                     <p>مساحة {{ $landArea->area }} كم</p>
                                 </div>
                                 <div class="office_price">

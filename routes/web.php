@@ -40,7 +40,7 @@ Route::controller(HomeController::class)->group(function(){
 // ========================================================== AuctionController Controller ==========================================================
 Route::controller(AuctionController::class)->group(function(){
     Route::post('/update-auction-state',   'updateState');
-    Route::post('/pay-tax',  'payTax');
+    Route::post('/pay-tax',  'payTax')->name('renew.tax');
     Route::post('/extend-tax-time',  'extendTaxTime');
     Route::post('/pay-fine',  'payFine');
     Route::post('/adjust-balance',  'adjustBalance');
@@ -247,5 +247,6 @@ Route::post('/grace-time', [AuctionController::class, 'graceTime']);
 Route::get('/check-and-renew-license/{landAreaId}', [AuctionController::class, 'checkAndRenewLicense']);
 Route::post('/land-areas/update-go', [AuctionController::class, 'updateGoTime']);
 Route::post('/land-areas/update-stop', [AuctionController::class, 'updateStop']);
+Route::post('/update-go-status', [AuctionController::class, 'updateGoStatus']);
 
 require __DIR__.'/auth.php';

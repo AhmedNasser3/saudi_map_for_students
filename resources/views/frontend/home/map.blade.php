@@ -343,9 +343,7 @@ if ($createdAt) {
 madinah: '{{ $riad->landAreas->count() }}',
             area: '{{ $riad->landAreas->isNotEmpty() ? floor($riad->landAreas->first()->area) : "مغلقة" }}',
             states: {
-                hover: {
-                    color: '#FFEB3B'
-                }
+
             },
         }, {
             'hc-key': 'sa-mk',
@@ -362,9 +360,7 @@ madinah: '{{ $riad->landAreas->count() }}',
             madinah: '{{ $makah->landAreas->count() }}',
             area: '{{ $makah->landAreas->isNotEmpty() ? floor($makah->landAreas->first()->area) : "مغلقة" }}',
             states: {
-                hover: {
-                    color: '#FF7043'
-                }
+
             },
         }, {
             'hc-key': 'sa-md',
@@ -383,9 +379,7 @@ madinah: '{{ $riad->landAreas->count() }}',
 madinah: '{{ $mdinah->landAreas->count() }}',
 area: '{{ $mdinah->landAreas->isNotEmpty() ? floor($mdinah->landAreas->first()->area) : "مغلقة" }}',
 states: {
-                hover: {
-                    color: '#81C784'
-                }
+
             },
         }, {
             'hc-key': 'sa-sh',
@@ -402,9 +396,7 @@ states: {
 madinah: '{{ $sharqia->landAreas->count() }}',
             area: '{{ $sharqia->landAreas->isNotEmpty() ? floor($sharqia->landAreas->first()->area) : "مغلقة" }}',
             states: {
-                hover: {
-                    color: '#64B5F6'
-                }
+
             },
         }, {
             'hc-key': 'sa-as',
@@ -421,9 +413,7 @@ madinah: '{{ $sharqia->landAreas->count() }}',
 madinah: '{{ $aser->landAreas->count() }}',
             area: '{{ $aser->landAreas->isNotEmpty() ? floor($aser->landAreas->first()->area) : "مغلقة" }}',
             states: {
-                hover: {
-                    color: '#CE93D8'
-                }
+
             },
         }, {
             'hc-key': 'sa-ba',
@@ -440,9 +430,7 @@ madinah: '{{ $aser->landAreas->count() }}',
 madinah: '{{ $baha->landAreas->count() }}',
             area: '{{ $baha->landAreas->isNotEmpty() ? floor($baha->landAreas->first()->area) : "مغلقة" }}',
             states: {
-                hover: {
-                    color: '#AED581'
-                }
+
             },
         }, {
             'hc-key': 'sa-jf',
@@ -459,9 +447,7 @@ madinah: '{{ $baha->landAreas->count() }}',
 madinah: '{{ $gof->landAreas->count() }}',
             area: '{{ $gof->landAreas->isNotEmpty() ? floor($gof->landAreas->first()->area) : "مغلقة" }}',
             states: {
-                hover: {
-                    color: '#FFB74D'
-                }
+
             },
         }, {
             'hc-key': 'sa-ha',
@@ -478,9 +464,7 @@ madinah: '{{ $gof->landAreas->count() }}',
 madinah: '{{ $hael->landAreas->count() }}',
             area: '{{ $hael->landAreas->isNotEmpty() ? floor($hael->landAreas->first()->area) : "مغلقة" }}',
             states: {
-                hover: {
-                    color: '#E57373'
-                }
+
             },
         }, {
             'hc-key': 'sa-tb',
@@ -498,9 +482,7 @@ madinah: '{{ $hael->landAreas->count() }}',
 madinah: '{{ $tabok->landAreas->count() }}',
 area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->area) : "مغلقة" }}',
             states: {
-                hover: {
-                    color: '#4FC3F7'
-                }
+
             },
         }, {
             'hc-key': 'sa-jz',
@@ -517,9 +499,7 @@ area: '{{ $tabok->landAreas->isNotEmpty() ? floor($tabok->landAreas->first()->ar
 madinah: '{{ $gezan->landAreas->count() }}',
             area: '{{ $gezan->landAreas->isNotEmpty() ? floor($gezan->landAreas->first()->area) : "مغلقة" }}',
             states: {
-                hover: {
-                    color: '#9575CD'
-                }
+
             },
         }, {
             'hc-key': 'sa-nj',
@@ -536,9 +516,7 @@ madinah: '{{ $gezan->landAreas->count() }}',
 madinah: '{{ $ngran->landAreas->count() }}',
             area: '{{ $ngran->landAreas->isNotEmpty() ? floor($ngran->landAreas->first()->area) : "مغلقة" }}',
             states: {
-                hover: {
-                    color: '#FFF176'
-                }
+
             },
         }, {
             'hc-key': 'sa-qs',
@@ -555,9 +533,7 @@ madinah: '{{ $ngran->landAreas->count() }}',
 madinah: '{{ $kasem->landAreas->count() }}',
             area: '{{ $kasem->landAreas->isNotEmpty() ? floor($kasem->landAreas->first()->area) : "مغلقة" }}',
             states: {
-                hover: {
-                    color: '#DCE775'
-                }
+
             },
         }, {
             'hc-key': 'sa-hs',
@@ -574,9 +550,7 @@ madinah: '{{ $kasem->landAreas->count() }}',
             area: '{{ $hdood->landAreas->isNotEmpty() ? floor($hdood->landAreas->first()->area) : "مغلقة" }}',
 madinah: '{{ $hdood->landAreas->count() }}',
             states: {
-                hover: {
-                    color: '#4DD0E1'
-                }
+
             },
         }];
 
@@ -596,7 +570,7 @@ madinah: '{{ $hdood->landAreas->count() }}',
             },
             tooltip: {
                 headerFormat: '',
-                pointFormat: '<b>{point.name}</b><br>المدينة: {point.area}<br> {point.madinah}'
+                pointFormat: '<b>{point.name}</b><br>المدينة: {point.area}<br> عدد المزادات :{point.madinah}'
             },
             series: [{
                 name: 'خريطة السعودية 🌟',
@@ -608,7 +582,7 @@ madinah: '{{ $hdood->landAreas->count() }}',
                     formatter: function() {
                         const point = this.point;
                         return `<a href="${point.link}" style="color: white; text-decoration: none;">
-                                        ${point.name} <br>  ${point.area}
+                                        ${point.name} <br>
                                     </a>`;
                     },
                     useHTML: true

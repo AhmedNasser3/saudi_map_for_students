@@ -77,20 +77,21 @@ $meters = LandArea::with('bids')
                 </div>
                 <div class="icons_price_lands">
                     <div class="icon_prices">
-                        <div class="icon_price_1">
+                        <div class="icon_price_1" style="display: flex;">
                             @if (auth()->check())
-                            <button><a href="{{ route('home.history', ['userId' => auth()->user()->id]) }}">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
+                            <button style="margin: 0 0 0 6px"><a href="{{ route('home.history', ['userId' => auth()->user()->id]) }}" style="color: white">🪙 الرصيد : {{ auth()->user()->balance }}</a></button>
+                            <button style="background: #4d4d4d"><a href="#" style="color: white">🪙 الرصيد المعلق  : {{ auth()->user()->freeze_balance  }}</a></button>
                             @else
                             <button><a href="{{ route('login') }}">تسجيل الدخول</a></button>
                             @endif
                         </div>
                     </div>
                     <div class="icon_prices">
-                        <div class="icon_price_2">
+                        <div class="icon_price_2" style="margin: 0 6px 0 0">
                             @if (auth()->check())
                             <button><a href="#">📏 المساحة : {{ floor($meters) }} متر</a></button>
                             @else
-                            <button><a href="#">مستخدم جديد</a></button>
+                            {{--  <button><a href="#">مستخدم جديد</a></button>  --}}
                             @endif
                         </div>
                     </div>

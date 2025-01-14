@@ -114,42 +114,11 @@
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <td>
-                                        <input type="number" class="select_land" id="final_price" name="final_price" placeholder="السعر النهائي ..." value="{{ old('final_price') }}" required>
-                                        @error('final_price')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </td>
-                                    <td>
-                                      <label for="final_price">: السعر النهائي</label>
-                                    </td>
-                                </tr>
+
 
                                 <tr>
                                     <td>
-                                        <select id="day" name="day" class="select_land" required>
-                                            <option value="" disabled selected>اختر اليوم...</option>
-                                            <option value="الأحد" {{ old('day') == 'الأحد' ? 'selected' : '' }}>الأحد</option>
-                                            <option value="الأثنين" {{ old('day') == 'الأثنين' ? 'selected' : '' }}>الأثنين</option>
-                                            <option value="الثلاثاء" {{ old('day') == 'الثلاثاء' ? 'selected' : '' }}>الثلاثاء</option>
-                                            <option value="الأربعاء" {{ old('day') == 'الأربعاء' ? 'selected' : '' }}>الأربعاء</option>
-                                            <option value="الخميس" {{ old('day') == 'الخميس' ? 'selected' : '' }}>الخميس</option>
-                                            <option value="الجمعة" {{ old('day') == 'الجمعة' ? 'selected' : '' }}>الجمعة</option>
-                                            <option value="السبت" {{ old('day') == 'السبت' ? 'selected' : '' }}>السبت</option>
-                                        </select>
-                                        @error('day')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </td>
-                                    <td>
-                                        <label for="day">: يوم انتهاء المزاد</label>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <input type="number" class="select_land" id="duration" name="duration" placeholder="ادخل عدد الايام ..." value="{{ old('duration') }}" required>
+                                        <input type="number" class="select_land" id="duration" name="duration" placeholder="ادخل عدد الايام ..." value="{{ old('duration') }}" >
                                         @error('duration')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -191,7 +160,7 @@
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </td>
-                                    <td>
+                                    <td hidden>
                                         <label for="number_of_auctions">: عدد المزادات</label>
                                     </td>
                                 </tr>

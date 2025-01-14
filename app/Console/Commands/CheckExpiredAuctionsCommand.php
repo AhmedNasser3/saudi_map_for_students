@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Console\Commands;
+
 use DB;
 use Carbon\Carbon;
 use App\Models\User;
@@ -12,79 +13,94 @@ class CheckExpiredAuctionsCommand extends Command
 {
     protected $signature = 'auction:check-expired';
     protected $description = 'Process auctions where state is 0 and determine the winner';
+
     public function handle()
     {
-            // الحصول على جميع السجلات التي تحتاج إلى تحديث
+        // Get all land areas that need updating
         $lands = LandArea::where('go', 0)
-        ->where('start_time', '<=', Carbon::now())
-        ->get();
+                         ->where('start_time', '<=', Carbon::now())
+                         ->get();
 
-foreach ($lands as $land) {
-// تحديث قيمة go إلى 1
-$land->go = 1;
-$land->save();
-$this->info("تم تحديث العملية للمزرعة {$land->id} إلى 1");
-}
+        foreach ($lands as $land) {
+            // Update go to 1
+            $land->go = 1;
+            $land->save();
+            $this->info("Land ID: {$land->id} updated to go = 1");
+        }
 
-$this->info('تم إتمام تحديث العمليات.');
+        $this->info('Operations update completed.');
+        // Get all land areas that need updating
+        $lands = LandArea::where('stop', operator: 1)
+                         ->where('stop_time', '<=', Carbon::now())
+                         ->get();
 
-$this->info('تم إتمام تحديث العمليات.');
-        // جلب جميع المزادات التي حالتها (state) تساوي 0 وأعلى مزايدة غير موجودة
-        $expiredAuctions = LandArea::where('state', 0)->whereNull('highest_bid')->get();
+        foreach ($lands as $land) {
+            // Update go to 1
+            $land->go = 1;
+            $land->save();
+            $this->info("Land ID: {$land->id} updated to go = 1");
+        }
+
+        $this->info('Operations update completed.');
+
+        // Get all expired auctions with state 0 and no highest bid
+        $expiredAuctions = LandArea::where('state', 0)
+                                   ->whereNull('highest_bid')
+                                   ->get();
 
         foreach ($expiredAuctions as $auction) {
-            // الحصول على أعلى مزايدة للمزاد
+            // Get the highest bid for the auction
             $highestBid = Bid::where('land_area_id', $auction->id)
-                ->orderBy('bid_amount', 'desc')
-                ->first();
+                             ->orderBy('bid_amount', 'desc')
+                             ->first();
 
-            // جميع المزايدات على هذا المزاد
+            // Get all bids for this auction
             $bids = Bid::where('land_area_id', $auction->id)->get();
 
             if ($highestBid) {
                 $highestBidder = User::find($highestBid->user_id);
 
-                // خصم المبلغ من رصيد الـ freeze_balance للمزايد الفائز
+                // Deduct the bid amount from the winner's freeze_balance
                 $highestBidder->freeze_balance -= $highestBid->bid_amount;
                 $highestBidder->save();
 
-                // معالجة جميع المزايدين الآخرين
+                // Process all other bidders
                 foreach ($bids as $bid) {
                     $bidder = User::find($bid->user_id);
 
                     if ($bidder->id !== $highestBidder->id) {
-                        // إرجاع المبلغ للمستخدمين الذين لم يفوزوا بالمزاد
+                        // Refund the amount to non-winning bidders
                         $bidder->balance += $bid->bid_amount;
                         $bidder->freeze_balance -= $bid->bid_amount;
                         $bidder->save();
                     }
                 }
 
-                // تحديث رصيد البائع (المستخدم المرتبط بـ `landArea`)
-                $seller = User::find($auction->user_id); // افتراض أن `user_id` هو البائع
+                // Update the seller's balance
+                $seller = User::find($auction->user_id); // Assume `user_id` is the seller
                 if ($seller) {
-                    $seller->balance += $highestBid->bid_amount; // إضافة أعلى مزايدة
+                    $seller->balance += $highestBid->bid_amount; // Add the highest bid
                     $seller->save();
 
-                    // إضافة سجل جديد في جدول additions
+                    // Add a record in the additions table
                     \DB::table('additions')->insert([
                         'user_id' => $seller->id,
                         'addition' => $highestBid->bid_amount,
-                        'title' => 'ارض تم بيعها',
+                        'title' => 'Land sold',
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
                 }
 
-                // تحديث بيانات المزاد
+                // Update auction data
                 $auction->highest_bid = $highestBid->bid_amount;
                 $auction->highest_bidder_id = $highestBidder->id;
-                $auction->state = 1; // المزاد انتهى
+                $auction->state = 1; // Auction ended
                 $auction->save();
 
                 $this->info("Auction ID: {$auction->id} processed. Winner: User ID: {$highestBidder->id}, Amount: {$highestBid->bid_amount}");
             } else {
-                // إذا لم يكن هناك أي مزايدة
+                // If no bids were placed
                 foreach ($bids as $bid) {
                     $bidder = User::find($bid->user_id);
                     $bidder->balance += $bid->bid_amount;
@@ -95,6 +111,4 @@ $this->info('تم إتمام تحديث العمليات.');
             }
         }
     }
-
-
 }
