@@ -23,8 +23,11 @@
                             @if ($land->go == 1 && $land->stop == 0)
                             <div class="bid_cards_content">
                                 <div class="bid_cards_img">
-                                    <img src="{{ asset('images/soul.jpeg') }}" alt="">
-                                </div>
+                                    @if ($land->img)
+                                    <img src="{{ asset('lands_image/' . $land->img) }}" alt="صورة الأرض">
+                                @else
+                                    <img src="{{ asset('images/soul.jpeg') }}" alt="صورة بديلة">
+                                @endif                                </div>
                                 <div class="bid_cards_timer">
                                     <div class="bid_cards_timer_container">
                                         <div class="bid_cards_timer_title">
@@ -88,7 +91,12 @@
                             </div>
                             <div   hidden class="bid_cards_content">
                                 <div class="bid_cards_img">
-                                    <img src="{{ asset('images/soul.jpeg') }}" alt="">
+                                    @if ($land->img)
+                                    <img src="{{ asset('lands_image/' . $land->img) }}" alt="صورة الأرض">
+                                @else
+                                    <img src="{{ asset('images/soul.jpeg') }}" alt="صورة بديلة">
+                                @endif
+
                                 </div>
                                 <div class="bid_cards_timer">
                                     <div class="bid_cards_timer_container">

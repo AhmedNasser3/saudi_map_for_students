@@ -48,7 +48,22 @@ class MainLandAreaController extends Controller
         // معالجة الصورة إذا تم رفعها
         $imagePath = null;
         if ($request->hasFile('img')) {
-            $imagePath = $this->storeImage($request->file('img'));
+            // اسم الصورة مع وقت الرفع لتجنب التكرار
+            $imageName = time() . '_' . $request->file('img')->getClientOriginalName();
+
+            // المسار الكامل للمجلد داخل public
+            $destinationPath = public_path('lands_image');
+
+            // التأكد من وجود المجلد أو إنشاؤه
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // نقل الصورة إلى المجلد
+            $request->file('img')->move($destinationPath, $imageName);
+
+            // تعيين المسار في المتغير
+            $imagePath = 'lands_image/' . $imageName;
         }
 
         for ($i = 0; $i < $numberOfAuctions; $i++) {
