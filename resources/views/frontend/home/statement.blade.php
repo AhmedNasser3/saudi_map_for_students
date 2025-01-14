@@ -45,6 +45,14 @@ use App\Models\admin\land\LandArea;
             <h2>{{ __('عدد المزادات كاملة') }} - <span>{{ $landAreasView->count() }}</span></h2>
         </div>
     </div>
+    <div class="home_bg">
+        <div class="home_title">
+            <div class="home_icons">
+                <div class="home_icon"><i class="fa-solid fa-lock"></i></div>
+            </div>
+            <h2>{{ __('عدد المزايدات علي الموقع') }} - <span>{{ $bids->count() }}</span></h2>
+        </div>
+    </div>
 </div>
 @endsection
 <style>
