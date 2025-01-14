@@ -25,9 +25,6 @@
                                         <th>السعر يبدأ من</th>
                                         <th>انتهاء المزاد في</th>
                                         <th>منشيئ المزاد</th>
-                                        <th>السعر النهائي</th>
-                                        <th>يوم الانتهاء</th>
-                                        <th>مدة المزاد</th>
                                         <th>رابح المزاد</th>
                                         <th>سعر الرابح</th>
                                         <th>صورة المزاد</th>
@@ -62,12 +59,10 @@
                                         <td>{{ $landArea->starting_price }}</td>
                                         <td>{{ $landArea->auction_end_time }}</td>
                                         <td>{{ $landArea->user->name }}</td>
-                                        <td>{{ $landArea->final_price }}</td>
-                                        <td>{{ $landArea->day }}</td>
-                                        <td>{{ $landArea->duration }}</td>
                                         <td>{{ $landArea->highest_bidder_id }}</td>
                                         <td>{{ $landArea->highest_bid }}</td>
-                                        <td><img src="{{ asset('storage/' . $landArea->img) }}" alt="صورة الأرض" style="max-width: 200px;">
+                                        <td>                                    <img src="{{ asset('lands_image/' . $landArea->img) }}" alt="صورة الأرض" style="max-width: 200px;">
+
                                         </td>
                                         <td>{{ $landArea->state }}</td>
                                         <td>

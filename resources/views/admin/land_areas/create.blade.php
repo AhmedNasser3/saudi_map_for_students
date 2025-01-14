@@ -118,13 +118,13 @@
 
                                 <tr>
                                     <td>
-                                        <input type="number" class="select_land" id="duration" name="duration" placeholder="ادخل عدد الايام ..." value="{{ old('duration') }}" >
+                                        <input type="number" hidden value="vaue" class="select_land" id="duration" name="duration" placeholder="ادخل عدد الايام ..." value="{{ old('duration') }}" >
                                         @error('duration')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </td>
                                     <td>
-                                        <label for="duration">: عدد ايام المزاد</label>
+                                        <label for="duration" hidden >: عدد ايام المزاد</label>
                                     </td>
                                 </tr>
 
@@ -155,13 +155,13 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="number" class="select_land" id="number_of_auctions" name="number_of_auctions" placeholder="عدد المزادات" value="{{ old('number_of_auctions', 1) }}" required min="1">
+                                        <input type="number" hidden class="select_land" id="number_of_auctions" name="number_of_auctions" placeholder="عدد المزادات" value="{{ old('number_of_auctions', 1) }}" required min="1">
                                         @error('number_of_auctions')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </td>
                                     <td hidden>
-                                        <label for="number_of_auctions">: عدد المزادات</label>
+                                        <label for="number_of_auctions" hidden>: عدد المزادات</label>
                                     </td>
                                 </tr>
                                 <tr>

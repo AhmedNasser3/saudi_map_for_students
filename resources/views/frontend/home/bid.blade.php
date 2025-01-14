@@ -24,7 +24,7 @@
                             <div class="bid_cards_content">
                                 <div class="bid_cards_img">
                                     @if ($land->img)
-                                    <img src="{{ asset('lands_image/' . $land->img) }}" alt="صورة الأرض">
+                                    <img src="{{ asset($land->img) }}" alt="صورة الأرض">
                                 @else
                                     <img src="{{ asset('images/soul.jpeg') }}" alt="صورة بديلة">
                                 @endif                                </div>
@@ -92,7 +92,7 @@
                             <div   hidden class="bid_cards_content">
                                 <div class="bid_cards_img">
                                     @if ($land->img)
-                                    <img src="{{ asset('lands_image/' . $land->img) }}" alt="صورة الأرض">
+                                    <img src="{{ asset($land->img) }}" alt="صورة الأرض">
                                 @else
                                     <img src="{{ asset('images/soul.jpeg') }}" alt="صورة بديلة">
                                 @endif
